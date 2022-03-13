@@ -13,7 +13,7 @@ $user = new User();
 
 $data = new Database();
 
-// if ($data->connect()) {
+if ($data->connect()) {
 //     //echo "true";
     if (isset($_POST['email']) && isset($_POST['password'])) {
 
@@ -34,7 +34,7 @@ $data = new Database();
         include_once 'views/login/login.php';
     }
     //
-//} 
-// else {
-//     include_once 'views/errores/500.php';
-// }
+} 
+else {
+    include_once 'views/errores/500.php';
+}
