@@ -1,0 +1,29 @@
+create table usuarios(
+id_usuario int primary key auto_increment,
+us_nombres varchar(50) not null,
+us_email varchar(50) not null,
+us_nced varchar(15) not null,
+us_cel varchar(20),
+us_ciudad int,
+us_password varchar(1000) not null,
+us_tipo int not null,
+us_foto varchar(500),
+us_obs varchar(100) not null,
+fecha_creado DATETIME DEFAULT CURRENT_TIMESTAMP,
+fecha_actualizado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+us_activo int not null
+)
+
+create table log(
+id_log int primary key auto_increment,
+usuario_id int not null,
+usuario_nombre varchar(50) not null,
+acceso int not null,
+modulo varchar(100) not null,
+descripcion varchar(200) not null,
+hora_ingreso DATETIME DEFAULT CURRENT_TIMESTAMP,
+ip_log varchar(20) not null,
+server_name varchar(100) not null,
+dispositivo varchar(1000) not null
+)
+
