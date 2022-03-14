@@ -1,7 +1,7 @@
 <?php
 $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $u = "$_SERVER[HTTP_HOST]";
-define('URL','http://'.$u.'/solc/');// ip local:puerto
+define('URL','http://'.$u.'/solca/');// ip local:puerto
 
 define('HOST', 'localhost');
 define('DB', 'solca_prueba');

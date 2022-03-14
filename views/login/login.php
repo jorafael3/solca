@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="public/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo constant('URL') ?>public/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo constant('URL') ?>public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -162,8 +162,8 @@
         var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="public/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="public/assets/js/scripts.bundle.js"></script>
+    <script src="<?php echo constant('URL') ?>public/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="<?php echo constant('URL') ?>public/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <!-- <script src="public/assets/js/custom/authentication/sign-in/general.js"></script> -->

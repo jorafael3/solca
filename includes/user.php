@@ -27,7 +27,8 @@ class User extends Model
             // echo $_SERVER["REMOTE_ADDR"]."<br/>";  //Imprime la dirección IP del cliente
             // /*Imprime puerto empleado por la máquina del usuario para comunicarse con el servidor web. */
             // echo $_SERVER["REMOTE_PORT"]."<br/>";
-            
+            // $ip=getenv('REMOTE_ADDR');
+
             // $usu = "";
             // $tipo = "";
             // $Nivel = "";
