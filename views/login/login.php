@@ -94,7 +94,7 @@
                                 <div class="d-flex flex-stack mb-2">
                                     <!--begin::Label-->
                                     <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                                    <br>
+                                    <a name="rset" href="resetpassword.php" class="link-primary fs-6 fw-bolder">recuperar contraseña ?</a>
                                    
                                 </div>
                                 <!--end::Wrapper-->
@@ -171,6 +171,10 @@
 
     <script>
 
+        function reset(){
+            window.location.href = "./resetpassword.php";
+
+        }
 
 
     </script>
