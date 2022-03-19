@@ -12,5 +12,11 @@ define('CHARSET', 'utf8mb4');
 //jpalomeque@yahoo.com
 //Jaimillo1980.
 
+// [14:53, 5/3/2022] Edison Sanchez: base de datos
+// [14:53, 5/3/2022] Edison Sanchez: dbw1p61yhfz2lr
+// [14:53, 5/3/2022] Edison Sanchez: usuario ugtikepkfhpg6
+// [14:54, 5/3/2022] Edison Sanchez: contraseña
+// [14:54, 5/3/2022] Edison Sanchez: #`3118&@q{*1
+
 
 ?>
