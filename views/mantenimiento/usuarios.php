@@ -36,6 +36,17 @@ $url = constant('URL') . "secundaria/datos";
             </div>
             <div class="card-body">
 
+                <div class="table-responsive">
+                    <table style="width: 100%; font-weight: bold;" id="TablaUsuarios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                        <thead class="fw-bolder text-muted bg-light">
+                            <tr >
+
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+
             </div>
             <!--end::Body-->
         </div>
@@ -72,7 +83,7 @@ $url = constant('URL') . "secundaria/datos";
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
-                <div id="form">
+                <form id="form" onsubmit="return false">
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
@@ -122,7 +133,7 @@ $url = constant('URL') . "secundaria/datos";
                             <label class="required fw-bold fs-6 mb-2">Email</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="email" id="user_email" name="user_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" required/>
+                            <input type="email" id="user_email" name="user_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" required />
                             <!--end::Input-->
                         </div>
 
@@ -174,7 +185,7 @@ $url = constant('URL') . "secundaria/datos";
                                         <div class="fw-bolder text-gray-800">
                                             Administrator
                                         </div>
-                                       
+
                                     </label>
                                     <!--end::Label-->
                                 </div>
@@ -194,7 +205,7 @@ $url = constant('URL') . "secundaria/datos";
                                         <div class="fw-bolder text-gray-800">
                                             Developer
                                         </div>
-                                       
+
                                     </label>
                                     <!--end::Label-->
                                 </div>
@@ -214,7 +225,7 @@ $url = constant('URL') . "secundaria/datos";
                                         <div class="fw-bolder text-gray-800">
                                             Analyst
                                         </div>
-                                       
+
                                     </label>
                                     <!--end::Label-->
                                 </div>
@@ -244,14 +255,14 @@ $url = constant('URL') . "secundaria/datos";
                         <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">
                             Discard
                         </button>
-                        <button onclick="BtnNueoUSuario()"class="btn btn-primary" data-kt-users-modal-action="submit">
+                        <button onclick="BtnNueoUSuario()" class="btn btn-primary" data-kt-users-modal-action="submit">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
                     </div>
                     <!--end::Actions-->
-                </div>
+                </form>
 
                 <!--end::Form-->
             </div>
@@ -264,6 +275,13 @@ $url = constant('URL') . "secundaria/datos";
 
 <?php require 'views/footer.php'; ?>
 <?php require 'funciones/usuariosjs.php'; ?>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script src="<?php echo constant("URL") ?>public/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
 <script src="<?php echo constant("URL") ?>public/assets/js/custom/utilities/modals/create-app.js"></script>
@@ -273,9 +291,13 @@ $url = constant('URL') . "secundaria/datos";
         $("#kt_modal_add_user").modal('hide');
     });
     $("#form").validate();
+
     function BtnNueoUSuario() {
         validarNUevoUsuario();
     }
+
+    ListarUsuarios();
+
 
 
     var url = '<?php echo $url ?>';

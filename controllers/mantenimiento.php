@@ -30,6 +30,19 @@ class Mantenimiento extends Controller
         $this->Usuariosrender();
     }
 
+    function GuardarNuevoUsuario()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->GuardarNuevoUsuario($array);
+    }
+    function ListarUsuario()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->ListarUsuario($array);
+    }
+
     //************************************* *//
     //**** FIN USUARIOS */
 

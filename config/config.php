@@ -4,7 +4,7 @@ $u = "$_SERVER[HTTP_HOST]";
 define('URL','http://'.$u.'/solca/');// ip local:puerto
 
 define('HOST', 'localhost');
-define('DB', 'solca_prueba');
+define('DB', 'solca');
 define('USER', 'root');
 define('PASSWORD', '');
 define('CHARSET', 'utf8mb4');
