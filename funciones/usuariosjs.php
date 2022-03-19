@@ -55,6 +55,15 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
 
             AjaxSendReceive(urlGuardarUsuarios, data, function(response) {
                 console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_user").modal('hide');
+                    Swal.fire(
+                        'Datos Guardados',
+                        'El usuario se guardo correctamente',
+                        'success'
+                    )
+                    $("#BtnReset").trigger('click'); 
+                }
             });
         }
     }

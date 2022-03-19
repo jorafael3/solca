@@ -54,7 +54,7 @@
                        <!--end::Scrolltop-->
 
                        <!--begin::Javascript-->
-                      
+                       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                        <!--begin::Global Javascript Bundle(used by all pages)-->
                        <script src="<?php echo constant('URL') ?>public/assets/plugins/global/plugins.bundle.js"></script>
                        <script src="<?php echo constant('URL') ?>public/assets/js/scripts.bundle.js"></script>

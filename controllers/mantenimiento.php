@@ -27,6 +27,8 @@ class Mantenimiento extends Controller
 
     function usuarios()
     {
+        $ciudades =  $this->model->CargarCiudades();
+        $this->view->ciud = $ciudades;
         $this->Usuariosrender();
     }
 

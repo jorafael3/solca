@@ -39,7 +39,7 @@ $url = constant('URL') . "secundaria/datos";
                 <div class="table-responsive">
                     <table style="width: 100%; font-weight: bold;" id="TablaUsuarios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                         <thead class="fw-bolder text-muted bg-light">
-                            <tr >
+                            <tr>
 
                             </tr>
 
@@ -157,13 +157,16 @@ $url = constant('URL') . "secundaria/datos";
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="required fs-6 fw-bold mb-2">Ciudad</label>
-                            <select id="user_ciudad" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="target_assign" required>
-                                <option value="">Select user...</option>
-                                <option value="1">Karina Clark</option>
-                                <option value="2">Robert Doe</option>
-                                <option value="3">Niel Owen</option>
-                                <option value="4">Olivia Wild</option>
-                                <option value="5">Sean Bean</option>
+                            <select id="user_ciudad" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione una ciudad" name="target_assign" required>
+                            <option value=""></option>
+
+                                <?php
+                                foreach ($this->ciud as $row) {
+                                ?>
+                                    <option value=<?php echo ($row["CIUDAD_ID"]); ?>><?php echo ($row["CIUDAD_NOM"]); ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                         <!--end::Input group-->
@@ -252,7 +255,7 @@ $url = constant('URL') . "secundaria/datos";
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center pt-15">
-                        <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">
+                        <button id="BtnReset" type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">
                             Discard
                         </button>
                         <button onclick="BtnNueoUSuario()" class="btn btn-primary" data-kt-users-modal-action="submit">
