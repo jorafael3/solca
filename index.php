@@ -15,24 +15,24 @@ $data = new Database();
 
 if ($data->connect()) {
 //     //echo "true";
-    if (isset($_POST['email']) && isset($_POST['password'])) {
+    // if (isset($_POST['email']) && isset($_POST['password'])) {
 
-        $usuario = $_POST['email'];
-        $passForm = $_POST['password'];
-        $errorpass = "";
-        $erroruser = "";
+    //     $usuario = $_POST['email'];
+    //     $passForm = $_POST['password'];
+    //     $errorpass = "";
+    //     $erroruser = "";
 
-        $res = $user->userExist($usuario, $passForm);
+    //     $res = $user->userExist($usuario, $passForm);
 
-        if ($res == "ok") {
+    //     if ($res == "ok") {
             $app = new App();
-        } else {
-            $errorlogin = "Error, verifique sus credenciales";
-            include_once 'views/login/login.php';
-        }
-    } else {
-        include_once 'views/login/login.php';
-    }
+    //     } else {
+    //         $errorlogin = "Error, verifique sus credenciales";
+    //         include_once 'views/login/login.php';
+    //     }
+    // } else {
+    //     include_once 'views/login/login.php';
+    // }
     
 } 
 else {
