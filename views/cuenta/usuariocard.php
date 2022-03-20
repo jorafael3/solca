@@ -43,7 +43,7 @@ $user_ID = $_SESSION["US_ID"];
                         <!--end::Name-->
                         <!--begin::Info-->
                         <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                            <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                            <a  href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                 <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
                                 <span class="svg-icon svg-icon-4 me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -51,7 +51,10 @@ $user_ID = $_SESSION["US_ID"];
                                         <path d="M12 22C14.6 22 17 21 18.7 19.4C17.9 16.9 15.2 15 12 15C8.8 15 6.09999 16.9 5.29999 19.4C6.99999 21 9.4 22 12 22Z" fill="black" />
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->Developer
+                                <span id="Txt_user_Access">
+                                <?php echo $acceso ?>
+                                </span>
+                                <!--end::Svg Icon-->
                             </a>
                             <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
@@ -61,7 +64,10 @@ $user_ID = $_SESSION["US_ID"];
                                         <path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="black" />
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->SF, Bay Area
+                                <span id="Txt_user_city">
+                                <?php echo $ciudad ?>
+                                </span>
+                                <!--end::Svg Icon-->
                             </a>
                             <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
                                 <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
@@ -71,7 +77,10 @@ $user_ID = $_SESSION["US_ID"];
                                         <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="black" />
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->max@kt.com
+                                <span id="Txt_user_mail">
+                                <?php echo $email ?>
+                                </span>
+                                <!--end::Svg Icon-->
                             </a>
                         </div>
                         <!--end::Info-->
@@ -273,12 +282,12 @@ $user_ID = $_SESSION["US_ID"];
         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
             <!--begin::Nav item-->
             <li class="nav-item mt-2">
-                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="../../demo1/dist/account/overview.html">Overview</a>
+                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="<?php echo constant("URL")?>cuenta/Perfil_usuario">Overview</a>
             </li>
             <!--end::Nav item-->
             <!--begin::Nav item-->
             <li class="nav-item mt-2">
-                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo1/dist/account/settings.html">Settings</a>
+                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="<?php echo constant("URL")?>cuenta/Ajustes_usuario">Ajustes</a>
             </li>
             <!--end::Nav item-->
             <!--begin::Nav item-->

@@ -17,11 +17,14 @@ class Cuenta extends Controller
 
     function PerfilUsuariosrender()
     {
-        $this->view->render('cuenta/perfilusuarios');
+        $this->view->render('cuenta/useroverview');
     }
 
     function Perfil_usuario()
     {
+        $user_ID = $_SESSION["US_ID"];
+        $Datos_usuario =  $this->model->Cargar_datos_usuario($user_ID);
+        $this->view->User_data = $Datos_usuario;
         $this->PerfilUsuariosrender();
     }
     function Cargar_datos_usuario()
@@ -32,6 +35,30 @@ class Cuenta extends Controller
 
     //************************************* *//
     //**** FIN PERFIL DE USUARIOS */
+    //************************************* *//
+
+     //************************************* *//
+    //**** USUARIOS SETTINGS */
+    //************************************* *//
+
+    function UsuariosSettingsrender()
+    {
+        $this->view->render('cuenta/usersettings');
+    }
+
+    function Ajustes_usuario()
+    {
+        $user_ID = $_SESSION["US_ID"];
+        $Datos_usuario =  $this->model->Cargar_datos_usuario($user_ID);
+        $this->view->User_data = $Datos_usuario;
+        $ciudades =  $this->model->CargarCiudades();
+        $this->view->ciud = $ciudades;
+        $this->UsuariosSettingsrender();
+    }
+    
+
+    //************************************* *//
+    //**** FIN USUARIOS SETTINGS*/
     //************************************* *//
 
     
