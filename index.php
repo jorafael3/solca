@@ -14,27 +14,27 @@ $user = new User();
 $data = new Database();
 
 if ($data->connect()) {
-//     //echo "true";
-    // if (isset($_POST['email']) && isset($_POST['password'])) {
+    if (isset($_SESSION['SOL_INI_SES'])) {
 
-    //     $usuario = $_POST['email'];
-    //     $passForm = $_POST['password'];
-    //     $errorpass = "";
-    //     $erroruser = "";
 
-    //     $res = $user->userExist($usuario, $passForm);
+        $app = new App();
+    } else if (isset($_POST['email']) && isset($_POST['password'])) {
 
-    //     if ($res == "ok") {
+        $usuario = $_POST['email'];
+        $passForm = $_POST['password'];
+        //     $errorpass = "";
+        //     $erroruser = "";
+
+        $res = $user->userExist($usuario, $passForm);
+        if ($res == "ok") {
             $app = new App();
-    //     } else {
-    //         $errorlogin = "Error, verifique sus credenciales";
-    //         include_once 'views/login/login.php';
-    //     }
-    // } else {
-    //     include_once 'views/login/login.php';
-    // }
-    
-} 
-else {
+        } else {
+            $errorlogin = "Error, verifique sus credenciales";
+            include_once 'views/login/login.php';
+        }
+    } else {
+        include_once 'views/login/login.php';
+    }
+} else {
     include_once 'views/errores/500.php';
 }

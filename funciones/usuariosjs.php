@@ -105,10 +105,10 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
             "createdRow": function(row, data, index, cell) {
 
                 if (data["US_ACTIVO"] == "S") {
-                    $('td', row).eq(2).html("<span class='badge badge-light-success'>Activo</span>");
+                    $('td', row).eq(2).html("<span style='font-size:16px;' class='badge badge-light-success fw-bolder'>ACTIVO</span>");
                 }
                 if (data["US_ACTIVO"] == "N") {
-                    $('td', row).eq(2).html("<span class='badge badge-light-danger'>Inactivo</span>");
+                    $('td', row).eq(2).html("<span style='font-size:16px;' class='badge badge-light-danger'>INACTIVO</span>");
                 }
             }
 

@@ -15,6 +15,7 @@ class Mantenimiento extends Controller
 
     //************************************* *//
     //**** USUARIOS */
+    //************************************* *//
 
 
     /**
@@ -32,12 +33,19 @@ class Mantenimiento extends Controller
         $this->Usuariosrender();
     }
 
+    /**
+     * CONTROLER RECIVE PARAMETRSO DE NUEVO USUARIO Y DEVUELVE TRUE O FALSE
+     */
     function GuardarNuevoUsuario()
 
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->GuardarNuevoUsuario($array);
     }
+
+    /**
+     * CONTROLER RECIVE AJAX PETICION Y EVUELVE LISTA DE USURIOS
+     */
     function ListarUsuario()
 
     {
@@ -47,12 +55,8 @@ class Mantenimiento extends Controller
 
     //************************************* *//
     //**** FIN USUARIOS */
+    //************************************* *//
 
+    
 
-    function datos()
-
-    {
-        $array = json_decode(file_get_contents("php://input"), true);
-        $function = $this->model->datos($array);
-    }
 }

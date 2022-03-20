@@ -5,17 +5,31 @@ require_once 'libs/database.php';
 class User extends Model
 {
 
-  
+
     function userExist($user, $pass)
     {
         try {
 
-            if($user == "" && $pass == ""){
+            if ($user == "" && $pass == "") {
+            } else {
 
-                
-            }else{
-                return "ok";
+                $user_Contrasena = hash("sha256", $pass);
 
+                $query = $this->db->connect()->prepare("SELECT * from " . constant("DB") . ".usuarios WHERE US_EMAIL = :US_EMAIL AND US_CONTRASENA =:US_CONTRASENA");
+                $query->bindParam(":US_EMAIL", $user);
+                $query->bindParam(":US_CONTRASENA", $user_Contrasena);
+                $query->execute();
+                if ($query->rowCount()) {
+                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($result as $row){
+                        $_SESSION['SOL_INI_SES'] = true;
+                        $_SESSION["US_EMAIL"] = $row["US_EMAIL"];
+                        $_SESSION["US_NOMBRE"] = $row["US_APELLNOM"];
+                        $_SESSION["US_ID"] = $row["US_ID"];
+                    }
+
+                    return "ok";
+                }
             }
             // echo $_SERVER['SERVER_ADDR']."<br/>"; //Imprime la IP del servidor
             // echo $_SERVER['SERVER_NAME']."<br/>"; //Imprime el nombre del servidor
@@ -84,5 +98,4 @@ class User extends Model
         } catch (PDOException $e) {
         }
     }
-
 }

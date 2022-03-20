@@ -3767,7 +3767,7 @@
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                                            <a href="<?php echo constant("URL") ?>cuenta/Perfil_usuario" class="menu-link px-5">My Profile</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
@@ -3894,7 +3894,7 @@
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">Sign Out</a>
+                                            <a href="<?php echo constant('URL'); ?>includes/logout.php" class="menu-link px-5">Sign Out</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->
