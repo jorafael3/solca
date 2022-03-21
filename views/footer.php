@@ -53,6 +53,7 @@
                        </div>
                        <!--end::Scrolltop-->
 
+                       <script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
                        <!--begin::Javascript-->
                        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                        <!--begin::Global Javascript Bundle(used by all pages)-->

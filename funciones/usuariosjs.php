@@ -57,11 +57,7 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
                 console.log(response);
                 if (response == true) {
                     $("#kt_modal_add_user").modal('hide');
-                    Swal.fire(
-                        'Datos Guardados',
-                        'El usuario se guardo correctamente',
-                        'success'
-                    )
+                    Mensaje_Guardado_ok();
                     $("#BtnReset").trigger('click'); 
                 }
             });

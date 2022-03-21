@@ -1,50 +1,95 @@
 <?php
 
-$urlCargar_Datos_usuario = constant("URL") . "cuenta/Cargar_datos_usuario";
+$urlActualizar_datos_usuario = constant("URL") . "cuenta/Actualizar_datos_usuario";
+$urlActualizar_Contrasena_usuario = constant("URL") . "cuenta/Actualizar_Contrasena_usuario";
 
 ?>
 
 <script>
     /**
-     * FUNCION QUE CARGA LOS DATOS DE USUARIIO BASADO EN EL ID
+     * FUNCION QUE ACTUALIZA LOS DATOS DE USUARIIO BASADO EN EL ID
      * DEL INICIO DE SESION
      */
-    var urlCargar_Datos_usuario = '<?php echo $urlCargar_Datos_usuario ?>';
+    var urlActualizar_datos_usuario = '<?php echo $urlActualizar_datos_usuario ?>';
+    var urlActualizar_Contrasena_usuario = '<?php echo $urlActualizar_Contrasena_usuario ?>';
 
-    function Cargar_Datos_usuario(id) {
-        console.log(id);
-        var data = {
-            id: id
-        };
+    function Validar_Actualizacion_datos() {
+        var nombre = $("#Txt_Set_name").val();
+        var cedula = $("#Txt_Set_Cedula").val();
+        var celular = $("#Txt_Set_celular").val();
+        var ciudad = $("#Txt_Set_user_ciudad").val();
 
-        AjaxSendReceive(urlCargar_Datos_usuario, data, function(response) {
-            console.log(response);
-            llenar_card(response);
-            llenar_Overview(response);
-        });
-    }
+        if (nombre == "") {
 
-    function llenar_card(data) {
-        $("#Txt_user_Access").text(data[0]["TIPOUS_ID"]);
-        $("#Txt_user_city").text(data[0]["CIUDAD_NOM"]);
-        $("#Txt_user_mail").text(data[0]["US_EMAIL"]);
-    }
+        } else {
+            var data = {
+                nombre: nombre,
+                cedula: cedula,
+                celular: celular,
+                ciudad: ciudad
+            };
 
-    function llenar_Overview(data) {
+            console.log(data);
 
-        $("#Txt_ovw_nombre").text(data[0]["US_APELLNOM"]);
-        $("#Txt_ovw_mail").text(data[0]["US_EMAIL"]);
-        $("#Txt_ovw_telf").text(data[0]["US_CEL"]);
-        $("#Txt_ovw_dni").text(data[0]["US_NCED"]);
-        $("#Txt_ovw_city").text(data[0]["CIUDAD_NOM"]);
+            AjaxSendReceive(urlActualizar_datos_usuario, data, function(response) {
+                console.log(response);
 
-        
+                if (response == true) {
+                    Mensaje_Actulizado_ok();
+                }
 
-    }
+            });
+        }
 
-    function llenar_Ajustes(data) {
 
     }
+
+    function Validar_Actualizar_Contrasena() {
+        var con_actual = $("#currentpassword").val();
+        var con_nuevo = $("#newpassword").val();
+        var con_confirm = $("#confirmpassword").val();
+
+        if (con_actual == "") {} else if (con_nuevo == "") {} else if (con_confirm == "") {} else {
+
+            if (con_nuevo == con_confirm) {
+
+                if (con_actual == con_nuevo) {
+                    Mensaje_Error("Error", "La Contraseña es igual a la actual");
+
+                } else {
+
+                    var data = {
+                        con_actual: con_actual,
+                        con_nuevo: con_nuevo
+                    }
+
+                    console.log(data);
+
+                    AjaxSendReceive(urlActualizar_Contrasena_usuario, data, function(response) {
+                        console.log(response);
+                        if (response == true) {
+                            Swal.fire(
+                                'Exito',
+                                'La Contraseña correctamente',
+                                'success'
+                            )
+                        } else if (response == 0) {
+                            Mensaje_Error("Error", "La contraseña Actual no coincide");
+
+                        }
+                    });
+                }
+
+            } else {
+                Mensaje_Error("Error", "Las contraseñas no coinciden");
+            }
+
+
+        }
+
+    }
+
+
     function AjaxSendReceive(url, data, callback) {
 
         var xmlhttp = new XMLHttpRequest();

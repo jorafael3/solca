@@ -27,11 +27,7 @@ class Cuenta extends Controller
         $this->view->User_data = $Datos_usuario;
         $this->PerfilUsuariosrender();
     }
-    function Cargar_datos_usuario()
-    {
-        $array = json_decode(file_get_contents("php://input"), true);
-        $function = $this->model->Cargar_datos_usuario($array);
-    }
+   
 
     //************************************* *//
     //**** FIN PERFIL DE USUARIOS */
@@ -54,6 +50,18 @@ class Cuenta extends Controller
         $ciudades =  $this->model->CargarCiudades();
         $this->view->ciud = $ciudades;
         $this->UsuariosSettingsrender();
+    }
+
+    function Actualizar_datos_usuario()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_datos_usuario($array);
+    }
+
+    function Actualizar_Contrasena_usuario()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Contrasena($array);
     }
     
 

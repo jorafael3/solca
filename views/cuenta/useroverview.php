@@ -146,6 +146,6 @@ $email = $data[0]["US_EMAIL"];
 <?php require 'views/footer.php'; ?>
 
 <script>
-    // var ID_USUARIO = '<?php echo $user_ID ?>';
-    // Cargar_Datos_usuario(ID_USUARIO);
+	$("#set").removeClass("active");
+    $("#ovw").addClass("active");
 </script>
