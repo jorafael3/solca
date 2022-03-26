@@ -34,7 +34,25 @@ class MantenimientoModel extends Model
         }
     }
 
+    function Cargar_tipos_usuarios(){
+        try {
+            $sql="SELECT * FROM ".constant("DB").".tipos_usuarios";
+            $query = $this->db->connect()->prepare($sql);
 
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                return $err;
+
+            }
+        } catch (PDOException $e) {
+            //return [];
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 
     function GuardarNuevoUsuario($parametros)
     {
@@ -104,11 +122,14 @@ class MantenimientoModel extends Model
     {
         try {
             $sql = "SELECT 
-            US_APELLNOM, 
-            US_EMAIL,
-            US_ACTIVO,
-            TIPOUS_ID 
-            FROM " . constant("DB") . ".usuarios";
+            us.US_APELLNOM, 
+            us.US_EMAIL, 
+            us.US_ACTIVO, 
+            us.TIPOUS_ID, 
+            tp.TIPOUS_NOM
+            FROM " . constant("DB") . ".usuarios us
+            left join " . constant("DB") . ".tipos_usuarios tp 
+            ON us.TIPOUS_ID = tp.TIPOUS_ID";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);

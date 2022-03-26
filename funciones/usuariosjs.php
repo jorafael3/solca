@@ -18,9 +18,11 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
         var user_Celular = $("#user_Celular").val();
         var user_ciudad = $("#user_ciudad").val();
         var rol = 1;
-        var rol1 = document.getElementById("kt_modal_update_role_option_0");
-        var rol2 = document.getElementById("kt_modal_update_role_option_1");
-        var rol3 = document.getElementById("kt_modal_update_role_option_2");
+        var rol1 = document.getElementById("kt_modal_update_role_option_1");
+        var rol2 = document.getElementById("kt_modal_update_role_option_2");
+        var rol3 = document.getElementById("kt_modal_update_role_option_3");
+        var rol4 = document.getElementById("kt_modal_update_role_option_4");
+
         var user_Contrasena = $("#user_Contrasena").val();
 
         //*** VALIDAMOS EL TIPO DE ROL SELECIONADO */
@@ -30,6 +32,8 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
             rol = 2;
         } else if (rol3.checked == true) {
             rol = 3;
+        } else if (rol4.checked == true) {
+            rol = 4;
         }
 
         //** VALIDAMOS QUE NO PERMITA CAMPOS VACIOS */
@@ -67,8 +71,8 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
     function ListarUsuarios() {
 
         AjaxSendReceive(urlListarUsuarios, data = [], function(response) {
-
             console.log(response);
+
             TablaUsuarios(response);
         });
     }
@@ -89,6 +93,9 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
                 data: "US_EMAIL",
                 title: "Correo "
             }, {
+                data: "TIPOUS_NOM",
+                title: "Tipo "
+            }, {
                 data: "US_ACTIVO",
                 title: "Estado"
             }, {
@@ -101,10 +108,10 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
             "createdRow": function(row, data, index, cell) {
 
                 if (data["US_ACTIVO"] == "S") {
-                    $('td', row).eq(2).html("<span style='font-size:16px;' class='badge badge-light-success fw-bolder'>ACTIVO</span>");
+                    $('td', row).eq(3).html("<span style='font-size:16px;' class='badge badge-light-success fw-bolder'>ACTIVO</span>");
                 }
                 if (data["US_ACTIVO"] == "N") {
-                    $('td', row).eq(2).html("<span style='font-size:16px;' class='badge badge-light-danger'>INACTIVO</span>");
+                    $('td', row).eq(3).html("<span style='font-size:16px;' class='badge badge-light-danger'>INACTIVO</span>");
                 }
             }
 

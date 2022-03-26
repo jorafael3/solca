@@ -37,7 +37,7 @@ require 'views/header.php';
                 <div class="table-responsive">
                     <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaUsuarios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                         <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
-                            
+
                         </thead>
                         <tbody class="fw-6 fw-bold text-gray-600">
 
@@ -121,7 +121,7 @@ require 'views/header.php';
                             <label class="required fw-bold fs-6 mb-2">Nombre Completo</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" id="user_name" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" required />
+                            <input type="text" id="user_name" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre Completo" required />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -149,14 +149,14 @@ require 'views/header.php';
                             <label class="required fw-bold fs-6 mb-2">Celular</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" id="user_Celular" name="user_Celular" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" />
+                            <input type="text" id="user_Celular" name="user_Celular" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Celular" />
                             <!--end::Input-->
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="required fs-6 fw-bold mb-2">Ciudad</label>
                             <select id="user_ciudad" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione una ciudad" name="target_assign" required>
-                            <option value=""></option>
+                                <option value=""></option>
 
                                 <?php
                                 foreach ($this->ciud as $row) {
@@ -171,73 +171,40 @@ require 'views/header.php';
                         <!--begin::Input group-->
                         <div class="mb-7">
                             <!--begin::Label-->
-                            <label class="required fw-bold fs-6 mb-5">Role</label>
+                            <label class="required fw-bold fs-6 mb-5">Roles</label>
                             <!--end::Label-->
                             <!--begin::Roles-->
                             <!--begin::Input row-->
-                            <div class="d-flex fv-row">
-                                <!--begin::Radio-->
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <!--begin::Input-->
-                                    <input class="form-check-input me-3" name="user_role" type="radio" value="0" id="kt_modal_update_role_option_0" checked="checked" />
-                                    <!--end::Input-->
-                                    <!--begin::Label-->
-                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
-                                        <div class="fw-bolder text-gray-800">
-                                            Administrator
-                                        </div>
 
-                                    </label>
-                                    <!--end::Label-->
+                            <?php
+                            foreach ($this->tip_usu as $row) {
+
+                            ?>
+                                <div class="d-flex fv-row">
+
+
+                                    <!--begin::Radio-->
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <!--begin::Input-->
+                                        <input class="form-check-input me-3" name="user_role" type="radio" value="<?php echo ($row["TIPOUS_ID"]); ?>" id="kt_modal_update_role_option_<?php echo ($row["TIPOUS_ID"]); ?>" checked="checked" />
+                                        <!--end::Input-->
+                                        <!--begin::Label-->
+                                        <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                            <div class="fw-bolder text-gray-800">
+                                            <?php echo ($row["TIPOUS_NOM"]); ?>
+                                            </div>
+
+                                        </label>
+                                        <!--end::Label-->
+                                    </div>
+                                    <!--end::Radio-->
                                 </div>
-                                <!--end::Radio-->
-                            </div>
-                            <!--end::Input row-->
-                            <div class="separator separator-dashed my-5"></div>
-                            <!--begin::Input row-->
-                            <div class="d-flex fv-row">
-                                <!--begin::Radio-->
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <!--begin::Input-->
-                                    <input class="form-check-input me-3" name="user_role" type="radio" value="1" id="kt_modal_update_role_option_1" />
-                                    <!--end::Input-->
-                                    <!--begin::Label-->
-                                    <label class="form-check-label" for="kt_modal_update_role_option_1">
-                                        <div class="fw-bolder text-gray-800">
-                                            Developer
-                                        </div>
+                                <!--end::Input row-->
+                                <div class="separator separator-dashed my-5"></div>
+                            <?php
+                            }
+                            ?>
 
-                                    </label>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Radio-->
-                            </div>
-                            <!--end::Input row-->
-                            <div class="separator separator-dashed my-5"></div>
-                            <!--begin::Input row-->
-                            <div class="d-flex fv-row">
-                                <!--begin::Radio-->
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <!--begin::Input-->
-                                    <input class="form-check-input me-3" name="user_role" type="radio" value="2" id="kt_modal_update_role_option_2" />
-                                    <!--end::Input-->
-                                    <!--begin::Label-->
-                                    <label class="form-check-label" for="kt_modal_update_role_option_2">
-                                        <div class="fw-bolder text-gray-800">
-                                            Analyst
-                                        </div>
-
-                                    </label>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Radio-->
-                            </div>
-                            <!--end::Input row-->
-                            <div class="separator separator-dashed my-5"></div>
-                            <!--begin::Input row-->
-
-                            <!--end::Input row-->
-                            <!--end::Roles-->
                         </div>
 
                         <div class="fv-row mb-7">

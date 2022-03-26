@@ -30,6 +30,8 @@ class Mantenimiento extends Controller
     {
         $ciudades =  $this->model->CargarCiudades();
         $this->view->ciud = $ciudades;
+        $tipos_usuarios =  $this->model->Cargar_tipos_usuarios();
+        $this->view->tip_usu = $tipos_usuarios;
         $this->Usuariosrender();
     }
 
@@ -57,6 +59,6 @@ class Mantenimiento extends Controller
     //**** FIN USUARIOS */
     //************************************* *//
 
-    
+
 
 }
