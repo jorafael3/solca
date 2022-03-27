@@ -26,8 +26,8 @@ class User extends Model
                         $_SESSION["US_EMAIL"] = $row["US_EMAIL"];
                         $_SESSION["US_NOMBRE"] = $row["US_APELLNOM"];
                         $_SESSION["US_ID"] = $row["US_ID"];
+                        $_SESSION["TIPOUS_ID"] = $row["TIPOUS_ID"];
                     }
-
                     return "ok";
                 }
             }

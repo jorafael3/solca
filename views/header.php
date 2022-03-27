@@ -86,7 +86,9 @@
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
-                        <div id="kt_content_container" class="col-12 m-5 pb-5">
+                        <!-- <div id="kt_content_container" class="col-12 m-5 pb-5"> -->
+                        <div id="kt_content_container" class="container-xxl">
+
                             <!--begin::Row-->
                           
                         

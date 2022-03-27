@@ -17,7 +17,7 @@
     <script>
         var hostUrl = "assets/";
         var ToolbarPageUbication = '<?php echo ucfirst($linkurl[$c - 1]); ?>';
-        console.log(ToolbarPageUbication);
+        // console.log(ToolbarPageUbication);
         if(ToolbarPageUbication ==""){
             ToolbarPageUbication = "Dashboard";
         }

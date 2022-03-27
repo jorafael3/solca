@@ -94,7 +94,6 @@ class MantenimientoModel extends Model
         try {
             $query = $this->db->connect()->prepare($query);
             $query->bindParam(":US_APELLNOM", $user_name);
-            $query->bindParam(":US_EMAIL", $user_email);
             $query->bindParam(":US_NCED", $user_Cedula);
             $query->bindParam(":US_CEL", $user_Celular);
             $query->bindParam(":US_ACTIVO", $user_status);
