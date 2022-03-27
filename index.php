@@ -12,29 +12,30 @@ $userSession = new User_Session();
 $user = new User();
 
 $data = new Database();
+$app = new App();
 
-if ($data->connect()) {
-    if (isset($_SESSION['SOL_INI_SES'])) {
+// if ($data->connect()) {
+//     if (isset($_SESSION['SOL_INI_SES'])) {
 
 
-        $app = new App();
-    } else if (isset($_POST['email']) && isset($_POST['password'])) {
+//         $app = new App();
+//     } else if (isset($_POST['email']) && isset($_POST['password'])) {
 
-        $usuario = $_POST['email'];
-        $passForm = $_POST['password'];
-        //     $errorpass = "";
-        //     $erroruser = "";
+//         $usuario = $_POST['email'];
+//         $passForm = $_POST['password'];
+//         //     $errorpass = "";
+//         //     $erroruser = "";
 
-        $res = $user->userExist($usuario, $passForm);
-        if ($res == "ok") {
-            $app = new App();
-        } else {
-            $errorlogin = "Error, verifique sus credenciales";
-            include_once 'views/login/login.php';
-        }
-    } else {
-        include_once 'views/login/login.php';
-    }
-} else {
-    include_once 'views/errores/500.php';
-}
+//         $res = $user->userExist($usuario, $passForm);
+//         if ($res == "ok") {
+//             $app = new App();
+//         } else {
+//             $errorlogin = "Error, verifique sus credenciales";
+//             include_once 'views/login/login.php';
+//         }
+//     } else {
+//         include_once 'views/login/login.php';
+//     }
+// } else {
+//     include_once 'views/errores/500.php';
+// }
