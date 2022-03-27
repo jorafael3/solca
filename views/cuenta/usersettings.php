@@ -10,6 +10,7 @@ $telefono = $data[0]["US_CEL"];
 $ciudad = $data[0]["CIUDAD_NOM"];
 $ciudad_id = $data[0]["CIUDAD_ID"];
 $email = $data[0]["US_EMAIL"];
+$TipoUSNom = $data[0]["TIPOUS_NOM"];
 
 ?>
 <?php require 'funciones/perfilusuariosjs.php'; ?>
@@ -125,7 +126,7 @@ $email = $data[0]["US_EMAIL"];
 							<!--end::Label-->
 							<!--begin::Col-->
 							<div class="col-lg-8 fv-row">
-								<input type="text" name="website" class="form-control form-control-lg form-control-solid" value="<?php echo $acceso ?>" readonly />
+								<input type="text" name="website" class="form-control form-control-lg form-control-solid" value="<?php echo $TipoUSNom ?>" readonly />
 							</div>
 							<!--end::Col-->
 						</div>

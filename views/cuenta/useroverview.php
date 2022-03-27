@@ -9,6 +9,8 @@ $cedula = $data[0]["US_NCED"];
 $telefono = $data[0]["US_CEL"];
 $ciudad = $data[0]["CIUDAD_NOM"];
 $email = $data[0]["US_EMAIL"];
+$TipoUSNom = $data[0]["TIPOUS_NOM"];
+
 
 ?>
 <?php require 'funciones/perfilusuariosjs.php'; ?>

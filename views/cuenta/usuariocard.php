@@ -52,7 +52,7 @@ $user_ID = $_SESSION["US_ID"];
                                     </svg>
                                 </span>
                                 <span id="Txt_user_Access">
-                                <?php echo $acceso ?>
+                                <?php echo $TipoUSNom ?>
                                 </span>
                                 <!--end::Svg Icon-->
                             </a>
