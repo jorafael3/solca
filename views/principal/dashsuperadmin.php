@@ -6,13 +6,13 @@ require 'views/header.php';
 
 
 <div class="row gy-5 g-xl-8">
-    <div class="col-xl-12 mb-5 mb-xl-10">
+    <div class="col-xl-8 mb-5 mb-xl-10">
         <!--begin::Tables widget 6-->
         <div class="card card-flush h-xl-100">
             <div class="card-header">
                 <!--begin::Title-->
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder text-gray-800">Leading Agents by Category</span>
+                    <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
                 </h3>
             </div>
 
@@ -46,9 +46,8 @@ require 'views/header.php';
 
                                 }
                                     ?>
-                                    <!--begin::Icon-->
                                     <div class="nav-icon mb-3">
-                                        <i class="fonticon-truck fs-1 p-0"></i>
+                                        <i class="fa fa-check fs-1 p-0"></i>
                                     </div>
                                     <!--end::Icon-->
                                     <!--begin::Title-->
@@ -67,7 +66,9 @@ require 'views/header.php';
                     <!--begin::Item-->
 
                 </ul>
-
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bolder text-gray-800">Criterios</span>
+                </h3>
                 <div class="table-responsive">
                     <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                         <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -85,6 +86,8 @@ require 'views/header.php';
 
 <?php require 'views/footer.php'; ?>
 <?php require 'funciones/dashsuperadminjs.php'; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
 
 

@@ -92,6 +92,17 @@ $urlGet_Criterios = constant("URL") . "dashsuperadmin/Get_Criterios";
 
     function AjaxSendReceive(url, data, callback) {
 
+        $.blockUI({
+            message: '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Cargando ...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+            css: {
+                backgroundColor: 'transparent',
+                color: '#fff',
+                border: '0'
+            },
+            overlayCSS: {
+                opacity: 0.5
+            }
+        });
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -101,6 +112,15 @@ $urlGet_Criterios = constant("URL") . "dashsuperadmin/Get_Criterios";
                 callback(data);
             }
         }
+        xmlhttp.onload = () => {
+            $.unblockUI();
+
+        };
+
+        xmlhttp.onerror = function() {
+            $.unblockUI();
+            alert("Request failed");
+        };
 
         data = JSON.stringify(data);
         xmlhttp.open("POST", url, true);
