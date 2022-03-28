@@ -28,7 +28,10 @@ if ($data->connect()) {
         $res = $user->userExist($usuario, $passForm);
         if ($res == "ok") {
             $app = new App();
-        } else {
+        }else if($res == "err"){
+            $errorlogin = "El usuario se encuentra inactivo";
+            include_once 'views/login/login.php';
+        }else {
             $errorlogin = "Error, verifique sus credenciales";
             include_once 'views/login/login.php';
         }

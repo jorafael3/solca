@@ -21,14 +21,30 @@ class User extends Model
                 $query->execute();
                 if ($query->rowCount()) {
                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                    foreach($result as $row){
-                        $_SESSION['SOL_INI_SES'] = true;
-                        $_SESSION["US_EMAIL"] = $row["US_EMAIL"];
-                        $_SESSION["US_NOMBRE"] = $row["US_APELLNOM"];
-                        $_SESSION["US_ID"] = $row["US_ID"];
-                        $_SESSION["TIPOUS_ID"] = $row["TIPOUS_ID"];
+                    $tipo = "";
+                    $US_EMAIL = "";
+                    $US_NOMBRE = "";
+                    $US_ID = "";
+                    $TIPOUS_ID = "";
+                    foreach ($result as $row) {
+                        $US_EMAIL = $row["US_EMAIL"];
+                        $US_NOMBRE = $row["US_APELLNOM"];
+                        $US_ID = $row["US_ID"];
+                        $TIPOUS_ID = $row["TIPOUS_ID"];
+                        $tipo = $row["US_ACTIVO"];
                     }
-                    return "ok";
+                    // return $tipo;
+
+                    if ($tipo == "S") {
+                        $_SESSION['SOL_INI_SES'] = true;
+                        $_SESSION["US_EMAIL"] = $US_EMAIL;
+                        $_SESSION["US_NOMBRE"] = $US_NOMBRE;
+                        $_SESSION["US_ID"] = $US_ID;
+                        $_SESSION["TIPOUS_ID"] = $TIPOUS_ID;
+                        return "ok";
+                    } else {
+                        return "err";
+                    }
                 }
             }
             // echo $_SERVER['SERVER_ADDR']."<br/>"; //Imprime la IP del servidor
