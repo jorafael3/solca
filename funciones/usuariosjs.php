@@ -2,13 +2,16 @@
 
 $urlGuardarUsuarios = constant("URL") . "mantenimiento/GuardarNuevoUsuario";
 $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
+$urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
 
 ?>
 
 <script>
     var urlGuardarUsuarios = '<?php echo $urlGuardarUsuarios ?>';
     var urlListarUsuarios = '<?php echo $urlListarUsuarios ?>';
+    var urlActualizar_usuario = '<?php echo $urlActualizar_usuario ?>';
 
+    var US_ID_GLOBAL;
 
     function validarNUevoUsuario() {
         //**OBTENEMOS LOS DATOS DE LOS CAMPOS */
@@ -62,7 +65,10 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
                 if (response == true) {
                     $("#kt_modal_add_user").modal('hide');
                     Mensaje_Guardado_ok();
-                    $("#BtnReset").trigger('click'); 
+                    $("#BtnReset").trigger('click');
+                } else {
+                    Mensaje_Error("Oops", "Ocurrio un error al guardar los datos");
+
                 }
             });
         }
@@ -78,6 +84,7 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
     }
 
     function TablaUsuarios(data) {
+        $('#TablaUsuarios').empty();
 
         var table = $('#TablaUsuarios').DataTable({
             destroy: true,
@@ -102,7 +109,7 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
                 data: null,
                 title: "Editar",
                 className: "dt-center  btn_edit",
-                defaultContent: '<button type="button"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
+                defaultContent: '<button type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user_edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
                 orderable: false
             }],
             "createdRow": function(row, data, index, cell) {
@@ -122,10 +129,104 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
 
+
+        $('#TablaUsuarios tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            console.log(data);
+            Validar_Actualizar_Datos_usuario(data);
+
+        });
+
+
+    }
+
+    function Validar_Actualizar_Datos_usuario(data) {
+        var Tipo_id = data["TIPOUS_ID"];
+        var estado = data["US_ACTIVO"];
+        US_ID_GLOBAL = data["US_ID"];
+
+        if (estado == 'S') {
+            $("#Check_estado_activo").prop("checked", true);
+        } else {
+            $("#Check_estado_inactivo").prop("checked", true);
+        }
+
+        if (Tipo_id == "1") {
+            $("#Check_tipo_us_1").prop("checked", true);
+
+        } else if (Tipo_id == "2") {
+            $("#Check_tipo_us_2").prop("checked", true);
+
+        } else if (Tipo_id == "3") {
+            $("#Check_tipo_us_3").prop("checked", true);
+
+        } else if (Tipo_id == "4") {
+            $("#Check_tipo_us_4").prop("checked", true);
+
+        }
+
+
+    }
+
+    function Actualizar_Datos_usuario() {
+        var rol1 = document.getElementById("Check_tipo_us_1");
+        var rol2 = document.getElementById("Check_tipo_us_2");
+        var rol3 = document.getElementById("Check_tipo_us_3");
+        var rol4 = document.getElementById("Check_tipo_us_4");
+
+        var activo = document.getElementById("Check_estado_activo");
+        var inactivo = document.getElementById("Check_estado_inactivo");
+
+        var rol;
+        var estado;
+
+        if (rol1.checked == true) {
+            rol = 1;
+        } else if (rol2.checked == true) {
+            rol = 2;
+        } else if (rol3.checked == true) {
+            rol = 3;
+        } else if (rol4.checked == true) {
+            rol = 4;
+        }
+
+        if (activo.checked == true) {
+            estado = "S";
+        } else if (inactivo.checked == true) {
+            estado = "N";
+        }
+
+
+        var data2 = {
+            US_ID: US_ID_GLOBAL,
+            US_ACTIVO: estado,
+            TIPOUS_ID: rol
+        }
+
+        AjaxSendReceive(urlActualizar_usuario, data2, function(response) {
+            if (response == true) {
+                $("#kt_modal_add_user_edit").modal('hide');
+                Mensaje_Ok("Exito", "Los datos se actualizaron correctamente");
+                ListarUsuarios();
+            } else {
+                Mensaje_Error("Oops", "Ocurrio un error al actualizar los datos");
+            }
+        });
     }
 
     function AjaxSendReceive(url, data, callback) {
-
+        $.blockUI({
+            message: '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Cargando ...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+            css: {
+                backgroundColor: 'transparent',
+                color: '#fff',
+                border: '0'
+            },
+            overlayCSS: {
+                opacity: 0.5
+            }
+        });
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -135,7 +236,15 @@ $urlListarUsuarios = constant("URL") . "mantenimiento/ListarUsuario";
                 callback(data);
             }
         }
+        xmlhttp.onload = () => {
+            $.unblockUI();
 
+        };
+
+        xmlhttp.onerror = function() {
+            $.unblockUI();
+            alert("Request failed");
+        };
         data = JSON.stringify(data);
         xmlhttp.open("POST", url, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

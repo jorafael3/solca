@@ -16,7 +16,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql="SELECT CIUDAD_ID, CIUDAD_NOM FROM ".constant("DB").".ciudades";
+            $sql = "SELECT CIUDAD_ID, CIUDAD_NOM FROM " . constant("DB") . ".ciudades";
             $query = $this->db->connect()->prepare($sql);
 
             if ($query->execute()) {
@@ -25,7 +25,6 @@ class MantenimientoModel extends Model
             } else {
                 $err = $query->errorInfo();
                 return $err;
-
             }
         } catch (PDOException $e) {
             //return [];
@@ -34,9 +33,10 @@ class MantenimientoModel extends Model
         }
     }
 
-    function Cargar_tipos_usuarios(){
+    function Cargar_tipos_usuarios()
+    {
         try {
-            $sql="SELECT * FROM ".constant("DB").".tipos_usuarios";
+            $sql = "SELECT * FROM " . constant("DB") . ".tipos_usuarios";
             $query = $this->db->connect()->prepare($sql);
 
             if ($query->execute()) {
@@ -45,7 +45,6 @@ class MantenimientoModel extends Model
             } else {
                 $err = $query->errorInfo();
                 return $err;
-
             }
         } catch (PDOException $e) {
             //return [];
@@ -121,6 +120,7 @@ class MantenimientoModel extends Model
     {
         try {
             $sql = "SELECT 
+            us.US_ID,
             us.US_APELLNOM, 
             us.US_EMAIL, 
             us.US_ACTIVO, 
@@ -133,6 +133,38 @@ class MantenimientoModel extends Model
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_usuario($parametros)
+    {
+        try {
+
+            $US_ID = $parametros["US_ID"];
+            $US_ACTIVO = $parametros["US_ACTIVO"];
+            $TIPOUS_ID = $parametros["TIPOUS_ID"];
+
+            $sql = "UPDATE " . constant("DB") . ".usuarios
+            SET
+            US_ACTIVO =:US_ACTIVO,
+            TIPOUS_ID =:TIPOUS_ID
+            WHERE US_ID =:US_ID";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(":US_ACTIVO", $US_ACTIVO);
+            $query->bindParam(":TIPOUS_ID", $TIPOUS_ID);
+            $query->bindParam(":US_ID", $US_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
                 exit();
             } else {
                 $err = $query->errorInfo();

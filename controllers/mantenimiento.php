@@ -55,6 +55,13 @@ class Mantenimiento extends Controller
         $function = $this->model->ListarUsuario($array);
     }
 
+    function Actualizar_usuario()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_usuario($array);
+    }
+
     //************************************* *//
     //**** FIN USUARIOS */
     //************************************* *//
