@@ -6,17 +6,15 @@ require 'views/header.php';
 
 
 <div class="row gy-5 g-xl-8">
-    <div class="col-xl-8 mb-5 mb-xl-10">
+    <div class="col-xl-12">
         <!--begin::Tables widget 6-->
         <div class="card card-flush h-xl-100">
-            <div class="card-header">
-                <!--begin::Title-->
-                <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
-                </h3>
-            </div>
+           
 
             <div class="card-body">
+            <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
+                </h3>
                 <ul class="nav nav-pills nav-pills-custom mb-3">
 
                     <?php
@@ -32,13 +30,13 @@ require 'views/header.php';
 
 
                             ?>
-                                <a onclick="BtnCriterios(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 active " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
+                                <a onclick="Btn_Perspectivas(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 active " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
                                 <?php
                             } else {
 
                                 ?>
 
-                                    <a onclick="BtnCriterios(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
+                                    <a onclick="Btn_Perspectivas(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
 
 
                                     <?php
@@ -47,7 +45,7 @@ require 'views/header.php';
                                 }
                                     ?>
                                     <div class="nav-icon mb-3">
-                                        <i class="fa fa-check fs-1 p-0"></i>
+                                        <i class="fa fa-th-large fs-1 p-0"></i>
                                     </div>
                                     <!--end::Icon-->
                                     <!--begin::Title-->
@@ -66,22 +64,37 @@ require 'views/header.php';
                     <!--begin::Item-->
 
                 </ul>
-                <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder text-gray-800">Criterios</span>
-                </h3>
-                <div class="table-responsive">
-                    <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                        <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
-                        </thead>
-                        <tbody class="fw-6 fw-bold text-gray-600">
+                <div class="row">
+                    <div class="table-responsive col-5 border-gray-200">
+                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="fw-6 fw-bold text-gray-600">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive col-7 border-gray-200">
+                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
+                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                            </thead>
+                            <tbody class="fw-6 fw-bold text-gray-600">
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
+
+  
 </div>
 
 <?php require 'views/footer.php'; ?>
@@ -94,10 +107,13 @@ require 'views/header.php';
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
+<script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
 
 <script>
-    function BtnCriterios(id) {
-        console.log(id);
+    /**
+     * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
+     *  */
+    function Btn_Perspectivas(id) {
         Get_Criterios(id);
     }
     Get_Criterios(1);

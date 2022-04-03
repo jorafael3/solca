@@ -23,6 +23,14 @@ function Mensaje_Error(mensaje1,mensaje2) {
     )
 }
 
+function Mensaje_Info(mensaje1,mensaje2) {
+    Swal.fire(
+        mensaje1,
+        mensaje2,
+        'info'
+    )
+}
+
 function Mensaje_Ok(mensaje1,mensaje2) {
     Swal.fire(
         mensaje1,

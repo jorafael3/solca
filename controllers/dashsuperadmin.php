@@ -22,4 +22,14 @@ class DashSuperAdmin extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Criterios($array);
     }
+    function Get_Poa()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Poa($array);
+    }
+    function Get_Proyectos()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Proyectos($array);
+    }
 }
