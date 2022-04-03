@@ -6,13 +6,14 @@ require 'views/header.php';
 
 
 <div class="row gy-5 g-xl-8">
+
     <div class="col-xl-12">
         <!--begin::Tables widget 6-->
         <div class="card card-flush h-xl-100">
-           
+
 
             <div class="card-body">
-            <h3 class="card-title align-items-start flex-column">
+                <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
                 </h3>
                 <ul class="nav nav-pills nav-pills-custom mb-3">
@@ -94,7 +95,33 @@ require 'views/header.php';
         </div>
     </div>
 
-  
+    <div class="col-xl-12">
+        <div class="d-flex flex-wrap flex-stack my-5">
+            <!--begin::Heading-->
+            <h2 class="fs-2 fw-bold my-2">Projectos
+                <span class="fs-6 text-gray-400 ms-1">by Status</span>
+            </h2>
+            <!--end::Heading-->
+            <!--begin::Controls-->
+            <div class="d-flex flex-wrap my-1">
+                <!--begin::Select wrapper-->
+                <div class="m-0">
+                    <!--begin::Select-->
+                    <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
+                        <option value="Active" selected="selected">Active</option>
+                        <option value="Approved">In Progress</option>
+                        <option value="Declined">To Do</option>
+                        <option value="In Progress">Completed</option>
+                    </select>
+                    <!--end::Select-->
+                </div>
+                <!--end::Select wrapper-->
+            </div>
+            <!--end::Controls-->
+        </div>
+    </div>
+
+
 </div>
 
 <?php require 'views/footer.php'; ?>

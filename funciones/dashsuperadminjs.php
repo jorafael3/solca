@@ -136,6 +136,8 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
                 Tabla_Poa(response);
             } else {
                 Mensaje_Info("Oops", "Este criterio no contiene datos", "info");
+                Tabla_Poa(response);
+
             }
         });
     }
