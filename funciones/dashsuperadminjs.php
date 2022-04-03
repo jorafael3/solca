@@ -222,7 +222,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
             var data = table.row(this).data();
             Get_Proyectos(data);
             $("#Seccion_Proyectos").show();
-           
+
         });
     }
 
@@ -307,9 +307,19 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
      * MUESTRA EL DETALLE DEL PROYECTO AL HACER CLIK SOBRE EL
      */
     function Proyecto_info(id) {
-        console.log(id);
         $("#Seccion_Proyectos").hide(100);
         $("#Seccion_Proyectos_Detalle").show(100);
+
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+        let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
+
+        var nombre = Proyect_info[0]["PROYECTOA_NOM"];
+        var indicador = Proyect_info[0]["PROYECTOA_INDICADOR"];
+        var Fecha_creacion = Proyect_info[0]["FCREADO"];
+        var Responsable = Proyect_info[0]["PROYECTOA_RESPONSABLE"];
+        var ID_PROYECTO = Proyect_info[0]["PROYECTOA_ID"];
+        console.log(nombre);
+
     }
 
     function AjaxSendReceive(url, data, callback) {
