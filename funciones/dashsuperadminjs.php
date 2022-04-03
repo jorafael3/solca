@@ -14,6 +14,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
     var urlGet_Proyectos = '<?php echo $urlGet_Proyectos ?>';
 
     var PERSPECTIVA_ID;
+    var ARR_PROYECTOS;
 
     function Mensaje_Info(mensaje1, mensaje2, icono) {
         Swal.fire(
@@ -220,9 +221,14 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
             e.preventDefault();
             var data = table.row(this).data();
             Get_Proyectos(data);
+            $("#Seccion_Proyectos").show();
+           
         });
     }
 
+    /**@abstract
+     * OBTEMENOS LOS DIFRENETS PROYECTOS DEPENDIENDO DEL POA SELECCIONADO
+     */
     function Get_Proyectos(data) {
         console.log(data);
         var data = {
@@ -230,8 +236,80 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
         }
         AjaxSendReceive(urlGet_Proyectos, data, function(response) {
             console.log(response);
+            ARR_PROYECTOS = [];
+            ARR_PROYECTOS = response;
+            Crear_proyectos(response);
+            /**
+             * VAMOS  A LA SECCION PROYECTOS AUTOMATICAMENTE
+             */
+            $('html, body').animate({
+                scrollTop: $("#Seccion_Proyectos").offset().top
+            }, 1000);
         });
 
+    }
+
+    /**@abstract
+     * CREEAMOS LAS CARTILLAS CON LOS DIFERENTES PROYECTOS DE POA
+     */
+    function Crear_proyectos(data) {
+        var arrdata = JSON.parse(JSON.stringify(data));
+        $("#Lista_proyectos").empty();
+
+        jQuery.each(arrdata, function(key, value) {
+
+            var estado;
+            var nombre = value.PROYECTOA_NOM;
+            var indicador = value.PROYECTOA_INDICADOR;
+            var Fecha_creacion = value.FCREADO;
+            var Responsable = value.PROYECTOA_RESPONSABLE;
+            var ID_PROYECTO = value.PROYECTOA_ID;
+            var Proyect_card = `<div class="col-md-6 col-xl-4" >
+										<a href="#" onclick="Proyecto_info(` + ID_PROYECTO + `);return false;" class="card border-hover-primary">
+											<div class="card-header border-0 pt-9">
+												<div class="card-title m-0">
+													<div class="symbol  bg-light">
+														<i class="fa fa-th symbol-50px w-50px"> </i>
+													</div>
+												</div>
+												<div class="card-toolbar">
+													<span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">` + estado + `</span>
+												</div>
+											</div>
+											<div class="card-body p-9">
+												<div class="fs-5 fw-bolder text-dark">` + nombre + `</div>
+												<p class="text-gray-400 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
+												<div class="d-flex flex-wrap mb-5">
+													<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
+														<div class="fs-6 text-gray-800 fw-bolder">` + Fecha_creacion + `</div>
+														<div class="fw-bold text-gray-400">Creado</div>
+													</div>
+													
+												</div>
+												<div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="This project 50% completed">
+													<div class="bg-primary rounded h-4px" role="progressbar" style="width: 50%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="symbol-group symbol-hover">
+                                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+														<div class="fs-6 text-gray-800 fw-bolder">` + Responsable + `</div>
+														<div class="fw-bold text-gray-400">Responsable</div>
+													</div>
+												</div>
+											</div>
+										</butt>
+									</div>`;
+            $("#Lista_proyectos").append(Proyect_card);
+
+        });
+    }
+
+    /**@abstract
+     * MUESTRA EL DETALLE DEL PROYECTO AL HACER CLIK SOBRE EL
+     */
+    function Proyecto_info(id) {
+        console.log(id);
+        $("#Seccion_Proyectos").hide(100);
+        $("#Seccion_Proyectos_Detalle").show(100);
     }
 
     function AjaxSendReceive(url, data, callback) {

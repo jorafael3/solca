@@ -18,7 +18,10 @@
     <link href="<?php echo constant('URL') ?>public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
 </head>
+
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
     <!--begin::Main-->
@@ -58,8 +61,8 @@
                         <!--end::Aside mobile toggle-->
                         <!--begin::Mobile logo-->
                         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                            <a href="../../demo1/dist/index.html" class="d-lg-none">
-                                <img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-30px" />
+                            <a href="<?php echo constant("URL") ?>" class="d-lg-none">
+                                <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-30px" />
                             </a>
                         </div>
                         <!--end::Mobile logo-->
@@ -79,17 +82,14 @@
                         <!--begin::Container-->
 
                         <?php require 'views/headertoolbar.php'; ?>
-                       
+
                         <!--end::Container-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
-                        <div id="kt_content_container" class="col-12 m-5 pb-5">
-                        <!-- <div id="kt_content_container" class="container-xxl"> -->
+                        <!-- <div id="kt_content_container" class="col-12 m-5 pb-5"> -->
+                            <div id="kt_content_container" class="container-xxl">
 
                             <!--begin::Row-->
-                          
-                        
-    

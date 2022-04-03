@@ -52,7 +52,9 @@
                            <!--end::Svg Icon-->
                        </div>
                        <!--end::Scrolltop-->
-
+                       <script>
+                        //    document.body.style.zoom = "80%";
+                       </script>
                        <script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
                        <!--begin::Javascript-->
                        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -73,6 +75,7 @@
                        <script src="<?php echo constant('URL') ?>public/assets/js/custom/utilities/modals/users-search.js"></script>
                        <!--end::Page Custom Javascript-->
                        <!--end::Javascript-->
+
                        </body>
 
                        </html>
