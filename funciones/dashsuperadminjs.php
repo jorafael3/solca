@@ -4,6 +4,7 @@ $urlGet_perspectiva = constant("URL") . "dashsuperadmin/Get_Perspectivas";
 $urlGet_Criterios = constant("URL") . "dashsuperadmin/Get_Criterios";
 $urlGet_Poa = constant("URL") . "dashsuperadmin/Get_Poa";
 $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
+$urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Detalles";
 
 ?>
 
@@ -12,6 +13,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
     var urlGet_Criterios = '<?php echo $urlGet_Criterios ?>';
     var urlGet_Poa = '<?php echo $urlGet_Poa ?>';
     var urlGet_Proyectos = '<?php echo $urlGet_Proyectos ?>';
+    var urlGet_Proyectos_detalles = '<?php echo $urlGet_Proyectos_detalles ?>';
 
     var PERSPECTIVA_ID;
     var ARR_PROYECTOS;
@@ -27,7 +29,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
     function Get_Perspectivas() {
 
         AjaxSendReceive(urlGet_perspectiva, data = [], function(response) {
-            console.log(response);
+
         });
 
     }
@@ -39,8 +41,10 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
         }
         PERSPECTIVA_ID = id;
         AjaxSendReceive(urlGet_Criterios, data, function(response) {
-            console.log(response);
+
             Tabla_criterios(response);
+            $("#TablaListaPoa").hide();
+
         });
 
     }
@@ -51,7 +55,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
             destroy: true,
             data: data,
             dom: 'rtip',
-            scrollY: 450,
+            scrollY: 350,
             scrollX: true,
             scrollCollapse: true,
             paging: false,
@@ -125,15 +129,16 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
 
     function Get_Poa(data) {
         var criterio_id = data["CRITERIO_ID"];
-        console.log(criterio_id);
+
         var data = {
             criterio_id: criterio_id,
             perspectiva_id: PERSPECTIVA_ID
         }
-        console.log(data);
+
         AjaxSendReceive(urlGet_Poa, data, function(response) {
             if (response.length != 0) {
-                console.log(response);
+
+                $("#TablaListaPoa").show();
                 Tabla_Poa(response);
             } else {
                 Mensaje_Info("Oops", "Este criterio no contiene datos", "info");
@@ -149,7 +154,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
             destroy: true,
             data: data,
             dom: 'rtip',
-            scrollY: 450,
+            scrollY: 350,
             scrollX: true,
             scrollCollapse: true,
             paging: false,
@@ -230,7 +235,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
      * OBTEMENOS LOS DIFRENETS PROYECTOS DEPENDIENDO DEL POA SELECCIONADO
      */
     function Get_Proyectos(data) {
-        console.log(data);
+
         var data = {
             id_poa: data["POA_ID"]
         }
@@ -258,14 +263,26 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
 
         jQuery.each(arrdata, function(key, value) {
 
-            var estado;
+            var estado = value.PROYECTOA_ACTIVO;
+            var estado_color = "badge-light-primary";
             var nombre = value.PROYECTOA_NOM;
             var indicador = value.PROYECTOA_INDICADOR;
             var Fecha_creacion = value.FCREADO;
             var Responsable = value.PROYECTOA_RESPONSABLE;
             var ID_PROYECTO = value.PROYECTOA_ID;
+
+            var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
+
+            if (estado == "S") {
+                estado = "Activo";
+            } else if (estado == "N") {
+                estado = "Desactivado";
+                estado_color = "badge-light-danger";
+                funcion = "";
+            }
+
             var Proyect_card = `<div class="col-md-6 col-xl-4" >
-										<a href="#" onclick="Proyecto_info(` + ID_PROYECTO + `);return false;" class="card border-hover-primary">
+										<a disabled href="#" onclick="` + funcion + `return false;" class="card border-hover-primary">
 											<div class="card-header border-0 pt-9">
 												<div class="card-title m-0">
 													<div class="symbol  bg-light">
@@ -273,7 +290,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
 													</div>
 												</div>
 												<div class="card-toolbar">
-													<span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">` + estado + `</span>
+													<span class="badge ` + estado_color + ` fw-bolder me-auto px-4 py-3">` + estado + `</span>
 												</div>
 											</div>
 											<div class="card-body p-9">
@@ -309,6 +326,8 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
     function Proyecto_info(id) {
         $("#Seccion_Proyectos").hide(100);
         $("#Seccion_Proyectos_Detalle").show(100);
+        $("#Seccion_Perspectivas").hide(100);
+
 
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
         let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
@@ -318,7 +337,119 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
         var Fecha_creacion = Proyect_info[0]["FCREADO"];
         var Responsable = Proyect_info[0]["PROYECTOA_RESPONSABLE"];
         var ID_PROYECTO = Proyect_info[0]["PROYECTOA_ID"];
-        console.log(nombre);
+
+        $("#Proyecto_nom").text(nombre);
+        $("#PROYECTOA_INDICADOR").text(indicador);
+        $("#FCREADO").text(Fecha_creacion);
+        $("#PROYECTOA_RESPONSABLE").text(Responsable);
+
+        var data = {
+            id_proyecto: ID_PROYECTO
+        };
+        AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
+            console.log(response);
+            create_proyect_targets_cards(response);
+        });
+
+    }
+
+    function create_proyect_targets_cards(data) {
+
+        var arrdata = JSON.parse(JSON.stringify(data));
+        $("#Pr_En_Progreso").empty();
+        jQuery.each(arrdata, function(key, value) {
+
+            var ACTIV_NOM = value.ACTIV_NOM;
+            var ACTIV_FINICIO = value.ACTIV_FINICIO;
+            var ACTIV_FFINAL = value.ACTIV_FFINAL;
+            var AVANCE_PORCENTAJE = value.AVANCE_PORCENTAJE;
+            var ULTIMO_AVANCE =  value.ULTIMO_AVANCE;
+            if (AVANCE_PORCENTAJE == "") {
+                AVANCE_PORCENTAJE = "0";
+            }
+
+            var Proyect_card = `<div class="col-12">
+                        <div class="card mb-6 mb-xl-9">
+                            <div class="card-body">
+                                <div class="d-flex flex-stack mb-3">
+                                    <div class="badge badge-light">UI Design</div>
+                                    <div>
+                                        <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                            <span class="svg-icon svg-icon-2">
+                                                <i class="fa fa-th"></i>
+                                            </span>
+                                        </button>
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+                                            <div class="menu-item px-3">
+                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">opcion 1</div>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3">opcion 2</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link flex-stack px-3">opcion 3
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3">opcion 4</a>
+                                            </div>
+
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3 my-1">
+                                                <a href="#" class="menu-link px-3">Settings</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <a href="#" onclick="return false" class="fs-4 fw-bolder mb-1 text-gray-900 text-hover-primary">` + ACTIV_NOM + `</a>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-start">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div id="" class="fs-4 fw-bolder">Inicio</div>
+                                            </div>
+                                            <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FINICIO + `</div>
+                                        </div>
+                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div id="" class="fs-4 fw-bolder">Fin</div>
+                                            </div>
+                                            <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FFINAL + `</div>
+                                        </div>
+                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div id="" class="fs-4 fw-bolder">Ultima Actualizacion</div>
+                                            </div>
+                                            <div class="fw-bold fs-6 text-gray-400">` + ULTIMO_AVANCE + `</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="h-8px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="This project 50% completed">
+                                    <div class="bg-primary rounded h-4px" role="progressbar" style="width: ` + AVANCE_PORCENTAJE + `%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex flex-stack flex-wrapr">
+                                    <div class="d-flex my-1">
+                                        <div class="border border-dashed border-gray-300 rounded py-2 px-3">
+
+                                        </div>
+                                        <div class="border border-dashed border-gray-300 rounded py-2 px-3 ms-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            $("#Pr_En_Progreso").append(Proyect_card);
+        });
+
+
 
     }
 
@@ -340,7 +471,7 @@ $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
-                //console.log(data);
+                //
                 callback(data);
             }
         }

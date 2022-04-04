@@ -7,7 +7,7 @@ require 'views/header.php';
 
 <div class="row gy-5 g-xl-8">
 
-    <div class="col-xl-12">
+    <div class="col-xl-12" id="Seccion_Perspectivas">
         <!--begin::Tables widget 6-->
         <div class="card card-flush h-xl-100">
 
@@ -99,7 +99,7 @@ require 'views/header.php';
         <div class="d-flex flex-wrap flex-stack my-5">
             <!--begin::Heading-->
             <h2 class="fs-2 fw-bold my-2">Projectos
-                <span class="fs-6 text-gray-400 ms-1">by Status</span>
+                <span class="fs-6 text-gray-400 ms-1"></span>
             </h2>
             <!--end::Heading-->
             <!--begin::Controls-->
@@ -108,10 +108,9 @@ require 'views/header.php';
                 <div class="m-0">
                     <!--begin::Select-->
                     <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
-                        <option value="Active" selected="selected">Active</option>
-                        <option value="Approved">In Progress</option>
-                        <option value="Declined">To Do</option>
-                        <option value="In Progress">Completed</option>
+                        <option value="Active" selected="selected">Todos</option>
+                        <option value="Approved">Activo</option>
+                        <option value="Declined">Desactivados</option>
                     </select>
                     <!--end::Select-->
                 </div>
@@ -129,12 +128,12 @@ require 'views/header.php';
     <div class="col-xl-12" id="Seccion_Proyectos_Detalle" style="display: none;">
         <div class="card mb-6 mb-xl-9">
             <div class="card-body pt-9 pb-0">
-            <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
+                <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
                 <!--begin::Details-->
                 <br>
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-6" style="margin-top: 20px;">
                     <!--begin::Image-->
-                   
+
                     <!--end::Image-->
                     <!--begin::Wrapper-->
                     <div class="flex-grow-1">
@@ -144,12 +143,12 @@ require 'views/header.php';
                             <div class="d-flex flex-column">
                                 <!--begin::Status-->
                                 <div class="d-flex align-items-center mb-1">
-                                    <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">CRM Dashboard</a>
-                                    <span class="badge badge-light-success me-auto">In Progress</span>
+                                    <a id="Proyecto_nom" href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">CRM Dashboard</a>
+                                    <span class="badge badge-light-success me-auto">En Progreso</span>
                                 </div>
                                 <!--end::Status-->
                                 <!--begin::Description-->
-                                <div class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400">#1 Tool to get started with Web Apps any Kind &amp; size</div>
+                                <div id="PROYECTOA_INDICADOR" class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400">#1 Tool to get started with Web Apps any Kind &amp; size</div>
                                 <!--end::Description-->
                             </div>
 
@@ -157,65 +156,20 @@ require 'views/header.php';
                         <!--end::Head-->
                         <!--begin::Info-->
                         <div class="d-flex flex-wrap justify-content-start">
-                            <!--begin::Stats-->
                             <div class="d-flex flex-wrap">
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-4 fw-bolder">29 Jan, 2022</div>
+                                        <div id="FCREADO" class="fs-4 fw-bolder"></div>
                                     </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-bold fs-6 text-gray-400">Due Date</div>
-                                    <!--end::Label-->
+                                    <div class="fw-bold fs-6 text-gray-400">Creado</div>
                                 </div>
-                                <!--end::Stat-->
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
                                     <div class="d-flex align-items-center">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                        <span class="svg-icon svg-icon-3 svg-icon-danger me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="black" />
-                                                <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <div class="fs-4 fw-bolder" data-kt-countup="true" data-kt-countup-value="75">0</div>
+                                        <div id="PROYECTOA_RESPONSABLE" class="fs-4 fw-bolder"></div>
                                     </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-bold fs-6 text-gray-400">Open Tasks</div>
-                                    <!--end::Label-->
+                                    <div class="fw-bold fs-6 text-gray-400">Responsable</div>
                                 </div>
-                                <!--end::Stat-->
-                                <!--begin::Stat-->
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                        <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <div class="fs-4 fw-bolder" data-kt-countup="true" data-kt-countup-value="15000" data-kt-countup-prefix="$">0</div>
-                                    </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-bold fs-6 text-gray-400">Budget Spent</div>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Stat-->
                             </div>
-                            <!--end::Stats-->
-                            <!--begin::Users-->
-
-                            <!--end::Users-->
                         </div>
                         <!--end::Info-->
                     </div>
@@ -224,46 +178,351 @@ require 'views/header.php';
                 <!--end::Details-->
                 <div class="separator"></div>
                 <!--begin::Nav-->
-                <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6 active" href="../../demo1/dist/apps/projects/project.html">Overview</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/targets.html">Targets</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/budget.html">Budget</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/users.html">Users</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/files.html">Files</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/activity.html">Activity</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary py-5 me-6" href="../../demo1/dist/apps/projects/settings.html">Settings</a>
-                    </li>
-                    <!--end::Nav item-->
-                </ul>
+
                 <!--end::Nav-->
             </div>
         </div>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    <div class="mb-9">
+                        <div class="d-flex flex-stack">
+                            <div class="fw-bolder fs-4">En Revision
+                                <span class="fs-6 text-gray-400 ms-2">2</span>
+                            </div>
+                            <!--begin::Menu-->
+                            <div>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </button>
+                                <!--begin::Menu 1-->
+                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
+                                    <!--begin::Header-->
+                                    <div class="px-7 py-5">
+                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator border-gray-200"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Form-->
+                                    <div class="px-7 py-5">
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Status:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <div>
+                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
+                                                    <option></option>
+                                                    <option value="1">Approved</option>
+                                                    <option value="2">Pending</option>
+                                                    <option value="2">In Process</option>
+                                                    <option value="2">Rejected</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Member Type:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Options-->
+                                            <div class="d-flex">
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                    <span class="form-check-label">Author</span>
+                                                </label>
+                                                <!--end::Options-->
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
+                                                    <span class="form-check-label">Customer</span>
+                                                </label>
+                                                <!--end::Options-->
+                                            </div>
+                                            <!--end::Options-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Notifications:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Switch-->
+                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
+                                                <label class="form-check-label">Enabled</label>
+                                            </div>
+                                            <!--end::Switch-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Actions-->
+                                        <div class="d-flex justify-content-end">
+                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Menu 1-->
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <div class="h-3px w-100 bg-warning"></div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="mb-9">
+                        <div class="d-flex flex-stack">
+                            <div class="fw-bolder fs-4">En Progreso
+                                <span class="fs-6 text-gray-400 ms-2">2</span>
+                            </div>
+                            <!--begin::Menu-->
+                            <div>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </button>
+                                <!--begin::Menu 1-->
+                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
+                                    <!--begin::Header-->
+                                    <div class="px-7 py-5">
+                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator border-gray-200"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Form-->
+                                    <div class="px-7 py-5">
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Status:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <div>
+                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
+                                                    <option></option>
+                                                    <option value="1">Approved</option>
+                                                    <option value="2">Pending</option>
+                                                    <option value="2">In Process</option>
+                                                    <option value="2">Rejected</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Member Type:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Options-->
+                                            <div class="d-flex">
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                    <span class="form-check-label">Author</span>
+                                                </label>
+                                                <!--end::Options-->
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
+                                                    <span class="form-check-label">Customer</span>
+                                                </label>
+                                                <!--end::Options-->
+                                            </div>
+                                            <!--end::Options-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Notifications:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Switch-->
+                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
+                                                <label class="form-check-label">Enabled</label>
+                                            </div>
+                                            <!--end::Switch-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Actions-->
+                                        <div class="d-flex justify-content-end">
+                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Menu 1-->
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <div class="h-3px w-100 bg-primary"></div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="mb-9">
+                        <div class="d-flex flex-stack">
+                            <div class="fw-bolder fs-4">terminados
+                                <span class="fs-6 text-gray-400 ms-2">2</span>
+                            </div>
+                            <!--begin::Menu-->
+                            <div>
+                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </button>
+                                <!--begin::Menu 1-->
+                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
+                                    <!--begin::Header-->
+                                    <div class="px-7 py-5">
+                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator border-gray-200"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Form-->
+                                    <div class="px-7 py-5">
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Status:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <div>
+                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
+                                                    <option></option>
+                                                    <option value="1">Approved</option>
+                                                    <option value="2">Pending</option>
+                                                    <option value="2">In Process</option>
+                                                    <option value="2">Rejected</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Member Type:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Options-->
+                                            <div class="d-flex">
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                    <span class="form-check-label">Author</span>
+                                                </label>
+                                                <!--end::Options-->
+                                                <!--begin::Options-->
+                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
+                                                    <span class="form-check-label">Customer</span>
+                                                </label>
+                                                <!--end::Options-->
+                                            </div>
+                                            <!--end::Options-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="mb-10">
+                                            <!--begin::Label-->
+                                            <label class="form-label fw-bold">Notifications:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Switch-->
+                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
+                                                <label class="form-check-label">Enabled</label>
+                                            </div>
+                                            <!--end::Switch-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Actions-->
+                                        <div class="d-flex justify-content-end">
+                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Menu 1-->
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+                        <div class="h-3px w-100 bg-success"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="row">
+
+                <div class="col-4" id="Pr_En_Revision">
+
+                </div>
+
+                <div class="col-4" id="Pr_En_Progreso">
+
+                    
+
+                <div class="col-4" id="Pr_Terminados">
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -295,8 +554,12 @@ require 'views/header.php';
         $(this).scrollTop(0);
     });
 
-    function Back_to_proyects(){
+    function Back_to_proyects() {
         $("#Seccion_Proyectos").show(100);
         $("#Seccion_Proyectos_Detalle").hide(100);
+        $("#Seccion_Perspectivas").show(100);
+        $('html, body').animate({
+            scrollTop: $("#Seccion_Proyectos").offset().top
+        }, 1000);
     }
 </script>
