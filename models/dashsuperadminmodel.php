@@ -205,6 +205,31 @@ class DashSuperAdminModel extends Model
         }
     }
 
+    function Actualizar_Actividad($parametros)
+    {
+        $ACTIV_ID = $parametros["ACTV_ID"];
+        $ACTV_ESTADO = $parametros["ACTV_ESTADO"];
+        try {
+            $sql = "UPDATE " . constant("DB") . ".poa_proyectos_accion_actividades
+            SET ACTV_ESTADO = :ACTV_ESTADO WHERE ACTIV_ID = :ACTIV_ID";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(":ACTIV_ID", $ACTIV_ID);
+            $query->bindParam(":ACTV_ESTADO", $ACTV_ESTADO);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     function Guardar_ACtividad_avance($parametros)
     {
         // SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'poa_proyectos_accion_actividades';
@@ -278,7 +303,7 @@ class DashSuperAdminModel extends Model
             $PROYECTOA_ELIMINADO = $parametros["PROYECTOA_ELIMINADO"];
             $FCREADO = $parametros["FCREADO"];
             $HCREADO = $parametros["HCREADO"];
-          
+
 
 
             $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion(

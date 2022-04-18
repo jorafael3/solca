@@ -52349,8 +52349,8 @@ body {
     
 }
 ::-webkit-scrollbar-thumb:horizontal{
-    background: black;
-    border-radius: 0px;
+    background: gray;
+    border-radius: 5px;
     height: 10px;
     padding-top: 10px;
 

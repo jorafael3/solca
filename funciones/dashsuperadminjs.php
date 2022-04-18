@@ -8,6 +8,7 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
 
 $urlNueva_Actividad = constant("URL") . "dashsuperadmin/Nueva_Actividad";
 $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
+$urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Actividad";
 
 
 ?>
@@ -20,6 +21,7 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
     var urlGet_Proyectos_detalles = '<?php echo $urlGet_Proyectos_detalles ?>';
     var urlNueva_Actividad = '<?php echo $urlNueva_Actividad ?>';
     var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
+    var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -269,6 +271,8 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
             ARR_PROYECTOS = [];
             ARR_PROYECTOS = response;
             Crear_proyectos(response);
+            console.log("PROYECTOS", ARR_PROYECTOS);
+
             /**
              * VAMOS  A LA SECCION PROYECTOS AUTOMATICAMENTE
              */
@@ -285,10 +289,10 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
 
     var ARRAY_DATA_PROYECT;
     var PROYECTO_ID;
+    var ARRAY_DATA_ACTIVIDADES;
 
     function Crear_proyectos(data) {
         var arrdata = JSON.parse(JSON.stringify(data));
-        console.log("PROYECTOS", arrdata);
         $("#Lista_proyectos").empty();
         ARRAY_DATA_PROYECT = [];
         jQuery.each(arrdata, function(key, value) {
@@ -362,7 +366,7 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
     }
 
     /**@abstract
-     * MUESTRA EL DETALLE DEL PROYECTO AL HACER CLIK SOBRE EL
+     * MUESTRA LAS ACTIVIDADES DEL PROYECTO AL HACER CLIK SOBRE EL
      */
     function Proyecto_info(id) {
         PROYECTO_ID = id;
@@ -397,15 +401,26 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
         AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
 
             create_proyect_targets_cards(response);
+            ARRAY_DATA_ACTIVIDADES = response;
+            console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
+
 
         });
 
     }
 
+    /**@abstract
+     * CREA LAS CARTILLAS DE LAS ACTIVIDADES DEL PROYECTO
+     */
     function create_proyect_targets_cards(data) {
 
         var arrdata = JSON.parse(JSON.stringify(data));
+        $("#Pr_En_Revision").empty();
         $("#Pr_En_Progreso").empty();
+        $("#Pr_Terminados").empty();
+        var CON_REV = 0;
+        var CON_PRO = 0;
+        var CON_TER = 0;
         jQuery.each(arrdata, function(key, value) {
 
             var ACTIV_NOM = value.ACTIV_NOM;
@@ -413,9 +428,16 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
             var ACTIV_FFINAL = value.ACTIV_FFINAL;
             var AVANCE_PORCENTAJE = value.AVANCE_PORCENTAJE;
             var ULTIMO_AVANCE = value.ULTIMO_AVANCE;
+            var ACTV_ESTADO = value.ACTV_ESTADO;
+            var ACTIV_ID = value.ACTIV_ID;
+
             if (AVANCE_PORCENTAJE == "") {
                 AVANCE_PORCENTAJE = "0";
             }
+
+
+            var con = 1;
+            var funcion = "Actividad_Edit(" + ACTIV_ID + ");";
 
             var Proyect_card = `<div class="col-12">
                         <div class="card mb-6 mb-xl-9">
@@ -423,34 +445,21 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
                                 <div class="d-flex flex-stack mb-3">
                                     <div class="badge badge-light">UI Design</div>
                                     <div>
-                                        <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <span class="svg-icon svg-icon-2">
-                                                <i class="fa fa-th"></i>
-                                            </span>
-                                        </button>
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">opcion 1</div>
-                                            </div>
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">opcion 2</a>
-                                            </div>
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link flex-stack px-3">opcion 3
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
-                                            </div>
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">opcion 4</a>
-                                            </div>
-
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3 my-1">
-                                                <a href="#" class="menu-link px-3">Settings</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                    </div>
+                                <button onclick="` + funcion + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </button>
+                            </div>
                                 </div>
                                 <div class="mb-2">
                                     <a href="#" onclick="return false" class="fs-4 fw-bolder mb-1 text-gray-900 text-hover-primary">` + ACTIV_NOM + `</a>
@@ -495,10 +504,24 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
                         </div>
                     </div>
                 </div>`;
-            $("#Pr_En_Progreso").append(Proyect_card);
+
+            if (ACTV_ESTADO == 1) {
+                $("#Pr_En_Revision").append(Proyect_card);
+                CON_REV = CON_REV + 1
+            } else if (ACTV_ESTADO == 2) {
+                $("#Pr_En_Progreso").append(Proyect_card);
+                CON_PRO = CON_PRO + 1
+
+            } else {
+                $("#Pr_Terminados").append(Proyect_card);
+                CON_TER = CON_TER + 1
+            }
+            con = con + 1;
         });
 
-
+        $("#ACT_COUNT_REV").text(CON_REV);
+        $("#ACT_COUNT_PRO").text(CON_PRO);
+        $("#ACT_COUNT_TER").text(CON_TER);
 
     }
 
@@ -551,9 +574,46 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
                 if (response == true) {
                     $("#kt_modal_add_user").modal('hide');
                     Mensaje_Guardado_ok();
+                    Proyecto_info(PROYECTO_ID);
+
                 }
             });
         }
+    }
+
+    var ACTV_ACTUAL_EDIT;
+
+    function Actividad_Edit(id) {
+        var ACTV_ID = id;
+        var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
+        let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
+        var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
+        $('#ACTV_ACT_ESTADO').val(ACTV_ESTADO);
+        // $("#ACTV_ACT_ESTADO option[value="+ACTV_ESTADO+"]").attr('selected', 'selected');
+        $("#kt_modal_Actividad_Edit").modal('show');
+
+        ACTV_ACTUAL_EDIT = ACTV_ID;
+
+    }
+
+    function Actualizar_Actividad() {
+        var ACTV_ID = ACTV_ACTUAL_EDIT;
+        var estado = $("#ACTV_ACT_ESTADO").val();
+        var data = {
+            ACTV_ID: ACTV_ID,
+            ACTV_ESTADO: estado
+        }
+        console.log(data);
+
+        AjaxSendReceive(urlActualizar_Actividad, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                $("#kt_modal_Actividad_Edit").modal('hide');
+                Mensaje_Guardado_ok();
+                Proyecto_info(PROYECTO_ID);
+            }
+
+        });
     }
 
     function Nuevo_Proyecto() {
@@ -566,9 +626,6 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
         var HCREADO = moment().format("hh:mm:ss");
         var PROYECTOA_ACTIVO = "S";
         var PROYECTOA_ELIMINADO = "N";
-
-
-
 
         if (PROYECTOA_NOM == "") {
 
@@ -602,6 +659,11 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
 
             AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
                 console.log(response);
+                if (response == true) {
+                    $("#kt_modal_Nuevo_Proyecto").modal('hide');
+                    Mensaje_Guardado_ok();
+                    Get_Proyectos(ARRAY_DATA_POA);
+                }
             })
         }
 
