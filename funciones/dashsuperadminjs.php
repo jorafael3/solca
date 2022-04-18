@@ -6,6 +6,10 @@ $urlGet_Poa = constant("URL") . "dashsuperadmin/Get_Poa";
 $urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
 $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Detalles";
 
+$urlNueva_Actividad = constant("URL") . "dashsuperadmin/Nueva_Actividad";
+$urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
+
+
 ?>
 
 <script>
@@ -14,9 +18,17 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
     var urlGet_Poa = '<?php echo $urlGet_Poa ?>';
     var urlGet_Proyectos = '<?php echo $urlGet_Proyectos ?>';
     var urlGet_Proyectos_detalles = '<?php echo $urlGet_Proyectos_detalles ?>';
+    var urlNueva_Actividad = '<?php echo $urlNueva_Actividad ?>';
+    var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
 
     var PERSPECTIVA_ID;
+    var CRITERIO_ID;
     var ARR_PROYECTOS;
+    var PERSPECTIVA_NOM;
+    var CRITERIO_NOM;
+    var POA_NOM;
+    var POA_AREA;
+    var POA_DEPT;
 
     function Mensaje_Info(mensaje1, mensaje2, icono) {
         Swal.fire(
@@ -34,12 +46,15 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
 
     }
 
-    function Get_Criterios(id) {
+    function Get_Criterios(id, nombre) {
+
+
 
         var data = {
             id_perspectiva: id
         }
         PERSPECTIVA_ID = id;
+        PERSPECTIVA_NOM = nombre;
         AjaxSendReceive(urlGet_Criterios, data, function(response) {
 
             Tabla_criterios(response);
@@ -129,7 +144,8 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
 
     function Get_Poa(data) {
         var criterio_id = data["CRITERIO_ID"];
-
+        CRITERIO_NOM = data["CRITERIO_NOM"];
+        CRITERIO_ID = criterio_id;
         var data = {
             criterio_id: criterio_id,
             perspectiva_id: PERSPECTIVA_ID
@@ -234,13 +250,22 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
     /**@abstract
      * OBTEMENOS LOS DIFRENETS PROYECTOS DEPENDIENDO DEL POA SELECCIONADO
      */
+    var ARRAY_DATA_POA;
+
     function Get_Proyectos(data) {
+        ARRAY_DATA_POA = data;
+        POA_NOM = data["OBJEST_NOM"];
+        POA_AREA = data["AREA_NOM"];
+        POA_DEPT = data["DEPTO_NOM"];
+
+
 
         var data = {
             id_poa: data["POA_ID"]
         }
+
         AjaxSendReceive(urlGet_Proyectos, data, function(response) {
-            console.log(response);
+
             ARR_PROYECTOS = [];
             ARR_PROYECTOS = response;
             Crear_proyectos(response);
@@ -257,10 +282,15 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
     /**@abstract
      * CREEAMOS LAS CARTILLAS CON LOS DIFERENTES PROYECTOS DE POA
      */
+
+    var ARRAY_DATA_PROYECT;
+    var PROYECTO_ID;
+
     function Crear_proyectos(data) {
         var arrdata = JSON.parse(JSON.stringify(data));
+        console.log("PROYECTOS", arrdata);
         $("#Lista_proyectos").empty();
-
+        ARRAY_DATA_PROYECT = [];
         jQuery.each(arrdata, function(key, value) {
 
             var estado = value.PROYECTOA_ACTIVO;
@@ -270,6 +300,17 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
             var Fecha_creacion = value.FCREADO;
             var Responsable = value.PROYECTOA_RESPONSABLE;
             var ID_PROYECTO = value.PROYECTOA_ID;
+
+            var data = {
+                ID_PROYECTO: ID_PROYECTO,
+                PROYECTOA_ACTIVO: estado,
+                CRITERIO_ID: value.CRITERIO_ID,
+                POA_ID: value.POA_ID,
+                OBJEST_ID: value.OBJEST_ID,
+                PERSPECTIVA_ID: value.PERSPECTIVA_ID
+            };
+
+            ARRAY_DATA_PROYECT.push(data);
 
             var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
 
@@ -324,6 +365,9 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
      * MUESTRA EL DETALLE DEL PROYECTO AL HACER CLIK SOBRE EL
      */
     function Proyecto_info(id) {
+        PROYECTO_ID = id;
+
+
         $("#Seccion_Proyectos").hide(100);
         $("#Seccion_Proyectos_Detalle").show(100);
         $("#Seccion_Perspectivas").hide(100);
@@ -342,13 +386,18 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
         $("#PROYECTOA_INDICADOR").text(indicador);
         $("#FCREADO").text(Fecha_creacion);
         $("#PROYECTOA_RESPONSABLE").text(Responsable);
+        $("#PROYECTOA_CRITERIO").text(CRITERIO_NOM);
+        $("#PROYECTOA_AREA").text(POA_AREA);
+        $("#PROYECTOA_DEPARTAMENTO").text(POA_DEPT);
+        $("#PROYECTOA_POA").text(POA_NOM);
 
         var data = {
             id_proyecto: ID_PROYECTO
         };
         AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
-            console.log(response);
+
             create_proyect_targets_cards(response);
+
         });
 
     }
@@ -363,7 +412,7 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
             var ACTIV_FINICIO = value.ACTIV_FINICIO;
             var ACTIV_FFINAL = value.ACTIV_FFINAL;
             var AVANCE_PORCENTAJE = value.AVANCE_PORCENTAJE;
-            var ULTIMO_AVANCE =  value.ULTIMO_AVANCE;
+            var ULTIMO_AVANCE = value.ULTIMO_AVANCE;
             if (AVANCE_PORCENTAJE == "") {
                 AVANCE_PORCENTAJE = "0";
             }
@@ -452,6 +501,113 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
 
 
     }
+
+
+    function Nueva_Actividad(fecha) {
+
+        var ACTIV_FFINAL = fecha;
+        var ACTIV_FINICIO = moment().format("YYYY-MM-DD");
+        var ANIO_ACTUAL = moment().format("YYYY");
+        var MES_ACTUAL = moment().format("MM");
+        var ACTIV_NOM = $("#ACT_Nombre").val();
+        var ACTIV_RESPONSABLE = $("#ACT_Responsable").val();
+        var Pr_ID = PROYECTO_ID;
+        var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_PROYECT));
+        let POA_INFO = arrdata.filter(id => id.ID_PROYECTO == Pr_ID);
+        var ACTIV_ACTIVO = "S";
+        var ACTIV_ELIMINADO = "N";
+        var HCREADO = moment().format("hh:mm:ss");
+
+        var DATA_TO_SEND = {
+            ACTIV_NOM: ACTIV_NOM,
+            ACTIV_RESPONSABLE: ACTIV_RESPONSABLE,
+            ACTIV_FFINAL: ACTIV_FFINAL,
+            ACTIV_FINICIO: ACTIV_FINICIO,
+            CRITERIO_ID: POA_INFO[0]["CRITERIO_ID"],
+            PROYECTOA_ID: POA_INFO[0]["ID_PROYECTO"],
+            POA_ID: POA_INFO[0]["POA_ID"],
+            PROYECTOA_ACTIVO: POA_INFO[0]["PROYECTOA_ACTIVO"],
+            OBJEST_ID: POA_INFO[0]["OBJEST_ID"],
+            PERSPECTIVA_ID: POA_INFO[0]["PERSPECTIVA_ID"],
+            ACTIV_ACTIVO: ACTIV_ACTIVO,
+            ACTIV_ELIMINADO: ACTIV_ELIMINADO,
+            HCREADO: HCREADO,
+            ANIO_ACTUAL: ANIO_ACTUAL,
+            MES_ACTUAL: MES_ACTUAL
+        }
+
+        if (ACTIV_NOM == "") {
+
+        } else if (ACTIV_RESPONSABLE == "") {
+
+        } else if (ACTIV_FFINAL == "") {
+
+        } else {
+
+
+
+            AjaxSendReceive(urlNueva_Actividad, DATA_TO_SEND, function(response) {
+
+                if (response == true) {
+                    $("#kt_modal_add_user").modal('hide');
+                    Mensaje_Guardado_ok();
+                }
+            });
+        }
+    }
+
+    function Nuevo_Proyecto() {
+        var PROYECTOA_NOM = $("#PRY_Nombre").val();
+        var PROYECTOA_RESPONSABLE = $("#PRY_Responsable").val();
+        var PROYECTOA_INDICADOR = $("#PRY_indicador").val();
+        var PROYECTOA_META_2022 = $("#PRY_Meta2022").val();
+        var PROYECTOA_META_2023 = $("#PRY_Meta2023").val();
+        var FCREADO = moment().format("YYYY-MM-DD");
+        var HCREADO = moment().format("hh:mm:ss");
+        var PROYECTOA_ACTIVO = "S";
+        var PROYECTOA_ELIMINADO = "N";
+
+
+
+
+        if (PROYECTOA_NOM == "") {
+
+        } else if (PROYECTOA_RESPONSABLE == "") {
+
+        } else if (PROYECTOA_INDICADOR == "") {
+
+        } else if (PROYECTOA_META_2022 == "") {
+
+        } else if (PROYECTOA_META_2023 == "") {
+
+        } else {
+
+            var DATA_TO_SEND = {
+                PROYECTOA_NOM: PROYECTOA_NOM,
+                PROYECTOA_RESPONSABLE: PROYECTOA_RESPONSABLE,
+                PROYECTOA_INDICADOR: PROYECTOA_INDICADOR,
+                PROYECTOA_META_2022: PROYECTOA_META_2022,
+                PROYECTOA_META_2023: PROYECTOA_META_2023,
+                PERSPECTIVA_ID: PERSPECTIVA_ID,
+                CRITERIO_ID: CRITERIO_ID,
+                POA_ID: ARRAY_DATA_POA["POA_ID"],
+                OBJEST_ID: ARRAY_DATA_POA["OBJEST_ID"],
+                FCREADO: FCREADO,
+                HCREADO: HCREADO,
+                PROYECTOA_ACTIVO: PROYECTOA_ACTIVO,
+                PROYECTOA_ELIMINADO: PROYECTOA_ELIMINADO,
+            }
+
+            console.log(DATA_TO_SEND);
+
+            AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
+                console.log(response);
+            })
+        }
+
+
+    }
+
 
     function AjaxSendReceive(url, data, callback) {
 

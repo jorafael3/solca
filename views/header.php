@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Solca</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -75,16 +75,12 @@
                 </div>
                 <!--end::Header-->
                 <!--begin::Content-->
-                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="margin-top: -50px;">
                     <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
+                    <!-- <div class="toolbar" id="kt_toolbar">
 
-                        <!--begin::Container-->
-
-                        <?php require 'views/headertoolbar.php'; ?>
-
-                        <!--end::Container-->
-                    </div>
+                     
+                    </div> -->
                     <!--end::Toolbar-->
                     <!--begin::Post-->
                     <div class="post d-flex flex-column-fluid" id="kt_post">

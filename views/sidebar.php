@@ -3,7 +3,10 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="<?php echo constant("URL") ?>">
-            <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-80px logo" /> SOLCA
+            <!-- <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-80px logo" />
+             -->
+            
+            <span class="text-primary text-title fs-2">Solca</span>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -29,47 +32,54 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Apps</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="<?php echo constant("URL") ?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </div>
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="black" />
+                                    <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Cuenta</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="<?php echo constant("URL") ?>cuenta/Perfil_usuario">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Perfil</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="<?php echo constant("URL") ?>cuenta/Ajustes_usuario">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajustes</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-									<span class="menu-link">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="black" />
-													<rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="black" />
-												</svg>
-											</span>
-											<!--end::Svg Icon-->
-										</span>
-										<span class="menu-title">Cuenta</span>
-										<span class="menu-arrow"></span>
-									</span>
-									<div class="menu-sub menu-sub-accordion menu-active-bg">
-										<div class="menu-item">
-											<a class="menu-link" href="<?php echo constant("URL") ?>cuenta/Perfil_usuario">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Perfil</span>
-											</a>
-										</div>
-										<div class="menu-item">
-											<a class="menu-link" href="<?php echo constant("URL") ?>cuenta/Ajustes_usuario">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-												<span class="menu-title">Ajustes</span>
-											</a>
-										</div>
-										
-									</div>
-								</div>
 
-                
 
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
                     <span class="menu-link">
@@ -104,17 +114,17 @@
                                         <span class="menu-title">Lista de usuarios</span>
                                     </a>
                                 </div>
-                                <div class="menu-item">
+                                <!-- <div class="menu-item">
                                     <a class="menu-link" href="../../demo1/dist/apps/user-management/users/view.html">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
                                         <span class="menu-title">View User</span>
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -148,7 +158,7 @@
                                 </span>
                                 <span class="menu-title">Permissions</span>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -167,10 +177,9 @@
     </div>
     <!--end::Aside menu-->
     <!--begin::Footer-->
-    <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
+    <!-- <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
         <a href="../../demo1/dist/documentation/getting-started.html" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
             <span class="btn-label">Docs &amp; Components</span>
-            <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
             <span class="svg-icon btn-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM12.5 18C12.5 17.4 12.6 17.5 12 17.5H8.5C7.9 17.5 8 17.4 8 18C8 18.6 7.9 18.5 8.5 18.5L12 18C12.6 18 12.5 18.6 12.5 18ZM16.5 13C16.5 12.4 16.6 12.5 16 12.5H8.5C7.9 12.5 8 12.4 8 13C8 13.6 7.9 13.5 8.5 13.5H15.5C16.1 13.5 16.5 13.6 16.5 13ZM12.5 8C12.5 7.4 12.6 7.5 12 7.5H8C7.4 7.5 7.5 7.4 7.5 8C7.5 8.6 7.4 8.5 8 8.5H12C12.6 8.5 12.5 8.6 12.5 8Z" fill="black" />
@@ -180,8 +189,7 @@
                     <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />
                 </svg>
             </span>
-            <!--end::Svg Icon-->
         </a>
-    </div>
+    </div> -->
     <!--end::Footer-->
 </div>

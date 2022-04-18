@@ -37,4 +37,18 @@ class DashSuperAdmin extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Proyectos_Detalles($array);
     }
+
+    function Nueva_Actividad()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nueva_Actividad($array);
+    }
+
+    function Nuevo_Proyecto()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Proyecto($array);
+    }
+
+
 }

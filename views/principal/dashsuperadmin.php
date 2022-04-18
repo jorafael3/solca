@@ -22,6 +22,8 @@ require 'views/header.php';
                     $con = 1;
                     foreach ($this->Perspect as $row) {
 
+                        $Perspectiva_ID = $row['PERSPECTIVA_ID'];
+                        $Perspectiva_Nom = $row["PERSPECTIVA_NOM"];
                     ?>
                         <li class="nav-item mb-3 me-3 me-lg-6">
                             <!--begin::Link-->
@@ -31,13 +33,13 @@ require 'views/header.php';
 
 
                             ?>
-                                <a onclick="Btn_Perspectivas(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 active " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
+                                <a onclick="Btn_Perspectivas('<?php echo $Perspectiva_ID ?>','<?php echo $Perspectiva_Nom ?>')" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 active " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
                                 <?php
                             } else {
 
                                 ?>
 
-                                    <a onclick="Btn_Perspectivas(<?php echo $row['PERSPECTIVA_ID'] ?>)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
+                                    <a onclick="Btn_Perspectivas('<?php echo $Perspectiva_ID ?>','<?php echo $Perspectiva_Nom ?>')" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_<?php echo $con ?>">
 
 
                                     <?php
@@ -46,11 +48,11 @@ require 'views/header.php';
                                 }
                                     ?>
                                     <div class="nav-icon mb-3">
-                                        <i class="fa fa-th-large fs-1 p-0"></i>
+                                        <i class="fa fa-th-large fs-4 p-0"></i>
                                     </div>
                                     <!--end::Icon-->
                                     <!--begin::Title-->
-                                    <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1"><?php echo $row["PERSPECTIVA_NOM"] ?></span>
+                                    <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1"><?php echo $Perspectiva_Nom ?></span>
                                     <!--end::Title-->
                                     <!--begin::Bullet-->
                                     <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
@@ -68,6 +70,7 @@ require 'views/header.php';
 
                 <div class="row">
                     <div class="table-responsive col-5 border-gray-200">
+                        <h4>Criterios</h4>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -79,6 +82,8 @@ require 'views/header.php';
                     </div>
 
                     <div class="table-responsive col-7 border-gray-200">
+                        <h4>POA</h4>
+
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -96,6 +101,11 @@ require 'views/header.php';
     </div>
 
     <div class="col-xl-12" id="Seccion_Proyectos" style="display: none;">
+        <div class="row">
+            <div class="card-body">
+                <button data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
+            </div>
+        </div>
         <div class="d-flex flex-wrap flex-stack my-5">
             <!--begin::Heading-->
             <h2 class="fs-2 fw-bold my-2">Projectos
@@ -131,9 +141,12 @@ require 'views/header.php';
                 <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
                 <!--begin::Details-->
                 <br>
+                <div style="margin-top: 20px;" class="separator"></div>
+                <br>
+                <h1>Proyecto</h1>
+
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-6" style="margin-top: 20px;">
                     <!--begin::Image-->
-
                     <!--end::Image-->
                     <!--begin::Wrapper-->
                     <div class="flex-grow-1">
@@ -144,7 +157,7 @@ require 'views/header.php';
                                 <!--begin::Status-->
                                 <div class="d-flex align-items-center mb-1">
                                     <a id="Proyecto_nom" href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">CRM Dashboard</a>
-                                    <span class="badge badge-light-success me-auto">En Progreso</span>
+                                    <span class="badge badge-light-primary me-auto">En Progreso</span>
                                 </div>
                                 <!--end::Status-->
                                 <!--begin::Description-->
@@ -169,6 +182,30 @@ require 'views/header.php';
                                     </div>
                                     <div class="fw-bold fs-6 text-gray-400">Responsable</div>
                                 </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="PROYECTOA_CRITERIO" class="fs-4 fw-bolder"></div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-400">Criterio</div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="PROYECTOA_AREA" class="fs-4 fw-bolder"></div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-400">Area</div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="PROYECTOA_DEPARTAMENTO" class="fs-4 fw-bolder"></div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-400">Departamento</div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="PROYECTOA_POA" class="fs-4 fw-bolder"></div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-400">POA</div>
+                                </div>
                             </div>
                         </div>
                         <!--end::Info-->
@@ -183,6 +220,13 @@ require 'views/header.php';
             </div>
         </div>
 
+        <div class="col-12">
+            <div class="row">
+                <div class="card-body">
+                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
+                </div>
+            </div>
+        </div>
         <div class="col-12">
             <div class="row">
                 <div class="col-4">
@@ -511,55 +555,278 @@ require 'views/header.php';
 
                 <div class="col-4" id="Pr_En_Progreso">
 
-                    
-
-                <div class="col-4" id="Pr_Terminados">
                 </div>
 
 
+                <div class="col-4" id="Pr_Terminados">
 
-
+                </div>
             </div>
-        </div>
 
+
+        </div>
 
     </div>
 
+    <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nueva Actividad</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_mo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre De la Actividad</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="ACT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
 
 
 
-</div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Responsable</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="ACT_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
+                                <!--end::Input-->
+                            </div>
 
-<?php require 'views/footer.php'; ?>
-<?php require 'funciones/dashsuperadminjs.php'; ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+                            <div class="fv-row mb-7">
+                                <label class="required fs-6 fw-bold mb-2">Fecha de Finalizacion</label>
+                                <!--begin::Input-->
+                                <input type="text" class="form-control" name="datepicker" id="datepicker2" />
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
+                            </div>
+
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nueva_Actividad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
 
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
-<script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
+    <div class="modal fade" id="kt_modal_Nuevo_Proyecto" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Proyecto</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_mo_2"">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
-<script>
-    /**
-     * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
-     *  */
-    function Btn_Perspectivas(id) {
-        Get_Criterios(id);
-    }
-    Get_Criterios(1);
-    $(document).ready(function() {
-        $(this).scrollTop(0);
-    });
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Proyecto</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
 
-    function Back_to_proyects() {
-        $("#Seccion_Proyectos").show(100);
-        $("#Seccion_Proyectos_Detalle").hide(100);
-        $("#Seccion_Perspectivas").show(100);
-        $('html, body').animate({
-            scrollTop: $("#Seccion_Proyectos").offset().top
-        }, 1000);
-    }
-</script>
+
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Responsable</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indicador</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_indicador" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Indicador" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2022</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2022" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="MEta 2022" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2023</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2023" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2023" required />
+                                <!--end::Input-->
+                            </div>
+
+
+
+                          
+
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Proyecto()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar Proyecto</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <?php require 'views/footer.php'; ?>
+    <?php require 'funciones/dashsuperadminjs.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/es.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
+    <script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script>
+        /**
+         * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
+         *  */
+        function Btn_Perspectivas(id, nombre) {
+            Get_Criterios(id, nombre);
+        }
+        Get_Criterios(1, "Direccion");
+        $(document).ready(function() {
+            $(this).scrollTop(0);
+        });
+
+        function Back_to_proyects() {
+            $("#Seccion_Proyectos").show(100);
+            $("#Seccion_Proyectos_Detalle").hide(100);
+            $("#Seccion_Perspectivas").show(100);
+            $('html, body').animate({
+                scrollTop: $("#Seccion_Proyectos").offset().top
+            }, 1000);
+        }
+
+        $(".btn_close_mo").click(function() {
+            $("#kt_modal_add_user").modal('hide');
+        });
+
+        $(".btn_close_mo_2").click(function() {
+            $("#kt_modal_Nuevo_Proyecto").modal('hide');
+        });
+
+
+        var FECHA;
+        $('#datepicker2').daterangepicker({
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            minDate: moment().add(1, "day"),
+            // maxDate: moment(),
+            "drops": "up",
+
+        }, function(start, end, label) {
+            FECHA = start.format('YYYY-MM-DD')
+        });
+
+        function Btn_Nueva_Actividad() {
+            if (FECHA == undefined) {
+                FECHA = moment().add(1, "day").format("YYYY-MM-DD");
+            }
+
+            Nueva_Actividad(FECHA);
+        }
+
+        function Btn_Nuevo_Proyecto(){
+
+            Nuevo_Proyecto();
+        }
+    </script>
