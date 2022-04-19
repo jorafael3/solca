@@ -160,6 +160,8 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
 
                 $("#TablaListaPoa").show();
                 Tabla_Poa(response);
+                $("#Seccion_Proyectos").hide();
+
             } else {
                 Mensaje_Info("Oops", "Este criterio no contiene datos", "info");
                 Tabla_Poa(response);
@@ -428,7 +430,9 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
             create_proyect_targets_cards(response);
             ARRAY_DATA_ACTIVIDADES = response;
             console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
-
+            $('html, body').animate({
+                scrollTop: $("#Seccion_Proyectos_Detalle").offset().top
+            }, 1000);
 
         });
 

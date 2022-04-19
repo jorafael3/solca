@@ -631,6 +631,7 @@ require 'views/header.php';
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <link rel="stylesheet" href="<?php echo constant('URL') ?>public/assets/css/dragula.css">
     <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
 
     <script>

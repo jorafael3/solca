@@ -6,7 +6,7 @@
             <!-- <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-80px logo" />
              -->
             
-            <span class="text-primary text-title fs-2">Solca</span>
+            <span class="text-primary text-title fs-3">Solca</span>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
