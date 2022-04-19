@@ -345,7 +345,7 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
 											</div>
 											<div class="card-body p-9">
 												<div class="fs-5 fw-bolder text-dark">` + nombre + `</div>
-												<p class="text-gray-400 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
+												<p class="text-gray-600 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
 												<div class="d-flex flex-wrap mb-5">
 													<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
 														<div class="fs-6 text-gray-800 fw-bolder">` + Fecha_creacion + `</div>
@@ -471,7 +471,7 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
                 var Proyect_card = `
             
             <div class="col-12 border border-gray-600 bg-light" style="margin-bottom:15px">
-                <a disabled href="#!" onmousedown="` + funcionD + `return false;" class="card border-hover-primary">
+                <a disabled href="#!" onmousedown="` + funcionD + `return false;" class="card border-hover-primary" style="cursor:grab;">
                     <div class="card-header border-0 pt-9">
                         <div class="card-title m-0">
                             <div class="symbol  bg-light">
@@ -511,19 +511,19 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
                                     <div class="d-flex align-items-center">
                                         <div id="" class="fs-4 fw-bolder">Inicio</div>
                                     </div>
-                                    <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FINICIO + `</div>
+                                    <div class="fw-bold fs-6 text-gray-700">` + ACTIV_FINICIO + `</div>
                                 </div>
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div id="" class="fs-4 fw-bolder">Fin</div>
+                                        <div id="" class="fs-6 fw-bolder">Fin</div>
                                     </div>
-                                    <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FFINAL + `</div>
+                                    <div class="fw-bold fs-6 text-gray-700">` + ACTIV_FFINAL + `</div>
                                 </div>
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div id="" class="fs-4 fw-bolder">Ultima Actualizacion</div>
+                                        <div id="" class="fs-6 fw-bolder">Ultima Actualizacion</div>
                                     </div>
-                                    <div class="fw-bold fs-6 text-gray-400">` + ULTIMO_AVANCE + `</div>
+                                    <div class="fw-bold fs-6 text-gray-700">` + ULTIMO_AVANCE + `</div>
                                 </div>
                             </div>
                         </div>
