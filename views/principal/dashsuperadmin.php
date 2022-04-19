@@ -671,7 +671,14 @@ require 'views/header.php';
         function Back_to_proyects() {
             $("#Seccion_Proyectos").show(100);
             $("#Seccion_Proyectos_Detalle").hide(100);
+            $("#Pr_En_Revision").empty();
+            $("#Pr_En_Progreso").empty();
+            $("#Pr_Terminados").empty();
+            
             $("#Seccion_Perspectivas").show(100);
+            $("#Seccion_Perspectivas").show(100);
+
+
             $('html, body').animate({
                 scrollTop: $("#Seccion_Proyectos").offset().top
             }, 1000);
