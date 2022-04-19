@@ -137,14 +137,19 @@ require 'views/header.php';
 
     <div class="col-xl-12" id="Seccion_Proyectos_Detalle" style="display: none;">
         <div class="card mb-6 mb-xl-9">
-            <div class="card-body pt-9 pb-0">
-                <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
-                <!--begin::Details-->
-                <br>
-                <div style="margin-top: 20px;" class="separator"></div>
-                <br>
-                <h1>Proyecto</h1>
 
+            <div class="card-header border-0">
+                <div class="card-title m-0">
+                    <h2>Proyecto</h2>
+
+                </div>
+                <div class="card-toolbar">
+                    <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
+
+                </div>
+            </div>
+            <div class="card-body pt-1 pb-0">
+                <!--begin::Details-->
                 <div class="d-flex flex-wrap flex-sm-nowrap mb-6" style="margin-top: 20px;">
                     <!--begin::Image-->
                     <!--end::Image-->
