@@ -365,4 +365,36 @@ class DashSuperAdminModel extends Model
             return $e;
         }
     }
+
+    function Eliminar_Actividad($parametros)
+    {
+        $ACTIV_ID = $parametros["ACTV_ID"];
+        $ACTIV_ACTIVO = "N";
+        $ACTIV_ELIMINADO = "S";
+        try {
+            $sql = "UPDATE " . constant("DB") . ".poa_proyectos_accion_actividades
+            SET 
+            ACTIV_ACTIVO = :ACTIV_ACTIVO,
+            ACTIV_ELIMINADO = :ACTIV_ELIMINADO
+            WHERE ACTIV_ID = :ACTIV_ID";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(":ACTIV_ACTIVO", $ACTIV_ACTIVO);
+            $query->bindParam(":ACTIV_ELIMINADO", $ACTIV_ELIMINADO);
+            $query->bindParam(":ACTIV_ID", $ACTIV_ID);
+
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    
 }

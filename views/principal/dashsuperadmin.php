@@ -117,10 +117,10 @@ require 'views/header.php';
                 <!--begin::Select wrapper-->
                 <div class="m-0">
                     <!--begin::Select-->
-                    <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
-                        <option value="Active" selected="selected">Todos</option>
-                        <option value="Approved">Activo</option>
-                        <option value="Declined">Desactivados</option>
+                    <select onchange="BTN_Filtrar_pry(this.value)" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
+                        <option value="1">Todos</option>
+                        <option value="2" selected="selected">Activo</option>
+                        <option value="3">Desactivados</option>
                     </select>
                     <!--end::Select-->
                 </div>
@@ -157,7 +157,7 @@ require 'views/header.php';
                                 <!--begin::Status-->
                                 <div class="d-flex align-items-center mb-1">
                                     <a id="Proyecto_nom" href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">CRM Dashboard</a>
-                                    <span class="badge badge-light-primary me-auto">En Progreso</span>
+                                    <span class="badge badge-light-primary me-auto">Activo</span>
                                 </div>
                                 <!--end::Status-->
                                 <!--begin::Description-->
@@ -237,8 +237,7 @@ require 'views/header.php';
                             </div>
                             <!--begin::Menu-->
                             <div>
-                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                <!-- <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -249,26 +248,15 @@ require 'views/header.php';
                                             </g>
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--begin::Menu 1-->
-                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
-                                    <!--begin::Header-->
+                                </button> -->
+                                <!-- <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
                                     <div class="px-7 py-5">
                                         <div class="fs-5 text-dark fw-bolder">Filter Options</div>
                                     </div>
-                                    <!--end::Header-->
-                                    <!--begin::Menu separator-->
                                     <div class="separator border-gray-200"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Form-->
                                     <div class="px-7 py-5">
-                                        <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <!--begin::Label-->
                                             <label class="form-label fw-bold">Status:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
                                             <div>
                                                 <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
                                                     <option></option>
@@ -278,57 +266,34 @@ require 'views/header.php';
                                                     <option value="2">Rejected</option>
                                                 </select>
                                             </div>
-                                            <!--end::Input-->
                                         </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <!--begin::Label-->
                                             <label class="form-label fw-bold">Member Type:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Options-->
                                             <div class="d-flex">
-                                                <!--begin::Options-->
                                                 <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
                                                     <input class="form-check-input" type="checkbox" value="1" />
                                                     <span class="form-check-label">Author</span>
                                                 </label>
-                                                <!--end::Options-->
-                                                <!--begin::Options-->
                                                 <label class="form-check form-check-sm form-check-custom form-check-solid">
                                                     <input class="form-check-input" type="checkbox" value="2" checked="checked" />
                                                     <span class="form-check-label">Customer</span>
                                                 </label>
-                                                <!--end::Options-->
                                             </div>
-                                            <!--end::Options-->
                                         </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <!--begin::Label-->
                                             <label class="form-label fw-bold">Notifications:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Switch-->
                                             <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
                                                 <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
                                                 <label class="form-check-label">Enabled</label>
                                             </div>
-                                            <!--end::Switch-->
                                         </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Actions-->
                                         <div class="d-flex justify-content-end">
                                             <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
                                             <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
                                         </div>
-                                        <!--end::Actions-->
                                     </div>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Menu 1-->
+                                </div> -->
                             </div>
-                            <!--end::Menu-->
                         </div>
                         <div class="h-3px w-100 bg-warning"></div>
                     </div>
@@ -342,96 +307,8 @@ require 'views/header.php';
                             </div>
                             <!--begin::Menu-->
                             <div>
-                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--begin::Menu 1-->
-                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
-                                    <!--begin::Header-->
-                                    <div class="px-7 py-5">
-                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                    </div>
-                                    <!--end::Header-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator border-gray-200"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Form-->
-                                    <div class="px-7 py-5">
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Status:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <div>
-                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
-                                                    <option></option>
-                                                    <option value="1">Approved</option>
-                                                    <option value="2">Pending</option>
-                                                    <option value="2">In Process</option>
-                                                    <option value="2">Rejected</option>
-                                                </select>
-                                            </div>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Member Type:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Options-->
-                                            <div class="d-flex">
-                                                <!--begin::Options-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                    <span class="form-check-label">Author</span>
-                                                </label>
-                                                <!--end::Options-->
-                                                <!--begin::Options-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
-                                                    <span class="form-check-label">Customer</span>
-                                                </label>
-                                                <!--end::Options-->
-                                            </div>
-                                            <!--end::Options-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Notifications:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Switch-->
-                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-                                                <label class="form-check-label">Enabled</label>
-                                            </div>
-                                            <!--end::Switch-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Actions-->
-                                        <div class="d-flex justify-content-end">
-                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-                                        </div>
-                                        <!--end::Actions-->
-                                    </div>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Menu 1-->
+
+
                             </div>
                             <!--end::Menu-->
                         </div>
@@ -447,96 +324,7 @@ require 'views/header.php';
                             </div>
                             <!--begin::Menu-->
                             <div>
-                                <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--begin::Menu 1-->
-                                <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
-                                    <!--begin::Header-->
-                                    <div class="px-7 py-5">
-                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                    </div>
-                                    <!--end::Header-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator border-gray-200"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Form-->
-                                    <div class="px-7 py-5">
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Status:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <div>
-                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
-                                                    <option></option>
-                                                    <option value="1">Approved</option>
-                                                    <option value="2">Pending</option>
-                                                    <option value="2">In Process</option>
-                                                    <option value="2">Rejected</option>
-                                                </select>
-                                            </div>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Member Type:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Options-->
-                                            <div class="d-flex">
-                                                <!--begin::Options-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                    <span class="form-check-label">Author</span>
-                                                </label>
-                                                <!--end::Options-->
-                                                <!--begin::Options-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
-                                                    <span class="form-check-label">Customer</span>
-                                                </label>
-                                                <!--end::Options-->
-                                            </div>
-                                            <!--end::Options-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold">Notifications:</label>
-                                            <!--end::Label-->
-                                            <!--begin::Switch-->
-                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-                                                <label class="form-check-label">Enabled</label>
-                                            </div>
-                                            <!--end::Switch-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Actions-->
-                                        <div class="d-flex justify-content-end">
-                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-                                        </div>
-                                        <!--end::Actions-->
-                                    </div>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Menu 1-->
+
                             </div>
                             <!--end::Menu-->
                         </div>
@@ -556,7 +344,6 @@ require 'views/header.php';
                 <div class="col-4" id="Pr_En_Progreso">
 
                 </div>
-
 
                 <div class="col-4" id="Pr_Terminados">
 
@@ -844,7 +631,25 @@ require 'views/header.php';
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
+
     <script>
+        var TARGET_ID;
+        dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
+            revertOnSpill: true,
+            accepts: function(el, target, source, sibling) {
+                //console.log(el);
+                TARGET_ID = target.id
+                Actualizar_Arrastrando();
+                // console.log(source);
+                // console.log(sibling);
+                return true; // elements can be dropped in any of the `containers` by default
+            },
+            moves: function(el, source, handle, sibling) {
+
+                return true; // elements are always draggable by default
+            },
+        });
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
          *  */
@@ -856,6 +661,7 @@ require 'views/header.php';
             $(this).scrollTop(0);
         });
 
+        /***BOTON PARA REGRESAR A LA LISTA DE PROYECTOS */
         function Back_to_proyects() {
             $("#Seccion_Proyectos").show(100);
             $("#Seccion_Proyectos_Detalle").hide(100);
@@ -876,7 +682,7 @@ require 'views/header.php';
             $("#kt_modal_Actividad_Edit").modal('hide');
         });
 
-
+        /**DATE PICKER NUEVA ACTIVIDAD */
         var FECHA;
         $('#datepicker2').daterangepicker({
             "singleDatePicker": true,
@@ -904,5 +710,10 @@ require 'views/header.php';
 
         function Btn_Actualizar_Actividad() {
             Actualizar_Actividad();
+        }
+
+        function BTN_Filtrar_pry(id) {
+
+            PRY_filtrar_Proyectos_Estado(id);
         }
     </script>

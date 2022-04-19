@@ -50,11 +50,16 @@ class DashSuperAdmin extends Controller
         $function = $this->model->Actualizar_Actividad($array);
     }
 
+    function Eliminar_Actividad()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Eliminar_Actividad($array);
+    }
+
     function Nuevo_Proyecto()
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Proyecto($array);
     }
-
-
+   
 }

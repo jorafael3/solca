@@ -9,6 +9,7 @@ $urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Det
 $urlNueva_Actividad = constant("URL") . "dashsuperadmin/Nueva_Actividad";
 $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
 $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Actividad";
+$urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
 
 
 ?>
@@ -22,6 +23,7 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
     var urlNueva_Actividad = '<?php echo $urlNueva_Actividad ?>';
     var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
     var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
+    var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -270,7 +272,10 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
 
             ARR_PROYECTOS = [];
             ARR_PROYECTOS = response;
-            Crear_proyectos(response);
+            var arrdata = JSON.parse(JSON.stringify(response));
+            let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ACTIVO) == "S");
+
+            Crear_proyectos(Proyect_info);
             console.log("PROYECTOS", ARR_PROYECTOS);
 
             /**
@@ -365,6 +370,26 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
         });
     }
 
+    function PRY_filtrar_Proyectos_Estado(id) {
+        console.log(id);
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+
+        var arr;
+        if (id == 1) {
+            arr = ARR_PROYECTOS;
+        } else if (id == 2) {
+            let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ACTIVO) == "S");
+            arr = Proyect_info;
+
+        } else if (id == 3) {
+            let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ACTIVO) == "N");
+            arr = Proyect_info;
+        }
+
+        Crear_proyectos(arr);
+
+    }
+
     /**@abstract
      * MUESTRA LAS ACTIVIDADES DEL PROYECTO AL HACER CLIK SOBRE EL
      */
@@ -430,99 +455,133 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
             var ULTIMO_AVANCE = value.ULTIMO_AVANCE;
             var ACTV_ESTADO = value.ACTV_ESTADO;
             var ACTIV_ID = value.ACTIV_ID;
-
+            var ACTIV_ACTIVO = value.ACTIV_ACTIVO;
             if (AVANCE_PORCENTAJE == "") {
                 AVANCE_PORCENTAJE = "0";
             }
 
+            if (ACTIV_ACTIVO != "N") {
 
-            var con = 1;
-            var funcion = "Actividad_Edit(" + ACTIV_ID + ");";
 
-            var Proyect_card = `<div class="col-12">
-                        <div class="card mb-6 mb-xl-9">
-                            <div class="card-body">
-                                <div class="d-flex flex-stack mb-3">
-                                    <div class="badge badge-light">UI Design</div>
-                                    <div>
-                                <button onclick="` + funcion + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
+                var con = 1;
+                var funcion = "Actividad_Edit(" + ACTIV_ID + ");";
+                var funcionD = "Drag(" + ACTIV_ID + ");";
+                var funcionELiminar = "Actividad_Eliminar(" + ACTIV_ID + ");";
+
+                var Proyect_card = `
+            
+            <div class="col-12 border border-gray-600 bg-light" style="margin-bottom:15px">
+                <a disabled href="#!" onmousedown="` + funcionD + `return false;" class="card border-hover-primary">
+                    <div class="card-header border-0 pt-9">
+                        <div class="card-title m-0">
+                            <div class="symbol  bg-light">
+                                <div class="badge badge-light">Actividad</div>
                             </div>
-                                </div>
-                                <div class="mb-2">
-                                    <a href="#" onclick="return false" class="fs-4 fw-bolder mb-1 text-gray-900 text-hover-primary">` + ACTIV_NOM + `</a>
-                                </div>
-                                <div class="d-flex flex-wrap justify-content-start">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div id="" class="fs-4 fw-bolder">Inicio</div>
-                                            </div>
-                                            <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FINICIO + `</div>
-                                        </div>
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div id="" class="fs-4 fw-bolder">Fin</div>
-                                            </div>
-                                            <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FFINAL + `</div>
-                                        </div>
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div id="" class="fs-4 fw-bolder">Ultima Actualizacion</div>
-                                            </div>
-                                            <div class="fw-bold fs-6 text-gray-400">` + ULTIMO_AVANCE + `</div>
-                                        </div>
+                        </div>
+                        <div class="card-toolbar">
+                            <button onclick="` + funcion + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                            <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                            <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                        </g>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </button>
+                            <button onclick="` + funcionELiminar + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <span class="svg-icon svg-icon-2">
+                                <i class="fa fa-trash"></i>
+                                </span>
+                            
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top:-20px">
+                        <div class="d-flex flex-wrap justify-content-start">
+                            <div class="fs-5 fw-bolder text-dark">` + ACTIV_NOM + `</div>
+
+                            <div class="d-flex flex-wrap">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="" class="fs-4 fw-bolder">Inicio</div>
                                     </div>
+                                    <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FINICIO + `</div>
                                 </div>
-
-                                <div class="h-8px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="This project 50% completed">
-                                    <div class="bg-primary rounded h-4px" role="progressbar" style="width: ` + AVANCE_PORCENTAJE + `%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="d-flex flex-stack flex-wrapr">
-                                    <div class="d-flex my-1">
-                                        <div class="border border-dashed border-gray-300 rounded py-2 px-3">
-
-                                        </div>
-                                        <div class="border border-dashed border-gray-300 rounded py-2 px-3 ms-3">
-
-                                        </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="" class="fs-4 fw-bolder">Fin</div>
                                     </div>
+                                    <div class="fw-bold fs-6 text-gray-400">` + ACTIV_FFINAL + `</div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="" class="fs-4 fw-bolder">Ultima Actualizacion</div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-400">` + ULTIMO_AVANCE + `</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>`;
+                </a>
+            </div>`;
 
-            if (ACTV_ESTADO == 1) {
-                $("#Pr_En_Revision").append(Proyect_card);
-                CON_REV = CON_REV + 1
-            } else if (ACTV_ESTADO == 2) {
-                $("#Pr_En_Progreso").append(Proyect_card);
-                CON_PRO = CON_PRO + 1
+                if (ACTV_ESTADO == 1) {
+                    $("#Pr_En_Revision").append(Proyect_card);
+                    CON_REV = CON_REV + 1
+                } else if (ACTV_ESTADO == 2) {
+                    $("#Pr_En_Progreso").append(Proyect_card);
+                    CON_PRO = CON_PRO + 1
 
-            } else {
-                $("#Pr_Terminados").append(Proyect_card);
-                CON_TER = CON_TER + 1
+                } else {
+                    $("#Pr_Terminados").append(Proyect_card);
+                    CON_TER = CON_TER + 1
+                }
+                con = con + 1;
             }
-            con = con + 1;
+
+
         });
 
         $("#ACT_COUNT_REV").text(CON_REV);
         $("#ACT_COUNT_PRO").text(CON_PRO);
         $("#ACT_COUNT_TER").text(CON_TER);
 
+    }
+
+    var ACTV_ID_DRAG;
+
+    function Actualizar_Arrastrando() {
+
+
+        var ACTV_ID = ACTV_ID_DRAG;
+        var estado;
+        var id = TARGET_ID;
+        if (id == "Pr_En_Revision") {
+            estado = 1;
+        } else if (id == "Pr_En_Progreso") {
+            estado = 2;
+        } else if (id == "Pr_Terminados") {
+            estado = 3;
+        }
+        var data = {
+            ACTV_ID: ACTV_ID,
+            ACTV_ESTADO: estado
+        }
+        //console.log(data);
+
+        AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
+            console.log(response);
+        });
+    }
+
+    function Drag(id) {
+        ACTV_ID_DRAG = id;
     }
 
 
@@ -616,6 +675,39 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
         });
     }
 
+    function Actividad_Eliminar(id) {
+        console.log(id);
+
+        Swal.fire({
+            title: 'Estas Seguro?',
+            text: "Si eliminas esta actividad no lo podras revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Si, Eliminarla!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                var data = {
+                    ACTV_ID: id,
+                }
+                AjaxSendReceive(urlEliminar_Actividad, data, function(response) {
+                    console.log(response);
+                    if (response == true) {
+                        Swal.fire(
+                            'Eliminada!',
+                            'La Actividad se elimino',
+                            'success'
+                        )
+                        Proyecto_info(PROYECTO_ID);
+
+                    }
+                })
+
+            }
+        })
+    }
+
     function Nuevo_Proyecto() {
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable").val();
@@ -703,6 +795,23 @@ $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Activida
             alert("Request failed");
         };
 
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+    function AjaxSendReceive2(url, data, callback) {
+
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+                callback(data);
+            }
+        }
         data = JSON.stringify(data);
         xmlhttp.open("POST", url, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
