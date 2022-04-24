@@ -67,5 +67,35 @@ class Mantenimiento extends Controller
     //************************************* *//
 
 
+    //************************************* *//
+    //**** CREAR DEPARTAMENTOS AREAS */
+    //************************************* *//
+
+    function Dept_Areas_render()
+    {
+        $this->view->render('mantenimiento/deptareas');
+    }
+
+    function Nuevos_Departamentos_Areas()
+    {
+        $departamentos =  $this->model->Cargar_Departamentos();
+        $this->view->depts = $departamentos;
+        $areas =  $this->model->Cargar_Areas();
+        $this->view->areas = $areas;
+        $servicios =  $this->model->Cargar_Servicio();
+        $this->view->servicios = $servicios;
+        // $ciudades =  $this->model->Cargar_Ciudades();
+        // $this->view->ciudades = $ciudades;
+        // $paises =  $this->model->Cargar_Paises();
+        // $this->view->paises = $paises;
+        $this->Dept_Areas_render();
+    }
+
+    //************************************* *//
+    //**** FIN CREAR DEPARTAMENTOS AREAS */
+    //************************************* *//
+
+
+
 
 }

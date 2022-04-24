@@ -12,6 +12,9 @@ class MantenimientoModel extends Model
         //echo "nuevo controlaodr";
     }
 
+    //**************************************** */
+    //**************  USUARIOS */
+
     function CargarCiudades()
     {
 
@@ -166,6 +169,113 @@ class MantenimientoModel extends Model
             if ($query->execute()) {
                 echo json_encode(true);
                 exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+
+     //**************************************** */
+    //**************  NUEVO AREAS DEPTS */
+
+    function Cargar_Departamentos(){
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".departamentos";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                // echo json_encode($result);
+                // exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Cargar_Areas(){
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".areas";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                // echo json_encode($result);
+                // exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Cargar_Servicio(){
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".servicios";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                // echo json_encode($result);
+                // exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    function Cargar_Ciudades(){
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".ciudades";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                // echo json_encode($result);
+                // exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    function Cargar_Paises(){
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".paises";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                // echo json_encode($result);
+                // exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);

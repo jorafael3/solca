@@ -124,6 +124,33 @@
                                 </div> -->
                             </div>
                         </div>
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
+                            <span class="menu-link">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Crear Nuevo</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion">
+                                <div class="menu-item">
+                                    <a class="menu-link" href="<?php echo constant('URL') ?>mantenimiento/Nuevos_Departamentos_Areas">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Departmentos/Areas etc</span>
+                                    </a>
+                                </div>
+                                <!-- <div class="menu-item">
+                                    <a class="menu-link" href="../../demo1/dist/apps/user-management/users/view.html">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">View User</span>
+                                    </a>
+                                </div> -->
+                            </div>
+                        </div>
                         <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <span class="menu-link">
                                 <span class="menu-bullet">
