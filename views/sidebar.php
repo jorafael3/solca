@@ -6,7 +6,7 @@
             <!-- <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-80px logo" />
              -->
             
-            <span class="text-primary text-title fs-3">Solca</span>
+            <span class="text-primary text-title fs-3" style="margin-left: 10px;"> Solca</span>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -40,7 +40,15 @@
                         <span class="menu-icon">
                             <i class="fa fa-home"></i>
                         </span>
-                        <span class="menu-title">Dashboard</span>
+                        <span class="menu-title">POA</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="<?php echo constant("URL") ?>matrizestrategica/Matriz_Estrategica">
+                        <span class="menu-icon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span class="menu-title">Matriz Estrategica</span>
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -202,6 +210,8 @@
         </div>
         <!--end::Aside Menu-->
     </div>
+                <!-- <img alt="Logo" src="<?php echo constant("URL") ?>public/assets/images/log2.PNG" class="h-80px logo" />
+
     <!--end::Aside menu-->
     <!--begin::Footer-->
     <!-- <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">

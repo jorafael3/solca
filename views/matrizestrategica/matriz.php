@@ -82,7 +82,7 @@ require 'views/header.php';
                     </div>
 
                     <div class="table-responsive col-8 border-gray-200">
-                        <h4>POA</h4>
+                        <h4>Objetivos Estrategicos</h4>
 
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -616,7 +616,7 @@ require 'views/header.php';
 
 
     <?php require 'views/footer.php'; ?>
-    <?php require 'funciones/dashsuperadminjs.php'; ?>
+    <?php require 'funciones/matrizestrategicajs.php'; ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
@@ -640,22 +640,7 @@ require 'views/header.php';
     <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
 
     <script>
-        var TARGET_ID;
-        dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
-            revertOnSpill: true,
-            accepts: function(el, target, source, sibling) {
-                //console.log(el);
-                TARGET_ID = target.id
-                Actualizar_Arrastrando();
-                // console.log(source);
-                // console.log(sibling);
-                return true; // elements can be dropped in any of the `containers` by default
-            },
-            moves: function(el, source, handle, sibling) {
-
-                return true; // elements are always draggable by default
-            },
-        });
+       
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
          *  */
