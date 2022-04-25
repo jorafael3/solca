@@ -32,17 +32,38 @@ class MatrizEstrategica extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Perspectivas($array);
     }
+
+    function Nueva_perspectiva()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nueva_perspectiva($array);
+    }
+
     function Get_Criterios()
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Criterios($array);
     }
 
+    function Nuevo_criterio()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_criterio($array);
+    }
+
+
     function Get_Objetivos_Estrategicos()
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Objetivos_Estrategicos($array);
     }
+
+    function Nuevo_Obj_Estrategico()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Obj_Estrategico($array);
+    }
+
 
     function Get_Indicadores()
     {

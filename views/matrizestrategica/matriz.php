@@ -16,7 +16,7 @@ require 'views/header.php';
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
                 </h3>
-                <ul class="nav nav-pills nav-pills-custom mb-3">
+                <ul id="PERSPECTIVAS_LIST" class="nav nav-pills nav-pills-custom mb-3">
 
                     <?php
                     $con = 1;
@@ -65,12 +65,35 @@ require 'views/header.php';
                     }
                     ?>
                     <!--begin::Item-->
-
+                    <li class="nav-item mb-3">
+                        <!--begin::Link-->
+                        <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
+                            <!--begin::Icon-->
+                            <div class="nav-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                                <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Bullet-->
+                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                            <!--end::Bullet-->
+                        </a>
+                        <!--end::Link-->
+                    </li>
                 </ul>
 
                 <div class="row">
                     <div class="table-responsive col-4 border-gray-200">
                         <h4>Criterios</h4>
+                        <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Criterio" style="margin-bottom: 10px;" class="btn btn-light-success"><i class="fa fa-plus"></i> Nuevo</button>
+                        <br>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -83,6 +106,7 @@ require 'views/header.php';
 
                     <div class="table-responsive col-8 border-gray-200">
                         <h4>Objetivos Estrategicos</h4>
+                        <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Obj_estrategicos" style="margin-bottom: 10px;" class="btn btn-light-primary"><i class="fa fa-plus"></i> Nuevo</button>
 
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -229,7 +253,7 @@ require 'views/header.php';
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade active show" id="kt_charts_widget_10_tab_content_1">
 
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_indicadores" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -246,8 +270,8 @@ require 'views/header.php';
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_2">
 
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
-                            
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
+
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Riesgos" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -262,7 +286,7 @@ require 'views/header.php';
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_3">
-                            <button class="btn btn-primary"  ><i class="fa fa-plus"></i> Nueva Fortaleza</button>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Fortaleza</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Fortalezas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -278,9 +302,9 @@ require 'views/header.php';
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_4">
-                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
 
-                            <div class="table-responsive"  style="margin-top: 15px;">
+                            <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_oportunidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -292,9 +316,9 @@ require 'views/header.php';
                             </div>
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_5">
-                            <button class="btn btn-primary" ><i class="fa fa-plus"></i> Nueva Debilidad</button>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Debilidad</button>
 
-                            <div class="table-responsive"  style="margin-top: 15px;">
+                            <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Debilidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -307,7 +331,7 @@ require 'views/header.php';
 
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_6">
-                            <button class="btn btn-primary" ><i class="fa fa-plus"></i> Nueva Amenaza</button>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Amenaza</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Amenazas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -332,233 +356,8 @@ require 'views/header.php';
     </div>
 
 
-    <div class="col-xl-12" id="Seccion_Proyectos_Detalle" style="display: none;">
-        <div class="card mb-6 mb-xl-9">
 
-            <div class="card-header border-0">
-                <div class="card-title m-0">
-                    <h2>Proyecto</h2>
-
-                </div>
-                <div class="card-toolbar">
-                    <button onclick="Back_to_proyects()" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> regresar</button>
-
-                </div>
-            </div>
-            <div class="card-body pt-1 pb-0">
-                <!--begin::Details-->
-                <div class="d-flex flex-wrap flex-sm-nowrap mb-6" style="margin-top: 20px;">
-                    <!--begin::Image-->
-                    <!--end::Image-->
-                    <!--begin::Wrapper-->
-                    <div class="flex-grow-1">
-                        <!--begin::Head-->
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <!--begin::Details-->
-                            <div class="d-flex flex-column">
-                                <!--begin::Status-->
-                                <div class="d-flex align-items-center mb-1">
-                                    <a id="Proyecto_nom" href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">CRM Dashboard</a>
-                                    <span class="badge badge-light-primary me-auto">Activo</span>
-                                </div>
-                                <!--end::Status-->
-                                <!--begin::Description-->
-                                <div id="PROYECTOA_INDICADOR" class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400">#1 Tool to get started with Web Apps any Kind &amp; size</div>
-                                <!--end::Description-->
-                            </div>
-
-                        </div>
-                        <!--end::Head-->
-                        <!--begin::Info-->
-                        <div class="d-flex flex-wrap justify-content-start">
-                            <div class="d-flex flex-wrap">
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="FCREADO" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">Creado</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="PROYECTOA_RESPONSABLE" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">Responsable</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="PROYECTOA_CRITERIO" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">Criterio</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="PROYECTOA_AREA" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">Area</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="PROYECTOA_DEPARTAMENTO" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">Departamento</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div id="PROYECTOA_POA" class="fs-4 fw-bolder"></div>
-                                    </div>
-                                    <div class="fw-bold fs-6 text-gray-400">POA</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Info-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Details-->
-                <div class="separator"></div>
-                <!--begin::Nav-->
-
-                <!--end::Nav-->
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="row">
-                <div class="card-body">
-                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="row">
-                <div class="col-4">
-                    <div class="mb-9">
-                        <div class="d-flex flex-stack">
-                            <div class="fw-bolder fs-4">En Revision
-                                <span id="ACT_COUNT_REV" class="fs-6 text-gray-400 ms-2"></span>
-                            </div>
-                            <!--begin::Menu-->
-                            <div>
-                                <!-- <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                </button> -->
-                                <!-- <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
-                                    <div class="px-7 py-5">
-                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                    </div>
-                                    <div class="separator border-gray-200"></div>
-                                    <div class="px-7 py-5">
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Status:</label>
-                                            <div>
-                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
-                                                    <option></option>
-                                                    <option value="1">Approved</option>
-                                                    <option value="2">Pending</option>
-                                                    <option value="2">In Process</option>
-                                                    <option value="2">Rejected</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Member Type:</label>
-                                            <div class="d-flex">
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                    <span class="form-check-label">Author</span>
-                                                </label>
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
-                                                    <span class="form-check-label">Customer</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Notifications:</label>
-                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-                                                <label class="form-check-label">Enabled</label>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="h-3px w-100 bg-warning"></div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="mb-9">
-                        <div class="d-flex flex-stack">
-                            <div class="fw-bolder fs-4">En Progreso
-                                <span id="ACT_COUNT_PRO" class="fs-6 text-gray-400 ms-2"></span>
-                            </div>
-                            <!--begin::Menu-->
-                            <div>
-
-
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <div class="h-3px w-100 bg-primary"></div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="mb-9">
-                        <div class="d-flex flex-stack">
-                            <div class="fw-bolder fs-4">terminados
-                                <span id="ACT_COUNT_TER" class="fs-6 text-gray-400 ms-2"></span>
-                            </div>
-                            <!--begin::Menu-->
-                            <div>
-
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <div class="h-3px w-100 bg-success"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <div class="row">
-
-                <div class="col-4" id="Pr_En_Revision">
-
-                </div>
-
-                <div class="col-4" id="Pr_En_Progreso">
-
-                </div>
-
-                <div class="col-4" id="Pr_Terminados">
-
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_add_Perspectiva" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -566,12 +365,12 @@ require 'views/header.php';
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header_edit">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">Nueva Actividad</h2>
+                    <h2 class="fw-bolder">Nueva Perspectiva</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1 btn_close_mo">
+                        <span class="svg-icon svg-icon-1 btn_close_perspectiva">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
                                 <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
@@ -590,38 +389,221 @@ require 'views/header.php';
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Nombre De la Actividad</label>
+                                <label class="required fw-bold fs-6 mb-2">Nombre De la Perspectiva</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="ACT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <input type="text" id="PERS_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
-
-
-
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Responsable</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="ACT_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
-                                <!--end::Input-->
-                            </div>
-
-                            <div class="fv-row mb-7">
-                                <label class="required fs-6 fw-bold mb-2">Fecha de Finalizacion</label>
-                                <!--begin::Input-->
-                                <input type="text" class="form-control" name="datepicker" id="datepicker2" />
-
-                            </div>
-
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nueva_Actividad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button onclick="Btn_Nueva_Perspectiva()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Criterio" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Criterio</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_criterio">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Criterio</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Criterio()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Criterio" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Criterio</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_criterio">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Criterio</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Criterio()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Obj_estrategicos" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Objetivo Estrategico</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_Obj">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Objetivo</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="OBJ_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indicador</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="OBJ_Indicador" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Medio de Verificacion</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="OBJ_Medio" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_obj_estrategico()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -640,7 +622,9 @@ require 'views/header.php';
     </div>
 
 
-    <div class="modal fade" id="kt_modal_Nuevo_Proyecto" tabindex="-1" aria-hidden="true">
+
+
+    <div class="modal fade" id="kt_modal_add_Indicador" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -648,15 +632,15 @@ require 'views/header.php';
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header_edit">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">Nuevo Proyecto</h2>
+                    <h2 class="fw-bolder">Nuevo Indicador</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1 btn_close_mo_2"">
-                            <svg xmlns=" http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        <span class="svg-icon svg-icon-1 btn_close_indicador">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
@@ -672,63 +656,20 @@ require 'views/header.php';
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Nombre Del Proyecto</label>
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Indicador</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
-
-
-
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Responsable</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="PRY_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
-                                <!--end::Input-->
-                            </div>
-
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Indicador</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="PRY_indicador" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Indicador" required />
-                                <!--end::Input-->
-                            </div>
-
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Meta 2022</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2022" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="MEta 2022" required />
-                                <!--end::Input-->
-                            </div>
-
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Meta 2023</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2023" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2023" required />
-                                <!--end::Input-->
-                            </div>
-
-
-
-
-
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Proyecto()" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                <span class="indicator-label">Guardar Proyecto</span>
+                            <button onclick="Btn_Nuevo_Indicador()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -745,7 +686,7 @@ require 'views/header.php';
         <!--end::Modal dialog-->
     </div>
 
-    <div class="modal fade" id="kt_modal_Actividad_Edit" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_add_Riesgo" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -753,15 +694,15 @@ require 'views/header.php';
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header_edit">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">Actualizar Actividad</h2>
+                    <h2 class="fw-bolder">Nuevo Riesgo</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1 btn_close_mo_3"">
-                            <svg xmlns=" http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        <span class="svg-icon svg-icon-1 btn_close_riesgo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
@@ -777,14 +718,10 @@ require 'views/header.php';
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Estado</label>
+                                <label class="required fw-bold fs-6 mb-2">Nombre Del Riesgo</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="ACTV_ACT_ESTADO" class="form-select form-select-solid" data-placeholder="Select option" data-allow-clear="true">
-                                    <option value="1">Revision</option>
-                                    <option value="2">En Progreso</option>
-                                    <option value="3">Terminado</option>
-                                </select>
+                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -793,8 +730,256 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Actualizar_Actividad()" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                <span class="indicator-label">Actualizar</span>
+                            <button onclick="Btn_Nuevo_Riesgo()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Fortaleza" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Fortaleza</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_fortaleza">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre de la Fortaleza</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="FOR_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Fortaleza()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Oportunidad" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nueva Oportunidad</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_oportunidad">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre de la Oportunidad</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="OPOR_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Oportunidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Debilidad" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nueva Debilidad</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_debilidad">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre de la Debilidad</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="DEB_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Debilidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="kt_modal_add_Amenaza" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nueva Amenaza</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_amenaza">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre de la Amenaza</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="AME_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_Amenaza()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -849,65 +1034,73 @@ require 'views/header.php';
         });
 
         /***BOTON PARA REGRESAR A LA LISTA DE PROYECTOS */
-        function Back_to_proyects() {
-            $("#Seccion_Proyectos").show(100);
-            $("#Seccion_Proyectos_Detalle").hide(100);
-            $("#Pr_En_Revision").empty();
-            $("#Pr_En_Progreso").empty();
-            $("#Pr_Terminados").empty();
-
-            $("#Seccion_Perspectivas").show(100);
-            $("#Seccion_Perspectivas").show(100);
 
 
-            $('html, body').animate({
-                scrollTop: $("#Seccion_Proyectos").offset().top
-            }, 1000);
-        }
-
-        $(".btn_close_mo").click(function() {
-            $("#kt_modal_add_user").modal('hide');
+        $(".btn_close_perspectiva").click(function() {
+            $("#kt_modal_add_Perspectiva").modal('hide');
         });
 
-        $(".btn_close_mo_2").click(function() {
-            $("#kt_modal_Nuevo_Proyecto").modal('hide');
+        $(".btn_close_criterio").click(function() {
+            $("#kt_modal_add_Criterio").modal('hide');
         });
-        $(".btn_close_mo_3").click(function() {
-            $("#kt_modal_Actividad_Edit").modal('hide');
+        $(".btn_close_Obj").click(function() {
+            $("#kt_modal_add_Obj_estrategicos").modal('hide');
         });
+
+        $(".btn_close_indicador").click(function() {
+            $("#kt_modal_add_Indicador").modal('hide');
+        });
+        $(".btn_close_riesgo").click(function() {
+            $("#kt_modal_add_Riesgo").modal('hide');
+        });
+
+        $(".btn_close_fortaleza").click(function() {
+            $("#kt_modal_add_Fortaleza").modal('hide');
+        });
+
+        $(".btn_close_oportunidad").click(function() {
+            $("#kt_modal_add_Oportunidad").modal('hide');
+        });
+
+        $(".btn_close_debilidad").click(function() {
+            $("#kt_modal_add_Debilidad").modal('hide');
+        });
+
+        $(".btn_close_amenaza").click(function() {
+            $("#kt_modal_add_Amenaza").modal('hide');
+        });
+
 
         /**DATE PICKER NUEVA ACTIVIDAD */
-        var FECHA;
-        $('#datepicker2').daterangepicker({
-            "singleDatePicker": true,
-            "showDropdowns": true,
-            minDate: moment().add(1, "day"),
-            // maxDate: moment(),
-            "drops": "up",
-
-        }, function(start, end, label) {
-            FECHA = start.format('YYYY-MM-DD')
-        });
-
-        function Btn_Nueva_Actividad() {
-            if (FECHA == undefined) {
-                FECHA = moment().add(1, "day").format("YYYY-MM-DD");
-            }
-
-            Nueva_Actividad(FECHA);
+        function Btn_Nueva_Perspectiva() {
+            Nueva_Perspectiva();
         }
 
-        function Btn_Nuevo_Proyecto() {
-
-            Nuevo_Proyecto();
+        function Btn_Nuevo_Criterio() {
+            Nuevo_criterio();
         }
 
-        function Btn_Actualizar_Actividad() {
-            Actualizar_Actividad();
+        function Btn_Nuevo_obj_estrategico() {
+            Nuevo_OBj_Estrategico();
         }
 
-        function BTN_Filtrar_pry(id) {
+        function Btn_Nuevo_Indicador() {
 
-            PRY_filtrar_Proyectos_Estado(id);
+        }
+
+        function Btn_Nuevo_Riesgo() {
+
+        }
+
+        function Btn_Nuevo_Fortaleza() {
+
+        }
+
+        function Btn_Nuevo_Debilidad() {
+
+        }
+
+        function Btn_Nuevo_Amenaza(){
+
         }
     </script>

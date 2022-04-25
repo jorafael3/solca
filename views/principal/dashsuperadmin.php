@@ -16,7 +16,7 @@ require 'views/header.php';
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
                 </h3>
-                <ul class="nav nav-pills nav-pills-custom mb-3">
+                <ul id="PERSPECTIVAS_LIST" class="nav nav-pills nav-pills-custom mb-3">
 
                     <?php
                     $con = 1;
@@ -64,6 +64,29 @@ require 'views/header.php';
                         $con += 1;
                     }
                     ?>
+
+                    <li class="nav-item mb-3">
+                        <!--begin::Link-->
+                        <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
+                            <!--begin::Icon-->
+                            <div class="nav-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                                <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Icon-->
+                            <!--begin::Bullet-->
+                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                            <!--end::Bullet-->
+                        </a>
+                        <!--end::Link-->
+                    </li>
                     <!--begin::Item-->
 
                 </ul>
@@ -614,6 +637,67 @@ require 'views/header.php';
         <!--end::Modal dialog-->
     </div>
 
+    <div class="modal fade" id="kt_modal_add_Perspectiva" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nueva Perspectiva</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_perspectiva">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre De la Perspectiva</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PERS_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nueva_Perspectiva()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
 
     <?php require 'views/footer.php'; ?>
     <?php require 'funciones/dashsuperadminjs.php'; ?>
@@ -674,7 +758,7 @@ require 'views/header.php';
             $("#Pr_En_Revision").empty();
             $("#Pr_En_Progreso").empty();
             $("#Pr_Terminados").empty();
-            
+
             $("#Seccion_Perspectivas").show(100);
             $("#Seccion_Perspectivas").show(100);
 
@@ -693,6 +777,10 @@ require 'views/header.php';
         });
         $(".btn_close_mo_3").click(function() {
             $("#kt_modal_Actividad_Edit").modal('hide');
+        });
+
+        $(".btn_close_perspectiva").click(function() {
+            $("#kt_modal_add_Perspectiva").modal('hide');
         });
 
         /**DATE PICKER NUEVA ACTIVIDAD */
@@ -728,5 +816,9 @@ require 'views/header.php';
         function BTN_Filtrar_pry(id) {
 
             PRY_filtrar_Proyectos_Estado(id);
+        }
+
+        function Btn_Nueva_Perspectiva() {
+            Nueva_Perspectiva();
         }
     </script>

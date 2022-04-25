@@ -10,6 +10,9 @@ $urlGet_Oportunidades = constant("URL") . "matrizestrategica/Get_Oportunidades";
 $urlGet_Debilidades = constant("URL") . "matrizestrategica/Get_Debilidades";
 $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
 
+$urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
+$urlNuevo_criterio = constant("URL") . "matrizestrategica/Nuevo_criterio";
+$urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estrategico";
 
 ?>
 
@@ -24,21 +27,93 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
     var urlGet_Debilidades = '<?php echo $urlGet_Debilidades ?>';
     var urlGet_Amenazas = '<?php echo $urlGet_Amenazas ?>';
 
+    var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
+    var urlNuevo_criterio = '<?php echo $urlNuevo_criterio ?>';
+    var urlNuevo_Obj_Estrategico = '<?php echo $urlNuevo_Obj_Estrategico ?>';
+
+
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
     var OBJEST_ID;
+
+    //***** PERSPECTIVAS */
 
     function Get_Perspectivas() {
 
         AjaxSendReceive(urlGet_perspectiva, data = [], function(response) {
             console.log(response);
+            $("#PERSPECTIVAS_LIST").empty();
+            var con = 1;
+            jQuery.each(response, function(key, value) {
+                var PERSPECTIVA_ID_ = value.PERSPECTIVA_ID;
+                var PERSPECTIVA_NOM = value.PERSPECTIVA_NOM;
+                var active = "";
+
+                if (PERSPECTIVA_ID == PERSPECTIVA_ID_) {
+                    active = "active"
+                }
+                var Proyect_card = ` 
+                <li class="nav-item mb-3 me-3 me-lg-6">
+                    <a onclick="Btn_Perspectivas(` + PERSPECTIVA_ID_ + `)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 ` + active + ` " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_` + con + ` ">
+                    <div class="nav-icon mb-3">
+                        <i class="fa fa-th-large fs-4 p-0"></i>
+                    </div>
+                        <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">` + PERSPECTIVA_NOM + `</span>
+                        <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                    </a>
+                
+                
+                </li>`;
+                $("#PERSPECTIVAS_LIST").append(Proyect_card);
+
+            });
+
+            var nueva = ` <li class="nav-item mb-3">
+                        <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
+                            <div class="nav-icon">
+                                <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                        </a>
+                    </li>`
+            $("#PERSPECTIVAS_LIST").append(nueva);
+
         });
 
     }
 
+    function Nueva_Perspectiva() {
+        var Nombre_perspe = $("#PERS_Nombre").val();
+        if (Nombre_perspe != "") {
+
+            var data = {
+                PERSPECTIVA_NOM: Nombre_perspe
+            }
+
+            AjaxSendReceive(urlNueva_perspectiva, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Perspectiva").modal('hide');
+                    $("#PERS_Nombre").val("");
+                    Get_Perspectivas();
+                }
+
+            })
+
+        }
+    }
+
+    //***** CRITERIOS */
     function Get_Criterios(id, nombre) {
 
-
+        PERSPECTIVA_ID = id
+        console.log(PERSPECTIVA_ID);
 
         var data = {
             id_perspectiva: id
@@ -52,6 +127,21 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
 
         });
 
+    }
+
+    function Nuevo_criterio() {
+        var Nombre_cri = $("#CRIT_Nombre").val();
+        if (Nombre_cri != "") {
+
+            var data = {
+                CRITERIO_NOM: Nombre_cri
+            }
+
+            AjaxSendReceive(urlNuevo_criterio, data, function(response) {
+                console.log(response);
+            })
+
+        }
     }
 
     function Tabla_criterios(data) {
@@ -116,6 +206,9 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
 
     }
 
+
+    //***** OBJETIVOS ESTRATEGICOS */
+
     function Get_Objetivos_Estrategicos(data) {
         var criterio_id = data["CRITERIO_ID"];
         CRITERIO_NOM = data["CRITERIO_NOM"];
@@ -139,6 +232,41 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
 
             }
         });
+    }
+
+    function Nuevo_OBj_Estrategico() {
+        var OBJ_Nombre = $("#OBJ_Nombre").val();
+        var OBJ_Indicador = $("#OBJ_Indicador").val();
+        var OBJ_Medio = $("#OBJ_Medio").val();
+
+        if (OBJ_Nombre == "") {
+
+        } else if (OBJ_Indicador == "") {
+
+        } else if (OBJ_Medio == "") {
+
+        } else {
+
+            var data = {
+                OBJEST_NOM: OBJ_Nombre,
+                OBJEST_INDICADOR: OBJ_Indicador,
+                OBJEST_MEDIO_VERIF: OBJ_Medio,
+                PERSPECTIVA_ID: PERSPECTIVA_ID,
+                CRITERIO_ID: CRITERIO_ID,
+            }
+
+            if (CRITERIO_ID == undefined) {
+                Mensaje_Info("Error","No ha seleccionado un Criterio");
+            } else {
+                console.log(data);
+
+                AjaxSendReceive(urlNuevo_Obj_Estrategico, data, function(response) {
+                    console.log(response);
+                })
+            }
+
+        }
+
     }
 
     function Tabla_Objetivos_Estrategicos(data) {
@@ -228,6 +356,8 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
         });
     }
 
+    //***** INDICADORES ******/
+
     function Get_Indicadores(data) {
         var object_id = data["OBJEST_ID"];
         var data = {
@@ -304,6 +434,8 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
         });
     }
 
+    //***** RIESGPS ******/
+
     function Get_Riesgos(data) {
         var object_id = data["OBJEST_ID"];
         var data = {
@@ -355,7 +487,7 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
                 $('td', row).eq(0).html(`
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div class="mb-1 text-muted   fw-bolder">Rieso Nombre</div>
+                                        <div class="mb-1 text-muted   fw-bolder">Riesgo Nombre</div>
                                     </div>
                                     <div class="fs-4 fw-bolder ">` + data["RIESGO_NOM"] + `</div>
                                 </div>
@@ -387,6 +519,8 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
             Get_Objetivos_Estrategicos(data);
         });
     }
+
+    //***** FORTALEZAS ******/
 
     function Get_Fortalezas(data) {
         var object_id = data["OBJEST_ID"];
@@ -472,6 +606,8 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
         });
     }
 
+    //***** OPORTUNIDADDES ******/
+
     function Get_Oportunidades(data) {
         var object_id = data["OBJEST_ID"];
         var data = {
@@ -555,6 +691,8 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
             Get_Objetivos_Estrategicos(data);
         });
     }
+
+    //***** DEBILIDADES ******/
 
     function Get_Debilidades(data) {
         var object_id = data["OBJEST_ID"];
@@ -640,6 +778,9 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
         });
     }
 
+
+    //***** AMENAZAS ******/
+
     function Get_Amenazas(data) {
         var object_id = data["OBJEST_ID"];
         var data = {
@@ -723,6 +864,7 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
             Get_Objetivos_Estrategicos(data);
         });
     }
+
 
 
 

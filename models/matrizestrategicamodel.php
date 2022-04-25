@@ -51,6 +51,87 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    /********* */
+
+    function Nueva_perspectiva($parametros)
+    {
+        $PERSPECTIVA_NOM = $parametros["PERSPECTIVA_NOM"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_perspectiva (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $PERSPECTIVA_NOM);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Nuevo_criterio($parametros)
+    {
+        $CRITERIO_NOM = $parametros["CRITERIO_NOM"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_criterio (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $CRITERIO_NOM);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+
+    function Nuevo_Obj_Estrategico($parametros)
+    {
+        $OBJEST_NOM = $parametros["OBJEST_NOM"];
+        $OBJEST_INDICADOR = $parametros["OBJEST_INDICADOR"];
+        $OBJEST_MEDIO_VERIF = $parametros["OBJEST_MEDIO_VERIF"];
+        $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+        $CRITERIO_ID = $parametros["CRITERIO_ID"];
+
+        try {
+            $sql = "CALL " . constant("DB") . ".create_objetivo_estrategico (?,?,?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $OBJEST_NOM);
+            $query->bindParam(2, $CRITERIO_ID);
+            $query->bindParam(3, $PERSPECTIVA_ID);
+            $query->bindParam(4, $OBJEST_INDICADOR);
+            $query->bindParam(5, $OBJEST_MEDIO_VERIF);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    /******** */
+
+
+
     function Get_Criterios($parametros)
     {
         $id = $parametros["id_perspectiva"];
@@ -236,5 +317,4 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
-
 }

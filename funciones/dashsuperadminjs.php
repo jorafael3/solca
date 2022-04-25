@@ -11,6 +11,7 @@ $urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
 $urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Actividad";
 $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
 
+$urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
 ?>
 
@@ -24,6 +25,7 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
     var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
     var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
     var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
+    var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -45,9 +47,78 @@ $urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
     function Get_Perspectivas() {
 
         AjaxSendReceive(urlGet_perspectiva, data = [], function(response) {
+            console.log(response);
+            $("#PERSPECTIVAS_LIST").empty();
+            var con = 1;
+            jQuery.each(response, function(key, value) {
+                var PERSPECTIVA_ID_ = value.PERSPECTIVA_ID;
+                var PERSPECTIVA_NOM = value.PERSPECTIVA_NOM;
+                var active = "";
+
+                if (PERSPECTIVA_ID == PERSPECTIVA_ID_) {
+                    active = "active"
+                }
+                var Proyect_card = ` 
+        <li class="nav-item mb-3 me-3 me-lg-6">
+            <a onclick="Btn_Perspectivas(` + PERSPECTIVA_ID_ + `)" class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 ` + active + ` " data-bs-toggle="pill" href="#kt_stats_widget_6_tab_` + con + ` ">
+            <div class="nav-icon mb-3">
+                <i class="fa fa-th-large fs-4 p-0"></i>
+            </div>
+                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">` + PERSPECTIVA_NOM + `</span>
+                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+            </a>
+        
+        
+        </li>`;
+                $("#PERSPECTIVAS_LIST").append(Proyect_card);
+
+            });
+
+            var nueva = ` <li class="nav-item mb-3">
+                        <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
+                            <div class="nav-icon">
+                                <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                        </a>
+                    </li>`
+            $("#PERSPECTIVAS_LIST").append(nueva);
 
         });
 
+
+
+
+
+
+    }
+
+    function Nueva_Perspectiva() {
+        var Nombre_perspe = $("#PERS_Nombre").val();
+        if (Nombre_perspe != "") {
+
+            var data = {
+                PERSPECTIVA_NOM: Nombre_perspe
+            }
+
+            AjaxSendReceive(urlNueva_perspectiva, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Perspectiva").modal('hide');
+                    $("#PERS_Nombre").val("");
+                    Get_Perspectivas();
+                }
+
+
+            })
+
+        }
     }
 
     function Get_Criterios(id, nombre) {
