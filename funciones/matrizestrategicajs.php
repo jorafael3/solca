@@ -219,8 +219,12 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
             e.preventDefault();
             var data = table.row(this).data();
             Get_Indicadores(data);
-            $("#Seccion_Proyectos").show();
-
+            Get_Riesgos(data);
+            Get_Fortalezas(data);
+            Get_Oportunidades(data);
+            Get_Debilidades(data);
+            Get_Amenazas(data);
+            $("#Seccion_Indicadores").show();
         });
     }
 
@@ -232,8 +236,496 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
         OBJEST_ID = object_id;
         AjaxSendReceive(urlGet_Indicadores, data, function(response) {
             console.log("Indicadores", response);
+            Tabla_Indicadores(response);
+            $('html, body').animate({
+                scrollTop: $("#Seccion_Indicadores").offset().top
+            }, 1000);
         });
     }
+
+    function Tabla_Indicadores(data) {
+        $('#Tabla_indicadores').empty();
+        var table = $('#Tabla_indicadores').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "DESCRIPCION",
+                    title: "Descripcion",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Descripcion</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["DESCRIPCION"] + `</div>
+                                </div>
+                            `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#TablaListaCriterios tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+    function Get_Riesgos(data) {
+        var object_id = data["OBJEST_ID"];
+        var data = {
+            OBJEST_ID: object_id,
+        }
+        OBJEST_ID = object_id;
+        AjaxSendReceive(urlGet_Riesgos, data, function(response) {
+            console.log("riesgos", response);
+            Tabla_Riesgos(response);
+        });
+    }
+
+    function Tabla_Riesgos(data) {
+        $('#Tabla_Riesgos').empty();
+        var table = $('#Tabla_Riesgos').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "RIESGO_NOM",
+                    title: "RIESGO_NOM",
+                }, {
+                    data: "INDICE",
+                    title: "INDICE",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Rieso Nombre</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["RIESGO_NOM"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Indice</div>
+                            </div>
+                            <div class="fs-4 fw-bolder ">` + data["INDICE"] + `</div>
+                        </div>
+                `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#Tabla_Riesgos tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+    function Get_Fortalezas(data) {
+        var object_id = data["OBJEST_ID"];
+        var data = {
+            OBJEST_ID: object_id,
+        }
+        OBJEST_ID = object_id;
+        AjaxSendReceive(urlGet_Fortalezas, data, function(response) {
+            console.log("Get_Fortalezas", response);
+            Tabla_Fortalezas(response);
+        });
+    }
+
+    function Tabla_Fortalezas(data) {
+        $('#Tabla_Fortalezas').empty();
+        var table = $('#Tabla_Fortalezas').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "FORTALEZA_NOM",
+                    title: "FORTALEZA_NOM",
+                }, {
+                    data: "INDICE",
+                    title: "INDICE",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Fortaleza Nombre</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["FORTALEZA_NOM"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Indice</div>
+                            </div>
+                            <div class="fs-4 fw-bolder ">` + data["INDICE"] + `</div>
+                        </div>
+                `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#Tabla_Fortalezas tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+    function Get_Oportunidades(data) {
+        var object_id = data["OBJEST_ID"];
+        var data = {
+            OBJEST_ID: object_id,
+        }
+        OBJEST_ID = object_id;
+        AjaxSendReceive(urlGet_Oportunidades, data, function(response) {
+            console.log("Get_Oportunidades", response);
+            Tabla_Oportunidades(response);
+        });
+    }
+
+    function Tabla_Oportunidades(data) {
+        $('#Tabla_oportunidades').empty();
+        var table = $('#Tabla_oportunidades').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "OPORTUNIDAD_NOM",
+                    title: "OPORTUNIDAD_NOM",
+                }, {
+                    data: "INDICE",
+                    title: "INDICE",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Oportunidad Nombre</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["OPORTUNIDAD_NOM"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Indice</div>
+                            </div>
+                            <div class="fs-4 fw-bolder ">` + data["INDICE"] + `</div>
+                        </div>
+                `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#Tabla_oportunidades tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+    function Get_Debilidades(data) {
+        var object_id = data["OBJEST_ID"];
+        var data = {
+            OBJEST_ID: object_id,
+        }
+        OBJEST_ID = object_id;
+        AjaxSendReceive(urlGet_Debilidades, data, function(response) {
+            console.log("Get_Debilidades", response);
+            Tabla_Debilidades(response);
+        });
+    }
+
+    function Tabla_Debilidades(data) {
+        $('#Tabla_Debilidades').empty();
+        var table = $('#Tabla_Debilidades').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "DEBILIDAD_NOM",
+                    title: "DEBILIDAD_NOM",
+                }, {
+                    data: "INDICE",
+                    title: "INDICE",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Debilidad Nombre</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["DEBILIDAD_NOM"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Indice</div>
+                            </div>
+                            <div class="fs-4 fw-bolder ">` + data["INDICE"] + `</div>
+                        </div>
+                `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#Tabla_Debilidades tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+    function Get_Amenazas(data) {
+        var object_id = data["OBJEST_ID"];
+        var data = {
+            OBJEST_ID: object_id,
+        }
+        OBJEST_ID = object_id;
+        AjaxSendReceive(urlGet_Amenazas, data, function(response) {
+            console.log("Get_Amenazas", response);
+            Tabla_Amenazas(response);
+        });
+    }
+
+    function Tabla_Amenazas(data) {
+        $('#Tabla_Amenazas').empty();
+        var table = $('#Tabla_Amenazas').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "100%",
+                "targets": 0
+            }],
+            "drawCallback": function() {
+                $(this.api().table().header()).hide();
+            },
+            columns: [{
+                    data: "AMENAZA_NOM",
+                    title: "AMENAZA_NOM",
+                }, {
+                    data: "INDICE",
+                    title: "INDICE",
+                },
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-left  btn_edit",
+                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+                // if (data["CRITERIO_NOM"]) {
+                $('td', row).eq(0).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Amenaza Nombre</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["AMENAZA_NOM"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Indice</div>
+                            </div>
+                            <div class="fs-4 fw-bolder ">` + data["INDICE"] + `</div>
+                        </div>
+                `);
+
+                // }
+
+
+            }
+
+
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+
+        $('#Tabla_Amenazas tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Get_Objetivos_Estrategicos(data);
+        });
+    }
+
+
+
 
     function AjaxSendReceive(url, data, callback) {
 

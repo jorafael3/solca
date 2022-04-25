@@ -100,40 +100,237 @@ require 'views/header.php';
         </div>
     </div>
 
-    <div class="col-xl-12" id="Seccion_Proyectos" style="display: none;">
-        <div class="row">
-            <div class="card-body">
-                <button data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap flex-stack my-5">
-            <!--begin::Heading-->
-            <h2 class="fs-2 fw-bold my-2">Projectos
-                <span class="fs-6 text-gray-400 ms-1"></span>
-            </h2>
-            <!--end::Heading-->
-            <!--begin::Controls-->
-            <div class="d-flex flex-wrap my-1">
-                <!--begin::Select wrapper-->
-                <div class="m-0">
-                    <!--begin::Select-->
-                    <select onchange="BTN_Filtrar_pry(this.value)" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
-                        <option value="1">Todos</option>
-                        <option value="2" selected="selected">Activo</option>
-                        <option value="3">Desactivados</option>
-                    </select>
-                    <!--end::Select-->
+
+    <div class="col-xl-12" id="Seccion_Indicadores" style="display: none;">
+        <div class="col">
+            <!--begin::Chart widget 10-->
+            <div class="card card-flush h-xxl-100">
+                <!--begin::Header-->
+
+                <!--end::Header-->
+                <!--begin::Body-->
+                <div class="card-body d-flex flex-column justify-content-between pb-5">
+                    <!--begin::Nav-->
+                    <ul class="nav nav-pills nav-pills-custom mb-3">
+                        <!--begin::Item-->
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2 active" data-bs-toggle="pill" id="kt_charts_widget_10_tab_1" href="#kt_charts_widget_10_tab_content_1">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fa fa-file fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-2">Indicadores</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2" data-bs-toggle="pill" id="kt_charts_widget_10_tab_2" href="#kt_charts_widget_10_tab_content_2">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fonticon-truck fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">Riesgos</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-100px h-85px pt-5 pb-2" data-bs-toggle="pill" id="kt_charts_widget_10_tab_3" href="#kt_charts_widget_10_tab_content_3">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fa fa-lock fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">Fortalezas</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <!--end::Item-->
+                        <!--begin::Item-->
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-120px h-85px pt-5 pb-2" data-bs-toggle="pill" id="kt_charts_widget_10_tab_4" href="#kt_charts_widget_10_tab_content_4">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fa fa-circle fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">Oportunidades</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-120px h-85px pt-5 pb-2" data-bs-toggle="pill" id="kt_charts_widget_10_tab_4" href="#kt_charts_widget_10_tab_content_5">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fa fa-life-ring fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">Debilidades</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <li class="nav-item mb-3 me-3 me-lg-6">
+                            <!--begin::Link-->
+                            <a class="nav-link btn btn-outline btn-flex btn-active-color-primary flex-column overflow-hidden w-120px h-85px pt-5 pb-2" data-bs-toggle="pill" id="kt_charts_widget_10_tab_4" href="#kt_charts_widget_10_tab_content_6">
+                                <!--begin::Icon-->
+                                <div class="nav-icon mb-3">
+                                    <i class="fa fa-exclamation-triangle fs-1 p-0"></i>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Title-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 lh-1">Amenazas</span>
+                                <!--end::Title-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+                        <!--end::Item-->
+                    </ul>
+                    <!--end::Nav-->
+                    <!--begin::Tab Content-->
+                    <div class="tab-content" style=" height: 500px;">
+                        <!--begin::Tap pane-->
+                        <div class="tab-pane fade active show" id="kt_charts_widget_10_tab_content_1">
+
+                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
+                            <div class="table-responsive" style="margin-top: 15px;">
+                                <table id="Tabla_indicadores" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!--end::Tap pane-->
+                        <!--begin::Tap pane-->
+                        <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_2">
+
+                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
+                            
+                            <div class="table-responsive" style="margin-top: 15px;">
+                                <table id="Tabla_Riesgos" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end::Tap pane-->
+                        <!--begin::Tap pane-->
+                        <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_3">
+                            <button class="btn btn-primary"  ><i class="fa fa-plus"></i> Nueva Fortaleza</button>
+
+                            <div class="table-responsive" style="margin-top: 15px;">
+                                <table id="Tabla_Fortalezas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end::Tap pane-->
+                        <!--begin::Tap pane-->
+                        <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_4">
+                            <button class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
+
+                            <div class="table-responsive"  style="margin-top: 15px;">
+                                <table id="Tabla_oportunidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_5">
+                            <button class="btn btn-primary" ><i class="fa fa-plus"></i> Nueva Debilidad</button>
+
+                            <div class="table-responsive"  style="margin-top: 15px;">
+                                <table id="Tabla_Debilidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_6">
+                            <button class="btn btn-primary" ><i class="fa fa-plus"></i> Nueva Amenaza</button>
+
+                            <div class="table-responsive" style="margin-top: 15px;">
+                                <table id="Tabla_Amenazas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                    </thead>
+                                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end::Tap pane-->
+                    </div>
+                    <!--end::Tab Content-->
                 </div>
-                <!--end::Select wrapper-->
+                <!--end: Card Body-->
             </div>
-            <!--end::Controls-->
-        </div>
-
-        <div class="row g-6 g-xl-9" id="Lista_proyectos">
-
+            <!--end::Chart widget 10-->
         </div>
 
     </div>
+
 
     <div class="col-xl-12" id="Seccion_Proyectos_Detalle" style="display: none;">
         <div class="card mb-6 mb-xl-9">
@@ -640,7 +837,6 @@ require 'views/header.php';
     <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
 
     <script>
-       
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
          *  */
@@ -659,7 +855,7 @@ require 'views/header.php';
             $("#Pr_En_Revision").empty();
             $("#Pr_En_Progreso").empty();
             $("#Pr_Terminados").empty();
-            
+
             $("#Seccion_Perspectivas").show(100);
             $("#Seccion_Perspectivas").show(100);
 
