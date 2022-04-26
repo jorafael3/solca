@@ -13,6 +13,12 @@ $urlGet_Amenazas = constant("URL") . "matrizestrategica/Get_Amenazas";
 $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 $urlNuevo_criterio = constant("URL") . "matrizestrategica/Nuevo_criterio";
 $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estrategico";
+$urlNuevo_Indicador = constant("URL") . "matrizestrategica/Nuevo_Indicador";
+$urlNuevo_Riesgo = constant("URL") . "matrizestrategica/Nuevo_Riesgo";
+$urlNuevo_Fortaleza = constant("URL") . "matrizestrategica/Nuevo_Fortaleza";
+$urlNuevo_Oportunidad = constant("URL") . "matrizestrategica/Nuevo_Oportunidad";
+$urlNuevo_Debilidad = constant("URL") . "matrizestrategica/Nuevo_Debilidad";
+$urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
 
 ?>
 
@@ -30,6 +36,12 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
     var urlNuevo_criterio = '<?php echo $urlNuevo_criterio ?>';
     var urlNuevo_Obj_Estrategico = '<?php echo $urlNuevo_Obj_Estrategico ?>';
+    var urlNuevo_Indicador = '<?php echo $urlNuevo_Indicador ?>';
+    var urlNuevo_Riesgo = '<?php echo $urlNuevo_Riesgo ?>';
+    var urlNuevo_Fortaleza = '<?php echo $urlNuevo_Fortaleza ?>';
+    var urlNuevo_Oportunidad = '<?php echo $urlNuevo_Oportunidad ?>';
+    var urlNuevo_Debilidad = '<?php echo $urlNuevo_Debilidad ?>';
+    var urlNuevo_Amenaza = '<?php echo $urlNuevo_Amenaza ?>';
 
 
     var PERSPECTIVA_ID;
@@ -256,7 +268,7 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
             }
 
             if (CRITERIO_ID == undefined) {
-                Mensaje_Info("Error","No ha seleccionado un Criterio");
+                Mensaje_Info("Error", "No ha seleccionado un Criterio");
             } else {
                 console.log(data);
 
@@ -434,7 +446,19 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
         });
     }
 
-    //***** RIESGPS ******/
+    function Nuevo_Indicador() {
+        var nombre = $("#IND_Nombre").val();
+        if (nombre == "") {
+
+        } else {
+
+
+        }
+
+    }
+
+
+    //***** RIESGOS ******/
 
     function Get_Riesgos(data) {
         var object_id = data["OBJEST_ID"];
@@ -518,6 +542,35 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
             var data = table.row(this).data();
             Get_Objetivos_Estrategicos(data);
         });
+    }
+
+    function Nuevo_Riesgo() {
+        var nombre = $("#RIES_Nombre").val();
+        var indice = $("#RIES_Indice").val();
+        var riesgotipo = $("#RIES_tipo").val();
+
+        if (nombre == "") {
+
+        } else if (indice == "") {
+
+        } else {
+
+            var data = {
+                INDICE: indice.toUpperCase(),
+                RIESGO_NOM: nombre,
+                RIESGOTIPO_ID: riesgotipo,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlNuevo_Riesgo, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Riesgo").modal('hide');
+                    Get_Riesgos(data);
+                }
+            });
+        }
     }
 
     //***** FORTALEZAS ******/
@@ -606,6 +659,32 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
         });
     }
 
+    function Nuevo_Fortaleza() {
+        var nombre = $("#FOR_Nombre").val();
+        var indice = $("#FOR_Indice").val();
+
+        if (nombre == "") {
+
+        } else if (indice == "") {
+
+        } else {
+
+            var data = {
+                INDICE: indice.toUpperCase(),
+                FORTALEZA_NOM: nombre,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlNuevo_Fortaleza, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Fortaleza").modal('hide');
+                    Get_Fortalezas(data);
+                }
+            });
+        }
+    }
     //***** OPORTUNIDADDES ******/
 
     function Get_Oportunidades(data) {
@@ -692,6 +771,32 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
         });
     }
 
+    function Nuevo_Oportunidad() {
+        var nombre = $("#OPOR_Nombre").val();
+        var indice = $("#OPOR_Indice").val();
+
+        if (nombre == "") {
+
+        } else if (indice == "") {
+
+        } else {
+
+            var data = {
+                INDICE: indice.toUpperCase(),
+                OPORTUNIDAD_NOM: nombre,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlNuevo_Oportunidad, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Oportunidad").modal('hide');
+                    Get_Oportunidades(data);
+                }
+            });
+        }
+    }
     //***** DEBILIDADES ******/
 
     function Get_Debilidades(data) {
@@ -778,7 +883,32 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
         });
     }
 
+    function Nuevo_Debilidad() {
+        var nombre = $("#DEB_Nombre").val();
+        var indice = $("#DEB_Indice").val();
 
+        if (nombre == "") {
+
+        } else if (indice == "") {
+
+        } else {
+
+            var data = {
+                INDICE: indice.toUpperCase(),
+                DEBILIDAD_NOM: nombre,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlNuevo_Debilidad, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Debilidad").modal('hide');
+                    Get_Debilidades(data);
+                }
+            });
+        }
+    }
     //***** AMENAZAS ******/
 
     function Get_Amenazas(data) {
@@ -865,6 +995,32 @@ $urlNuevo_Obj_Estrategico = constant("URL") . "matrizestrategica/Nuevo_Obj_Estra
         });
     }
 
+    function Nuevo_Amenaza() {
+        var nombre = $("#AME_Nombre").val();
+        var indice = $("#AME_Indice").val();
+
+        if (nombre == "") {
+
+        } else if (indice == "") {
+
+        } else {
+
+            var data = {
+                INDICE: indice.toUpperCase(),
+                AMENAZA_NOM: nombre,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlNuevo_Amenaza, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Amenaza").modal('hide');
+                    Get_Amenazas(data);
+                }
+            });
+        }
+    }
 
 
 

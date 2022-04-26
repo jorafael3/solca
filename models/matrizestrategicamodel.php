@@ -12,6 +12,8 @@ class MatrizEstrategicaModel extends Model
         //echo "nuevo controlaodr";
     }
 
+    //** PERSPECTIVAS *//
+
     function Get_PerspectivasOnLoad()
     {
         try {
@@ -51,8 +53,6 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    /********* */
-
     function Nueva_perspectiva($parametros)
     {
         $PERSPECTIVA_NOM = $parametros["PERSPECTIVA_NOM"];
@@ -63,6 +63,31 @@ class MatrizEstrategicaModel extends Model
 
             if ($query->execute()) {
                 echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //** CRITERIOS *//
+
+    function Get_Criterios($parametros)
+    {
+        $id = $parametros["id_perspectiva"];
+        try {
+            $sql = "CALL " . constant("DB") . ".criterios (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $id);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
                 exit();
             } else {
                 $err = $query->errorInfo();
@@ -97,6 +122,31 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    //**OBJETIVOS ESTRATEGICOs */
+    function Get_Objetivos_Estrategicos($parametros)
+    {
+        $criterio_id = $parametros["criterio_id"];
+        $perspectiva_id = $parametros["perspectiva_id"];
+        try {
+            $sql = "CALL " . constant("DB") . ".Objetivos_Estrategicos (?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $criterio_id);
+            $query->bindParam(2, $perspectiva_id);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 
     function Nuevo_Obj_Estrategico($parametros)
     {
@@ -128,57 +178,8 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
-    /******** */
 
-
-
-    function Get_Criterios($parametros)
-    {
-        $id = $parametros["id_perspectiva"];
-        try {
-            $sql = "CALL " . constant("DB") . ".criterios (?) ";
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(1, $id);
-
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode($result);
-                exit();
-            } else {
-                $err = $query->errorInfo();
-                echo json_encode($err);
-                exit();
-            }
-        } catch (PDOException $e) {
-            $e = $e->getMessage();
-            return $e;
-        }
-    }
-
-    function Get_Objetivos_Estrategicos($parametros)
-    {
-        $criterio_id = $parametros["criterio_id"];
-        $perspectiva_id = $parametros["perspectiva_id"];
-        try {
-            $sql = "CALL " . constant("DB") . ".Objetivos_Estrategicos (?,?) ";
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(1, $criterio_id);
-            $query->bindParam(2, $perspectiva_id);
-
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode($result);
-                exit();
-            } else {
-                $err = $query->errorInfo();
-                echo json_encode($err);
-                exit();
-            }
-        } catch (PDOException $e) {
-            $e = $e->getMessage();
-            return $e;
-        }
-    }
+    //** INDICADORES *//
 
     function Get_Indicadores($parametros)
     {
@@ -203,6 +204,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    //** RIESGOS *//
+
     function Get_Riesgos($parametros)
     {
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -225,6 +228,55 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
+
+    function Get_Riesgos_tipos()
+    {
+        try {
+            $sql = "SELECT * FROM " . constant("DB") . ".riesgos_tipos ";
+            $query = $this->db->connect()->prepare($sql);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Nuevo_Riesgo($parametros){
+        $RIESGO_NOM = $parametros["RIESGO_NOM"];
+        $riesgotipo = $parametros["RIESGOTIPO_ID"];
+        $INDICE = $parametros["INDICE"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_riesgo (?,?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $RIESGO_NOM);
+            $query->bindParam(2, $INDICE);
+            $query->bindParam(3, $riesgotipo);
+            $query->bindParam(4, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //** FORTALEZA *//
 
     function Get_Fortalezas($parametros)
     {
@@ -249,6 +301,32 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    function Nuevo_Fortaleza($parametros){
+        $FORTALEZA_NOM = $parametros["FORTALEZA_NOM"];
+        $INDICE = $parametros["INDICE"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_fortaleza (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $FORTALEZA_NOM);
+            $query->bindParam(2, $INDICE);
+            $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    //** OPORTUNIDADES *//
+
     function Get_Oportunidades($parametros)
     {
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -271,6 +349,33 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
+
+    function Nuevo_Oportunidad($parametros){
+        $OPORTUNIDAD_NOM = $parametros["OPORTUNIDAD_NOM"];
+        $INDICE = $parametros["INDICE"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_oportunidad (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $OPORTUNIDAD_NOM);
+            $query->bindParam(2, $INDICE);
+            $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //** DEBILIDADES *//
 
     function Get_Debilidades($parametros)
     {
@@ -295,6 +400,32 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    function Nuevo_Debilidad($parametros){
+        $DEBILIDAD_NOM = $parametros["DEBILIDAD_NOM"];
+        $INDICE = $parametros["INDICE"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_debilidad (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DEBILIDAD_NOM);
+            $query->bindParam(2, $INDICE);
+            $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    //** AMENAZAS *//
+
     function Get_Amenazas($parametros)
     {
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -306,6 +437,31 @@ class MatrizEstrategicaModel extends Model
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Nuevo_Amenaza($parametros){
+        $AMENAZA_NOM = $parametros["AMENAZA_NOM"];
+        $INDICE = $parametros["INDICE"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_amenaza (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $AMENAZA_NOM);
+            $query->bindParam(2, $INDICE);
+            $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
                 exit();
             } else {
                 $err = $query->errorInfo();

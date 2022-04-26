@@ -613,6 +613,17 @@ require 'views/header.php';
                                 </select>
                                 <!--end::Input-->
                             </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Progreso</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <div id="slider"></div>
+                                <br>
+                                <span id="slider1-span"></span>
+                                <!--end::Input-->
+                            </div>
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->
@@ -722,6 +733,9 @@ require 'views/header.php';
 
     <link rel="stylesheet" href="<?php echo constant('URL') ?>public/assets/css/dragula.css">
     <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo constant('URL') ?>public/assets/css/nouislider.min.css">
+    <script src="<?php echo constant('URL') ?>public/assets/js/nouislider.min.js"></script>
 
     <script>
         var TARGET_ID;

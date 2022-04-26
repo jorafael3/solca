@@ -637,18 +637,22 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTV_ID = ACTV_ID_DRAG;
         var estado;
         var id = TARGET_ID;
+        var progreso =""
         if (id == "Pr_En_Revision") {
             estado = 1;
+            
         } else if (id == "Pr_En_Progreso") {
             estado = 2;
         } else if (id == "Pr_Terminados") {
             estado = 3;
+            progreso = 100
         }
         var data = {
             ACTV_ID: ACTV_ID,
-            ACTV_ESTADO: estado
+            ACTV_ESTADO: estado,
+            Progreso:progreso
         }
-        //console.log(data);
+        console.log(data);
 
         AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
             console.log(response);
@@ -722,20 +726,55 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
         var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
+        var AVANCE_SUPERVISION = ACTIVIDAD_INFO[0]["max(AV.AVANCE_SUPERVISION)"];
+        if (AVANCE_SUPERVISION == "") {
+            AVANCE_SUPERVISION = 0;
+        }
         $('#ACTV_ACT_ESTADO').val(ACTV_ESTADO);
+
+        var slider = document.getElementById('slider');
+        var slider1Value = document.getElementById('slider1-span');
+        sliderActive = false;
+        $('.sliderContainer').attr('class', 'sliderContainer');
+        $('.noUi-base').remove();
+        delete slider.noUiSlider;
+
+        noUiSlider.create(slider, {
+            start: AVANCE_SUPERVISION,
+            //connect: true,
+            step: 1,
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            format: {
+                to: (v) => v | 0,
+                from: (v) => v | 0
+            }
+        });
+
+        slider.noUiSlider.on('update', function(values, handle) {
+            slider1Value.innerHTML = values[handle] + "%";
+        });
         // $("#ACTV_ACT_ESTADO option[value="+ACTV_ESTADO+"]").attr('selected', 'selected');
         $("#kt_modal_Actividad_Edit").modal('show');
 
         ACTV_ACTUAL_EDIT = ACTV_ID;
+
+
 
     }
 
     function Actualizar_Actividad() {
         var ACTV_ID = ACTV_ACTUAL_EDIT;
         var estado = $("#ACTV_ACT_ESTADO").val();
+        var slider = document.getElementById('slider');
+        var Progreso = slider.noUiSlider.get();
+
         var data = {
             ACTV_ID: ACTV_ID,
-            ACTV_ESTADO: estado
+            ACTV_ESTADO: estado,
+            Progreso:Progreso
         }
         console.log(data);
 
@@ -746,7 +785,6 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 Mensaje_Guardado_ok();
                 Proyecto_info(PROYECTO_ID);
             }
-
         });
     }
 

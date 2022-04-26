@@ -209,6 +209,8 @@ class DashSuperAdminModel extends Model
     {
         $ACTIV_ID = $parametros["ACTV_ID"];
         $ACTV_ESTADO = $parametros["ACTV_ESTADO"];
+        $Progreso = $parametros["Progreso"];
+
         try {
             $sql = "UPDATE " . constant("DB") . ".poa_proyectos_accion_actividades
             SET ACTV_ESTADO = :ACTV_ESTADO WHERE ACTIV_ID = :ACTIV_ID";

@@ -659,7 +659,7 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Nombre Del Indicador</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <input type="text" id="IND_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -721,8 +721,33 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Nombre Del Riesgo</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="CRIT_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <input type="text" id="RIES_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indice</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="RIES_Indice" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-bold mb-2">Tipo</label>
+                                <select id="RIES_tipo" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione tipo de riesgo" name="target_assign" required>
+                                    <option value=""></option>
+
+                                    <?php
+                                    foreach ($this->ries_tip as $row) {
+                                    ?>
+                                        <option value=<?php echo ($row["RIESGOTIPO_ID"]); ?>><?php echo ($row["RIESGOTIPO_NOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -784,6 +809,15 @@ require 'views/header.php';
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" id="FOR_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indice</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="FOR_Indice" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -848,6 +882,15 @@ require 'views/header.php';
                                 <input type="text" id="OPOR_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indice</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="OPOR_Indice" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->
@@ -910,6 +953,15 @@ require 'views/header.php';
                                 <input type="text" id="DEB_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indice</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="DEB_Indice" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
                             <!--end::Input group-->
                         </div>
                         <!--end::Scroll-->
@@ -970,6 +1022,15 @@ require 'views/header.php';
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input type="text" id="AME_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Indice</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="AME_Indice" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -1089,18 +1150,21 @@ require 'views/header.php';
         }
 
         function Btn_Nuevo_Riesgo() {
-
+            Nuevo_Riesgo();
         }
 
         function Btn_Nuevo_Fortaleza() {
-
+            Nuevo_Fortaleza();
         }
 
+        function Btn_Nuevo_Oportunidad(){
+            Nuevo_Oportunidad();
+        }
         function Btn_Nuevo_Debilidad() {
-
+            Nuevo_Debilidad();
         }
 
-        function Btn_Nuevo_Amenaza(){
-
+        function Btn_Nuevo_Amenaza() {
+            Nuevo_Amenaza();
         }
     </script>
