@@ -253,7 +253,7 @@ require 'views/header.php';
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade active show" id="kt_charts_widget_10_tab_content_1">
 
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
+                            <button onclick="btn_indicadores_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_indicadores" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -270,7 +270,7 @@ require 'views/header.php';
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_2">
 
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
+                            <button onclick="btn_riesgos_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Riesgos" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -286,7 +286,7 @@ require 'views/header.php';
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_3">
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Fortaleza</button>
+                            <button onclick="btn_fortalezas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Fortaleza</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Fortalezas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -302,7 +302,7 @@ require 'views/header.php';
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_4">
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
+                            <button onclick="btn_oportunidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_oportunidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -316,7 +316,7 @@ require 'views/header.php';
                             </div>
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_5">
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Debilidad</button>
+                            <button onclick="btn_debilidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Debilidad</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Debilidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -331,7 +331,7 @@ require 'views/header.php';
 
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_6">
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Amenaza</button>
+                            <button onclick="btn_amenazas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Amenaza</button>
 
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Amenazas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -664,12 +664,33 @@ require 'views/header.php';
                             </div>
                             <!--end::Input group-->
                         </div>
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">Medio de Verificacion</label>
+                            <select id="MED_VER" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                <option value=""></option>
+
+                                <?php
+                                foreach ($this->medios as $row) {
+                                ?>
+                                    <option value=<?php echo ($row["MVERIFICACION_ID"]); ?>><?php echo ($row["DESCRIPCION"]); ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Indicador()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Indicador_b" style="display: none;" onclick="Btn_Nuevo_Indicador()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Indicador_b" style="display: none;" onclick="Btn_Actualizar_Indicador()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -755,8 +776,14 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Riesgo()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Riesgo_b" style="display: none;" onclick="Btn_Nuevo_Riesgo()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Riesgo_b" style="display: none;" onclick="Btn_Actualizar_Riesgo()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -826,8 +853,14 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Fortaleza()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Fortaleza_b" style="display: none;" onclick="Btn_Nuevo_Fortaleza()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Fortaleza_b" style="display: none;" onclick="Btn_Actualizar_Fortaleza()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -897,8 +930,14 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Oportunidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Oportunidad_b" onclick="Btn_Nuevo_Oportunidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Oportunidad_b" onclick="Btn_Actualizar_Oportunidad()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -968,8 +1007,14 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Debilidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Debilidad_b" onclick="Btn_Nuevo_Debilidad()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Debilidad_b" onclick="Btn_Actualizar_Debilidad()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -1145,24 +1190,89 @@ require 'views/header.php';
             Nuevo_OBj_Estrategico();
         }
 
-        function Btn_Nuevo_Indicador() {
+        function btn_indicadores_show() {
+            $("#Btn_Nuevo_Indicador_b").show();
+            $("#Btn_Actualizar_Indicador_b").hide();
+            $("#IND_Nombre").val("");
+            $("#MED_VER").val(-1).change();
+        }
 
+        function btn_riesgos_show() {
+            $("#Btn_Nuevo_Riesgo_b").show();
+            $("#Btn_Actualizar_Riesgo_b").hide();
+            $("#RIES_Nombre").val("");
+            $("#RIES_Indice").val("");
+            $("#RIES_tipo").val(-1).change();
+        }
+
+        function btn_fortalezas_show() {
+            $("#Btn_Nuevo_Fortaleza_b").show();
+            $("#Btn_Actualizar_Fortaleza_b").hide();
+            $("#FOR_Indice").val("");
+            $("#FOR_Nombre").val("");
+        }
+
+        function btn_oportunidades_show() {
+            $("#Btn_Nuevo_Oportunidad_b").show();
+            $("#Btn_Actualizar_Oportunidad_b").hide();
+            $("#OPOR_Nombre").val("");
+            $("#OPOR_Indice").val("");
+        }
+
+        function btn_debilidades_show() {
+            $("#Btn_Nuevo_Debilidad_b").show();
+            $("#Btn_Actualizar_Debilidad_b").hide();
+            $("#DEB_Nombre").val("");
+            $("#DEB_Indice").val("");
+        }
+
+        function btn_amenazas_show() {
+            $("#Btn_Nuevo_Amenazas_b").show();
+            $("#Btn_Actualizar_Amenazas_b").hide();
+            $("#IND_Nombre").val("");
+            $("#MED_VER").val(-1).change();
+        }
+
+        function Btn_Nuevo_Indicador() {
+            Nuevo_Indicador();
+        }
+
+        function Btn_Actualizar_Indicador() {
+            Actualizar_Indicador();
         }
 
         function Btn_Nuevo_Riesgo() {
             Nuevo_Riesgo();
         }
 
+        function Btn_Actualizar_Riesgo() {
+            Actualizar_Riesgos();
+        }
+
         function Btn_Nuevo_Fortaleza() {
             Nuevo_Fortaleza();
         }
 
-        function Btn_Nuevo_Oportunidad(){
+        function Btn_Actualizar_Fortaleza() {
+            Actualizar_Fortalezas();
+        }
+
+
+        function Btn_Nuevo_Oportunidad() {
             Nuevo_Oportunidad();
         }
+
+        function Btn_Actualizar_Oportunidad() {
+            Actualizar_Oportunidad();
+        }
+
         function Btn_Nuevo_Debilidad() {
             Nuevo_Debilidad();
         }
+        function Btn_Actualizar_Debilidad() {
+            Actualizar_Debilidad();
+        }
+        
 
         function Btn_Nuevo_Amenaza() {
             Nuevo_Amenaza();

@@ -26,6 +26,8 @@ class MatrizEstrategica extends Controller
         $this->view->Perspect = $PErspectivas;
         $Riesgostipos =  $this->model->Get_Riesgos_tipos();
         $this->view->ries_tip = $Riesgostipos;
+        $Medios =  $this->model->Get_Medios_verificacion();
+        $this->view->medios = $Medios;
         $this->Matrizrender();
     }
     //*** PERSPECTIVAS ****/
@@ -82,6 +84,13 @@ class MatrizEstrategica extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Indicador($array);
     }
+
+    function Actualizar_Indicador()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Indicador($array);
+    }
+
     //*** Riesgos ****/
 
     function Get_Riesgos()
@@ -95,7 +104,12 @@ class MatrizEstrategica extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Riesgo($array);
     }
-
+    
+    function Actualizar_Riesgo()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Riesgo($array);
+    }
     //*** Fortalezas ****/
 
     function Get_Fortalezas()
@@ -107,6 +121,12 @@ class MatrizEstrategica extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Fortaleza($array);
+    }
+   
+    function Actualizar_Fortaleza()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Fortaleza($array);
     }
     //*** Oportunidades ****/
 
@@ -120,6 +140,11 @@ class MatrizEstrategica extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Oportunidad($array);
     }
+    function Actualizar_Oportunidad()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Oportunidad($array);
+    }
     //*** Debilidades ****/
 
     function Get_Debilidades()
@@ -131,6 +156,11 @@ class MatrizEstrategica extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Debilidad($array);
+    }
+    function Actualizar_Debilidad()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Debilidad($array);
     }
     //*** Amenazas ****/
 

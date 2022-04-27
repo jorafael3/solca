@@ -204,6 +204,76 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    function Get_Medios_verificacion()
+    {
+        try {
+            $sql = "SELECT * FROM " . constant("DB") . ".medio_verificacion ";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Nuevo_Indicador($parametros){
+        $DESCRIPCION = $parametros["DESCRIPCION"];
+        $MVERIFICACION_ID = $parametros["MVERIFICACION_ID"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_indicador (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DESCRIPCION);
+            $query->bindParam(2, $OBJEST_ID);
+            $query->bindParam(3, $MVERIFICACION_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Indicador($parametros){
+        $DESCRIPCION = $parametros["DESCRIPCION"];
+        $INDICADOR_ID = $parametros["INDICADOR_ID"];
+        $MVERIFICACION_ID = $parametros["MVERIFICACION_ID"];
+        $OBJEST_ID = $parametros["OBJEST_ID"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_indicador (?,?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DESCRIPCION);
+            $query->bindParam(2, $INDICADOR_ID);
+            $query->bindParam(3, $OBJEST_ID);
+            $query->bindParam(4, $MVERIFICACION_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
     //** RIESGOS *//
 
     function Get_Riesgos($parametros)
@@ -276,6 +346,32 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    function Actualizar_Riesgo($parametros){
+        $RIESGO_NOM = $parametros["RIESGO_NOM"];
+        $INDICE = $parametros["INDICE"];
+        $RIESGOTIPO_ID = $parametros["RIESGOTIPO_ID"];
+        $RIESGO_ID = $parametros["RIESGO_ID"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_riesgo (?,?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $RIESGO_ID);
+            $query->bindParam(2, $RIESGO_NOM);
+            $query->bindParam(3, $INDICE);
+            $query->bindParam(4, $RIESGOTIPO_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
     //** FORTALEZA *//
 
     function Get_Fortalezas($parametros)
@@ -311,6 +407,31 @@ class MatrizEstrategicaModel extends Model
             $query->bindParam(1, $FORTALEZA_NOM);
             $query->bindParam(2, $INDICE);
             $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Fortaleza($parametros){
+        $FORTALEZA_ID = $parametros["FORTALEZA_ID"];
+        $FOR_Nombre = $parametros["FOR_Nombre"];
+        $FOR_Indice = $parametros["FOR_Indice"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_fortaleza (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $FORTALEZA_ID);
+            $query->bindParam(2, $FOR_Nombre);
+            $query->bindParam(3, $FOR_Indice);
 
             if ($query->execute()) {
                 echo json_encode(true);
@@ -375,6 +496,30 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
+    function Actualizar_Oportunidad($parametros){
+        $OPORTUNIDAD_ID = $parametros["OPORTUNIDAD_ID"];
+        $OPOR_Nombre = $parametros["OPOR_Nombre"];
+        $OPOR_Indice = $parametros["OPOR_Indice"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_oportunidad (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $OPORTUNIDAD_ID);
+            $query->bindParam(2, $OPOR_Nombre);
+            $query->bindParam(3, $OPOR_Indice);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
     //** DEBILIDADES *//
 
     function Get_Debilidades($parametros)
@@ -399,6 +544,8 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
+    
+   
 
     function Nuevo_Debilidad($parametros){
         $DEBILIDAD_NOM = $parametros["DEBILIDAD_NOM"];
@@ -410,6 +557,31 @@ class MatrizEstrategicaModel extends Model
             $query->bindParam(1, $DEBILIDAD_NOM);
             $query->bindParam(2, $INDICE);
             $query->bindParam(3, $OBJEST_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Debilidad($parametros){
+        $OPORTUNIDAD_ID = $parametros["OPORTUNIDAD_ID"];
+        $DEB_Nombre = $parametros["DEB_Nombre"];
+        $DEB_Indice = $parametros["DEB_Indice"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_debilidad (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $OPORTUNIDAD_ID);
+            $query->bindParam(2, $DEB_Nombre);
+            $query->bindParam(3, $DEB_Indice);
 
             if ($query->execute()) {
                 echo json_encode(true);

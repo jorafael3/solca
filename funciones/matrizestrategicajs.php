@@ -20,6 +20,14 @@ $urlNuevo_Oportunidad = constant("URL") . "matrizestrategica/Nuevo_Oportunidad";
 $urlNuevo_Debilidad = constant("URL") . "matrizestrategica/Nuevo_Debilidad";
 $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
 
+
+$urlActualizar_Indicador = constant("URL") . "matrizestrategica/Actualizar_Indicador";
+$urlActualizar_Riesgo = constant("URL") . "matrizestrategica/Actualizar_Riesgo";
+$urlActualizar_Fortaleza = constant("URL") . "matrizestrategica/Actualizar_Fortaleza";
+$urlActualizar_Oportunidad = constant("URL") . "matrizestrategica/Actualizar_Oportunidad";
+$urlActualizar_Debilidad = constant("URL") . "matrizestrategica/Actualizar_Debilidad";
+$urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza";
+
 ?>
 
 <script>
@@ -43,11 +51,18 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
     var urlNuevo_Debilidad = '<?php echo $urlNuevo_Debilidad ?>';
     var urlNuevo_Amenaza = '<?php echo $urlNuevo_Amenaza ?>';
 
+    var urlActualizar_Indicador = '<?php echo $urlActualizar_Indicador ?>';
+    var urlActualizar_Riesgo = '<?php echo $urlActualizar_Riesgo ?>';
+    var urlActualizar_Fortaleza = '<?php echo $urlActualizar_Fortaleza ?>';
+    var urlActualizar_Oportunidad = '<?php echo $urlActualizar_Oportunidad ?>';
+    var urlActualizar_Debilidad = '<?php echo $urlActualizar_Debilidad ?>';
+    var urlActualizar_Amenaza = '<?php echo $urlActualizar_Amenaza ?>';
+
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
     var OBJEST_ID;
-
+    var INDICADOR_ID;
     //***** PERSPECTIVAS */
 
     function Get_Perspectivas() {
@@ -406,12 +421,15 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
             columns: [{
                     data: "DESCRIPCION",
                     title: "Descripcion",
+                }, {
+                    data: "MEDIO_VERIFICACION",
+                    title: "MEDIO_VERIFICACION",
                 },
                 {
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -424,6 +442,14 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                                         <div class="mb-1 text-muted   fw-bolder">Descripcion</div>
                                     </div>
                                     <div class="fs-4 fw-bolder ">` + data["DESCRIPCION"] + `</div>
+                                </div>
+                            `);
+                $('td', row).eq(1).html(`
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mb-1 text-muted   fw-bolder">Medio de Verificacion</div>
+                                    </div>
+                                    <div class="fs-4 fw-bolder ">` + data["MEDIO_VERIFICACION"] + `</div>
                                 </div>
                             `);
 
@@ -439,20 +465,78 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
 
-        $('#TablaListaCriterios tbody').on('click', 'td.btn_edit', function(e) {
+        $('#Tabla_indicadores tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Indicadores(data);
         });
     }
 
     function Nuevo_Indicador() {
         var nombre = $("#IND_Nombre").val();
+        var medio = $("#MED_VER").val();
+
         if (nombre == "") {
+
+        } else if (medio == "") {
 
         } else {
 
+            var data = {
+                DESCRIPCION: nombre,
+                MVERIFICACION_ID: medio,
+                OBJEST_ID: OBJEST_ID
+            }
+            console.log(data);
 
+            AjaxSendReceive(urlNuevo_Indicador, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Indicador").modal('hide');
+                    Get_Indicadores(data);
+                }
+            });
+        }
+
+    }
+
+    function Set_Data_To_Update_Indicadores(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Indicador_b").hide();
+        $("#Btn_Actualizar_Indicador_b").show();
+        var DESCRIPCION = data["DESCRIPCION"];
+        var MVERIFICACION_ID = data["MVERIFICACION_ID"];
+        INDICADOR_ID = data["INDICADOR_ID"]
+        $('#MED_VER').val(MVERIFICACION_ID).change();
+        $("#IND_Nombre").val(DESCRIPCION);
+
+    }
+
+    function Actualizar_Indicador() {
+        var nombre = $("#IND_Nombre").val();
+        var medio = $("#MED_VER").val();
+
+        if (nombre == "") {
+
+        } else if (medio == "") {
+
+        } else {
+
+            var data = {
+                DESCRIPCION: nombre,
+                MVERIFICACION_ID: medio,
+                OBJEST_ID: OBJEST_ID,
+                INDICADOR_ID:INDICADOR_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Indicador, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Indicador").modal('hide');
+                    Get_Indicadores(data);
+                }
+            });
         }
 
     }
@@ -501,7 +585,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -540,7 +624,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
         $('#Tabla_Riesgos tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Riesgos(data);
         });
     }
 
@@ -573,6 +657,50 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
         }
     }
 
+    function Set_Data_To_Update_Riesgos(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Riesgo_b").hide();
+        $("#Btn_Actualizar_Riesgo_b").show();
+        var RIESGO_NOM = data["RIESGO_NOM"];
+        var INDICE = data["INDICE"];
+        var RIESGOTIPO_ID = data["RIESGOTIPO_ID"];
+        INDICADOR_ID = data["RIESGO_ID"]
+        $('#RIES_tipo').val(RIESGOTIPO_ID).change();
+        $("#RIES_Indice").val(INDICE);
+        $("#RIES_Nombre").val(RIESGO_NOM);
+
+    }
+
+    function Actualizar_Riesgos() {
+        var RIES_Nombre = $("#RIES_Nombre").val();
+        var RIES_Indice = $("#RIES_Indice").val();
+        var RIES_tipo = $("#RIES_tipo").val();
+
+        if (RIES_Nombre == "") {
+
+        } else if (RIES_Indice == "") {
+
+        } else {
+
+            var data = {
+                RIESGO_NOM: RIES_Nombre,
+                INDICE: RIES_Indice,
+                RIESGOTIPO_ID: RIES_tipo,
+                RIESGO_ID:INDICADOR_ID,
+                OBJEST_ID:OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Riesgo, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Riesgo").modal('hide');
+                    Get_Riesgos(data);
+                }
+            });
+        }
+
+    }
     //***** FORTALEZAS ******/
 
     function Get_Fortalezas(data) {
@@ -616,7 +744,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -655,7 +783,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
         $('#Tabla_Fortalezas tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Fortalezas(data);
         });
     }
 
@@ -685,6 +813,48 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
             });
         }
     }
+
+    function Set_Data_To_Update_Fortalezas(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Fortaleza_b").hide();
+        $("#Btn_Actualizar_Fortaleza_b").show();
+        var FORTALEZA_NOM = data["FORTALEZA_NOM"];
+        var INDICE = data["INDICE"];
+        INDICADOR_ID = data["FORTALEZA_ID"]
+        $("#FOR_Indice").val(INDICE);
+        $("#FOR_Nombre").val(FORTALEZA_NOM);
+
+    }
+
+    function Actualizar_Fortalezas() {
+        var FOR_Nombre = $("#FOR_Nombre").val();
+        var FOR_Indice = $("#FOR_Indice").val();
+
+        if (FOR_Nombre == "") {
+
+        } else if (FOR_Indice == "") {
+
+        } else {
+
+            var data = {
+                FOR_Nombre: FOR_Nombre,
+                FOR_Indice: FOR_Indice,
+                FORTALEZA_ID:INDICADOR_ID,
+                OBJEST_ID:OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Fortaleza, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Fortaleza").modal('hide');
+                    Get_Fortalezas(data);
+                }
+            });
+        }
+
+    }
+
     //***** OPORTUNIDADDES ******/
 
     function Get_Oportunidades(data) {
@@ -728,7 +898,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -767,7 +937,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
         $('#Tabla_oportunidades tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Oportunidad(data);
         });
     }
 
@@ -796,6 +966,47 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                 }
             });
         }
+    }
+
+    function Set_Data_To_Update_Oportunidad(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Oportunidad_b").hide();
+        $("#Btn_Actualizar_Oportunidad_b").show();
+        var OPORTUNIDAD_NOM = data["OPORTUNIDAD_NOM"];
+        var INDICE = data["INDICE"];
+        INDICADOR_ID = data["OPORTUNIDAD_ID"]
+        $("#OPOR_Indice").val(INDICE);
+        $("#OPOR_Nombre").val(OPORTUNIDAD_NOM);
+
+    }
+
+    function Actualizar_Oportunidad() {
+        var OPOR_Nombre = $("#OPOR_Nombre").val();
+        var OPOR_Indice = $("#OPOR_Indice").val();
+
+        if (OPOR_Nombre == "") {
+
+        } else if (OPOR_Indice == "") {
+
+        } else {
+
+            var data = {
+                OPOR_Nombre: OPOR_Nombre,
+                OPOR_Indice: OPOR_Indice,
+                OPORTUNIDAD_ID:INDICADOR_ID,
+                OBJEST_ID:OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Oportunidad, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Oportunidad").modal('hide');
+                    Get_Oportunidades(data);
+                }
+            });
+        }
+
     }
     //***** DEBILIDADES ******/
 
@@ -840,7 +1051,7 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button  data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -879,10 +1090,11 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
         $('#Tabla_Debilidades tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Debilidad(data);
         });
     }
 
+    
     function Nuevo_Debilidad() {
         var nombre = $("#DEB_Nombre").val();
         var indice = $("#DEB_Indice").val();
@@ -908,6 +1120,48 @@ $urlNuevo_Amenaza = constant("URL") . "matrizestrategica/Nuevo_Amenaza";
                 }
             });
         }
+    }
+
+    
+    function Set_Data_To_Update_Debilidad(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Debilidad_b").hide();
+        $("#Btn_Actualizar_Debilidad_b").show();
+        var DEBILIDAD_NOM = data["DEBILIDAD_NOM"];
+        var INDICE = data["INDICE"];
+        INDICADOR_ID = data["DEBILIDAD_ID"]
+        $("#DEB_Indice").val(INDICE);
+        $("#DEB_Nombre").val(DEBILIDAD_NOM);
+
+    }
+
+    function Actualizar_Debilidad() {
+        var DEB_Nombre = $("#DEB_Nombre").val();
+        var DEB_Indice = $("#DEB_Indice").val();
+
+        if (DEB_Nombre == "") {
+
+        } else if (DEB_Indice == "") {
+
+        } else {
+
+            var data = {
+                DEB_Nombre: DEB_Nombre,
+                DEB_Indice: DEB_Indice,
+                OPORTUNIDAD_ID:INDICADOR_ID,
+                OBJEST_ID:OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Debilidad, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Debilidad").modal('hide');
+                    Get_Debilidades(data);
+                }
+            });
+        }
+
     }
     //***** AMENAZAS ******/
 
