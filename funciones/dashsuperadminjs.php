@@ -30,6 +30,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
     var ARR_PROYECTOS;
+    var ARR_POAS;
     var PERSPECTIVA_NOM;
     var CRITERIO_NOM;
     var POA_NOM;
@@ -228,6 +229,30 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
         AjaxSendReceive(urlGet_Poa, data, function(response) {
             if (response.length != 0) {
+                console.log("POA", response);
+                ARR_POAS = response;
+
+                var arrdata = JSON.parse(JSON.stringify(response));
+                var resArr = [];
+                arrdata.filter(function(item) {
+                    var i = resArr.findIndex(x => x.DEPTO_NOM == item.DEPTO_NOM);
+                    if (i <= -1) {
+                        resArr.push({
+                            DEPTO_ID: item.DEPTO_ID,
+                            DEPTO_NOM: item.DEPTO_NOM
+                        });
+                    }
+                    return null;
+                });
+                var cbDeps = document.getElementById("Poa_Filter");
+                $('#Poa_Filter option').remove(); // clear all values 
+                $('#Poa_Filter ').append('<option value="">Todos</option>');
+                jQuery.each(resArr, function(key, value) {
+                    option = document.createElement("option");
+                    option.value = value.DEPTO_ID;
+                    option.text = value.DEPTO_NOM;
+                    cbDeps.appendChild(option);
+                });
 
                 $("#TablaListaPoa").show();
                 Tabla_Poa(response);
@@ -236,9 +261,21 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             } else {
                 Mensaje_Info("Oops", "Este criterio no contiene datos", "info");
                 Tabla_Poa(response);
+                ARR_POAS = response;
 
             }
         });
+    }
+
+    function POA_FILTRAR_DEPTS(id) {
+        var arrdata = JSON.parse(JSON.stringify(ARR_POAS));
+        let DATA_FILTRADA = arrdata.filter(id_d => (id_d.DEPTO_ID) == id);
+        if(id == ""){
+            DATA_FILTRADA = ARR_POAS;
+        }
+        console.log(DATA_FILTRADA);
+        Tabla_Poa(DATA_FILTRADA);
+
     }
 
     function Tabla_Poa(data) {
@@ -637,10 +674,10 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTV_ID = ACTV_ID_DRAG;
         var estado;
         var id = TARGET_ID;
-        var progreso =""
+        var progreso = ""
         if (id == "Pr_En_Revision") {
             estado = 1;
-            
+
         } else if (id == "Pr_En_Progreso") {
             estado = 2;
         } else if (id == "Pr_Terminados") {
@@ -650,7 +687,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var data = {
             ACTV_ID: ACTV_ID,
             ACTV_ESTADO: estado,
-            Progreso:progreso
+            Progreso: progreso
         }
         console.log(data);
 
@@ -774,7 +811,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var data = {
             ACTV_ID: ACTV_ID,
             ACTV_ESTADO: estado,
-            Progreso:Progreso
+            Progreso: Progreso
         }
         console.log(data);
 

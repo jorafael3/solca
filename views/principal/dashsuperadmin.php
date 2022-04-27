@@ -93,7 +93,16 @@ require 'views/header.php';
 
                 <div class="row">
                     <div class="table-responsive col-4 border-gray-200">
-                        <h4>Criterios</h4>
+                        <div class="d-flex flex-wrap flex-stack my-5">
+                            <!--begin::Heading-->
+                            <h2 class="fs-2 fw-bold my-2">Criterios
+                                <span class="fs-6 text-gray-400 ms-1"></span>
+                            </h2>
+                            <!--end::Heading-->
+                            <!--begin::Controls-->
+                           
+                            <!--end::Controls-->
+                        </div>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -105,8 +114,26 @@ require 'views/header.php';
                     </div>
 
                     <div class="table-responsive col-8 border-gray-200">
-                        <h4>POA</h4>
-
+                        <div class="d-flex flex-wrap flex-stack my-5">
+                            <!--begin::Heading-->
+                            <h2 class="fs-2 fw-bold my-2">POA
+                                <span class="fs-6 text-gray-400 ms-1"></span>
+                            </h2>
+                            <!--end::Heading-->
+                            <!--begin::Controls-->
+                            <div class="d-flex flex-wrap my-1">
+                                <!--begin::Select wrapper-->
+                                <div class="m-0">
+                                    <!--begin::Select-->
+                                    <select id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
+                                        
+                                    </select>
+                                    <!--end::Select-->
+                                </div>
+                                <!--end::Select wrapper-->
+                            </div>
+                            <!--end::Controls-->
+                        </div>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
