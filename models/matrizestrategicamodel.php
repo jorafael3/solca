@@ -645,4 +645,30 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
+
+    function Actualizar_Amenaza($parametros){
+        $AMENAZA_ID = $parametros["AMENAZA_ID"];
+        $AME_Nombre = $parametros["AME_Nombre"];
+        $AME_Indice = $parametros["AME_Indice"];
+        try {
+        $sql = "CALL " . constant("DB") . ".edit_amenaza (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $AMENAZA_ID);
+            $query->bindParam(2, $AME_Nombre);
+            $query->bindParam(3, $AME_Indice);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+    
 }

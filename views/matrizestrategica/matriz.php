@@ -1084,8 +1084,14 @@ require 'views/header.php';
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Amenaza()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Amenaza_b" style="display: none;" onclick="Btn_Nuevo_Amenaza()" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Amenaza_b" style="display: none;" onclick="Btn_Actualizar_Amenaza()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -1227,10 +1233,10 @@ require 'views/header.php';
         }
 
         function btn_amenazas_show() {
-            $("#Btn_Nuevo_Amenazas_b").show();
-            $("#Btn_Actualizar_Amenazas_b").hide();
-            $("#IND_Nombre").val("");
-            $("#MED_VER").val(-1).change();
+            $("#Btn_Nuevo_Amenaza_b").show();
+            $("#Btn_Actualizar_Amenaza_b").hide();
+            $("#AME_Nombre").val("");
+            $("#AME_Indice").val("");
         }
 
         function Btn_Nuevo_Indicador() {
@@ -1257,7 +1263,6 @@ require 'views/header.php';
             Actualizar_Fortalezas();
         }
 
-
         function Btn_Nuevo_Oportunidad() {
             Nuevo_Oportunidad();
         }
@@ -1273,8 +1278,11 @@ require 'views/header.php';
             Actualizar_Debilidad();
         }
         
-
         function Btn_Nuevo_Amenaza() {
             Nuevo_Amenaza();
+        }
+
+        function Btn_Actualizar_Amenaza() {
+            Actualizar_Amenaza();
         }
     </script>

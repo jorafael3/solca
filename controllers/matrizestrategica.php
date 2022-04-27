@@ -174,4 +174,10 @@ class MatrizEstrategica extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Amenaza($array);
     }
+
+    function Actualizar_Amenaza()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Amenaza($array);
+    }
 }

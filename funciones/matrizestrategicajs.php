@@ -1206,7 +1206,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
                     data: null,
                     title: "",
                     className: "dt-left  btn_edit",
-                    defaultContent: '<button class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
+                    defaultContent: '<button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza"  class="btn btn-active-color-primary"><i class="fa fa-edit"></i></button>',
                     orderable: false
                 }
             ],
@@ -1245,7 +1245,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         $('#Tabla_Amenazas tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            Get_Objetivos_Estrategicos(data);
+            Set_Data_To_Update_Amenaza(data);
         });
     }
 
@@ -1276,7 +1276,46 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         }
     }
 
+    function Set_Data_To_Update_Amenaza(data) {
+        console.log(data);
+        $("#Btn_Nuevo_Amenaza_b").hide();
+        $("#Btn_Actualizar_Amenaza_b").show();
+        var AMENAZA_NOM = data["AMENAZA_NOM"];
+        var INDICE = data["INDICE"];
+        INDICADOR_ID = data["AMENAZA_ID"]
+        $("#AME_Indice").val(INDICE);
+        $("#AME_Nombre").val(AMENAZA_NOM);
 
+    }
+
+    function Actualizar_Amenaza() {
+        var AME_Nombre = $("#AME_Nombre").val();
+        var AME_Indice = $("#AME_Indice").val();
+
+        if (AME_Nombre == "") {
+
+        } else if (AME_Indice == "") {
+
+        } else {
+
+            var data = {
+                AME_Nombre: AME_Nombre,
+                AME_Indice: AME_Indice,
+                AMENAZA_ID:INDICADOR_ID,
+                OBJEST_ID:OBJEST_ID
+            }
+            console.log(data);
+
+            AjaxSendReceive(urlActualizar_Amenaza, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Amenaza").modal('hide');
+                    Get_Amenazas(data);
+                }
+            });
+        }
+
+    }
 
 
     function AjaxSendReceive(url, data, callback) {
