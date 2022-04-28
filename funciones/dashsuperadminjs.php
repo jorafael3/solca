@@ -713,20 +713,24 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var progreso = ""
         if (id == "Pr_En_Revision") {
             estado = 1;
-            progreso = 0;
+            Progreso_respo = 0;
+            Progreso_superv = 0;
 
         } else if (id == "Pr_En_Progreso") {
             estado = 2;
-            progreso = 0;
+            Progreso_respo = 0;
+            Progreso_superv = 0;
 
         } else if (id == "Pr_Terminados") {
             estado = 3;
-            progreso = 100
+            Progreso_respo = 100
+            Progreso_superv = 100
         }
         var data = {
             ACTV_ID: ACTV_ID,
             ACTV_ESTADO: estado,
-            Progreso: progreso
+            Progreso_respo: Progreso_respo,
+            Progreso_superv: Progreso_superv,
         }
         console.log(data);
 
@@ -824,7 +828,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
         noUiSlider.create(slider, {
             start: AVANCE_RESPONSABLE,
-            //connect: true,
+            connect: true,
             step: 1,
             range: {
                 'min': 0,
@@ -835,9 +839,14 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 from: (v) => v | 0
             }
         });
+        
+        slider.noUiSlider.on('update', function(values, handle) {
+            $("#slider1-span").text(values[handle] + "%")
+            // slider1Value.innerHTML = values[handle] + "%";
+        });
         noUiSlider.create(slider_2, {
             start: AVANCE_SUPERVISION,
-            //connect: true,
+            connect: true,
             step: 1,
             range: {
                 'min': 0,
@@ -849,11 +858,10 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             }
         });
 
-        slider.noUiSlider.on('update', function(values, handle) {
-            slider1Value.innerHTML = values[handle] + "%";
-        });
         slider_2.noUiSlider.on('update', function(values, handle) {
-            slider1Value.innerHTML = values[handle] + "%";
+            $("#slider2-span").text(values[handle] + "%")
+
+            // slider1Value_2.innerHTML = values[handle] + "%";
         });
         // $("#ACTV_ACT_ESTADO option[value="+ACTV_ESTADO+"]").attr('selected', 'selected');
         $("#kt_modal_Actividad_Edit").modal('show');

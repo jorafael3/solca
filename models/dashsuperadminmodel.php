@@ -209,7 +209,7 @@ class DashSuperAdminModel extends Model
     {
         $ACTIV_ID = $parametros["ACTV_ID"];
         $ACTV_ESTADO = $parametros["ACTV_ESTADO"];
-        $Progreso = $parametros["Progreso"];
+        // $Progreso = $parametros["Progreso"];
 
         try {
             $sql = "UPDATE " . constant("DB") . ".poa_proyectos_accion_actividades
@@ -219,7 +219,8 @@ class DashSuperAdminModel extends Model
             $query->bindParam(":ACTV_ESTADO", $ACTV_ESTADO);
 
             if ($query->execute()) {
-                echo json_encode(true);
+                $avance = $this->Guardar_ACtividad_avance($parametros);
+                echo json_encode($avance);
                 exit();
             } else {
                 $err = $query->errorInfo();
@@ -236,50 +237,16 @@ class DashSuperAdminModel extends Model
     {
         // SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'poa_proyectos_accion_actividades';
         try {
+            $ACTIV_ID = $parametros["ACTV_ID"];
+            $Progreso_respo = $parametros["Progreso_respo"];
+            $Progreso_superv = $parametros["Progreso_superv"];
 
-            $query = $this->db->connect()->prepare("SELECT MAX(ACTIV_ID) as ID FROM " . constant("DB") . ".poa_proyectos_accion_actividades");
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_avance (?,?,?) ");
+            $query->bindParam(1, $ACTIV_ID);
+            $query->bindParam(2, $Progreso_respo);
+            $query->bindParam(3, $Progreso_superv);
             if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                $ACTIV_ID = $result[0]["ID"];
-                $AVANCE_MES = $parametros["MES_ACTUAL"];
-                $AVANCE_ANIO = $parametros["ANIO_ACTUAL"];
-                $AVANCE_PORCENTAJE = 0;
-                $PROYECTOA_ID = $parametros["PROYECTOA_ID"];
-                $HCREADO = $parametros["HCREADO"];
-                $FCREADO = $parametros["ACTIV_FINICIO"];
-
-                $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion_actividades_avances(
-                    ACTIV_ID, 
-                    AVANCE_MES, 
-                    AVANCE_ANIO, 
-                    AVANCE_PORCENTAJE,
-                    PROYECTOA_ID, 
-                    FCREADO,
-                    HCREADO
-                    ) VALUES (
-                        :ACTIV_ID, 
-                        :AVANCE_MES, 
-                        :AVANCE_ANIO, 
-                        :AVANCE_PORCENTAJE,
-                        :PROYECTOA_ID, 
-                        :FCREADO,
-                        :HCREADO
-                    )";
-                $query2 = $this->db->connect()->prepare($sql);
-                $query2->bindParam(":ACTIV_ID", $ACTIV_ID);
-                $query2->bindParam(":AVANCE_MES", $AVANCE_MES);
-                $query2->bindParam(":AVANCE_ANIO", $AVANCE_ANIO);
-                $query2->bindParam(":AVANCE_PORCENTAJE", $AVANCE_PORCENTAJE);
-                $query2->bindParam(":PROYECTOA_ID", $PROYECTOA_ID);
-                $query2->bindParam(":HCREADO", $HCREADO);
-                $query2->bindParam(":FCREADO", $FCREADO);
-
-                if ($query2->execute()) {
-                    return true;
-                } else {
-                    $err = $query->errorInfo();
-                    return $err;
-                }
+                return true;
             } else {
                 $err = $query->errorInfo();
             }
