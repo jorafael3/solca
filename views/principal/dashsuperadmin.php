@@ -456,9 +456,17 @@ require 'views/header.php';
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="ACT_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
-                                <!--end::Input-->
+                                <select id="ACT_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->resp as $row) {
+                                    ?>
+                                        <option value=<?php echo ($row["US_APELLNOM"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+
                             </div>
 
                             <div class="fv-row mb-7">
@@ -466,6 +474,15 @@ require 'views/header.php';
                                 <!--begin::Input-->
                                 <input type="text" class="form-control" name="datepicker" id="datepicker2" />
 
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Observacion</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="ACT_Obs" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Observacion" required />
+                                <!--end::Input-->
                             </div>
 
                             <!--end::Input group-->
@@ -539,8 +556,16 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Responsable" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Responsable" required />
-                                <!--end::Input-->
+                                <select id="PRY_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->resp as $row) {
+                                    ?>
+                                        <option value=<?php echo ($row["US_APELLNOM"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                             <div class="fv-row mb-7">

@@ -754,14 +754,15 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ANIO_ACTUAL = moment().format("YYYY");
         var MES_ACTUAL = moment().format("MM");
         var ACTIV_NOM = $("#ACT_Nombre").val();
-        var ACTIV_RESPONSABLE = $("#ACT_Responsable").val();
+        var ACT_Obs = $("#ACT_Obs").val();
+        var ACTIV_RESPONSABLE = $("#ACT_Responsable option:selected").text();
         var Pr_ID = PROYECTO_ID;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_PROYECT));
         let POA_INFO = arrdata.filter(id => id.ID_PROYECTO == Pr_ID);
         var ACTIV_ACTIVO = "S";
         var ACTIV_ELIMINADO = "N";
         var HCREADO = moment().format("hh:mm:ss");
-
+        
         var DATA_TO_SEND = {
             ACTIV_NOM: ACTIV_NOM,
             ACTIV_RESPONSABLE: ACTIV_RESPONSABLE,
@@ -777,7 +778,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             ACTIV_ELIMINADO: ACTIV_ELIMINADO,
             HCREADO: HCREADO,
             ANIO_ACTUAL: ANIO_ACTUAL,
-            MES_ACTUAL: MES_ACTUAL
+            MES_ACTUAL: MES_ACTUAL,
+            ACT_Obs:ACT_Obs
         }
 
         if (ACTIV_NOM == "") {
@@ -788,10 +790,10 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
         } else {
 
-
+            console.log(DATA_TO_SEND);
 
             AjaxSendReceive(urlNueva_Actividad, DATA_TO_SEND, function(response) {
-
+                console.log(response);
                 if (response == true) {
                     $("#kt_modal_add_user").modal('hide');
                     Mensaje_Guardado_ok();

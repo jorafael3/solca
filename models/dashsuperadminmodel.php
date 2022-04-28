@@ -56,6 +56,9 @@ class DashSuperAdminModel extends Model
         }
     }
 
+   
+
+
     function Get_Poa($parametros)
     {
         $criterio_id = $parametros["criterio_id"];
@@ -137,14 +140,15 @@ class DashSuperAdminModel extends Model
         $ACTIV_FFINAL = $parametros["ACTIV_FFINAL"];
         $PROYECTOA_ID = $parametros["PROYECTOA_ID"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
-        $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
-        $CRITERIO_ID = $parametros["CRITERIO_ID"];
+        // $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+        // $CRITERIO_ID = $parametros["CRITERIO_ID"];
         $POA_ID = $parametros["POA_ID"];
-        $ACTIV_ACTIVO = $parametros["ACTIV_ACTIVO"];
-        $ACTIV_ELIMINADO = $parametros["ACTIV_ELIMINADO"];
-        $HCREADO = $parametros["HCREADO"];
-        $FCREADO = $ACTIV_FINICIO;
-
+        $ACT_Obs = $parametros["ACT_Obs"];
+        // $ACTIV_ACTIVO = $parametros["ACTIV_ACTIVO"];
+        // $ACTIV_ELIMINADO = $parametros["ACTIV_ELIMINADO"];
+        // $HCREADO = $parametros["HCREADO"];
+        // $FCREADO = $ACTIV_FINICIO;
+        
         try {
             $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion_actividades(
                 `ACTIV_NOM`, 
@@ -175,24 +179,20 @@ class DashSuperAdminModel extends Model
                     :FCREADO,
                     :HCREADO
                 )";
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":ACTIV_NOM", $ACTIV_NOM);
-            $query->bindParam(":ACTIV_RESPONSABLE", $ACTIV_RESPONSABLE);
-            $query->bindParam(":ACTIV_FINICIO", $ACTIV_FINICIO);
-            $query->bindParam(":ACTIV_FFINAL", $ACTIV_FFINAL);
-            $query->bindParam(":PROYECTOA_ID", $PROYECTOA_ID);
-            $query->bindParam(":OBJEST_ID", $OBJEST_ID);
-            $query->bindParam(":PERSPECTIVA_ID", $PERSPECTIVA_ID);
-            $query->bindParam(":CRITERIO_ID", $CRITERIO_ID);
-            $query->bindParam(":POA_ID", $POA_ID);
-            $query->bindParam(":ACTIV_ACTIVO", $ACTIV_ACTIVO);
-            $query->bindParam(":ACTIV_ELIMINADO", $ACTIV_ELIMINADO);
-            $query->bindParam(":HCREADO", $HCREADO);
-            $query->bindParam(":FCREADO", $FCREADO);
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?) ");
+            $query->bindParam(1, $ACTIV_NOM);
+            $query->bindParam(2, $ACTIV_RESPONSABLE);
+            $query->bindParam(3, $ACTIV_FINICIO);
+            $query->bindParam(4, $ACTIV_FFINAL);
+            $query->bindParam(5, $PROYECTOA_ID);
+            $query->bindParam(6, $OBJEST_ID);
+            $query->bindParam(7, $POA_ID);
+            $query->bindParam(8, $ACT_Obs);
+
 
             if ($query->execute()) {
-                $avence = $this->Guardar_ACtividad_avance($parametros);
-                echo json_encode($avence);
+                //$avence = $this->Guardar_ACtividad_avance($parametros);
+                echo json_encode(true);
                 exit();
             } else {
                 $err = $query->errorInfo();

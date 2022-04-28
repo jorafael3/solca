@@ -38,6 +38,8 @@ class Principal extends Controller
     {
         $PErspectivas =  $this->model->Get_Perspectivas();
         $this->view->Perspect = $PErspectivas;
+        $Responsables =  $this->model->Get_Responsables();
+        $this->view->resp = $Responsables;
         $this->view->render('principal/dashsuperadmin');
     }
 }
