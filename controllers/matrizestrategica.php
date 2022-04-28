@@ -28,6 +28,8 @@ class MatrizEstrategica extends Controller
         $this->view->ries_tip = $Riesgostipos;
         $Medios =  $this->model->Get_Medios_verificacion();
         $this->view->medios = $Medios;
+        $Indicadores =  $this->model->Indicadores();
+        $this->view->Indicadores = $Indicadores;
         $this->Matrizrender();
     }
     //*** PERSPECTIVAS ****/

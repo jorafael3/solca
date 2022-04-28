@@ -153,7 +153,7 @@ require 'views/header.php';
     <div class="col-xl-12" id="Seccion_Proyectos" style="display: none;">
         <div class="row">
             <div class="card-body">
-                <button data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
+                <button onclick="Limpiar_Proyectos()" data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
             </div>
         </div>
         <div class="d-flex flex-wrap flex-stack my-5">
@@ -578,7 +578,7 @@ require 'views/header.php';
                                     <?php
                                     foreach ($this->Indica as $row) {
                                     ?>
-                                        <option value=<?php echo ($row["INDICADOR_ID"]); ?>><?php echo ($row["DESCRIPCION"]); ?></option>
+                                        <option value=<?php echo ($row["DESCRIPCION"]); ?>><?php echo ($row["DESCRIPCION"]); ?></option>
                                     <?php
                                     }
                                     ?>

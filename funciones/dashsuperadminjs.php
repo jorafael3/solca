@@ -441,6 +441,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             ARRAY_DATA_PROYECT.push(data);
 
             var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
+            var funcionELiminar = "Proyecto_Eliminar(" + ID_PROYECTO + ");";
+            var funcionedit = "Proyecto_Edit(" + ID_PROYECTO + ");";
 
             if (estado == "S") {
                 estado = "Activo";
@@ -451,17 +453,35 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             }
 
             var Proyect_card = `<div class="col-md-6 col-xl-4" >
-										<a disabled href="#" onclick="` + funcion + `return false;" class="card border-hover-primary">
 											<div class="card-header border-0 pt-9">
 												<div class="card-title m-0">
-													<div class="symbol  bg-light">
-														<i class="fa fa-th symbol-50px w-50px"> </i>
-													</div>
+                                                    <button onclick="` + funcionELiminar + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                        <span class="svg-icon svg-icon-2">
+                                                        <i class="fa fa-trash"></i>
+                                                        </span>
+                                                    
+                                                    </button>
+                                                    <button onclick="` + funcionedit + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                                        <span class="svg-icon svg-icon-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                                    <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                                    <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                                    <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                    </button>
 												</div>
 												<div class="card-toolbar">
 													<span class="badge ` + estado_color + ` fw-bolder me-auto px-4 py-3">` + estado + `</span>
 												</div>
 											</div>
+                                        <a disabled href="#" onclick="` + funcion + `return false;" class="card border-hover-primary">
+
 											<div class="card-body p-9">
 												<div class="fs-5 fw-bolder text-dark">` + nombre + `</div>
 												<p class="text-gray-600 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
@@ -482,7 +502,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 													</div>
 												</div>
 											</div>
-										</butt>
+										</a>
 									</div>`;
             $("#Lista_proyectos").append(Proyect_card);
 
@@ -568,6 +588,74 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         }
 
 
+    }
+
+    function Proyecto_Edit(id) {
+        //Limpiar_Proyectos();
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+        let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
+        console.log(Proyect_info);
+        var PROYECTOA_NOM = Proyect_info[0]["PROYECTOA_NOM"];
+        var PROYECTOA_RESPONSABLE = Proyect_info[0]["PROYECTOA_RESPONSABLE"];
+        var PROYECTOA_INDICADOR = Proyect_info[0]["PROYECTOA_INDICADOR"];
+        var PROYECTOA_META_2022 = Proyect_info[0]["PROYECTOA_META_2022"];
+        var PROYECTOA_META_2023 = Proyect_info[0]["PROYECTOA_META_2023"];
+        var PROYECTOA_META_2024 = Proyect_info[0]["PROYECTOA_META_2024"];
+        var PROYECTOA_META_2025 = Proyect_info[0]["PROYECTOA_META_2025"];
+        var PROYECTOA_META_2026 = Proyect_info[0]["PROYECTOA_META_2026"];
+        var PROYECTOA_META_2027 = Proyect_info[0]["PROYECTOA_META_2027"];
+        var PROYECTOA_META_2028 = Proyect_info[0]["PROYECTOA_META_2028"];
+        var PROYECTOA_META_2029 = Proyect_info[0]["PROYECTOA_META_2029"];
+        var PROYECTOA_META_2030 = Proyect_info[0]["PROYECTOA_META_2030"];
+
+
+        // const dd = document.getElementById('PRY_Responsable');
+        // dd.selectedIndex = [...dd.options].findIndex(option => option.text === PROYECTOA_RESPONSABLE);
+        $("#PRY_Responsable option").filter(function() {
+            //may want to use $.trim in here
+            return $(this).text() == PROYECTOA_RESPONSABLE;
+        }).attr('selected', true).change();
+
+        $("#PRY_indicador option").filter(function() {
+            //may want to use $.trim in here
+            return $(this).text() == PROYECTOA_INDICADOR;
+        }).attr('selected', true).change();
+
+        $("#PRY_Nombre").val(PROYECTOA_NOM);
+        $("#PRY_Meta2022").val(PROYECTOA_META_2022);
+        $("#PRY_Meta2023").val(PROYECTOA_META_2023);
+        $("#PRY_Meta2024").val(PROYECTOA_META_2024);
+        $("#PRY_Meta2025").val(PROYECTOA_META_2025);
+        $("#PRY_Meta2026").val(PROYECTOA_META_2026);
+        $("#PRY_Meta2027").val(PROYECTOA_META_2027);
+        $("#PRY_Meta2028").val(PROYECTOA_META_2028);
+        $("#PRY_Meta2029").val(PROYECTOA_META_2029);
+        $("#PRY_Meta2030").val(PROYECTOA_META_2030);
+
+        $("#kt_modal_Nuevo_Proyecto").modal('show');
+
+
+    }
+
+    function Proyecto_Eliminar(id) {
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+        let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
+        console.log(Proyect_info);
+    }
+
+    function Limpiar_Proyectos(){
+        $("#PRY_Nombre").val("");
+        $("#PRY_Meta2022").val("");
+        $("#PRY_Meta2023").val("");
+        $("#PRY_Meta2024").val("");
+        $("#PRY_Meta2025").val("");
+        $("#PRY_Meta2026").val("");
+        $("#PRY_Meta2027").val("");
+        $("#PRY_Meta2028").val("");
+        $("#PRY_Meta2029").val("");
+        $("#PRY_Meta2030").val("");
+        $("#PRY_Responsable").val(0).change();
+        $("#PRY_indicador").val(0).change();
     }
 
     //********* */ ACTIVIDADES **********/

@@ -63,6 +63,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
     var CRITERIO_ID;
     var OBJEST_ID;
     var INDICADOR_ID;
+    var PERSPECTIVA_NOM;
     //***** PERSPECTIVAS */
 
     function Get_Perspectivas() {
@@ -161,11 +162,17 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         if (Nombre_cri != "") {
 
             var data = {
-                CRITERIO_NOM: Nombre_cri
+                CRITERIO_NOM: Nombre_cri,
+                PERSPECTIVA_ID: PERSPECTIVA_ID
             }
 
             AjaxSendReceive(urlNuevo_criterio, data, function(response) {
                 console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Criterio").modal('hide');
+                    $("#CRIT_Nombre").val("");
+                    Get_Criterios(PERSPECTIVA_ID, PERSPECTIVA_NOM)
+                }
             })
 
         }
@@ -263,8 +270,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
 
     function Nuevo_OBj_Estrategico() {
         var OBJ_Nombre = $("#OBJ_Nombre").val();
-        var OBJ_Indicador = $("#OBJ_Indicador").val();
-        var OBJ_Medio = $("#OBJ_Medio").val();
+        var OBJ_Indicador = $("#OBJ_Indicador option:selected").text();
+        var OBJ_Medio = $("#OBJ_Medio option:selected").text();
 
         if (OBJ_Nombre == "") {
 
@@ -289,6 +296,14 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
 
                 AjaxSendReceive(urlNuevo_Obj_Estrategico, data, function(response) {
                     console.log(response);
+                    if (response == true) {
+                        Get_Objetivos_Estrategicos(data)
+                        $("#kt_modal_add_Obj_estrategicos").modal('hide');
+                        $("#OBJ_Nombre").val("");
+                        $("#OBJ_Indicador").val(-1).change();
+                        $("#OBJ_Medio").val(-1).change();
+
+                    }
                 })
             }
 
@@ -526,7 +541,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
                 DESCRIPCION: nombre,
                 MVERIFICACION_ID: medio,
                 OBJEST_ID: OBJEST_ID,
-                INDICADOR_ID:INDICADOR_ID
+                INDICADOR_ID: INDICADOR_ID
             }
             console.log(data);
 
@@ -686,8 +701,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
                 RIESGO_NOM: RIES_Nombre,
                 INDICE: RIES_Indice,
                 RIESGOTIPO_ID: RIES_tipo,
-                RIESGO_ID:INDICADOR_ID,
-                OBJEST_ID:OBJEST_ID
+                RIESGO_ID: INDICADOR_ID,
+                OBJEST_ID: OBJEST_ID
             }
             console.log(data);
 
@@ -839,8 +854,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
             var data = {
                 FOR_Nombre: FOR_Nombre,
                 FOR_Indice: FOR_Indice,
-                FORTALEZA_ID:INDICADOR_ID,
-                OBJEST_ID:OBJEST_ID
+                FORTALEZA_ID: INDICADOR_ID,
+                OBJEST_ID: OBJEST_ID
             }
             console.log(data);
 
@@ -993,8 +1008,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
             var data = {
                 OPOR_Nombre: OPOR_Nombre,
                 OPOR_Indice: OPOR_Indice,
-                OPORTUNIDAD_ID:INDICADOR_ID,
-                OBJEST_ID:OBJEST_ID
+                OPORTUNIDAD_ID: INDICADOR_ID,
+                OBJEST_ID: OBJEST_ID
             }
             console.log(data);
 
@@ -1094,7 +1109,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         });
     }
 
-    
+
     function Nuevo_Debilidad() {
         var nombre = $("#DEB_Nombre").val();
         var indice = $("#DEB_Indice").val();
@@ -1122,7 +1137,7 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         }
     }
 
-    
+
     function Set_Data_To_Update_Debilidad(data) {
         console.log(data);
         $("#Btn_Nuevo_Debilidad_b").hide();
@@ -1148,8 +1163,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
             var data = {
                 DEB_Nombre: DEB_Nombre,
                 DEB_Indice: DEB_Indice,
-                OPORTUNIDAD_ID:INDICADOR_ID,
-                OBJEST_ID:OBJEST_ID
+                OPORTUNIDAD_ID: INDICADOR_ID,
+                OBJEST_ID: OBJEST_ID
             }
             console.log(data);
 
@@ -1301,8 +1316,8 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
             var data = {
                 AME_Nombre: AME_Nombre,
                 AME_Indice: AME_Indice,
-                AMENAZA_ID:INDICADOR_ID,
-                OBJEST_ID:OBJEST_ID
+                AMENAZA_ID: INDICADOR_ID,
+                OBJEST_ID: OBJEST_ID
             }
             console.log(data);
 

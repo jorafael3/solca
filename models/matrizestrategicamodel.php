@@ -11,6 +11,26 @@ class MatrizEstrategicaModel extends Model
         //$this->view->render('principal/index');
         //echo "nuevo controlaodr";
     }
+    //***INDICADORES */
+    function Indicadores()
+    {
+        try {
+            $sql = "SELECT * FROM " . constant("DB") . ".indicadores ";
+            $query = $this->db->connect()->prepare($sql);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 
     //** PERSPECTIVAS *//
 
@@ -103,10 +123,12 @@ class MatrizEstrategicaModel extends Model
     function Nuevo_criterio($parametros)
     {
         $CRITERIO_NOM = $parametros["CRITERIO_NOM"];
+        $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
         try {
-            $sql = "CALL " . constant("DB") . ".create_criterio (?) ";
+            $sql = "CALL " . constant("DB") . ".create_criterio (?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $CRITERIO_NOM);
+            $query->bindParam(2, $PERSPECTIVA_ID);
 
             if ($query->execute()) {
                 echo json_encode(true);
@@ -223,7 +245,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Nuevo_Indicador($parametros){
+    function Nuevo_Indicador($parametros)
+    {
         $DESCRIPCION = $parametros["DESCRIPCION"];
         $MVERIFICACION_ID = $parametros["MVERIFICACION_ID"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -248,13 +271,14 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Indicador($parametros){
+    function Actualizar_Indicador($parametros)
+    {
         $DESCRIPCION = $parametros["DESCRIPCION"];
         $INDICADOR_ID = $parametros["INDICADOR_ID"];
         $MVERIFICACION_ID = $parametros["MVERIFICACION_ID"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_indicador (?,?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_indicador (?,?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $DESCRIPCION);
             $query->bindParam(2, $INDICADOR_ID);
@@ -319,7 +343,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Nuevo_Riesgo($parametros){
+    function Nuevo_Riesgo($parametros)
+    {
         $RIESGO_NOM = $parametros["RIESGO_NOM"];
         $riesgotipo = $parametros["RIESGOTIPO_ID"];
         $INDICE = $parametros["INDICE"];
@@ -346,13 +371,14 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Riesgo($parametros){
+    function Actualizar_Riesgo($parametros)
+    {
         $RIESGO_NOM = $parametros["RIESGO_NOM"];
         $INDICE = $parametros["INDICE"];
         $RIESGOTIPO_ID = $parametros["RIESGOTIPO_ID"];
         $RIESGO_ID = $parametros["RIESGO_ID"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_riesgo (?,?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_riesgo (?,?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $RIESGO_ID);
             $query->bindParam(2, $RIESGO_NOM);
@@ -397,7 +423,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Nuevo_Fortaleza($parametros){
+    function Nuevo_Fortaleza($parametros)
+    {
         $FORTALEZA_NOM = $parametros["FORTALEZA_NOM"];
         $INDICE = $parametros["INDICE"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -422,12 +449,13 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Fortaleza($parametros){
+    function Actualizar_Fortaleza($parametros)
+    {
         $FORTALEZA_ID = $parametros["FORTALEZA_ID"];
         $FOR_Nombre = $parametros["FOR_Nombre"];
         $FOR_Indice = $parametros["FOR_Indice"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_fortaleza (?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_fortaleza (?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $FORTALEZA_ID);
             $query->bindParam(2, $FOR_Nombre);
@@ -471,7 +499,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Nuevo_Oportunidad($parametros){
+    function Nuevo_Oportunidad($parametros)
+    {
         $OPORTUNIDAD_NOM = $parametros["OPORTUNIDAD_NOM"];
         $INDICE = $parametros["INDICE"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -496,12 +525,13 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Oportunidad($parametros){
+    function Actualizar_Oportunidad($parametros)
+    {
         $OPORTUNIDAD_ID = $parametros["OPORTUNIDAD_ID"];
         $OPOR_Nombre = $parametros["OPOR_Nombre"];
         $OPOR_Indice = $parametros["OPOR_Indice"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_oportunidad (?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_oportunidad (?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $OPORTUNIDAD_ID);
             $query->bindParam(2, $OPOR_Nombre);
@@ -544,10 +574,11 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
-    
-   
 
-    function Nuevo_Debilidad($parametros){
+
+
+    function Nuevo_Debilidad($parametros)
+    {
         $DEBILIDAD_NOM = $parametros["DEBILIDAD_NOM"];
         $INDICE = $parametros["INDICE"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -572,12 +603,13 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Debilidad($parametros){
+    function Actualizar_Debilidad($parametros)
+    {
         $OPORTUNIDAD_ID = $parametros["OPORTUNIDAD_ID"];
         $DEB_Nombre = $parametros["DEB_Nombre"];
         $DEB_Indice = $parametros["DEB_Indice"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_debilidad (?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_debilidad (?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $OPORTUNIDAD_ID);
             $query->bindParam(2, $DEB_Nombre);
@@ -621,7 +653,8 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Nuevo_Amenaza($parametros){
+    function Nuevo_Amenaza($parametros)
+    {
         $AMENAZA_NOM = $parametros["AMENAZA_NOM"];
         $INDICE = $parametros["INDICE"];
         $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -646,12 +679,13 @@ class MatrizEstrategicaModel extends Model
         }
     }
 
-    function Actualizar_Amenaza($parametros){
+    function Actualizar_Amenaza($parametros)
+    {
         $AMENAZA_ID = $parametros["AMENAZA_ID"];
         $AME_Nombre = $parametros["AME_Nombre"];
         $AME_Indice = $parametros["AME_Indice"];
         try {
-        $sql = "CALL " . constant("DB") . ".edit_amenaza (?,?,?) ";
+            $sql = "CALL " . constant("DB") . ".edit_amenaza (?,?,?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $AMENAZA_ID);
             $query->bindParam(2, $AME_Nombre);
@@ -670,5 +704,4 @@ class MatrizEstrategicaModel extends Model
             return $e;
         }
     }
-    
 }
