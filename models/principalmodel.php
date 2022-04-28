@@ -53,4 +53,24 @@ class PrincipalModel extends Model
             return $e;
         }
     }
+
+    function Get_indicadores()
+    {
+        try {
+            $sql = "SELECT * FROM " . constant("DB") . ".indicadores";
+            $query = $this->db->connect()->prepare($sql);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 }

@@ -56,8 +56,8 @@ class DashSuperAdminModel extends Model
         }
     }
 
-   
 
+    //** POA */
 
     function Get_Poa($parametros)
     {
@@ -84,6 +84,7 @@ class DashSuperAdminModel extends Model
         }
     }
 
+    //** PROYECTO  */
     function Get_Proyectos($parametros)
     {
 
@@ -107,7 +108,94 @@ class DashSuperAdminModel extends Model
             return $e;
         }
     }
+    function Nuevo_Proyecto($parametros)
+    {
+        try {
+            $PROYECTOA_NOM = $parametros["PROYECTOA_NOM"];
+            $PROYECTOA_RESPONSABLE = $parametros["PROYECTOA_RESPONSABLE"];
+            $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
+            $POA_ID = $parametros["POA_ID"];
+            $OBJEST_ID = $parametros["OBJEST_ID"];
+            $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+            $CRITERIO_ID = $parametros["CRITERIO_ID"];
+            $PROYECTOA_META_2022 = $parametros["PROYECTOA_META_2022"];
+            $PROYECTOA_META_2023 = $parametros["PROYECTOA_META_2023"];
+            $PROYECTOA_META_2024 = $parametros["PROYECTOA_META_2024"];
+            $PROYECTOA_META_2025 = $parametros["PROYECTOA_META_2025"];
+            $PROYECTOA_META_2026 = $parametros["PROYECTOA_META_2026"];
+            $PROYECTOA_META_2027 = $parametros["PROYECTOA_META_2027"];
+            $PROYECTOA_META_2028 = $parametros["PROYECTOA_META_2028"];
+            $PROYECTOA_META_2029 = $parametros["PROYECTOA_META_2029"];
+            $PROYECTOA_META_2030 = $parametros["PROYECTOA_META_2030"];
+            // $PROYECTOA_ACTIVO = $parametros["PROYECTOA_ACTIVO"];
+            // $PROYECTOA_ELIMINADO = $parametros["PROYECTOA_ELIMINADO"];
+            // $FCREADO = $parametros["FCREADO"];
+            // $HCREADO = $parametros["HCREADO"];
 
+
+
+            $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion(
+                PROYECTOA_NOM, 
+                PROYECTOA_RESPONSABLE, 
+                PROYECTOA_INDICADOR, 
+                POA_ID, 
+                OBJEST_ID, 
+                PERSPECTIVA_ID, 
+                CRITERIO_ID, 
+                PROYECTOA_META_2022, 
+                PROYECTOA_META_2023, 
+                PROYECTOA_ACTIVO, 
+                PROYECTOA_ELIMINADO, 
+                FCREADO, 
+                HCREADO
+                )
+                VALUES(
+                  :PROYECTOA_NOM, 
+                  :PROYECTOA_RESPONSABLE, 
+                  :PROYECTOA_INDICADOR, 
+                  :POA_ID, 
+                  :OBJEST_ID, 
+                  :PERSPECTIVA_ID, 
+                  :CRITERIO_ID, 
+                  :PROYECTOA_META_2022, 
+                  :PROYECTOA_META_2023, 
+                  :PROYECTOA_ACTIVO, 
+                  :PROYECTOA_ELIMINADO, 
+                  :FCREADO, 
+                  :HCREADO
+                    
+                );";
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+            $query->bindParam(1, $PROYECTOA_NOM);
+            $query->bindParam(2, $PROYECTOA_RESPONSABLE);
+            $query->bindParam(3, $PROYECTOA_INDICADOR);
+            $query->bindParam(4, $POA_ID);
+            $query->bindParam(5, $OBJEST_ID);
+            $query->bindParam(6, $PROYECTOA_META_2022);
+            $query->bindParam(7, $PROYECTOA_META_2023);
+            $query->bindParam(8, $PROYECTOA_META_2024);
+            $query->bindParam(9, $PROYECTOA_META_2025);
+            $query->bindParam(10, $PROYECTOA_META_2026);
+            $query->bindParam(11, $PROYECTOA_META_2027);
+            $query->bindParam(12, $PROYECTOA_META_2028);
+            $query->bindParam(13, $PROYECTOA_META_2029);
+            $query->bindParam(14, $PROYECTOA_META_2030);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //** ACTIVIDADES **/
     function Get_Proyectos_Detalles($parametros)
     {
 
@@ -148,7 +236,7 @@ class DashSuperAdminModel extends Model
         // $ACTIV_ELIMINADO = $parametros["ACTIV_ELIMINADO"];
         // $HCREADO = $parametros["HCREADO"];
         // $FCREADO = $ACTIV_FINICIO;
-        
+
         try {
             $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion_actividades(
                 `ACTIV_NOM`, 
@@ -256,85 +344,6 @@ class DashSuperAdminModel extends Model
         }
     }
 
-    function Nuevo_Proyecto($parametros)
-    {
-        try {
-            $PROYECTOA_NOM = $parametros["PROYECTOA_NOM"];
-            $PROYECTOA_RESPONSABLE = $parametros["PROYECTOA_RESPONSABLE"];
-            $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
-            $POA_ID = $parametros["POA_ID"];
-            $OBJEST_ID = $parametros["OBJEST_ID"];
-            $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
-            $CRITERIO_ID = $parametros["CRITERIO_ID"];
-            $PROYECTOA_META_2022 = $parametros["PROYECTOA_META_2022"];
-            $PROYECTOA_META_2023 = $parametros["PROYECTOA_META_2023"];
-            $PROYECTOA_ACTIVO = $parametros["PROYECTOA_ACTIVO"];
-            $PROYECTOA_ELIMINADO = $parametros["PROYECTOA_ELIMINADO"];
-            $FCREADO = $parametros["FCREADO"];
-            $HCREADO = $parametros["HCREADO"];
-
-
-
-            $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion(
-                PROYECTOA_NOM, 
-                PROYECTOA_RESPONSABLE, 
-                PROYECTOA_INDICADOR, 
-                POA_ID, 
-                OBJEST_ID, 
-                PERSPECTIVA_ID, 
-                CRITERIO_ID, 
-                PROYECTOA_META_2022, 
-                PROYECTOA_META_2023, 
-                PROYECTOA_ACTIVO, 
-                PROYECTOA_ELIMINADO, 
-                FCREADO, 
-                HCREADO
-                )
-                VALUES(
-                  :PROYECTOA_NOM, 
-                  :PROYECTOA_RESPONSABLE, 
-                  :PROYECTOA_INDICADOR, 
-                  :POA_ID, 
-                  :OBJEST_ID, 
-                  :PERSPECTIVA_ID, 
-                  :CRITERIO_ID, 
-                  :PROYECTOA_META_2022, 
-                  :PROYECTOA_META_2023, 
-                  :PROYECTOA_ACTIVO, 
-                  :PROYECTOA_ELIMINADO, 
-                  :FCREADO, 
-                  :HCREADO
-                    
-                );";
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":PROYECTOA_NOM", $PROYECTOA_NOM);
-            $query->bindParam(":PROYECTOA_RESPONSABLE", $PROYECTOA_RESPONSABLE);
-            $query->bindParam(":PROYECTOA_INDICADOR", $PROYECTOA_INDICADOR);
-            $query->bindParam(":POA_ID", $POA_ID);
-            $query->bindParam(":OBJEST_ID", $OBJEST_ID);
-            $query->bindParam(":PERSPECTIVA_ID", $PERSPECTIVA_ID);
-            $query->bindParam(":CRITERIO_ID", $CRITERIO_ID);
-            $query->bindParam(":PROYECTOA_META_2022", $PROYECTOA_META_2022);
-            $query->bindParam(":PROYECTOA_META_2023", $PROYECTOA_META_2023);
-            $query->bindParam(":PROYECTOA_ACTIVO", $PROYECTOA_ACTIVO);
-            $query->bindParam(":PROYECTOA_ELIMINADO", $PROYECTOA_ELIMINADO);
-            $query->bindParam(":FCREADO", $FCREADO);
-            $query->bindParam(":HCREADO", $HCREADO);
-
-            if ($query->execute()) {
-                echo json_encode(true);
-                exit();
-            } else {
-                $err = $query->errorInfo();
-                echo json_encode($err);
-                exit();
-            }
-        } catch (PDOException $e) {
-            $e = $e->getMessage();
-            return $e;
-        }
-    }
-
     function Eliminar_Actividad($parametros)
     {
         $ACTIV_ID = $parametros["ACTV_ID"];
@@ -365,5 +374,4 @@ class DashSuperAdminModel extends Model
             return $e;
         }
     }
-    
 }

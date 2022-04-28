@@ -556,7 +556,7 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="PRY_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                <select id="PRY_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Responsable" name="target_assign" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
@@ -573,8 +573,16 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Indicador</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_indicador" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Indicador" required />
-                                <!--end::Input-->
+                                <select id="PRY_indicador" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Indicador" name="target_assign" required>
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->Indica as $row) {
+                                    ?>
+                                        <option value=<?php echo ($row["INDICADOR_ID"]); ?>><?php echo ($row["DESCRIPCION"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                             <div class="fv-row mb-7">
@@ -594,8 +602,63 @@ require 'views/header.php';
                                 <input type="text" id="PRY_Meta2023" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2023" required />
                                 <!--end::Input-->
                             </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2024</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2024" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2024" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2025</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2025" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2025" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2026</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2026" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2026" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2027</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2027" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2027" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2028</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2028" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2028" required />
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2029</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2029" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2029" required />
+                                <!--end::Input-->
+                            </div>
 
-
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Meta 2030</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="PRY_Meta2030" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2030" required />
+                                <!--end::Input-->
+                            </div>
 
 
 
@@ -862,6 +925,19 @@ require 'views/header.php';
 
         $(".btn_close_mo_2").click(function() {
             $("#kt_modal_Nuevo_Proyecto").modal('hide');
+            $("#PRY_Nombre").val("");
+            $("#PRY_Meta2022").val("");
+            $("#PRY_Meta2023").val("");
+            $("#PRY_Meta2024").val("");
+            $("#PRY_Meta2025").val("");
+            $("#PRY_Meta2026").val("");
+            $("#PRY_Meta2027").val("");
+            $("#PRY_Meta2028").val("");
+            $("#PRY_Meta2029").val("");
+            $("#PRY_Meta2030").val("");
+            $("#PRY_Responsable").val(0).change();
+            $("#PRY_indicador").val(0).change();
+
         });
         $(".btn_close_mo_3").click(function() {
             $("#kt_modal_Actividad_Edit").modal('hide');
