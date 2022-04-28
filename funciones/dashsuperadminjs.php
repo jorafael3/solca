@@ -546,6 +546,42 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
     }
 
+    function Proyecto_info_Drag(id) {
+        PROYECTO_ID = id;
+        $("#Seccion_Proyectos").hide(100);
+        $("#Seccion_Proyectos_Detalle").show(100);
+        $("#Seccion_Perspectivas").hide(100);
+
+
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+        let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
+
+        var nombre = Proyect_info[0]["PROYECTOA_NOM"];
+        var indicador = Proyect_info[0]["PROYECTOA_INDICADOR"];
+        var Fecha_creacion = Proyect_info[0]["FCREADO"];
+        var Responsable = Proyect_info[0]["PROYECTOA_RESPONSABLE"];
+        var ID_PROYECTO = Proyect_info[0]["PROYECTOA_ID"];
+
+        $("#Proyecto_nom").text(nombre);
+        $("#PROYECTOA_INDICADOR").text(indicador);
+        $("#FCREADO").text(Fecha_creacion);
+        $("#PROYECTOA_RESPONSABLE").text(Responsable);
+        $("#PROYECTOA_CRITERIO").text(CRITERIO_NOM);
+        $("#PROYECTOA_AREA").text(POA_AREA);
+        $("#PROYECTOA_DEPARTAMENTO").text(POA_DEPT);
+        $("#PROYECTOA_POA").text(POA_NOM);
+
+        var data = {
+            id_proyecto: ID_PROYECTO
+        };
+        AjaxSendReceive2(urlGet_Proyectos_detalles, data, function(response) {
+            create_proyect_targets_cards(response);
+            ARRAY_DATA_ACTIVIDADES = response;
+            console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
+        });
+
+    }
+
     /**@abstract
      * CREA LAS CARTILLAS DE LAS ACTIVIDADES DEL PROYECTO
      */
@@ -677,9 +713,12 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var progreso = ""
         if (id == "Pr_En_Revision") {
             estado = 1;
+            progreso = 0;
 
         } else if (id == "Pr_En_Progreso") {
             estado = 2;
+            progreso = 0;
+
         } else if (id == "Pr_Terminados") {
             estado = 3;
             progreso = 100
@@ -693,6 +732,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
         AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
             console.log(response);
+            if(response == true){
+                Proyecto_info_Drag(PROYECTO_ID);
+            }
         });
     }
 
@@ -763,6 +805,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
         var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
+        var AVANCE_RESPONSABLE = ACTIVIDAD_INFO[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AVANCE_SUPERVISION = ACTIVIDAD_INFO[0]["max(AV.AVANCE_SUPERVISION)"];
         if (AVANCE_SUPERVISION == "") {
             AVANCE_SUPERVISION = 0;
@@ -770,13 +813,29 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $('#ACTV_ACT_ESTADO').val(ACTV_ESTADO);
 
         var slider = document.getElementById('slider');
+        var slider_2 = document.getElementById('slider_2');
         var slider1Value = document.getElementById('slider1-span');
+        var slider1Value_2 = document.getElementById('slider2-span');
         sliderActive = false;
         $('.sliderContainer').attr('class', 'sliderContainer');
         $('.noUi-base').remove();
         delete slider.noUiSlider;
+        delete slider_2.noUiSlider;
 
         noUiSlider.create(slider, {
+            start: AVANCE_RESPONSABLE,
+            //connect: true,
+            step: 1,
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            format: {
+                to: (v) => v | 0,
+                from: (v) => v | 0
+            }
+        });
+        noUiSlider.create(slider_2, {
             start: AVANCE_SUPERVISION,
             //connect: true,
             step: 1,
@@ -793,6 +852,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         slider.noUiSlider.on('update', function(values, handle) {
             slider1Value.innerHTML = values[handle] + "%";
         });
+        slider_2.noUiSlider.on('update', function(values, handle) {
+            slider1Value.innerHTML = values[handle] + "%";
+        });
         // $("#ACTV_ACT_ESTADO option[value="+ACTV_ESTADO+"]").attr('selected', 'selected');
         $("#kt_modal_Actividad_Edit").modal('show');
 
@@ -806,12 +868,15 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTV_ID = ACTV_ACTUAL_EDIT;
         var estado = $("#ACTV_ACT_ESTADO").val();
         var slider = document.getElementById('slider');
-        var Progreso = slider.noUiSlider.get();
+        var slider_2 = document.getElementById('slider_2');
+        var Progreso_respo = slider.noUiSlider.get();
+        var Progreso_superv = slider_2.noUiSlider.get();
 
         var data = {
             ACTV_ID: ACTV_ID,
             ACTV_ESTADO: estado,
-            Progreso: Progreso
+            Progreso_respo: Progreso_respo,
+            Progreso_superv: Progreso_superv,
         }
         console.log(data);
 

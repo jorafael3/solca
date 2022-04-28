@@ -12,7 +12,9 @@ define('CHARSET', 'utf8mb4');
 
 //jpalomeque@yahoo.com
 //Jaimillo1980.
-
+//u995-ynmlb4plcc3y
+//18765
+//us16.siteground.us host
 // [14:53, 5/3/2022] Edison Sanchez: base de datos
 // [14:53, 5/3/2022] Edison Sanchez: dbw1p61yhfz2lr
 // [14:53, 5/3/2022] Edison Sanchez: usuario ugtikepkfhpg6

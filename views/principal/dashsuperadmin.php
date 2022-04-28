@@ -100,7 +100,7 @@ require 'views/header.php';
                             </h2>
                             <!--end::Heading-->
                             <!--begin::Controls-->
-                           
+
                             <!--end::Controls-->
                         </div>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
@@ -126,7 +126,7 @@ require 'views/header.php';
                                 <div class="m-0">
                                     <!--begin::Select-->
                                     <select id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
-                                        
+
                                     </select>
                                     <!--end::Select-->
                                 </div>
@@ -643,12 +643,23 @@ require 'views/header.php';
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">Progreso</label>
+                                <label class="required fw-bold fs-6 mb-2">Progreso Responsable</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <div id="slider"></div>
                                 <br>
                                 <span id="slider1-span"></span>
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Progreso Surpevisor</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <div id="slider_2"></div>
+                                <br>
+                                <span id="slider2-span"></span>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -770,16 +781,27 @@ require 'views/header.php';
             revertOnSpill: true,
             accepts: function(el, target, source, sibling) {
                 //console.log(el);
-                TARGET_ID = target.id
-                Actualizar_Arrastrando();
+                // TARGET_ID = target.id
+                // Actualizar_Arrastrando();
                 // console.log(source);
                 // console.log(sibling);
                 return true; // elements can be dropped in any of the `containers` by default
             },
             moves: function(el, source, handle, sibling) {
-
+                // TARGET_ID = source.id
+                // Actualizar_Arrastrando();
                 return true; // elements are always draggable by default
-            },
+            }
+        }).on('drop', function(el, source) {
+            console.log("droppp", source.id);
+            // if ($('drop-target').children.length > 0) {
+            //     $('display').innerHTML = $('drop-target').innerHTML;
+            // } else {
+            //     $('display').innerHTML = "Display";
+            // }
+            TARGET_ID = source.id
+            Actualizar_Arrastrando();
+
         });
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
