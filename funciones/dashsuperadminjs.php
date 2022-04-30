@@ -237,8 +237,11 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             criterio_id: criterio_id,
             perspectiva_id: PERSPECTIVA_ID
         }
+        console.log(data);
 
         AjaxSendReceive(urlGet_Poa, data, function(response) {
+            console.log("POA", response);
+
             if (response.length != 0) {
                 console.log("POA", response);
                 ARR_POAS = response;

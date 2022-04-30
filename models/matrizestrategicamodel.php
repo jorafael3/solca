@@ -152,8 +152,8 @@ class MatrizEstrategicaModel extends Model
         try {
             $sql = "CALL " . constant("DB") . ".Objetivos_Estrategicos (?,?) ";
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(1, $criterio_id);
-            $query->bindParam(2, $perspectiva_id);
+            $query->bindParam(1, $perspectiva_id);
+            $query->bindParam(2, $criterio_id);
 
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);

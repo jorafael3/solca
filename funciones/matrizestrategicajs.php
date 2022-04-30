@@ -248,9 +248,10 @@ $urlActualizar_Amenaza = constant("URL") . "matrizestrategica/Actualizar_Amenaza
         CRITERIO_NOM = data["CRITERIO_NOM"];
         CRITERIO_ID = criterio_id;
         var data = {
-            criterio_id: criterio_id,
-            perspectiva_id: PERSPECTIVA_ID
+            criterio_id: parseInt(criterio_id),
+            perspectiva_id: parseInt(PERSPECTIVA_ID)
         }
+        console.log(data)
 
         AjaxSendReceive(urlObjetivos_Estrategicos, data, function(response) {
             console.log("Objetivos_Estrategicos", response);
