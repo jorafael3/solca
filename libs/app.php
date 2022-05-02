@@ -34,15 +34,23 @@ class App
 
 
                     $param = [];
-                    for ($i = 2; $i < $nparam; $i++) {
+                    for ($i = 1; $i < $nparam; $i++) {
                         array_push($param, $url[$i]);
                     }
                     $controller->{$url[1]}($param);
                 } else {
-                    $controller->{$url[1]}();
+                    try {
+                        $controller->{$url[1]}();
+                    } catch (Exception $e) {
+                        include_once 'views/errores/500.php';
+                    }
                 }
             } else {
-                $controller->render();
+                try {
+                    $controller->render();
+                } catch (Exception $e) {
+                    include_once 'views/errores/500.php';
+                }
             }
         } else {
             $controller = new Errores();

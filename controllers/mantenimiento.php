@@ -78,12 +78,12 @@ class Mantenimiento extends Controller
 
     function Nuevos_Departamentos_Areas()
     {
-        $departamentos =  $this->model->Cargar_Departamentos();
-        $this->view->depts = $departamentos;
-        $areas =  $this->model->Cargar_Areas();
-        $this->view->areas = $areas;
-        $servicios =  $this->model->Cargar_Servicio();
-        $this->view->servicios = $servicios;
+        // $departamentos =  $this->model->Cargar_Departamentos();
+        // $this->view->depts = $departamentos;
+        // $areas =  $this->model->Cargar_Areas();
+        // $this->view->areas = $areas;
+        // $servicios =  $this->model->Cargar_Servicio();
+        // $this->view->servicios = $servicios;
         // $ciudades =  $this->model->Cargar_Ciudades();
         // $this->view->ciudades = $ciudades;
         // $paises =  $this->model->Cargar_Paises();
@@ -91,6 +91,41 @@ class Mantenimiento extends Controller
         $this->Dept_Areas_render();
     }
 
+    function Cargar_Departamentos()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Departamentos($array);
+    }
+
+    
+    function Cargar_Areas()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Areas($array);
+    }
+
+    function Cargar_Servicio()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Servicio($array);
+    }
+
+    function Cargar_Ciudades()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Ciudades($array);
+    }
+
+    function Cargar_Paises()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Paises($array);
+    }
     //************************************* *//
     //**** FIN CREAR DEPARTAMENTOS AREAS */
     //************************************* *//

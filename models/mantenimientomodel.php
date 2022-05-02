@@ -191,9 +191,9 @@ class MantenimientoModel extends Model
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-                // echo json_encode($result);
-                // exit();
+                // return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
@@ -212,9 +212,9 @@ class MantenimientoModel extends Model
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-                // echo json_encode($result);
-                // exit();
+                // return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
@@ -233,9 +233,9 @@ class MantenimientoModel extends Model
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-                // echo json_encode($result);
-                // exit();
+                // return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
@@ -246,6 +246,7 @@ class MantenimientoModel extends Model
             return $e;
         }
     }
+
     function Cargar_Ciudades(){
         try {
             $sql = "SELECT *
@@ -253,9 +254,9 @@ class MantenimientoModel extends Model
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-                // echo json_encode($result);
-                // exit();
+                // return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
@@ -266,6 +267,7 @@ class MantenimientoModel extends Model
             return $e;
         }
     }
+
     function Cargar_Paises(){
         try {
             $sql = "SELECT *
@@ -273,9 +275,9 @@ class MantenimientoModel extends Model
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-                // echo json_encode($result);
-                // exit();
+                // return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
