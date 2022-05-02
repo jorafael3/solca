@@ -78,16 +78,7 @@ class Mantenimiento extends Controller
 
     function Nuevos_Departamentos_Areas()
     {
-        // $departamentos =  $this->model->Cargar_Departamentos();
-        // $this->view->depts = $departamentos;
-        // $areas =  $this->model->Cargar_Areas();
-        // $this->view->areas = $areas;
-        // $servicios =  $this->model->Cargar_Servicio();
-        // $this->view->servicios = $servicios;
-        // $ciudades =  $this->model->Cargar_Ciudades();
-        // $this->view->ciudades = $ciudades;
-        // $paises =  $this->model->Cargar_Paises();
-        // $this->view->paises = $paises;
+
         $this->Dept_Areas_render();
     }
 
@@ -98,7 +89,21 @@ class Mantenimiento extends Controller
         $function = $this->model->Cargar_Departamentos($array);
     }
 
-    
+    function Nuevo_Departamento()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Departamento($array);
+    }
+
+    function Actualizar_Departamento()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Departamento($array);
+    }
+
+
     function Cargar_Areas()
 
     {
@@ -132,5 +137,53 @@ class Mantenimiento extends Controller
 
 
 
+    function Prespec_crit_render()
+    {
+        $PErspectivas =  $this->model->Get_Perspectivas(1);
+        $this->view->Perspect = $PErspectivas;
+        $this->view->render('mantenimiento/perspcrit');
+    }
 
+
+    function Nuevas_perspectivas_Criterios()
+    {
+        $this->Prespec_crit_render();
+    }
+
+    function Get_Perspectivas()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Perspectivas(2);
+    }
+
+    function Nueva_perspectiva()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nueva_perspectiva($array);
+    }
+
+    function Actualizar_perspectiva()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_perspectiva($array);
+    }
+
+    //** criterios */
+    function Get_Criterios()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Criterios($array);
+    }
+
+    function Nuevo_Criterios()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_criterio($array);
+    }
+
+    function Actualizar_Criterio()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Criterio($array);
+    }
 }

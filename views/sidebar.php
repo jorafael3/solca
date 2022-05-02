@@ -149,6 +149,14 @@
                                         <span class="menu-title">Departmentos/Areas etc</span>
                                     </a>
                                 </div>
+                                <div class="menu-item">
+                                    <a class="menu-link" href="<?php echo constant('URL') ?>mantenimiento/Nuevas_perspectivas_Criterios">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Perspectivas/Criterios etc</span>
+                                    </a>
+                                </div>
                                 <!-- <div class="menu-item">
                                     <a class="menu-link" href="../../demo1/dist/apps/user-management/users/view.html">
                                         <span class="menu-bullet">

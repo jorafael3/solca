@@ -6,6 +6,10 @@ $urlGetServicios = constant("URL") . "mantenimiento/Cargar_Servicio";
 $urlGetCiudades = constant("URL") . "mantenimiento/Cargar_Ciudades";
 $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
 
+$urlNuevoDepartamentos = constant("URL") . "mantenimiento/Nuevo_Departamento";
+$urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Departamento";
+
+
 
 ?>
 
@@ -15,8 +19,11 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
     var urlGetServicios = '<?php echo $urlGetServicios ?>';
     var urlGetCiudades = '<?php echo $urlGetCiudades ?>';
     var urlGetPaises = '<?php echo $urlGetPaises ?>';
+    var urlNuevoDepartamentos = '<?php echo $urlNuevoDepartamentos ?>';
+    var urlActualizarDepartamentos = '<?php echo $urlActualizarDepartamentos ?>';
 
 
+    var DEPTO_ID;
     //*DEPARTAMENTOS **/
     function get_departamentos() {
 
@@ -27,6 +34,7 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
     }
 
     function Crear_Tabla_Departamentos(data) {
+        $('#MN_Tabla_Departamentos').empty();
         $('#MN_Tabla_Departamentos tbody').empty();
 
         var table = $('#MN_Tabla_Departamentos').DataTable({
@@ -40,7 +48,11 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
                     text: "<i class='fa fa-plus'></i>Crear Nuevo",
                     className: 'btn btn-primary btn-fill',
                     action: function(e, dt, node, config) {
-                        alert('Button activated');
+                        $("#kt_modal_add_Departamento").modal('show');
+                        $("#DEPT_Nombre").val("");
+                        $("#btn_Nuevos_Departamento_b").show();
+                        $("#btn_Actualizar_Departamento_b").hide();
+
                     }
                 },
                 {
@@ -51,20 +63,31 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
                     title: "Departamentos"
                 }
             ],
+            "order": [
+                [1, "desc"]
+            ],
             "columnDefs": [{
                 "width": "50%",
                 "targets": 0
             }],
             columns: [{
-                data: "DEPTO_NOM",
-                title: "Departamento"
-            }, {
-                data: "FCREADO",
-                title: "Fecha de Creacion "
-            }, {
-                data: "DEPTO_ACTIVO",
-                title: "Estado "
-            }],
+                    data: "DEPTO_NOM",
+                    title: "Departamento"
+                }, {
+                    data: "FCREADO",
+                    title: "Fecha de Creacion "
+                }, {
+                    data: "DEPTO_ACTIVO",
+                    title: "Estado "
+                },
+                {
+                    data: null,
+                    title: "Editar",
+                    className: "dt-center  btn_edit",
+                    defaultContent: '<button type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Departamento"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
             "createdRow": function(row, data, index, cell) {
 
                 if (data["DEPTO_ACTIVO"] == "S") {
@@ -81,7 +104,57 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
+
+        $('#MN_Tabla_Departamentos tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            console.log(data["DEPTO_NOM"]);
+            $("#DEPT_Nombre").val(data["DEPTO_NOM"]);
+            DEPTO_ID = data["DEPTO_ID"]
+            $("#btn_Actualizar_Departamento_b").show();
+            $("#btn_Nuevos_Departamento_b").hide();
+
+            // Validar_Actualizar_Datos_usuario(data);
+        });
     }
+
+    function Nuevos_Departamento() {
+        var Nombre = $("#DEPT_Nombre").val();
+        if (Nombre == "") {
+
+        } else {
+            var data = {
+                Nombre: Nombre
+            }
+
+            AjaxSendReceive(urlNuevoDepartamentos, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Departamento").modal('hide');
+                    get_departamentos();
+                }
+            })
+        }
+
+    }
+
+    function Actualizar_Departamento() {
+        var DEPTO_NOM = $("#DEPT_Nombre").val();
+
+        var data = {
+            DEPTO_NOM: DEPTO_NOM,
+            DEPTO_ID: DEPTO_ID
+        }
+
+        AjaxSendReceive(urlActualizarDepartamentos, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                $("#kt_modal_add_Departamento").modal('hide');
+                get_departamentos();
+            }
+        })
+    }
+
 
     //** AREAS **/
 
