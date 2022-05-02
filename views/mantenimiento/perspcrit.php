@@ -90,7 +90,7 @@ require 'views/header.php';
                 </ul>
                 <!--end::Nav-->
                 <!--begin::Tab Content-->
-                <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2" style="height: 454px">
+                <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2" style="height: 500px">
                     <!--begin::Tap pane-->
                     <div class="tab-pane fade show active" id="kt_list_widget_16_tab_1">
                         <div class="table-responsive">
