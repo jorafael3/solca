@@ -494,4 +494,75 @@ class MantenimientoModel extends Model
             return $e;
         }
     }
+
+    //*** MEDIOS VERIFCACION */
+
+    function Get_Medios()
+    {
+
+        try {
+            $sql = "SELECT *
+            FROM " . constant("DB") . ".medio_verificacion ";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Nuevo_Medio($parametros)
+    {
+        $DESCRIPCION = $parametros["DESCRIPCION"];
+        // $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".create_m_verificacion (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DESCRIPCION);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Medio($parametros)
+    {
+        $DESCRIPCION = $parametros["DESCRIPCION"];
+        $MVERIFICACION_ID = $parametros["MVERIFICACION_ID"];
+        try {
+            $sql = "CALL " . constant("DB") . ".edit_m_verificacion (?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DESCRIPCION);
+            $query->bindParam(2, $MVERIFICACION_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 }

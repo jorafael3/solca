@@ -59,11 +59,11 @@ require 'views/header.php';
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 px-0">
+                    <li class="nav-item col-4 mx-0 px-0">
                         <!--begin::Link-->
                         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
                             <!--begin::Subtitle-->
-                            <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Servicios</span>
+                            <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Medios de Verificacion</span>
                             <!--end::Subtitle-->
                             <!--begin::Bullet-->
                             <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
@@ -71,30 +71,18 @@ require 'views/header.php';
                         </a>
                         <!--end::Link-->
                     </li>
-                    <li class="nav-item col-2 mx-0 px-0">
-                        <!--begin::Link-->
+                    <!-- <li class="nav-item col-2 mx-0 px-0">
                         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_4">
-                            <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Ciudades</span>
-                            <!--end::Subtitle-->
-                            <!--begin::Bullet-->
                             <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
-                            <!--end::Bullet-->
                         </a>
-                        <!--end::Link-->
                     </li>
                     <li class="nav-item col-2 mx-0 px-0">
-                        <!--begin::Link-->
                         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_5">
-                            <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Paises</span>
-                            <!--end::Subtitle-->
-                            <!--begin::Bullet-->
                             <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
-                            <!--end::Bullet-->
                         </a>
-                        <!--end::Link-->
-                    </li>
+                    </li> -->
                     <!--end::Item-->
                     <!--begin::Bullet-->
                     <span class="position-absolute z-index-1 bottom-0 w-100 h-4px bg-light rounded"></span>
@@ -132,7 +120,7 @@ require 'views/header.php';
 
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_3">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Servicios" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Medios" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -143,7 +131,7 @@ require 'views/header.php';
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="kt_list_widget_16_tab_4">
+                    <!-- <div class="tab-pane fade" id="kt_list_widget_16_tab_4">
                         <div class="table-responsive">
                             <table id="MN_Tabla_Ciudades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -168,7 +156,7 @@ require 'views/header.php';
                             </table>
                         </div>
 
-                    </div>
+                    </div> -->
                     <!--end::Tap pane-->
                 </div>
                 <!--end::Tab Content-->
@@ -338,6 +326,76 @@ require 'views/header.php';
     <!--end::Modal dialog-->
 </div>
 
+<div class="modal fade" id="kt_modal_add_Medio" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_user_header_edit">
+                <!--begin::Modal title-->
+                <h2 class="fw-bolder">Nuevo Medio</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1 btn_close_Medio">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="form2" onsubmit="return false">
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+
+
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bold fs-6 mb-2">Nombre</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" id="MED_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                            <!--end::Input-->
+                        </div>
+
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-15">
+
+                        <button id="btn_Nuevos_Medio_b" onclick="btn_Nuevos_Medio()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Guardar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                        <button id="btn_Actualizar_Medio_b" onclick="btn_Actualizar_Medio()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Actualizar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
 <?php require 'views/footer.php'; ?>
 <?php require 'funciones/perspcritjs.php'; ?>
 
@@ -357,6 +415,7 @@ require 'views/header.php';
         // var data =  JSON.parse(Departamentos);
         Get_Perspectivas();
         Get_Criterios();
+        Get_Medios();
     }
     Tb_Depart();
 
@@ -367,8 +426,10 @@ require 'views/header.php';
     $(".btn_close_Criterio").click(function() {
         $("#kt_modal_add_Criterio").modal('hide');
     });
-
-
+    $(".kt_modal_add_Medio").click(function() {
+        $("#btn_close_Medio").modal('hide');
+    });
+    
     function btn_Nuevos_Perspectivas() {
         Nueva_Perspectivas();
     }
@@ -384,5 +445,13 @@ require 'views/header.php';
 
     function btn_Actualizar_Criterio() {
         Actualizar_Criterio();
+    }
+
+    function btn_Nuevos_Medio() {
+        Nuevo_Medio();
+    }
+
+    function btn_Actualizar_Medio() {
+        Actualizar_Medio();
     }
 </script>

@@ -8,6 +8,9 @@ $urlActualizar_perspectiva = constant("URL") . "mantenimiento/Actualizar_perspec
 $urlGet_Criterios = constant("URL") . "mantenimiento/Get_Criterios";
 $urlNuevo_Criterios = constant("URL") . "mantenimiento/Nuevo_Criterios";
 $urlActualizar_Criterio = constant("URL") . "mantenimiento/Actualizar_Criterio";
+$urlGet_Medios = constant("URL") . "mantenimiento/Get_Medios";
+$urlNuevo_Medio = constant("URL") . "mantenimiento/Nuevo_Medio";
+$urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
 
 
 ?>
@@ -18,10 +21,14 @@ $urlActualizar_Criterio = constant("URL") . "mantenimiento/Actualizar_Criterio";
     var urlGet_Criterios = '<?php echo $urlGet_Criterios ?>';
     var urlNuevo_Criterios = '<?php echo $urlNuevo_Criterios ?>';
     var urlActualizar_Criterio = '<?php echo $urlActualizar_Criterio ?>';
+    var urlGet_Medios = '<?php echo $urlGet_Medios ?>';
+    var urlNuevo_Medio = '<?php echo $urlNuevo_Medio ?>';
+    var urlActualizar_Medio = '<?php echo $urlActualizar_Medio ?>';
 
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
+    var MVERIFICACION_ID;
     //*** PERSPECTIVAS */
 
     function Get_Perspectivas() {
@@ -280,6 +287,7 @@ $urlActualizar_Criterio = constant("URL") . "mantenimiento/Actualizar_Criterio";
                 if (response == true) {
                     $("#kt_modal_add_Criterio").modal('hide');
                     $("#CRIT_Nombre").val("");
+                    $("#CRIT_tipo").val(0).change();
                     Get_Criterios();
                 }
 
@@ -300,7 +308,7 @@ $urlActualizar_Criterio = constant("URL") . "mantenimiento/Actualizar_Criterio";
             var data = {
                 CRITERIO_NOM: CRIT_Nombre,
                 PERSPECTIVA_ID: CRIT_tipo,
-                CRITERIO_ID:CRITERIO_ID
+                CRITERIO_ID: CRITERIO_ID
             }
 
             AjaxSendReceive(urlActualizar_Criterio, data, function(response) {
@@ -310,6 +318,138 @@ $urlActualizar_Criterio = constant("URL") . "mantenimiento/Actualizar_Criterio";
                     $("#CRIT_Nombre").val("");
                     Get_Criterios();
                 }
+            })
+
+        }
+    }
+
+    /*** MEDIOS VERIFICAION */
+
+    function Get_Medios() {
+
+        AjaxSendReceive(urlGet_Medios, data = [], function(response) {
+            console.log("MEDIOS VERIFICAION", response);
+            Tabla_Medios(response);
+        });
+
+    }
+
+    function Tabla_Medios(data) {
+        var tb = $('#MN_Tabla_Medios');
+        $('#MN_Tabla_Medios').empty();
+
+        var table = tb.DataTable({
+            destroy: true,
+            data: data,
+            dom: 'Bfrtip',
+            scrollY: 400,
+            scrollX: true,
+            scrollCollapse: true,
+            buttons: [{
+                    text: "<i class='fa fa-plus'></i>Crear Nuevo",
+                    className: 'btn btn-primary btn-fill',
+                    action: function(e, dt, node, config) {
+                        $("#kt_modal_add_Medio").modal('show');
+                        $("#MED_Nombre").val("");
+                        $("#btn_Nuevos_Medio_b").show();
+                        $("#btn_Actualizar_Medio_b").hide();
+                    }
+                },
+                {
+                    extend: "excelHtml5",
+                    text: "<i class='fa fa-file-excel'></i>Imprimir Excel",
+                    className: 'btn btn-success btn-fill',
+                    messageTop: "Medios Verificacion",
+                    title: "Medios Verificacion"
+                },
+
+            ],
+            // order: [
+            //     [2, "desc"]
+            // ],
+            "columnDefs": [{
+                "width": "70%",
+                "targets": 0
+            }],
+            columns: [{
+                    data: "DESCRIPCION",
+                    title: "Nombre "
+                },
+                {
+                    data: null,
+                    title: "Editar",
+                    className: "dt-center  btn_edit",
+                    defaultContent: '<button type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Medio"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
+                    orderable: false
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+
+
+            }
+
+
+        }).clear().rows.add(data).draw();
+        // new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 2000);
+
+        $('#MN_Tabla_Medios tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            $("#MED_Nombre").val(data["DESCRIPCION"]);
+            MVERIFICACION_ID = data["MVERIFICACION_ID"]
+            $("#btn_Actualizar_Medio_b").show();
+            $("#btn_Nuevos_Medio_b").hide();
+
+            // Validar_Actualizar_Datos_usuario(data);
+        });
+    }
+
+    function Nuevo_Medio() {
+        var MED_Nombre = $("#MED_Nombre").val();
+        if (MED_Nombre == "") {
+
+        } else {
+
+            var data = {
+                DESCRIPCION: MED_Nombre,
+                // MVERIFICACION_ID: MVERIFICACION_ID
+            }
+
+            AjaxSendReceive(urlNuevo_Medio, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Medio").modal('hide');
+                    $("#MED_Nombre").val("");
+                    Get_Medios();
+                }
+
+            })
+
+        }
+    }
+
+    function Actualizar_Medio() {
+        var MED_Nombre = $("#MED_Nombre").val();
+        if (MED_Nombre == "") {
+
+        } else {
+
+            var data = {
+                DESCRIPCION: MED_Nombre,
+                MVERIFICACION_ID: MVERIFICACION_ID
+            }
+
+            AjaxSendReceive(urlActualizar_Medio, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Medio").modal('hide');
+                    $("#MED_Nombre").val("");
+                    Get_Medios();
+                }
+
             })
 
         }

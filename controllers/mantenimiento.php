@@ -186,4 +186,24 @@ class Mantenimiento extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Actualizar_Criterio($array);
     }
+
+    //** MEDIOS VERIFICAICON */
+    function Get_Medios()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Medios($array);
+    }
+
+    function Nuevo_Medio()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Medio($array);
+    }
+
+    function Actualizar_Medio()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Medio($array);
+    }
+
 }
