@@ -33,7 +33,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-2 mx-0 p-0">
                         <!--begin::Link-->
-                        <a class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
+                        <a data-toggle="tab" class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Departamentos</span>
                             <!--end::Subtitle-->
@@ -47,7 +47,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-2 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Areas</span>
                             <!--end::Subtitle-->
@@ -61,7 +61,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-2 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Servicios</span>
                             <!--end::Subtitle-->
@@ -73,7 +73,7 @@ require 'views/header.php';
                     </li>
                     <li class="nav-item col-2 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_4">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_4">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Ciudades</span>
                             <!--end::Subtitle-->
@@ -85,7 +85,7 @@ require 'views/header.php';
                     </li>
                     <li class="nav-item col-2 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_5">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_5">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Paises</span>
                             <!--end::Subtitle-->
@@ -284,7 +284,13 @@ require 'views/header.php';
         Nuevos_Departamento();
     }
 
-    function btn_Actualizar_Departamento(){
+    function btn_Actualizar_Departamento() {
         Actualizar_Departamento();
     }
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        $.fn.dataTable.tables({
+            visible: true,
+            api: true
+        }).columns.adjust();
+    })
 </script>

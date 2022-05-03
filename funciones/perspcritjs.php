@@ -43,7 +43,12 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
     function Tabla_Perspectivas(data) {
         var tb = $('#MN_Tabla_Perspectivas');
         $('#MN_Tabla_Perspectivas').empty();
-
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        })
         var table = tb.DataTable({
             destroy: true,
             data: data,
@@ -181,7 +186,12 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
     function Tabla_Criterios(data) {
         var tb = $('#MN_Tabla_Criterios');
         $('#MN_Tabla_Criterios').empty();
-
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        })
         var table = tb.DataTable({
             destroy: true,
             data: data,
@@ -253,7 +263,7 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).css('width', '100%');
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
-        }, 100);
+        }, 1000);
 
         $('#MN_Tabla_Criterios tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
@@ -339,6 +349,13 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
         var tb = $('#MN_Tabla_Medios');
         $('#MN_Tabla_Medios').empty();
 
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        })
+
         var table = tb.DataTable({
             destroy: true,
             data: data,
@@ -388,13 +405,12 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
 
 
             }
+        });
 
-
-        }).clear().rows.add(data).draw();
         // new $.fn.dataTable.FixedHeader(table);
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
-        }, 100);
+        }, 1000);
 
         $('#MN_Tabla_Medios tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();

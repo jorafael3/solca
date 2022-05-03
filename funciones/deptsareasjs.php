@@ -36,7 +36,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
     function Crear_Tabla_Departamentos(data) {
         $('#MN_Tabla_Departamentos').empty();
         $('#MN_Tabla_Departamentos tbody').empty();
-
+       
         var table = $('#MN_Tabla_Departamentos').DataTable({
             destroy: true,
             data: data,

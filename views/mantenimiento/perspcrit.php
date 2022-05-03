@@ -33,7 +33,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-2 mx-0 p-0">
                         <!--begin::Link-->
-                        <a class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
+                        <a data-toggle="tab" class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Perspectivas</span>
                             <!--end::Subtitle-->
@@ -47,7 +47,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-2 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Criterios</span>
                             <!--end::Subtitle-->
@@ -61,7 +61,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <li class="nav-item col-4 mx-0 px-0">
                         <!--begin::Link-->
-                        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
+                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
                             <!--begin::Subtitle-->
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Medios de Verificacion</span>
                             <!--end::Subtitle-->
@@ -107,7 +107,7 @@ require 'views/header.php';
 
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_2">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Criterios" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Criterios" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -120,7 +120,7 @@ require 'views/header.php';
 
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_3">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Medios" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Medios" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
