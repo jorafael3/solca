@@ -153,7 +153,7 @@ require 'views/header.php';
     <div class="col-xl-12" id="Seccion_Proyectos" style="display: none;">
         <div class="row">
             <div class="card-body">
-                <button onclick="Limpiar_Proyectos()" data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
+                <button style="width: 100%;" onclick="Limpiar_Proyectos()" data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
             </div>
         </div>
         <div class="d-flex flex-wrap flex-stack my-5">
@@ -278,7 +278,7 @@ require 'views/header.php';
         <div class="col-12">
             <div class="row">
                 <div class="card-body">
-                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
+                    <button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
                 </div>
             </div>
         </div>
@@ -573,7 +573,9 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Indicador</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="PRY_indicador" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Indicador" name="target_assign" required>
+                                <input type="text" id="PRY_indicador" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Indicador" required />
+
+                                <!-- <select id="PRY_indicador" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Indicador" name="target_assign" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->Indica as $row) {
@@ -582,7 +584,7 @@ require 'views/header.php';
                                     <?php
                                     }
                                     ?>
-                                </select>
+                                </select> -->
                             </div>
 
                             <div class="fv-row mb-7">
@@ -590,7 +592,7 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Meta 2022</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2022" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="MEta 2022" required />
+                                <input type="text" id="PRY_Meta2022" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2022" required />
                                 <!--end::Input-->
                             </div>
 
@@ -936,7 +938,8 @@ require 'views/header.php';
             $("#PRY_Meta2029").val("");
             $("#PRY_Meta2030").val("");
             $("#PRY_Responsable").val(0).change();
-            $("#PRY_indicador").val(0).change();
+            // $("#PRY_indicador").val(0).change();
+            $("#PRY_indicador").val("");
 
         });
         $(".btn_close_mo_3").click(function() {

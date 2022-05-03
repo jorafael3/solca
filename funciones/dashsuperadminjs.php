@@ -535,7 +535,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     function Nuevo_Proyecto() {
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
-        var PROYECTOA_INDICADOR = $("#PRY_indicador option:selected").text();
+        // var PROYECTOA_INDICADOR = $("#PRY_indicador option:selected").text();
+        var PROYECTOA_INDICADOR = $("#PRY_indicador").text();
         var PROYECTOA_META_2022 = $("#PRY_Meta2022").val();
         var PROYECTOA_META_2023 = $("#PRY_Meta2023").val();
         var PROYECTOA_META_2024 = $("#PRY_Meta2024").val();
@@ -619,11 +620,11 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             return $(this).text() == PROYECTOA_RESPONSABLE;
         }).attr('selected', true).change();
 
-        $("#PRY_indicador option").filter(function() {
-            //may want to use $.trim in here
-            return $(this).text() == PROYECTOA_INDICADOR;
-        }).attr('selected', true).change();
-
+        // $("#PRY_indicador option").filter(function() {
+        //     //may want to use $.trim in here
+        //     return $(this).text() == PROYECTOA_INDICADOR;
+        // }).attr('selected', true).change();
+        $("#PRY_indicador").val(PROYECTOA_INDICADOR)
         $("#PRY_Nombre").val(PROYECTOA_NOM);
         $("#PRY_Meta2022").val(PROYECTOA_META_2022);
         $("#PRY_Meta2023").val(PROYECTOA_META_2023);
@@ -658,7 +659,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $("#PRY_Meta2029").val("");
         $("#PRY_Meta2030").val("");
         $("#PRY_Responsable").val(0).change();
-        $("#PRY_indicador").val(0).change();
+        // $("#PRY_indicador").val(0).change();
+        $("#PRY_indicador").val("");
     }
 
     //********* */ ACTIVIDADES **********/
