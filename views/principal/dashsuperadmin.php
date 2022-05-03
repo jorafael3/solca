@@ -556,16 +556,18 @@ require 'views/header.php';
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="PRY_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Responsable" name="target_assign" required>
+                                <select id="PRY_Responsable" class="form-select form-select-solid select23" name="target_assign">
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
                                     ?>
-                                        <option value=<?php echo ($row["US_APELLNOM"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
+                                        <option value=<?php echo str_replace(' ','',$row["US_APELLNOM"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
+
+
                             </div>
 
                             <div class="fv-row mb-7">
@@ -864,8 +866,14 @@ require 'views/header.php';
 
     <link rel="stylesheet" type="text/css" href="<?php echo constant('URL') ?>public/assets/css/nouislider.min.css">
     <script src="<?php echo constant('URL') ?>public/assets/js/nouislider.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        $('.select23').select2({
+            dropdownParent: $('#kt_modal_Nuevo_Proyecto')
+        });
+
         var TARGET_ID;
         dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
             revertOnSpill: true,
@@ -885,9 +893,9 @@ require 'views/header.php';
         }).on('drop', function(el, source) {
             console.log("droppp", source.id);
             // if ($('drop-target').children.length > 0) {
-            //     $('display').innerHTML = $('drop-target').innerHTML;
+            // $('display').innerHTML = $('drop-target').innerHTML;
             // } else {
-            //     $('display').innerHTML = "Display";
+            // $('display').innerHTML = "Display";
             // }
             TARGET_ID = source.id
             Actualizar_Arrastrando();
@@ -895,7 +903,7 @@ require 'views/header.php';
         });
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
-         *  */
+         * */
         function Btn_Perspectivas(id, nombre) {
             Get_Criterios(id, nombre);
         }

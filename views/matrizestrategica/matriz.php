@@ -534,7 +534,8 @@ require 'views/header.php';
                                     <?php
                                     }
                                     ?>
-                                </select>                            </div>
+                                </select>
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Medio de Verificacion</label>
@@ -622,7 +623,7 @@ require 'views/header.php';
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="required fs-6 fw-bold mb-2">Medio de Verificacion</label>
-                            <select id="MED_VER" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                            <select id="MED_VER" class="form-select form-select-solid select23" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
                                 <option value=""></option>
 
                                 <?php
@@ -1087,8 +1088,14 @@ require 'views/header.php';
 
     <link rel="stylesheet" href="<?php echo constant('URL') ?>public/assets/css/dragula.css">
     <script src="<?php echo constant('URL') ?>public/assets/js/dragula.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+         $('.select23').select2({
+            dropdownParent: $('#kt_modal_add_Indicador')
+        });
+
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
          *  */

@@ -615,15 +615,17 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
         // const dd = document.getElementById('PRY_Responsable');
         // dd.selectedIndex = [...dd.options].findIndex(option => option.text === PROYECTOA_RESPONSABLE);
-        $("#PRY_Responsable option").filter(function() {
-            //may want to use $.trim in here
-            return $(this).text() == PROYECTOA_RESPONSABLE;
-        }).attr('selected', true).change();
+        // $("#PRY_Responsable option").filter(function() {
+        //     //may want to use $.trim in here
+        //     return $(this).text() == PROYECTOA_RESPONSABLE;
+        // }).attr('selected', true).change();
 
         // $("#PRY_indicador option").filter(function() {
         //     //may want to use $.trim in here
         //     return $(this).text() == PROYECTOA_INDICADOR;
         // }).attr('selected', true).change();
+        // $("#PRY_Responsable").select2("val", PROYECTOA_RESPONSABLE.replaceAll(" ",""));
+        $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE.replaceAll(" ","")).change();
         $("#PRY_indicador").val(PROYECTOA_INDICADOR)
         $("#PRY_Nombre").val(PROYECTOA_NOM);
         $("#PRY_Meta2022").val(PROYECTOA_META_2022);
