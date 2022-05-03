@@ -10,32 +10,26 @@ require 'views/header.php';
     <div class="col-xl-12">
         <!--begin::Mixed Widget 2-->
         <div class="card">
-            <div class="card-header border-0 pt-6">
-                <!--begin::Card title-->
+            <!-- <div class="card-header border-0 pt-6">
                 <div class="card-title">
-                    <!--begin::Search-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
                                 <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->Agregar Usuario
+                        Agregar Usuario
                     </button>
                 </div>
-                <!--begin::Card title-->
-                <!--begin::Card toolbar-->
                 <div class="card-toolbar">
 
-                </div>
-                <!--end::Card toolbar-->
+                </div> -->
             </div>
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaUsuarios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                    <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaUsuarios" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                         <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                         </thead>

@@ -89,10 +89,26 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
         var table = $('#TablaUsuarios').DataTable({
             destroy: true,
             data: data,
-            dom: 'frtip',
-            scrollY: 450,
+            dom: 'Bfrtip',
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
+            buttons: [{
+                    text: "<i class='fa fa-plus'></i>Crear Nuevo",
+                    className: 'btn btn-primary btn-fill',
+                    action: function(e, dt, node, config) {
+                        $("#kt_modal_add_user").modal("show");
+                    }
+                },
+                // {
+                //     extend: "excelHtml5",
+                //     text: "<i class='fa fa-file-excel'></i>Imprimir Excel",
+                //     className: 'btn btn-success btn-fill',
+                //     messageTop: "Paises",
+                //     title: "Paises"
+                // },
+
+            ],
             columns: [{
                 data: "US_APELLNOM",
                 title: "Nombre "
