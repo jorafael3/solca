@@ -41,7 +41,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{
@@ -174,7 +174,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{
@@ -243,7 +243,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{
@@ -311,7 +311,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{
@@ -379,7 +379,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{

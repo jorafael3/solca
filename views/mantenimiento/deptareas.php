@@ -102,11 +102,11 @@ require 'views/header.php';
                 </ul>
                 <!--end::Nav-->
                 <!--begin::Tab Content-->
-                <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2" style="height: 454px">
+                <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2" style="height: 500px">
                     <!--begin::Tap pane-->
                     <div class="tab-pane fade show active" id="kt_list_widget_16_tab_1">
                         <div class="table-responsive">
-                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="MN_Tabla_Departamentos" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="MN_Tabla_Departamentos" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -119,7 +119,7 @@ require 'views/header.php';
 
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_2">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Areas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Areas" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -132,7 +132,7 @@ require 'views/header.php';
 
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_3">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Servicios" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Servicios" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -145,7 +145,7 @@ require 'views/header.php';
                     </div>
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_4">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Ciudades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Ciudades" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
@@ -158,7 +158,7 @@ require 'views/header.php';
                     </div>
                     <div class="tab-pane fade" id="kt_list_widget_16_tab_5">
                         <div class="table-responsive">
-                            <table id="MN_Tabla_Paises" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                            <table id="MN_Tabla_Paises" style="width: 100%; font-weight: bold; font-size: 16px;" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                 <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                                 </thead>
