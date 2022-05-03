@@ -48,7 +48,7 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            scrollY: 400,
+            scrollY: 300,
             scrollX: true,
             scrollCollapse: true,
             buttons: [{
@@ -110,7 +110,7 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
         // new $.fn.dataTable.FixedHeader(table);
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
-        }, 1000);
+        }, 100);
 
         $('#MN_Tabla_Perspectivas tbody').on('click', 'td.btn_edit', function(e) {
             e.preventDefault();
@@ -251,6 +251,7 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
         }).clear().rows.add(data).draw();
         // new $.fn.dataTable.FixedHeader(table);
         setTimeout(function() {
+            $($.fn.dataTable.tables(true)).css('width', '100%');
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
         }, 100);
 
@@ -342,8 +343,8 @@ $urlActualizar_Medio = constant("URL") . "mantenimiento/Actualizar_Medio";
             destroy: true,
             data: data,
             dom: 'Bfrtip',
-            //scrollY: 400,
-            //scrollX: true,
+            scrollY: 300,
+            scrollX: true,
             //scrollCollapse: true,
             buttons: [{
                     text: "<i class='fa fa-plus'></i>Crear Nuevo",
