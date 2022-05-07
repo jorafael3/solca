@@ -3,10 +3,8 @@
 $avatar  = constant('URL') . "public/assets/media/avatars/blank.png";
 $USer_NAme = $_SESSION["US_NOMBRE"];
 $Email = $_SESSION["US_EMAIL"];
-$tipo = $_SESSION["TIPOUS_ID"];
-if ($tipo == 1) {
-    $tipo = "SuperAdmin";
-}
+$tipo = $_SESSION["TIPOUS_NOM"];
+
 
 ?>
 

@@ -15,9 +15,9 @@ class User extends Model
 
                 $user_Contrasena = hash("sha256", $pass);
 
-                $query = $this->db->connect()->prepare("SELECT * from " . constant("DB") . ".usuarios WHERE US_EMAIL = :US_EMAIL AND US_CONTRASENA =:US_CONTRASENA");
-                $query->bindParam(":US_EMAIL", $user);
-                $query->bindParam(":US_CONTRASENA", $user_Contrasena);
+                $query = $this->db->connect()->prepare("CALL ". constant("DB") . ".control_login (?,?)");
+                $query->bindParam(1, $user);
+                $query->bindParam(2, $user_Contrasena);
                 $query->execute();
                 if ($query->rowCount()) {
                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -27,20 +27,28 @@ class User extends Model
                     $US_ID = "";
                     $TIPOUS_ID = "";
                     foreach ($result as $row) {
-                        $US_EMAIL = $row["US_EMAIL"];
-                        $US_NOMBRE = $row["US_APELLNOM"];
                         $US_ID = $row["US_ID"];
+                        $US_NOMBRE = $row["US_APELLNOM"];
+                        $US_EMAIL = $row["US_EMAIL"];
                         $TIPOUS_ID = $row["TIPOUS_ID"];
-                        $tipo = $row["US_ACTIVO"];
+                        $TIPOUS_NOM = $row["TIPOUS_NOM"];
+                        $US_ACTIVO = $row["US_ACTIVO"];
+                        $AREA_ID = $row["AREA_ID"];
+                        $AREA_NOM = $row["AREA_NOM"];
                     }
                     // return $tipo;
 
-                    if ($tipo == "S") {
+                    if ($US_ACTIVO == "S") {
                         $_SESSION['SOL_INI_SES'] = true;
-                        $_SESSION["US_EMAIL"] = $US_EMAIL;
-                        $_SESSION["US_NOMBRE"] = $US_NOMBRE;
+                        
                         $_SESSION["US_ID"] = $US_ID;
+                        $_SESSION["US_NOMBRE"] = $US_NOMBRE;
+                        $_SESSION["US_EMAIL"] = $US_EMAIL;
                         $_SESSION["TIPOUS_ID"] = $TIPOUS_ID;
+                        $_SESSION["TIPOUS_NOM"] = $TIPOUS_NOM;
+                        $_SESSION["AREA_ID"] = $AREA_ID;
+                        $_SESSION["AREA_NOM"] = $AREA_NOM;
+
                         return "ok";
                     } else {
                         return "err";

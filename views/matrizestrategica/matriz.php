@@ -1,6 +1,7 @@
 <?php
 
 require 'views/header.php';
+$TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
 ?>
 
@@ -65,34 +66,53 @@ require 'views/header.php';
                     }
                     ?>
                     <!--begin::Item-->
-                    <li class="nav-item mb-3">
-                        <!--begin::Link-->
-                        <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
-                            <!--begin::Icon-->
-                            <div class="nav-icon">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-                                <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
-                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
-                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
+                    <?php
+
+                    if ($TIPOUS_ID == 1) {
+                    ?>
+                        <li class="nav-item mb-3">
+                            <!--begin::Link-->
+                            <a class="nav-link d-flex flex-center overflow-hidden w-80px h-85px" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Perspectiva" href="#">
+                                <!--begin::Icon-->
+                                <div class="nav-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                                    <span class="svg-icon svg-icon-2hx svg-icon-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                            <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                            <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+
+                    <?php
+
+                    }
+                    ?>
+
                 </ul>
 
                 <div class="row">
                     <div class="table-responsive col-4 border-gray-200">
                         <h4>Criterios</h4>
-                        <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Criterio" style="margin-bottom: 10px;" class="btn btn-light-success"><i class="fa fa-plus"></i> Nuevo</button>
+
+                        <?php
+
+                        if ($TIPOUS_ID == 1) {
+                        ?>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Criterio" style="margin-bottom: 10px;" class="btn btn-light-success"><i class="fa fa-plus"></i> Nuevo</button>
+                        <?php
+
+                        }
+                        ?>
                         <br>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -106,8 +126,15 @@ require 'views/header.php';
 
                     <div class="table-responsive col-8 border-gray-200">
                         <h4>Objetivos Estrategicos</h4>
-                        <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Obj_estrategicos" style="margin-bottom: 10px;" class="btn btn-light-primary"><i class="fa fa-plus"></i> Nuevo</button>
+                        <?php
 
+                        if ($TIPOUS_ID == 1) {
+                        ?>
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Obj_estrategicos" style="margin-bottom: 10px;" class="btn btn-light-primary"><i class="fa fa-plus"></i> Nuevo</button>
+                        <?php
+
+                        }
+                        ?>
                         <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                             <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
@@ -1092,7 +1119,7 @@ require 'views/header.php';
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-         $('.select23').select2({
+        $('.select23').select2({
             dropdownParent: $('#kt_modal_add_Indicador')
         });
 

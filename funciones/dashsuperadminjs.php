@@ -41,6 +41,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var PROYECTO_ID;
     var ARRAY_DATA_ACTIVIDADES;
     var ARRAY_DATA_POA;
+    var FILTER_ID_DEPT;
 
     function Mensaje_Info(mensaje1, mensaje2, icono) {
         Swal.fire(
@@ -228,6 +229,17 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     }
 
     //********* */ POAS **********/
+    function POA_FILTRAR_DEPTS(id) {
+        FILTER_ID_DEPT = id;
+        // var arrdata = JSON.parse(JSON.stringify(ARR_POAS));
+        // let DATA_FILTRADA = arrdata.filter(id_d => (id_d.DEPTO_ID) == id);
+        // if (id == "") {
+        //     DATA_FILTRADA = ARR_POAS;
+        // }
+        // console.log(DATA_FILTRADA);
+        // Tabla_Poa(DATA_FILTRADA);
+
+    }
 
     function Get_Poa(data) {
         var criterio_id = data["CRITERIO_ID"];
@@ -240,37 +252,46 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         console.log(data);
 
         AjaxSendReceive(urlGet_Poa, data, function(response) {
-            console.log("POA", response);
 
             if (response.length != 0) {
-                console.log("POA", response);
                 ARR_POAS = response;
 
                 var arrdata = JSON.parse(JSON.stringify(response));
-                var resArr = [];
-                arrdata.filter(function(item) {
-                    var i = resArr.findIndex(x => x.DEPTO_NOM == item.DEPTO_NOM);
-                    if (i <= -1) {
-                        resArr.push({
-                            DEPTO_ID: item.DEPTO_ID,
-                            DEPTO_NOM: item.DEPTO_NOM
-                        });
-                    }
-                    return null;
-                });
-                var cbDeps = document.getElementById("Poa_Filter");
-                $('#Poa_Filter option').remove(); // clear all values 
-                $('#Poa_Filter ').append('<option value="">Todos</option>');
-                jQuery.each(resArr, function(key, value) {
-                    option = document.createElement("option");
-                    option.value = value.DEPTO_ID;
-                    option.text = value.DEPTO_NOM;
-                    cbDeps.appendChild(option);
-                });
+                var Data_filtrada;
+                if (FILTER_ID_DEPT == "Todos" || FILTER_ID_DEPT == undefined) {
+                    Data_filtrada = arrdata;
+                    Tabla_Poa(response);
+
+                } else {
+                    Data_filtrada = arrdata.filter(pr => (pr.DEPTO_ID) == FILTER_ID_DEPT);
+                    Tabla_Poa(Data_filtrada);
+
+                }
+                console.log("POA", Data_filtrada);
 
                 $("#TablaListaPoa").show();
-                Tabla_Poa(response);
                 $("#Seccion_Proyectos").hide();
+                // var resArr = [];
+                // arrdata.filter(function(item) {
+                //     var i = resArr.findIndex(x => x.DEPTO_NOM == item.DEPTO_NOM);
+                //     if (i <= -1) {
+                //         resArr.push({
+                //             DEPTO_ID: item.DEPTO_ID,
+                //             DEPTO_NOM: item.DEPTO_NOM
+                //         });
+                //     }
+                //     return null;
+                // });
+                // var cbDeps = document.getElementById("Poa_Filter");
+                // $('#Poa_Filter option').remove(); // clear all values 
+                // $('#Poa_Filter ').append('<option value="">Todos</option>');
+                // jQuery.each(resArr, function(key, value) {
+                //     option = document.createElement("option");
+                //     option.value = value.DEPTO_ID;
+                //     option.text = value.DEPTO_NOM;
+                //     cbDeps.appendChild(option);
+                // });
+
 
             } else {
                 Mensaje_Info("Oops", "Este criterio no contiene datos", "info");
@@ -279,17 +300,6 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
             }
         });
-    }
-
-    function POA_FILTRAR_DEPTS(id) {
-        var arrdata = JSON.parse(JSON.stringify(ARR_POAS));
-        let DATA_FILTRADA = arrdata.filter(id_d => (id_d.DEPTO_ID) == id);
-        if (id == "") {
-            DATA_FILTRADA = ARR_POAS;
-        }
-        console.log(DATA_FILTRADA);
-        Tabla_Poa(DATA_FILTRADA);
-
     }
 
     function Tabla_Poa(data) {
@@ -625,7 +635,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         //     return $(this).text() == PROYECTOA_INDICADOR;
         // }).attr('selected', true).change();
         // $("#PRY_Responsable").select2("val", PROYECTOA_RESPONSABLE.replaceAll(" ",""));
-        $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE.replaceAll(" ","")).change();
+        $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE.replaceAll(" ", "")).change();
         $("#PRY_indicador").val(PROYECTOA_INDICADOR)
         $("#PRY_Nombre").val(PROYECTOA_NOM);
         $("#PRY_Meta2022").val(PROYECTOA_META_2022);
@@ -649,7 +659,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         console.log(Proyect_info);
     }
 
-    function Limpiar_Proyectos(){
+    function Limpiar_Proyectos() {
         $("#PRY_Nombre").val("");
         $("#PRY_Meta2022").val("");
         $("#PRY_Meta2023").val("");
@@ -874,24 +884,27 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     function Actualizar_Arrastrando() {
 
 
-        var ACTV_ID = ACTV_ID_DRAG;
+        var ACTV_ID = ACTV_ID_DRAG[0]["ACTIV_ID"];
+        var AV_RESPONSABLE = ACTV_ID_DRAG[0]["max(AV.AVANCE_PORCENTAJE)"];
+        var AV_SUPERVISOR = ACTV_ID_DRAG[0]["max(AV.AVANCE_SUPERVISION)"];
+
         var estado;
         var id = TARGET_ID;
         var progreso = ""
         if (id == "Pr_En_Revision") {
             estado = 1;
             Progreso_respo = 0;
-            Progreso_superv = 0;
+            Progreso_superv = AV_SUPERVISOR;
 
         } else if (id == "Pr_En_Progreso") {
             estado = 2;
             Progreso_respo = 0;
-            Progreso_superv = 0;
+            Progreso_superv = AV_SUPERVISOR;
 
         } else if (id == "Pr_Terminados") {
             estado = 3;
             Progreso_respo = 100
-            Progreso_superv = 100
+            Progreso_superv = AV_SUPERVISOR
         }
         var data = {
             ACTV_ID: ACTV_ID,
@@ -910,7 +923,11 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     }
 
     function Drag(id) {
-        ACTV_ID_DRAG = id;
+        // ACTV_ID_DRAG = id;
+        var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
+        let Proyect_info = arrdata.filter(pr => (pr.ACTIV_ID) == id);
+        console.log("ARASTRANDO", Proyect_info);
+        ACTV_ID_DRAG = Proyect_info;
     }
 
 
@@ -1026,7 +1043,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 from: (v) => v | 0
             }
         });
-
+        if (TIPOUS_ID != 1) {
+            slider_2.setAttribute('disabled', true);
+        }
         slider_2.noUiSlider.on('update', function(values, handle) {
             $("#slider2-span").text(values[handle] + "%")
 

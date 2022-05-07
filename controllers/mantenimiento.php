@@ -23,7 +23,12 @@ class Mantenimiento extends Controller
      */
     function Usuariosrender()
     {
-        $this->view->render('mantenimiento/usuarios');
+        $nivel = $_SESSION["TIPOUS_ID"];
+        if ($nivel == 1) {
+            $this->view->render('mantenimiento/usuarios');
+        } else{
+            $this->view->render('errores/404');
+        }
     }
 
     function usuarios()

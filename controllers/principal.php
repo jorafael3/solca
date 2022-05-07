@@ -42,8 +42,6 @@ class Principal extends Controller
         $this->view->resp = $Responsables;
         $Indicadores =  $this->model->Get_indicadores();
         $this->view->Indica = $Indicadores;
-        $this->view->render('principal/dashsuperadmin');
-
-        
+        $this->view->render('principal/dashsuperadmin'); 
     }
 }

@@ -32,7 +32,7 @@
 		</div>
 		<h1 class="title-on-mobile">Error 500: Internal server error</h1>
 		<p>The server encountered an internal error of misconfiguration and was unable to complete your request</p>
-		<a href="<?php echo constant('URL') ?>" class="btn btn-success">Return home</a>
+		<a href="<?php echo constant('URL') ?>" class="btn btn-success">Regresar</a>
 		
 	</div>
 </div><!--/#single-wrapper -->
