@@ -201,11 +201,15 @@ class MantenimientoModel extends Model
         try {
             $DEPTO_NOM = $parametros["DEPTO_NOM"];
             $DEPTO_ID = $parametros["DEPTO_ID"];
+            $DEPTO_ACTIVO = $parametros["DEPTO_ACTIVO"];
+            $DEPTO_ELIMINADO = $parametros["DEPTO_ELIMINADO"];
 
-            $sql = "CALL " . constant("DB") . ".edit_departamentos (?,?) ";;
+            $sql = "CALL " . constant("DB") . ".edit_departamentos (?,?,?,?) ";;
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $DEPTO_NOM);
-            $query->bindParam(2, $DEPTO_ID);
+            $query->bindParam(2, $DEPTO_ACTIVO);
+            $query->bindParam(3, $DEPTO_ELIMINADO);
+            $query->bindParam(4, $DEPTO_ID);
 
             if ($query->execute()) {
                 echo json_encode(true);
@@ -220,6 +224,8 @@ class MantenimientoModel extends Model
             return $e;
         }
     }
+
+    //******************* */
 
     function Cargar_Areas()
     {
@@ -242,6 +248,60 @@ class MantenimientoModel extends Model
         }
     }
 
+    function Nueva_Area($parametros)
+    {
+        try {
+            $AREA_NOM = $parametros["AREA_NOM"];
+            $sql = "CALL " . constant("DB") . ".create_areas (?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $AREA_NOM);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Area($parametros)
+    {
+        try {
+            $AREA_NOM = $parametros["AREA_NOM"];
+            $AREA_ID = $parametros["AREA_ID"];
+            $AREA_ACTIVO = $parametros["AREA_ACTIVO"];
+            $AREA_ELIMINADO = $parametros["AREA_ELIMINADO"];
+
+            $sql = "CALL " . constant("DB") . ".edit_areas (?,?,?,?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $AREA_NOM);
+            $query->bindParam(2, $AREA_ACTIVO);
+            $query->bindParam(3, $AREA_ELIMINADO);
+            $query->bindParam(4, $AREA_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+
+    //******************* */
+
     function Cargar_Servicio()
     {
         try {
@@ -263,6 +323,59 @@ class MantenimientoModel extends Model
         }
     }
 
+    function Nuevo_Servicio($parametros)
+    {
+        try {
+            $SERV_NOM = $parametros["SERV_NOM"];
+            $sql = "CALL " . constant("DB") . ".create_servicio (?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $SERV_NOM);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Servicio($parametros)
+    {
+        try {
+            $SERV_NOM = $parametros["SERV_NOM"];
+            $SERV_ID = $parametros["SERV_ID"];
+            $SERV_ACTIVO = $parametros["SERV_ACTIVO"];
+            $SERV_ELIMINADO = $parametros["SERV_ELIMINADO"];
+
+            $sql = "CALL " . constant("DB") . ".edit_servicios (?,?,?,?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $SERV_NOM);
+            $query->bindParam(2, $SERV_ACTIVO);
+            $query->bindParam(3, $SERV_ELIMINADO);
+            $query->bindParam(4, $SERV_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //************************* */
+
     function Cargar_Ciudades()
     {
         try {
@@ -283,6 +396,59 @@ class MantenimientoModel extends Model
             return $e;
         }
     }
+
+    function Nuevo_Ciudades($parametros)
+    {
+        try {
+            $SERV_NOM = $parametros["SERV_NOM"];
+            $sql = "CALL " . constant("DB") . ".create_servicio (?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $SERV_NOM);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Actualizar_Ciudades($parametros)
+    {
+        try {
+            $CIUDAD_NOM = $parametros["CIUDAD_NOM"];
+            $CIUDAD_ID = $parametros["CIUDAD_ID"];
+            $CIUDAD_ACTIVO = $parametros["CIUDAD_ACTIVO"];
+            $CIUDAD_ELIMINADO = $parametros["CIUDAD_ELIMINADO"];
+
+            $sql = "CALL " . constant("DB") . ".edit_ciudades (?,?,?,?) ";;
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $CIUDAD_NOM);
+            $query->bindParam(2, $CIUDAD_ACTIVO);
+            $query->bindParam(3, $CIUDAD_ELIMINADO);
+            $query->bindParam(4, $CIUDAD_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    //********************** */
 
     function Cargar_Paises()
     {

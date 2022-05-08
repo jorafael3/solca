@@ -109,6 +109,9 @@ class Mantenimiento extends Controller
     }
 
 
+    //****** AREAS */
+
+
     function Cargar_Areas()
 
     {
@@ -116,12 +119,46 @@ class Mantenimiento extends Controller
         $function = $this->model->Cargar_Areas($array);
     }
 
+    function Nueva_Area()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nueva_Area($array);
+    }
+
+    function Actualizar_Area()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Area($array);
+    }
+
+
+
+    /**** SAERVICIOS */
+
     function Cargar_Servicio()
 
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Cargar_Servicio($array);
     }
+
+    function Nuevo_Servicio()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Servicio($array);
+    }
+
+    function Actualizar_Servicio()
+
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Actualizar_Servicio($array);
+    }
+
+    //************** */
 
     function Cargar_Ciudades()
 

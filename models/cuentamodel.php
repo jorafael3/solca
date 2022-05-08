@@ -36,22 +36,7 @@ class CuentaModel extends Model
 
         try {
             $US_ID = $parametros;
-            // $sql = "SELECT  
-            // us.US_ID,
-            // us.US_APELLNOM, 
-            // us.US_EMAIL, 
-            // us.US_NCED, 
-            // us.US_CEL, 
-            // us.US_ACTIVO, 
-            // us.CIUDAD_ID, 
-            // us.TIPOUS_ID, 
-            // ci.CIUDAD_NOM, 
-            // tp.TIPOUS_NOM
-            // from " . constant('DB') . ".usuarios us 
-            // left join " . constant('DB') . ".ciudades ci 
-            // on us.CIUDAD_ID = ci.CIUDAD_ID 
-            // left join tipos_usuarios tp on us.TIPOUS_ID = tp.TIPOUS_ID
-            // WHERE US_ID = :US_ID";
+
 
             $query = $this->db->connect()->prepare("CALL " . constant('DB') . ".get_datos_usuarios (?)");
             $query->bindParam(1, $US_ID);
@@ -86,20 +71,14 @@ class CuentaModel extends Model
             $ciudad = $parametros["ciudad"];
 
 
-            $sql = "UPDATE " . constant("DB") . ".usuarios 
-                SET 
-                US_APELLNOM = :US_APELLNOM, 
-                US_NCED= :US_NCED,
-                US_CEL=:US_CEL,
-                CIUDAD_ID= :CIUDAD_ID
-                WHERE US_ID = :US_ID";
+            $sql = "CALL " . constant("DB") . ".edit_usuarios_settings (?,?,?,?,?)";
 
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":US_APELLNOM", $nombre);
-            $query->bindParam(":US_NCED", $cedula);
-            $query->bindParam(":US_CEL", $celular);
-            $query->bindParam(":CIUDAD_ID", $ciudad);
-            $query->bindParam(":US_ID", $user_ID);
+            $query->bindParam(1, $nombre);
+            $query->bindParam(2, $cedula);
+            $query->bindParam(3, $celular);
+            $query->bindParam(4, $ciudad);
+            $query->bindParam(5, $user_ID);
 
 
             if ($query->execute()) {
@@ -149,13 +128,10 @@ class CuentaModel extends Model
             }
 
             if ($val == 1) {
-                $sql2 = "UPDATE " . constant("DB") . ".usuarios
-                    SET 
-                    US_CONTRASENA = :US_CONTRASENA 
-                    WHERE US_ID = :US_ID";
+                $sql2 = "CALL " . constant("DB") . ".edit_usuarios_settings_contrasena (?,?)";
                 $query2 = $this->db->connect()->prepare($sql2);
-                $query2->bindParam(":US_CONTRASENA", $user_Contrasena_nueva);
-                $query2->bindParam(":US_ID", $user_ID);
+                $query2->bindParam(1, $user_Contrasena_nueva);
+                $query2->bindParam(2, $user_ID);
                 if ($query2->execute()) {
                     echo json_encode(true);
                     exit();

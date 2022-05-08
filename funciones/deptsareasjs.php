@@ -8,6 +8,11 @@ $urlGetPaises = constant("URL") . "mantenimiento/Cargar_Paises";
 
 $urlNuevoDepartamentos = constant("URL") . "mantenimiento/Nuevo_Departamento";
 $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Departamento";
+$urlNuevaArea = constant("URL") . "mantenimiento/Nueva_Area";
+$urlActualizarArea = constant("URL") . "mantenimiento/Actualizar_Area";
+$urlNuevo_Servicio = constant("URL") . "mantenimiento/Nuevo_Servicio";
+$urlActualizar_Servicio = constant("URL") . "mantenimiento/Actualizar_Servicio";
+
 
 
 
@@ -21,9 +26,17 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
     var urlGetPaises = '<?php echo $urlGetPaises ?>';
     var urlNuevoDepartamentos = '<?php echo $urlNuevoDepartamentos ?>';
     var urlActualizarDepartamentos = '<?php echo $urlActualizarDepartamentos ?>';
+    var urlActualizarArea = '<?php echo $urlActualizarArea ?>';
+    var urlNuevaArea = '<?php echo $urlNuevaArea ?>';
+    var urlNuevo_Servicio = '<?php echo $urlNuevo_Servicio ?>';
+    var urlActualizar_Servicio = '<?php echo $urlActualizar_Servicio ?>';
 
 
     var DEPTO_ID;
+    var AREA_ID;
+    var SERVICIO_ID;
+    var CIUDAD_ID;
+    var PAIS_ID;
     //*DEPARTAMENTOS **/
     function get_departamentos() {
 
@@ -36,7 +49,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
     function Crear_Tabla_Departamentos(data) {
         $('#MN_Tabla_Departamentos').empty();
         $('#MN_Tabla_Departamentos tbody').empty();
-       
+
         var table = $('#MN_Tabla_Departamentos').DataTable({
             destroy: true,
             data: data,
@@ -52,6 +65,8 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
                         $("#DEPT_Nombre").val("");
                         $("#btn_Nuevos_Departamento_b").show();
                         $("#btn_Actualizar_Departamento_b").hide();
+                        $("#CHECK_DEPARTAMENTOS").hide();
+
 
                     }
                 },
@@ -110,9 +125,16 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             var data = table.row(this).data();
             console.log(data["DEPTO_NOM"]);
             $("#DEPT_Nombre").val(data["DEPTO_NOM"]);
+            var ESTADO = data["DEPTO_ACTIVO"];
+            if (ESTADO == 'S') {
+                $("#Check_estado_activo_Dep").prop("checked", true);
+            } else {
+                $("#Check_estado_inactivo_Dep").prop("checked", true);
+            }
             DEPTO_ID = data["DEPTO_ID"]
             $("#btn_Actualizar_Departamento_b").show();
             $("#btn_Nuevos_Departamento_b").hide();
+            $("#CHECK_DEPARTAMENTOS").show();
 
             // Validar_Actualizar_Datos_usuario(data);
         });
@@ -140,10 +162,23 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
 
     function Actualizar_Departamento() {
         var DEPTO_NOM = $("#DEPT_Nombre").val();
+        var activo = document.getElementById("Check_estado_activo_Dep");
+        var inactivo = document.getElementById("Check_estado_inactivo_Dep");
+
+        if (activo.checked == true) {
+            activo = "S";
+            inactivo = "N"
+        } else if (inactivo.checked == true) {
+            inactivo = "S";
+            activo = "N";
+
+        }
 
         var data = {
             DEPTO_NOM: DEPTO_NOM,
-            DEPTO_ID: DEPTO_ID
+            DEPTO_ID: DEPTO_ID,
+            DEPTO_ACTIVO: activo,
+            DEPTO_ELIMINADO: inactivo
         }
 
         AjaxSendReceive(urlActualizarDepartamentos, data, function(response) {
@@ -168,7 +203,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
 
     function Crear_Tabla_Areas(data) {
         var tb = $('#MN_Tabla_Areas');
-        $('#MN_Tabla_Areas tbody').empty();
+        $('#MN_Tabla_Areas').empty();
 
         var table = tb.DataTable({
             destroy: true,
@@ -181,7 +216,12 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
                     text: "<i class='fa fa-plus'></i>Crear Nuevo",
                     className: 'btn btn-primary btn-fill',
                     action: function(e, dt, node, config) {
-                        alert('Button activated');
+                        $("#kt_modal_add_Area").modal('show');
+                        $("#AREA_Nombre").val("");
+                        $("#btn_Nuevos_Areas_b").show();
+                        $("#btn_Actualizar_Areas_b").hide();
+                        $("#CHECK_AREAS").hide();
+
                     }
                 },
                 {
@@ -197,6 +237,9 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
                 "width": "50%",
                 "targets": 0
             }],
+            order: [
+                [1, "desc"]
+            ],
             columns: [{
                 data: "AREA_NOM",
                 title: "Nombre "
@@ -206,6 +249,12 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             }, {
                 data: "AREA_ACTIVO",
                 title: "Estado "
+            }, {
+                data: null,
+                title: "Editar",
+                className: "dt-center  btn_edit",
+                defaultContent: '<button type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Area"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
+                orderable: false
             }],
             "createdRow": function(row, data, index, cell) {
 
@@ -223,6 +272,70 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
+
+        $('#MN_Tabla_Areas tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            console.log(data["DEPTO_NOM"]);
+            $("#AREA_Nombre").val(data["AREA_NOM"]);
+            var ESTADO = data["AREA_ACTIVO"];
+            if (ESTADO == 'S') {
+                $("#Check_estado_activo_Area").prop("checked", true);
+            } else {
+                $("#Check_estado_inactivo_Area").prop("checked", true);
+            }
+            AREA_ID = data["AREA_ID"]
+            $("#btn_Actualizar_Areas_b").show();
+            $("#btn_Nuevos_Areas_b").hide();
+            $("#CHECK_AREAS").show();
+
+            // Validar_Actualizar_Datos_usuario(data);
+        });
+    }
+
+    function Nueva_Area() {
+        var AREA_NOM = $("#AREA_Nombre").val();
+
+        var data = {
+            AREA_NOM: AREA_NOM,
+        }
+
+        AjaxSendReceive(urlNuevaArea, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                $("#kt_modal_add_Area").modal('hide');
+                get_Areas();
+            }
+        })
+    }
+
+    function Actualizar_Area() {
+        var AREA_NOM = $("#AREA_Nombre").val();
+        var activo = document.getElementById("Check_estado_activo_Area");
+        var inactivo = document.getElementById("Check_estado_inactivo_Area");
+
+        if (activo.checked == true) {
+            activo = "S";
+            inactivo = "N"
+        } else if (inactivo.checked == true) {
+            inactivo = "S";
+            activo = "N";
+
+        }
+        var data = {
+            AREA_NOM: AREA_NOM,
+            AREA_ID: AREA_ID,
+            AREA_ACTIVO: activo,
+            AREA_ELIMINADO: inactivo
+        }
+
+        AjaxSendReceive(urlActualizarArea, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                $("#kt_modal_add_Area").modal('hide');
+                get_Areas();
+            }
+        })
     }
 
     //** SERVICIOS */
@@ -237,7 +350,7 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
 
     function Crear_Tabla_Servicios(data) {
         var tb = $('#MN_Tabla_Servicios');
-        $('#MN_Tabla_Servicios tbody').empty();
+        $('#MN_Tabla_Servicios').empty();
 
         var table = tb.DataTable({
             destroy: true,
@@ -250,7 +363,11 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
                     text: "<i class='fa fa-plus'></i>Crear Nuevo",
                     className: 'btn btn-primary btn-fill',
                     action: function(e, dt, node, config) {
-                        alert('Button activated');
+                        $("#kt_modal_add_Servicio").modal('show');
+                        $("#SERV_Nombre").val("");
+                        $("#btn_Nuevos_Servicio_b").show();
+                        $("#btn_Actualizar_Servicio_b").hide();
+                        $("#CHECK_SERV").hide();
                     }
                 },
                 {
@@ -275,6 +392,12 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
             }, {
                 data: "SERV_ACTIVO",
                 title: "Estado "
+            }, {
+                data: null,
+                title: "Editar",
+                className: "dt-center  btn_edit",
+                defaultContent: '<button type="button" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Servicio"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" ><i class="fa fa-edit"></i></button>',
+                orderable: false
             }],
             "createdRow": function(row, data, index, cell) {
 
@@ -292,6 +415,72 @@ $urlActualizarDepartamentos = constant("URL") . "mantenimiento/Actualizar_Depart
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 500);
+
+        $('#MN_Tabla_Servicios tbody').on('click', 'td.btn_edit', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            $("#SERV_Nombre").val(data["SERV_NOM"]);
+            var ESTADO = data["SERV_ACTIVO"];
+            if (ESTADO == 'S') {
+                $("#Check_estado_activo_Serv").prop("checked", true);
+            } else {
+                $("#Check_estado_inactivo_Serv").prop("checked", true);
+            }
+            SERVICIO_ID = data["SERV_ID"]
+            $("#btn_Actualizar_Servicio_b").show();
+            $("#btn_Nuevos_Servicio_b").hide();
+            $("#CHECK_SERV").show();
+
+            // Validar_Actualizar_Datos_usuario(data);
+        });
+    }
+
+    function Nueva_Servicio() {
+        var SERV_NOM = $("#SERV_Nombre").val();
+
+        if (SERV_NOM != "") {
+            var data = {
+                SERV_NOM: SERV_NOM,
+            }
+
+            AjaxSendReceive(urlNuevo_Servicio, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_add_Servicio").modal('hide');
+                    get_Servicios();
+                }
+            })
+        }
+
+    }
+
+    function Actualizar_Servicio() {
+        var SERV_NOM = $("#SERV_Nombre").val();
+        var activo = document.getElementById("Check_estado_activo_Serv");
+        var inactivo = document.getElementById("Check_estado_inactivo_Serv");
+
+        if (activo.checked == true) {
+            activo = "S";
+            inactivo = "N"
+        } else if (inactivo.checked == true) {
+            inactivo = "S";
+            activo = "N";
+
+        }
+        var data = {
+            SERV_NOM: SERV_NOM,
+            SERV_ID: SERVICIO_ID,
+            SERV_ACTIVO: activo,
+            SERV_ELIMINADO: inactivo
+        }
+
+        AjaxSendReceive(urlActualizar_Servicio, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                $("#kt_modal_add_Servicio").modal('hide');
+                get_Servicios();
+            }
+        })
     }
     //** CIUDADES */
 

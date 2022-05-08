@@ -221,6 +221,51 @@ require 'views/header.php';
                             <!--end::Input-->
                         </div>
 
+                        <div id="CHECK_DEPARTAMENTOS" style="display: none;">
+
+
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_activo_Dep" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Activo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                            <!--end::Input row-->
+                            <div class="separator separator-dashed my-5"></div>
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_inactivo_Dep" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Inactivo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                        </div>
+
 
                         <!--end::Input group-->
                     </div>
@@ -234,6 +279,240 @@ require 'views/header.php';
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
                         <button id="btn_Actualizar_Departamento_b" onclick="btn_Actualizar_Departamento()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Actualizar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="kt_modal_add_Area" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_user_header_edit">
+                <!--begin::Modal title-->
+                <h2 class="fw-bolder">Nueva Area</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1 btn_close_area">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="form2" onsubmit="return false">
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+
+
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bold fs-6 mb-2">Nombre</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" id="AREA_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                            <!--end::Input-->
+                        </div>
+
+                        <div id="CHECK_AREAS" style="display: none;">
+
+
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_activo_Area" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Activo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                            <!--end::Input row-->
+                            <div class="separator separator-dashed my-5"></div>
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_inactivo_Area" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Inactivo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                        </div>
+
+
+
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-15">
+
+                        <button id="btn_Nuevos_Areas_b" onclick="btn_Nuevos_Areas()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Guardar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                        <button id="btn_Actualizar_Areas_b" onclick="btn_Actualizar_Areas()" class="btn btn-warning" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Actualizar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="kt_modal_add_Servicio" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_user_header_edit">
+                <!--begin::Modal title-->
+                <h2 class="fw-bolder">Nuevo Servicio</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1 btn_close_Serv">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="form2" onsubmit="return false">
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+
+
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bold fs-6 mb-2">Nombre</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" id="SERV_Nombre" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                            <!--end::Input-->
+                        </div>
+
+                        <div id="CHECK_SERV" style="display: none;">
+
+
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_activo_Serv" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Activo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                            <!--end::Input row-->
+                            <div class="separator separator-dashed my-5"></div>
+                            <div class="d-flex fv-row">
+
+
+                                <!--begin::Radio-->
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input id="Check_estado_inactivo_Serv" class="form-check-input me-3" name="user_role_e" type="radio" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                        <div class="fw-bolder text-gray-800">
+                                            Inactivo
+                                        </div>
+
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Radio-->
+                            </div>
+                        </div>
+
+
+
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-15">
+
+                        <button id="btn_Nuevos_Servicio_b" onclick="btn_Nuevos_Servicio()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <span class="indicator-label">Guardar</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                        <button id="btn_Actualizar_Servicio_b" onclick="btn_Actualizar_Servicio()" class="btn btn-warning" data-kt-users-modal-action="submit">
                             <span class="indicator-label">Actualizar</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -280,6 +559,16 @@ require 'views/header.php';
         $("#kt_modal_add_Departamento").modal('hide');
     });
 
+
+    $(".btn_close_area").click(function() {
+        $("#kt_modal_add_Area").modal('hide');
+    });
+    $(".btn_close_Serv").click(function() {
+        $("#kt_modal_add_Servicio").modal('hide');
+    });
+
+    
+
     function btn_Nuevos_Departamento() {
         Nuevos_Departamento();
     }
@@ -287,6 +576,25 @@ require 'views/header.php';
     function btn_Actualizar_Departamento() {
         Actualizar_Departamento();
     }
+
+    function btn_Nuevos_Areas() {
+        Nueva_Area();
+    }
+
+    function btn_Actualizar_Areas() {
+        Actualizar_Area();
+    }
+
+    function btn_Nuevos_Servicio() {
+        Nueva_Servicio();
+    }
+
+    function btn_Actualizar_Servicio() {
+        Actualizar_Servicio();
+    }
+
+
+
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
         $.fn.dataTable.tables({
             visible: true,
