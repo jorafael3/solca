@@ -19,7 +19,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql = "SELECT CIUDAD_ID, CIUDAD_NOM FROM " . constant("DB") . ".ciudades";
+            $sql = "CALL " . constant("DB") . ".ciudades_all";
             $query = $this->db->connect()->prepare($sql);
 
             if ($query->execute()) {
@@ -71,37 +71,18 @@ class MantenimientoModel extends Model
         $user_status = "S";
 
 
-        $query = "INSERT INTO " . constant("DB") . ".usuarios(
-            US_APELLNOM, 
-            US_EMAIL, 
-            US_NCED, 
-            US_CEL, 
-            US_ACTIVO, 
-            CIUDAD_ID, 
-            TIPOUS_ID, 
-            US_CONTRASENA 
-            )
-        VALUES(
-            :US_APELLNOM, 
-            :US_EMAIL, 
-            :US_NCED, 
-            :US_CEL, 
-            :US_ACTIVO, 
-            :CIUDAD_ID, 
-            :TIPOUS_ID, 
-            :US_CONTRASENA 
-        );
+        $query = "CALL " . constant("DB") . ".create_usuario (?,?,?,?,?,?,?);
         ";
 
         try {
             $query = $this->db->connect()->prepare($query);
-            $query->bindParam(":US_APELLNOM", $user_name);
-            $query->bindParam(":US_NCED", $user_Cedula);
-            $query->bindParam(":US_CEL", $user_Celular);
-            $query->bindParam(":US_ACTIVO", $user_status);
-            $query->bindParam(":CIUDAD_ID", $user_ciudad);
-            $query->bindParam(":TIPOUS_ID", $rol);
-            $query->bindParam(":US_CONTRASENA", $user_Contrasena);
+            $query->bindParam(1, $user_name);
+            $query->bindParam(2, $user_email);
+            $query->bindParam(3, $user_Cedula);
+            $query->bindParam(4, $user_Celular);
+            $query->bindParam(5, $user_ciudad);
+            $query->bindParam(6, $rol);
+            $query->bindParam(7, $user_Contrasena);
 
             if ($query->execute()) {
                 $result = true;
@@ -122,16 +103,7 @@ class MantenimientoModel extends Model
     function ListarUsuario()
     {
         try {
-            $sql = "SELECT 
-            us.US_ID,
-            us.US_APELLNOM, 
-            us.US_EMAIL, 
-            us.US_ACTIVO, 
-            us.TIPOUS_ID, 
-            tp.TIPOUS_NOM
-            FROM " . constant("DB") . ".usuarios us
-            left join " . constant("DB") . ".tipos_usuarios tp 
-            ON us.TIPOUS_ID = tp.TIPOUS_ID";
+            $sql = "CALL " . constant("DB") . ".get_all_usuarios";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -156,15 +128,11 @@ class MantenimientoModel extends Model
             $US_ACTIVO = $parametros["US_ACTIVO"];
             $TIPOUS_ID = $parametros["TIPOUS_ID"];
 
-            $sql = "UPDATE " . constant("DB") . ".usuarios
-            SET
-            US_ACTIVO =:US_ACTIVO,
-            TIPOUS_ID =:TIPOUS_ID
-            WHERE US_ID =:US_ID";
+            $sql = "CALL  " . constant("DB") . ".edit_usuarios_estado_tipo (?,?,?)";
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":US_ACTIVO", $US_ACTIVO);
-            $query->bindParam(":TIPOUS_ID", $TIPOUS_ID);
-            $query->bindParam(":US_ID", $US_ID);
+            $query->bindParam(1, $US_ACTIVO);
+            $query->bindParam(2, $TIPOUS_ID);
+            $query->bindParam(3, $US_ID);
 
             if ($query->execute()) {
                 echo json_encode(true);
@@ -187,8 +155,7 @@ class MantenimientoModel extends Model
     function Cargar_Departamentos()
     {
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".departamentos";
+            $sql = "CALL " . constant("DB") . ".get_all_departamentos";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -257,8 +224,7 @@ class MantenimientoModel extends Model
     function Cargar_Areas()
     {
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".areas";
+            $sql = "CALL " . constant("DB") . ".get_all_areas";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -279,8 +245,7 @@ class MantenimientoModel extends Model
     function Cargar_Servicio()
     {
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".servicios";
+            $sql = "CALL " . constant("DB") . ".get_all_servicios";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -301,8 +266,7 @@ class MantenimientoModel extends Model
     function Cargar_Ciudades()
     {
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".ciudades";
+            $sql = "CALL " . constant("DB") . ".get_all_ciudades";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -323,8 +287,7 @@ class MantenimientoModel extends Model
     function Cargar_Paises()
     {
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".paises";
+            $sql = "CALL " . constant("DB") . ".get_all_paises";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -351,7 +314,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql = "SELECT * FROM " . constant("DB") . ".perspectivas ";
+            $sql = "CALL " . constant("DB") . ".get_all_perspectivas ";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -424,11 +387,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql = "SELECT c.CRITERIO_ID,c.CRITERIO_NOM, c.CRITERIO_ACTIVO,c.FCREADO,c.PerspectivaID,
-            v.PERSPECTIVA_ID,v.PERSPECTIVA_NOM
-            FROM " . constant("DB") . ".criterios c 
-            left join " . constant("DB") . ".perspectivas v 
-            on v.PERSPECTIVA_ID = c.PerspectivaID";
+            $sql = "CALL " . constant("DB") . ".get_all_criterios ";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -501,8 +460,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql = "SELECT *
-            FROM " . constant("DB") . ".medio_verificacion ";
+            $sql = "CALL " . constant("DB") . ".get_all_medios_verificacion ";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);

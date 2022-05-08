@@ -13,7 +13,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
         <div class="col-12 col-md-6">
             <div class="m-0">
 
-                <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status"  class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
+                <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
                     <option value="Todos">TODOS</option>
                     <?php
                     foreach ($this->departamentos as $row) {
@@ -28,7 +28,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
         </div>
     </div>
 
-    <div class="col-xl-12" id="Seccion_Perspectivas">
+    <div class="col-xl-12 col-md-12" id="Seccion_Perspectivas">
         <!--begin::Tables widget 6-->
         <div class="card card-flush h-xl-100">
 
@@ -125,51 +125,59 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                 </ul>
 
                 <div class="row">
-                    <div class="table-responsive col-4 border-gray-200">
-                        <div class="d-flex flex-wrap flex-stack my-5">
-                            <!--begin::Heading-->
-                            <h2 class="fs-2 fw-bold my-2">Criterios
-                                <span class="fs-6 text-gray-400 ms-1"></span>
-                            </h2>
-                            <!--end::Heading-->
-                            <!--begin::Controls-->
+                    <div class="col-md-4 col-12">
+                        <div class="table-responsive border-gray-200">
+                            <div class="d-flex flex-wrap flex-stack my-5">
+                                <!--begin::Heading-->
+                                <h2 class="fs-2 fw-bold my-2">Criterios
+                                    <span class="fs-6 text-gray-400 ms-1"></span>
+                                </h2>
+                                <!--end::Heading-->
+                                <!--begin::Controls-->
 
-                            <!--end::Controls-->
-                        </div>
-                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
-
-                            </thead>
-                            <tbody class="fw-6 fw-bold text-gray-600">
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="table-responsive col-8 border-gray-200">
-                        <div class="d-flex flex-wrap flex-stack my-5">
-                            <!--begin::Heading-->
-                            <h2 class="fs-2 fw-bold my-2">POA
-                                <span class="fs-6 text-gray-400 ms-1"></span>
-                            </h2>
-                            <!--end::Heading-->
-                            <!--begin::Controls-->
-                            <div class="d-flex flex-wrap my-1">
-                                <!--begin::Select wrapper-->
-
-                                <!--end::Select wrapper-->
+                                <!--end::Controls-->
                             </div>
-                            <!--end::Controls-->
+                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                </thead>
+                                <tbody class="fw-6 fw-bold text-gray-600">
+
+                                </tbody>
+                            </table>
                         </div>
-                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
-                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
-                            </thead>
-                            <tbody class="fw-6 fw-bold text-gray-600">
-
-                            </tbody>
-                        </table>
                     </div>
+
+                    <div class="col-md-8 col-12">
+
+                        <div class="table-responsive border-gray-200">
+                            <div class="d-flex flex-wrap flex-stack my-5">
+                                <!--begin::Heading-->
+                                <h2 class="fs-2 fw-bold my-2">POA
+                                    <span class="fs-6 text-gray-400 ms-1"></span>
+                                </h2>
+                                <!--end::Heading-->
+                                <!--begin::Controls-->
+                                <div class="d-flex flex-wrap my-1">
+                                    <!--begin::Select wrapper-->
+
+                                    <!--end::Select wrapper-->
+                                </div>
+                                <!--end::Controls-->
+                            </div>
+                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
+                                <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                                </thead>
+                                <tbody class="fw-6 fw-bold text-gray-600">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
                 </div>
 
 

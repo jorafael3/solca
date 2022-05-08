@@ -101,48 +101,53 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                 </ul>
 
                 <div class="row">
-                    <div class="table-responsive col-4 border-gray-200">
-                        <h4>Criterios</h4>
+                    <div class="col-md-4 col-12">
 
-                        <?php
+                        <div class="table-responsive border-gray-200">
+                            <h4>Criterios</h4>
 
-                        if ($TIPOUS_ID == 1) {
-                        ?>
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Criterio" style="margin-bottom: 10px;" class="btn btn-light-success"><i class="fa fa-plus"></i> Nuevo</button>
-                        <?php
+                            <?php
 
-                        }
-                        ?>
-                        <br>
-                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Criterio" style="margin-bottom: 10px;" class="btn btn-light-success"><i class="fa fa-plus"></i> Nuevo</button>
+                            <?php
 
-                            </thead>
-                            <tbody class="fw-6 fw-bold text-gray-600">
+                            }
+                            ?>
+                            <br>
+                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaCriterios" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="fw-6 fw-bold text-gray-600">
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <div class="col-md-8 col-12">
 
-                    <div class="table-responsive col-8 border-gray-200">
-                        <h4>Objetivos Estrategicos</h4>
-                        <?php
+                        <div class="table-responsive  border-gray-200">
+                            <h4>Objetivos Estrategicos</h4>
+                            <?php
 
-                        if ($TIPOUS_ID == 1) {
-                        ?>
-                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Obj_estrategicos" style="margin-bottom: 10px;" class="btn btn-light-primary"><i class="fa fa-plus"></i> Nuevo</button>
-                        <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_Obj_estrategicos" style="margin-bottom: 10px;" class="btn btn-light-primary"><i class="fa fa-plus"></i> Nuevo</button>
+                            <?php
 
-                        }
-                        ?>
-                        <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
-                            <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+                            }
+                            ?>
+                            <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaListaPoa" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
+                                <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
-                            </thead>
-                            <tbody class="fw-6 fw-bold text-gray-600">
+                                </thead>
+                                <tbody class="fw-6 fw-bold text-gray-600">
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 

@@ -134,37 +134,7 @@ class DashSuperAdminModel extends Model
 
 
 
-            $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion(
-                PROYECTOA_NOM, 
-                PROYECTOA_RESPONSABLE, 
-                PROYECTOA_INDICADOR, 
-                POA_ID, 
-                OBJEST_ID, 
-                PERSPECTIVA_ID, 
-                CRITERIO_ID, 
-                PROYECTOA_META_2022, 
-                PROYECTOA_META_2023, 
-                PROYECTOA_ACTIVO, 
-                PROYECTOA_ELIMINADO, 
-                FCREADO, 
-                HCREADO
-                )
-                VALUES(
-                  :PROYECTOA_NOM, 
-                  :PROYECTOA_RESPONSABLE, 
-                  :PROYECTOA_INDICADOR, 
-                  :POA_ID, 
-                  :OBJEST_ID, 
-                  :PERSPECTIVA_ID, 
-                  :CRITERIO_ID, 
-                  :PROYECTOA_META_2022, 
-                  :PROYECTOA_META_2023, 
-                  :PROYECTOA_ACTIVO, 
-                  :PROYECTOA_ELIMINADO, 
-                  :FCREADO, 
-                  :HCREADO
-                    
-                );";
+          
             $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $PROYECTOA_NOM);
             $query->bindParam(2, $PROYECTOA_RESPONSABLE);
@@ -238,35 +208,7 @@ class DashSuperAdminModel extends Model
         // $FCREADO = $ACTIV_FINICIO;
 
         try {
-            $sql = "INSERT INTO " . constant("DB") . ".poa_proyectos_accion_actividades(
-                `ACTIV_NOM`, 
-                `ACTIV_RESPONSABLE`, 
-                `ACTIV_FINICIO`, 
-                `ACTIV_FFINAL`, 
-                `PROYECTOA_ID`, 
-                `OBJEST_ID`, 
-                `PERSPECTIVA_ID`, 
-                `CRITERIO_ID`, 
-                `POA_ID`, 
-                `ACTIV_ACTIVO`, 
-                `ACTIV_ELIMINADO`, 
-                `FCREADO`, 
-                `HCREADO`
-                ) VALUES (
-                    :ACTIV_NOM,
-                    :ACTIV_RESPONSABLE,
-                    :ACTIV_FINICIO,
-                    :ACTIV_FFINAL,
-                    :PROYECTOA_ID,
-                    :OBJEST_ID,
-                    :PERSPECTIVA_ID,
-                    :CRITERIO_ID,
-                    :POA_ID,
-                    :ACTIV_ACTIVO,
-                    :ACTIV_ELIMINADO,
-                    :FCREADO,
-                    :HCREADO
-                )";
+           
             $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $ACTIV_NOM);
             $query->bindParam(2, $ACTIV_RESPONSABLE);

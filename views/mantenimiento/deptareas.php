@@ -31,7 +31,7 @@ require 'views/header.php';
                 <!--begin::Nav-->
                 <ul class="nav nav-pills nav-pills-custom item position-relative mx-9 mb-9">
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 p-0">
+                    <li class="nav-item mx-0 p-0">
                         <!--begin::Link-->
                         <a data-toggle="tab" class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
                             <!--begin::Subtitle-->
@@ -45,7 +45,7 @@ require 'views/header.php';
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 px-0">
+                    <li class="nav-item mx-0 px-0">
                         <!--begin::Link-->
                         <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
                             <!--begin::Subtitle-->
@@ -59,7 +59,7 @@ require 'views/header.php';
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 px-0">
+                    <li class="nav-item mx-0 px-0">
                         <!--begin::Link-->
                         <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
                             <!--begin::Subtitle-->
@@ -71,7 +71,7 @@ require 'views/header.php';
                         </a>
                         <!--end::Link-->
                     </li>
-                    <li class="nav-item col-2 mx-0 px-0">
+                    <li class="nav-item  mx-0 px-0">
                         <!--begin::Link-->
                         <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_4">
                             <!--begin::Subtitle-->
@@ -83,7 +83,7 @@ require 'views/header.php';
                         </a>
                         <!--end::Link-->
                     </li>
-                    <li class="nav-item col-2 mx-0 px-0">
+                    <li class="nav-item mx-0 px-0">
                         <!--begin::Link-->
                         <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_5">
                             <!--begin::Subtitle-->

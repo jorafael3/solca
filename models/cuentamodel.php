@@ -36,25 +36,25 @@ class CuentaModel extends Model
 
         try {
             $US_ID = $parametros;
-            $sql = "SELECT  
-            us.US_ID,
-            us.US_APELLNOM, 
-            us.US_EMAIL, 
-            us.US_NCED, 
-            us.US_CEL, 
-            us.US_ACTIVO, 
-            us.CIUDAD_ID, 
-            us.TIPOUS_ID, 
-            ci.CIUDAD_NOM, 
-            tp.TIPOUS_NOM
-            from " . constant('DB') . ".usuarios us 
-            left join " . constant('DB') . ".ciudades ci 
-            on us.CIUDAD_ID = ci.CIUDAD_ID 
-            left join tipos_usuarios tp on us.TIPOUS_ID = tp.TIPOUS_ID
-            WHERE US_ID = :US_ID";
+            // $sql = "SELECT  
+            // us.US_ID,
+            // us.US_APELLNOM, 
+            // us.US_EMAIL, 
+            // us.US_NCED, 
+            // us.US_CEL, 
+            // us.US_ACTIVO, 
+            // us.CIUDAD_ID, 
+            // us.TIPOUS_ID, 
+            // ci.CIUDAD_NOM, 
+            // tp.TIPOUS_NOM
+            // from " . constant('DB') . ".usuarios us 
+            // left join " . constant('DB') . ".ciudades ci 
+            // on us.CIUDAD_ID = ci.CIUDAD_ID 
+            // left join tipos_usuarios tp on us.TIPOUS_ID = tp.TIPOUS_ID
+            // WHERE US_ID = :US_ID";
 
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":US_ID", $US_ID);
+            $query = $this->db->connect()->prepare("CALL " . constant('DB') . ".get_datos_usuarios (?)");
+            $query->bindParam(1, $US_ID);
 
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);

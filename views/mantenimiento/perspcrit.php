@@ -31,46 +31,49 @@ require 'views/header.php';
                 <!--begin::Nav-->
                 <ul class="nav nav-pills nav-pills-custom item position-relative mx-9 mb-9">
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 p-0">
-                        <!--begin::Link-->
-                        <a data-toggle="tab" class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
-                            <!--begin::Subtitle-->
-                            <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Perspectivas</span>
-                            <!--end::Subtitle-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
+                        <li class="nav-item  mx-0 p-0 bg-light">
+                            <!--begin::Link-->
+                            <a data-toggle="tab" class="nav-link active d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
+                                <!--begin::Subtitle-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Perspectivas</span>
+                                <!--end::Subtitle-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+
+
+                        <li class="nav-item mx-0 px-0 bg-light">
+                            <!--begin::Link-->
+                            <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
+                                <!--begin::Subtitle-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Criterios</span>
+                                <!--end::Subtitle-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="nav-item col-2 mx-0 px-0">
-                        <!--begin::Link-->
-                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
-                            <!--begin::Subtitle-->
-                            <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Criterios</span>
-                            <!--end::Subtitle-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item col-4 mx-0 px-0">
-                        <!--begin::Link-->
-                        <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
-                            <!--begin::Subtitle-->
-                            <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Medios de Verificacion</span>
-                            <!--end::Subtitle-->
-                            <!--begin::Bullet-->
-                            <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
-                            <!--end::Bullet-->
-                        </a>
-                        <!--end::Link-->
-                    </li>
+
+                        <li class="nav-item mx-0 px-0 bg-light">
+                            <!--begin::Link-->
+                            <a data-toggle="tab" class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
+                                <!--begin::Subtitle-->
+                                <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Medios de Verificacion</span>
+                                <!--end::Subtitle-->
+                                <!--begin::Bullet-->
+                                <span class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded"></span>
+                                <!--end::Bullet-->
+                            </a>
+                            <!--end::Link-->
+                        </li>
+
                     <!-- <li class="nav-item col-2 mx-0 px-0">
                         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100" data-bs-toggle="pill" href="#kt_list_widget_16_tab_4">
                             <span class="nav-text text-gray-800 fw-bolder fs-6 mb-3">Ciudades</span>
@@ -429,7 +432,7 @@ require 'views/header.php';
     $(".kt_modal_add_Medio").click(function() {
         $("#btn_close_Medio").modal('hide');
     });
-    
+
     function btn_Nuevos_Perspectivas() {
         Nueva_Perspectivas();
     }
