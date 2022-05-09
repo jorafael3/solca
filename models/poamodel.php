@@ -90,6 +90,24 @@ class PoaModel extends Model
             return $e;
         }
     }
+    function Get_Areas_on_load()
+    {
+
+        try {
+            $sql = "CALL " . constant("DB") . ".get_all_areas ";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                return $err;
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 
     function Get_Perspectivas()
     {
@@ -192,6 +210,7 @@ class PoaModel extends Model
         try {
             $PROYECTOA_NOM = $parametros["PROYECTOA_NOM"];
             $PROYECTOA_RESPONSABLE = $parametros["PROYECTOA_RESPONSABLE"];
+            $PROYECTOA_RESPONSABLE_ID = $parametros["PROYECTOA_RESPONSABLE_ID"];
             $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
             $POA_ID = $parametros["POA_ID"];
             $OBJEST_ID = $parametros["OBJEST_ID"];
@@ -214,21 +233,22 @@ class PoaModel extends Model
 
 
         
-            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $PROYECTOA_NOM);
             $query->bindParam(2, $PROYECTOA_RESPONSABLE);
-            $query->bindParam(3, $PROYECTOA_INDICADOR);
-            $query->bindParam(4, $POA_ID);
-            $query->bindParam(5, $OBJEST_ID);
-            $query->bindParam(6, $PROYECTOA_META_2022);
-            $query->bindParam(7, $PROYECTOA_META_2023);
-            $query->bindParam(8, $PROYECTOA_META_2024);
-            $query->bindParam(9, $PROYECTOA_META_2025);
-            $query->bindParam(10, $PROYECTOA_META_2026);
-            $query->bindParam(11, $PROYECTOA_META_2027);
-            $query->bindParam(12, $PROYECTOA_META_2028);
-            $query->bindParam(13, $PROYECTOA_META_2029);
-            $query->bindParam(14, $PROYECTOA_META_2030);
+            $query->bindParam(3, $PROYECTOA_RESPONSABLE_ID);
+            $query->bindParam(4, $PROYECTOA_INDICADOR);
+            $query->bindParam(5, $POA_ID);
+            $query->bindParam(6, $OBJEST_ID);
+            $query->bindParam(7, $PROYECTOA_META_2022);
+            $query->bindParam(8, $PROYECTOA_META_2023);
+            $query->bindParam(9, $PROYECTOA_META_2024);
+            $query->bindParam(10, $PROYECTOA_META_2025);
+            $query->bindParam(11, $PROYECTOA_META_2026);
+            $query->bindParam(12, $PROYECTOA_META_2027);
+            $query->bindParam(13, $PROYECTOA_META_2028);
+            $query->bindParam(14, $PROYECTOA_META_2029);
+            $query->bindParam(15, $PROYECTOA_META_2030);
 
             if ($query->execute()) {
                 echo json_encode(true);
@@ -321,11 +341,10 @@ class PoaModel extends Model
         // $Progreso = $parametros["Progreso"];
 
         try {
-            $sql = "UPDATE " . constant("DB") . ".poa_proyectos_accion_actividades
-            SET ACTV_ESTADO = :ACTV_ESTADO WHERE ACTIV_ID = :ACTIV_ID";
+            $sql = "CALL " . constant("DB") . ".edit_actividad_estado (?,?)";
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(":ACTIV_ID", $ACTIV_ID);
-            $query->bindParam(":ACTV_ESTADO", $ACTV_ESTADO);
+            $query->bindParam(1, $ACTV_ESTADO);
+            $query->bindParam(2, $ACTIV_ID);
 
             if ($query->execute()) {
                 $avance = $this->Guardar_ACtividad_avance($parametros);

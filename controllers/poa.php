@@ -25,8 +25,8 @@ class Poa extends Controller
         $this->view->resp = $Responsables;
         $Indicadores =  $this->model->Get_indicadores_on_load();
         $this->view->Indica = $Indicadores;
-        $departamentos =  $this->model->Get_Departamentos_on_load();
-        $this->view->departamentos = $departamentos;
+        $departamentos =  $this->model->Get_Areas_on_load();
+        $this->view->areas = $departamentos;
         $this->Poarender(); 
     }
 

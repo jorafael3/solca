@@ -1,15 +1,15 @@
 <?php
 
-$urlGet_perspectiva = constant("URL") . "dashsuperadmin/Get_Perspectivas";
-$urlGet_Criterios = constant("URL") . "dashsuperadmin/Get_Criterios";
-$urlGet_Poa = constant("URL") . "dashsuperadmin/Get_Poa";
-$urlGet_Proyectos = constant("URL") . "dashsuperadmin/Get_Proyectos";
-$urlGet_Proyectos_detalles = constant("URL") . "dashsuperadmin/Get_Proyectos_Detalles";
+$urlGet_perspectiva = constant("URL") . "poa/Get_Perspectivas";
+$urlGet_Criterios = constant("URL") . "poa/Get_Criterios";
+$urlGet_Poa = constant("URL") . "poa/Get_Poa";
+$urlGet_Proyectos = constant("URL") . "poa/Get_Proyectos";
+$urlGet_Proyectos_detalles = constant("URL") . "poa/Get_Proyectos_Detalles";
 
-$urlNueva_Actividad = constant("URL") . "dashsuperadmin/Nueva_Actividad";
-$urlNuevo_Proyecto = constant("URL") . "dashsuperadmin/Nuevo_Proyecto";
-$urlActualizar_Actividad = constant("URL") . "dashsuperadmin/Actualizar_Actividad";
-$urlEliminar_Actividad = constant("URL") . "dashsuperadmin/Eliminar_Actividad";
+$urlNueva_Actividad = constant("URL") . "poa/Nueva_Actividad";
+$urlNuevo_Proyecto = constant("URL") . "poa/Nuevo_Proyecto";
+$urlActualizar_Actividad = constant("URL") . "poa/Actualizar_Actividad";
+$urlEliminar_Actividad = constant("URL") . "poa/Eliminar_Actividad";
 
 $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
@@ -263,7 +263,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                     Tabla_Poa(response);
 
                 } else {
-                    Data_filtrada = arrdata.filter(pr => (pr.DEPTO_ID) == FILTER_ID_DEPT);
+                    Data_filtrada = arrdata.filter(pr => (pr.AREA_ID) == FILTER_ID_DEPT);
                     Tabla_Poa(Data_filtrada);
 
                 }
@@ -545,8 +545,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     function Nuevo_Proyecto() {
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
+        var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
         // var PROYECTOA_INDICADOR = $("#PRY_indicador option:selected").text();
-        var PROYECTOA_INDICADOR = $("#PRY_indicador").text();
+        var PROYECTOA_INDICADOR = $("#PRY_indicador").val();
         var PROYECTOA_META_2022 = $("#PRY_Meta2022").val();
         var PROYECTOA_META_2023 = $("#PRY_Meta2023").val();
         var PROYECTOA_META_2024 = $("#PRY_Meta2024").val();
@@ -562,6 +563,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var PROYECTOA_ACTIVO = "S";
         var PROYECTOA_ELIMINADO = "N";
 
+        console.log(PROYECTOA_RESPONSABLE_ID);
         if (PROYECTOA_NOM == "") {
 
         } else if (PROYECTOA_RESPONSABLE == "") {
@@ -573,6 +575,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             var DATA_TO_SEND = {
                 PROYECTOA_NOM: PROYECTOA_NOM,
                 PROYECTOA_RESPONSABLE: PROYECTOA_RESPONSABLE,
+                PROYECTOA_RESPONSABLE_ID:PROYECTOA_RESPONSABLE_ID,
                 PROYECTOA_INDICADOR: PROYECTOA_INDICADOR,
                 PERSPECTIVA_ID: PERSPECTIVA_ID,
                 CRITERIO_ID: CRITERIO_ID,
@@ -589,7 +592,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 PROYECTOA_META_2030: PROYECTOA_META_2030
             }
 
-            console.log(DATA_TO_SEND);
+            console.log("SEND",DATA_TO_SEND);
 
             AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
                 console.log(response);
@@ -610,7 +613,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
         console.log(Proyect_info);
         var PROYECTOA_NOM = Proyect_info[0]["PROYECTOA_NOM"];
-        var PROYECTOA_RESPONSABLE = Proyect_info[0]["PROYECTOA_RESPONSABLE"];
+        var PROYECTOA_RESPONSABLE = Proyect_info[0]["USUARIOS_ID"];
         var PROYECTOA_INDICADOR = Proyect_info[0]["PROYECTOA_INDICADOR"];
         var PROYECTOA_META_2022 = Proyect_info[0]["PROYECTOA_META_2022"];
         var PROYECTOA_META_2023 = Proyect_info[0]["PROYECTOA_META_2023"];
@@ -635,7 +638,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         //     return $(this).text() == PROYECTOA_INDICADOR;
         // }).attr('selected', true).change();
         // $("#PRY_Responsable").select2("val", PROYECTOA_RESPONSABLE.replaceAll(" ",""));
-        $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE.replaceAll(" ", "")).change();
+        $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE).change();
         $("#PRY_indicador").val(PROYECTOA_INDICADOR)
         $("#PRY_Nombre").val(PROYECTOA_NOM);
         $("#PRY_Meta2022").val(PROYECTOA_META_2022);
@@ -651,6 +654,23 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $("#kt_modal_Nuevo_Proyecto").modal('show');
 
 
+    }
+
+    function Actualizar_Proyecto(){
+        var PROYECTOA_NOM = $("#PRY_Nombre").val();
+        var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
+        var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
+        // var PROYECTOA_INDICADOR = $("#PRY_indicador option:selected").text();
+        var PROYECTOA_INDICADOR = $("#PRY_indicador").val();
+        var PROYECTOA_META_2022 = $("#PRY_Meta2022").val();
+        var PROYECTOA_META_2023 = $("#PRY_Meta2023").val();
+        var PROYECTOA_META_2024 = $("#PRY_Meta2024").val();
+        var PROYECTOA_META_2025 = $("#PRY_Meta2025").val();
+        var PROYECTOA_META_2026 = $("#PRY_Meta2026").val();
+        var PROYECTOA_META_2027 = $("#PRY_Meta2027").val();
+        var PROYECTOA_META_2028 = $("#PRY_Meta2028").val();
+        var PROYECTOA_META_2029 = $("#PRY_Meta2029").val();
+        var PROYECTOA_META_2030 = $("#PRY_Meta2030").val();
     }
 
     function Proyecto_Eliminar(id) {

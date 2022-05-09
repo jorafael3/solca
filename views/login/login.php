@@ -22,61 +22,30 @@
     <!--begin::Main-->
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
-        <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <!--begin::Aside-->
-            <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #FFFFFF">
-                <!--begin::Wrapper-->
-                <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
-                    <!--begin::Content-->
-                    <div class="text-center p-10">
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
+				<!--begin::Content-->
+				<div class="d-flex flex-center flex-column flex-column-fluid p-5 pb-lg-5 bg-light">
+					<!--begin::Logo-->
+					<a href="#" class="mb-5">
 
-                        <img class="h-200px" src="<?php echo constant('URL') ?>public/assets/images/log2.png" alt="">
-
-                    </div>
-                    <div class="d-flex flex-row-fluid flex-column text-center">
-
-                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10 link-primary fw-bolder">Bienvenido a ....</h1>
-                        <!--end::Title-->
-                        <!--begin::Description-->
-                        <p class="fw-bold fs-2">Gestor de proyectos
-                            <br />con muchas herramientas
-                        </p>
-                    </div>
-
-                    <!--end::Content-->
-                    <!--begin::Illustration-->
-                    <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-200px" style="background-image: url(public/assets/media/illustrations/sketchy-1/10.png"></div>
-                    <!--end::Illustration-->
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Aside-->
-            <!--begin::Body-->
-            <div class="d-flex flex-column flex-lg-row-fluid py-10">
-                <!--begin::Content-->
-                <div class="d-flex flex-center flex-column flex-column-fluid">
-                    <!--begin::Wrapper-->
-                    <div class="w-lg-500px p-10 p-lg-15 mx-auto">
-                        <!--begin::Form-->
+						<img alt="Logo" src="<?php echo constant('URL') ?>public/assets/images/log2.png" class="h-150px" />
+					</a>
+					<!--end::Logo-->
+					<!--begin::Wrapper-->
+					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+						<!--begin::Form-->
                         <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="<?php echo constant('URL') ?>" method="POST">
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
                                 <h1 class="text-dark mb-3">Inicia Sesion</h1>
-                                <!--end::Title-->
-                                <!--begin::Link-->
 
-                                <!--end::Link-->
                             </div>
-                            <!--begin::Heading-->
-                            <!--begin::Input group-->
                             <div class="fv-row mb-10">
-                                <!--begin::Label-->
                                 <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-                                <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="text" name="email"/>
                                 <!-- <div class="">
                                     <?php
                                     if (isset($errorlogin)) {
@@ -94,7 +63,7 @@
                                 <div class="d-flex flex-stack mb-2">
                                     <!--begin::Label-->
                                     <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                                    <a name="rset" href="resetpassword.php" class="link-primary fs-6 fw-bolder">recuperar contraseña ?</a>
+                                    <!-- <a name="rset" href="resetpassword.php" class="link-primary fs-6 fw-bolder">recuperar contraseña ?</a> -->
                                    
                                 </div>
                                 <!--end::Wrapper-->
@@ -115,7 +84,7 @@
                             <div class="text-center">
                                 <!--begin::Submit button-->
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                    <span class="indicator-label">Continue</span>
+                                    <span class="indicator-label">Iniciar sesion</span>
                                     <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
@@ -135,26 +104,23 @@
                             </div>
                             <!--end::Actions-->
                         </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Content-->
-                <!--begin::Footer-->
-                <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-                    <!--begin::Links-->
-                    <div class="d-flex flex-center fw-bold fs-6">
-                        <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-                        <a href="https://devs.keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-                    </div>
-                    <!--end::Links-->
-                </div>
-                <!--end::Footer-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::Authentication - Sign-in-->
-    </div>
+						<!--end::Form-->
+					</div>
+					<!--end::Wrapper-->
+				</div>
+				<!--end::Content-->
+				<!--begin::Footer-->
+				<!-- <div class="d-flex flex-center flex-column-auto p-10">
+					<div class="d-flex align-items-center fw-bold fs-6">
+						<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
+						<a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
+						<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
+					</div>
+				</div> -->
+				<!--end::Footer-->
+			</div>
+			<!--end::Authentication - Sign-in-->
+		</div>
     <!--end::Root-->
     <!--end::Main-->
     <!--begin::Javascript-->
@@ -184,3 +150,4 @@
 <!--end::Body-->
 
 </html>
+
