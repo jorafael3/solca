@@ -42,6 +42,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var ARRAY_DATA_ACTIVIDADES;
     var ARRAY_DATA_POA;
     var FILTER_ID_DEPT;
+    var PROYECTOA_ID;
 
     function Mensaje_Info(mensaje1, mensaje2, icono) {
         Swal.fire(
@@ -238,20 +239,20 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         // }
         // console.log(DATA_FILTRADA);
         // Tabla_Poa(DATA_FILTRADA);
+        Get_Poa();
 
     }
 
-    function Get_Poa(data) {
-        var criterio_id = data["CRITERIO_ID"];
-        CRITERIO_NOM = data["CRITERIO_NOM"];
-        CRITERIO_ID = criterio_id;
-        var data = {
-            criterio_id: criterio_id,
-            perspectiva_id: PERSPECTIVA_ID
-        }
-        console.log(data);
+    function Get_Poa() {
+        // var criterio_id = data["CRITERIO_ID"];
+        // CRITERIO_NOM = data["CRITERIO_NOM"];
+        // CRITERIO_ID = criterio_id;
+        // var data = {
+        //     criterio_id: criterio_id,
+        //     perspectiva_id: PERSPECTIVA_ID
+        // }
 
-        AjaxSendReceive(urlGet_Poa, data, function(response) {
+        AjaxSendReceive(urlGet_Poa, data = [], function(response) {
 
             if (response.length != 0) {
                 ARR_POAS = response;
@@ -575,10 +576,10 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             var DATA_TO_SEND = {
                 PROYECTOA_NOM: PROYECTOA_NOM,
                 PROYECTOA_RESPONSABLE: PROYECTOA_RESPONSABLE,
-                PROYECTOA_RESPONSABLE_ID:PROYECTOA_RESPONSABLE_ID,
+                PROYECTOA_RESPONSABLE_ID: PROYECTOA_RESPONSABLE_ID,
                 PROYECTOA_INDICADOR: PROYECTOA_INDICADOR,
-                PERSPECTIVA_ID: PERSPECTIVA_ID,
-                CRITERIO_ID: CRITERIO_ID,
+                // PERSPECTIVA_ID: PERSPECTIVA_ID,
+                //CRITERIO_ID: CRITERIO_ID,
                 POA_ID: ARRAY_DATA_POA["POA_ID"],
                 OBJEST_ID: ARRAY_DATA_POA["OBJEST_ID"],
                 PROYECTOA_META_2022: PROYECTOA_META_2022,
@@ -592,7 +593,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 PROYECTOA_META_2030: PROYECTOA_META_2030
             }
 
-            console.log("SEND",DATA_TO_SEND);
+            console.log("SEND", DATA_TO_SEND);
 
             AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
                 console.log(response);
@@ -609,6 +610,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
     function Proyecto_Edit(id) {
         //Limpiar_Proyectos();
+        PROYECTOA_ID = id;
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
         let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
         console.log(Proyect_info);
@@ -652,11 +654,18 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $("#PRY_Meta2030").val(PROYECTOA_META_2030);
 
         $("#kt_modal_Nuevo_Proyecto").modal('show');
+        $("#Btn_Actualizar_Proyecto_b").show();
+        $("#Btn_Nuevo_Proyecto_b").hide();
+        $("#PROY_MD_NUEVO").text("Actualizar Proyecto");
 
 
     }
 
-    function Actualizar_Proyecto(){
+    function Actualizar_Proyecto() {
+        var PROYECTO_ID = PROYECTOA_ID;
+        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
+        var Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == PROYECTO_ID);
+        console.log(Proyect_info);
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
         var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
@@ -671,6 +680,26 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var PROYECTOA_META_2028 = $("#PRY_Meta2028").val();
         var PROYECTOA_META_2029 = $("#PRY_Meta2029").val();
         var PROYECTOA_META_2030 = $("#PRY_Meta2030").val();
+
+        var DATA_TO_SEND = {
+            PROYECTOA_NOM: PROYECTOA_NOM,
+            PROYECTOA_RESPONSABLE: PROYECTOA_RESPONSABLE,
+            PROYECTOA_RESPONSABLE_ID: PROYECTOA_RESPONSABLE_ID,
+            PROYECTOA_INDICADOR: PROYECTOA_INDICADOR,
+            POA_ID: Proyect_info["POA_ID"],
+            OBJEST_ID: Proyect_info["OBJEST_ID"],
+            PROYECTOA_META_2022: PROYECTOA_META_2022,
+            PROYECTOA_META_2023: PROYECTOA_META_2023,
+            PROYECTOA_META_2024: PROYECTOA_META_2024,
+            PROYECTOA_META_2025: PROYECTOA_META_2025,
+            PROYECTOA_META_2026: PROYECTOA_META_2026,
+            PROYECTOA_META_2027: PROYECTOA_META_2027,
+            PROYECTOA_META_2028: PROYECTOA_META_2028,
+            PROYECTOA_META_2029: PROYECTOA_META_2029,
+            PROYECTOA_META_2030: PROYECTOA_META_2030
+        }
+
+        console.log("SEND", DATA_TO_SEND);
     }
 
     function Proyecto_Eliminar(id) {
@@ -693,6 +722,11 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $("#PRY_Responsable").val(0).change();
         // $("#PRY_indicador").val(0).change();
         $("#PRY_indicador").val("");
+        $("#Btn_Nuevo_Proyecto_b").show();
+        $("#Btn_Actualizar_Proyecto_b").hide();
+        $("#PROY_MD_NUEVO").text("Nuevo Proyecto");
+
+
     }
 
     //********* */ ACTIVIDADES **********/
@@ -707,6 +741,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         $("#Seccion_Proyectos").hide(100);
         $("#Seccion_Proyectos_Detalle").show(100);
         $("#Seccion_Perspectivas").hide(100);
+
 
 
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));

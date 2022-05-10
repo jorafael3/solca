@@ -158,8 +158,10 @@ class PoaModel extends Model
 
     function Get_Poa($parametros)
     {
-        $criterio_id = $parametros["criterio_id"];
-        $perspectiva_id = $parametros["perspectiva_id"];
+        // $criterio_id = $parametros["criterio_id"];
+        // $perspectiva_id = $parametros["perspectiva_id"];
+        $criterio_id = "";
+        $perspectiva_id = "";
         try {
             $sql = "CALL " . constant("DB") . ".AreasDepartamentosCriterios (?,?) ";
             $query = $this->db->connect()->prepare($sql);
@@ -214,8 +216,8 @@ class PoaModel extends Model
             $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
             $POA_ID = $parametros["POA_ID"];
             $OBJEST_ID = $parametros["OBJEST_ID"];
-            $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
-            $CRITERIO_ID = $parametros["CRITERIO_ID"];
+            // $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+            // $CRITERIO_ID = $parametros["CRITERIO_ID"];
             $PROYECTOA_META_2022 = $parametros["PROYECTOA_META_2022"];
             $PROYECTOA_META_2023 = $parametros["PROYECTOA_META_2023"];
             $PROYECTOA_META_2024 = $parametros["PROYECTOA_META_2024"];

@@ -34,10 +34,10 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
 
             <div class="card-body">
-                <h3 class="card-title align-items-start flex-column">
+                <h3 class="card-title align-items-start flex-column" style="display: none;">
                     <span class="card-label fw-bolder text-gray-800">Perspectivas</span>
                 </h3>
-                <ul id="PERSPECTIVAS_LIST" class="nav nav-pills nav-pills-custom mb-3">
+                <ul id="PERSPECTIVAS_LIST" class="nav nav-pills nav-pills-custom mb-3" style="display:none;">
 
                     <?php
                     $con = 1;
@@ -125,7 +125,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                 </ul>
 
                 <div class="row">
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12" style="display: none;">
                         <div class="table-responsive border-gray-200">
                             <div class="d-flex flex-wrap flex-stack my-5">
                                 <!--begin::Heading-->
@@ -149,7 +149,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
                     </div>
 
-                    <div class="col-md-8 col-12">
+                    <div class="col-md-12 col-12">
 
                         <div class="table-responsive border-gray-200">
                             <div class="d-flex flex-wrap flex-stack my-5">
@@ -553,7 +553,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_user_header_edit">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">Nuevo Proyecto</h2>
+                    <h2 id="PROY_MD_NUEVO" class="fw-bolder">Nuevo Proyecto</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -707,8 +707,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
 
-                            <button onclick="Btn_Nuevo_Proyecto()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                            <button id="Btn_Nuevo_Proyecto_b" onclick="Btn_Nuevo_Proyecto()" style="display: none;" class="btn btn-primary" data-kt-users-modal-action="submit">
                                 <span class="indicator-label">Guardar Proyecto</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+                            <button id="Btn_Actualizar_Proyecto_b" onclick="Btn_Actualizar_Proyecto()" style="display: none;" class="btn btn-warning" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Actualizar Proyecto</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
@@ -949,6 +955,9 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
             Get_Criterios(id, nombre);
         }
         Get_Criterios(1, "Direccion");
+        Get_Poa();
+
+
         $(document).ready(function() {
             $(this).scrollTop(0);
         });
@@ -1036,6 +1045,10 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
         function Btn_Nueva_Perspectiva() {
             Nueva_Perspectiva();
+        }
+
+        function Btn_Actualizar_Proyecto(){
+            Actualizar_Proyecto();
         }
 
         var TIPOUS_ID = '<?php echo $TIPOUS_ID ?>';
