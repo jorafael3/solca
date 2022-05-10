@@ -8,6 +8,7 @@ $urlGet_Proyectos_detalles = constant("URL") . "poa/Get_Proyectos_Detalles";
 
 $urlNueva_Actividad = constant("URL") . "poa/Nueva_Actividad";
 $urlNuevo_Proyecto = constant("URL") . "poa/Nuevo_Proyecto";
+$urlActualizar_Proyecto = constant("URL") . "poa/Actualizar_Proyecto";
 $urlActualizar_Actividad = constant("URL") . "poa/Actualizar_Actividad";
 $urlEliminar_Actividad = constant("URL") . "poa/Eliminar_Actividad";
 
@@ -23,12 +24,14 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var urlGet_Proyectos_detalles = '<?php echo $urlGet_Proyectos_detalles ?>';
     var urlNueva_Actividad = '<?php echo $urlNueva_Actividad ?>';
     var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
+    var urlActualizar_Proyecto = '<?php echo $urlActualizar_Proyecto ?>';
     var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
     var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
+    var POA_ID;
     var ARR_PROYECTOS;
     var ARR_POAS;
     var PERSPECTIVA_NOM;
@@ -38,6 +41,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var POA_DEPT;
 
     var ARRAY_DATA_PROYECT;
+    var ARRAY_DATA_PROYECT_INDIVIDUAL;
     var PROYECTO_ID;
     var ARRAY_DATA_ACTIVIDADES;
     var ARRAY_DATA_POA;
@@ -397,7 +401,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         POA_NOM = data["OBJEST_NOM"];
         POA_AREA = data["AREA_NOM"];
         POA_DEPT = data["DEPTO_NOM"];
-
+        POA_ID = data["POA_ID"];
 
 
         var data = {
@@ -612,8 +616,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         //Limpiar_Proyectos();
         PROYECTOA_ID = id;
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
-        let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
-        console.log(Proyect_info);
+        var Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
+        ARRAY_DATA_PROYECT_INDIVIDUAL = Proyect_info;
         var PROYECTOA_NOM = Proyect_info[0]["PROYECTOA_NOM"];
         var PROYECTOA_RESPONSABLE = Proyect_info[0]["USUARIOS_ID"];
         var PROYECTOA_INDICADOR = Proyect_info[0]["PROYECTOA_INDICADOR"];
@@ -663,9 +667,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
     function Actualizar_Proyecto() {
         var PROYECTO_ID = PROYECTOA_ID;
-        var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
-        var Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == PROYECTO_ID);
-        console.log(Proyect_info);
+        var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_PROYECT_INDIVIDUAL));
+        console.log("PROYECTO INDIVIDUAL", arrdata);
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
         var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
@@ -682,12 +685,13 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var PROYECTOA_META_2030 = $("#PRY_Meta2030").val();
 
         var DATA_TO_SEND = {
+            PROYECTOA_ID: arrdata[0]["PROYECTOA_ID"],
             PROYECTOA_NOM: PROYECTOA_NOM,
             PROYECTOA_RESPONSABLE: PROYECTOA_RESPONSABLE,
             PROYECTOA_RESPONSABLE_ID: PROYECTOA_RESPONSABLE_ID,
             PROYECTOA_INDICADOR: PROYECTOA_INDICADOR,
-            POA_ID: Proyect_info["POA_ID"],
-            OBJEST_ID: Proyect_info["OBJEST_ID"],
+            POA_ID: arrdata[0]["POA_ID"],
+            OBJEST_ID: arrdata[0]["OBJEST_ID"],
             PROYECTOA_META_2022: PROYECTOA_META_2022,
             PROYECTOA_META_2023: PROYECTOA_META_2023,
             PROYECTOA_META_2024: PROYECTOA_META_2024,
@@ -700,6 +704,17 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         }
 
         console.log("SEND", DATA_TO_SEND);
+
+        AjaxSendReceive(urlActualizar_Proyecto, DATA_TO_SEND, function(response) {
+            console.log(response)
+            if (response == true) {
+                $("#kt_modal_Nuevo_Proyecto").modal('hide');
+                var data = {
+                    POA_ID: POA_ID
+                }
+                Get_Proyectos(DATA_TO_SEND);
+            }
+        })
     }
 
     function Proyecto_Eliminar(id) {

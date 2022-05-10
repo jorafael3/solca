@@ -266,6 +266,67 @@ class PoaModel extends Model
         }
     }
 
+    function Actualizar_Proyecto($parametros)
+    {
+        try {
+            $PROYECTOA_ID = $parametros["PROYECTOA_ID"];
+            $PROYECTOA_NOM = $parametros["PROYECTOA_NOM"];
+            $PROYECTOA_RESPONSABLE = $parametros["PROYECTOA_RESPONSABLE"];
+            $PROYECTOA_RESPONSABLE_ID = $parametros["PROYECTOA_RESPONSABLE_ID"];
+            $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
+            $POA_ID = $parametros["POA_ID"];
+            $OBJEST_ID = $parametros["OBJEST_ID"];
+            // $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
+            // $CRITERIO_ID = $parametros["CRITERIO_ID"];
+            $PROYECTOA_META_2022 = $parametros["PROYECTOA_META_2022"];
+            $PROYECTOA_META_2023 = $parametros["PROYECTOA_META_2023"];
+            $PROYECTOA_META_2024 = $parametros["PROYECTOA_META_2024"];
+            $PROYECTOA_META_2025 = $parametros["PROYECTOA_META_2025"];
+            $PROYECTOA_META_2026 = $parametros["PROYECTOA_META_2026"];
+            $PROYECTOA_META_2027 = $parametros["PROYECTOA_META_2027"];
+            $PROYECTOA_META_2028 = $parametros["PROYECTOA_META_2028"];
+            $PROYECTOA_META_2029 = $parametros["PROYECTOA_META_2029"];
+            $PROYECTOA_META_2030 = $parametros["PROYECTOA_META_2030"];
+            // $PROYECTOA_ACTIVO = $parametros["PROYECTOA_ACTIVO"];
+            // $PROYECTOA_ELIMINADO = $parametros["PROYECTOA_ELIMINADO"];
+            // $FCREADO = $parametros["FCREADO"];
+            // $HCREADO = $parametros["HCREADO"];
+
+
+
+        
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".edit_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+            $query->bindParam(1, $PROYECTOA_ID);
+            $query->bindParam(2, $PROYECTOA_NOM);
+            $query->bindParam(3, $PROYECTOA_RESPONSABLE);
+            $query->bindParam(4, $PROYECTOA_RESPONSABLE_ID);
+            $query->bindParam(5, $PROYECTOA_INDICADOR);
+            $query->bindParam(6, $POA_ID);
+            $query->bindParam(7, $OBJEST_ID);
+            $query->bindParam(8, $PROYECTOA_META_2022);
+            $query->bindParam(9, $PROYECTOA_META_2023);
+            $query->bindParam(10, $PROYECTOA_META_2024);
+            $query->bindParam(11, $PROYECTOA_META_2025);
+            $query->bindParam(12, $PROYECTOA_META_2026);
+            $query->bindParam(13, $PROYECTOA_META_2027);
+            $query->bindParam(14, $PROYECTOA_META_2028);
+            $query->bindParam(15, $PROYECTOA_META_2029);
+            $query->bindParam(16, $PROYECTOA_META_2030);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     //** ACTIVIDADES **/
     function Get_Proyectos_Detalles($parametros)
     {
