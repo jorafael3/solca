@@ -154,7 +154,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <div class="table-responsive border-gray-200">
                             <div class="d-flex flex-wrap flex-stack my-5">
                                 <!--begin::Heading-->
-                                <h2 class="fs-2 fw-bold my-2">POA
+                                <h2 class="fs-2 fw-bold my-2">Objetivos Estrategicos
                                     <span class="fs-6 text-gray-400 ms-1"></span>
                                 </h2>
                                 <!--end::Heading-->

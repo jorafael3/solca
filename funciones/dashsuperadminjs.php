@@ -345,7 +345,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 												<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
 													<div class="d-flex flex-column">
 														<div class="d-flex align-items-center mb-1">
-															<a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">POA</a>
+															<a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">Nombre</a>
 														</div>
 														<div class="d-flex flex-wrap fw-bold mb-4 fs-4 text-gray-700">` + data["OBJEST_NOM"] + `</div>
 													</div>
@@ -356,13 +356,25 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 															<div class="d-flex align-items-center">
 																<div class="fs-4 fw-bolder">Area</div>
 															</div>
-															<div class="fw-bold fs-6 text-gray-400">` + data["AREA_NOM"] + `</div>
+															<div class="fw-bold fs-6 text-gray-800">` + data["AREA_NOM"] + `</div>
 														</div>
                                                         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
 															<div class="d-flex align-items-center">
 																<div class="fs-4 fw-bolder">Departamento</div>
 															</div>
-															<div class="fw-bold fs-6 text-gray-400">` + data["DEPTO_NOM"] + `</div>
+															<div class="fw-bold fs-6 text-gray-800">` + data["DEPTO_NOM"] + `</div>
+														</div>
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+															<div class="d-flex align-items-center">
+																<div class="fs-4 fw-bolder">Perspectiva</div>
+															</div>
+															<div class="fw-bold fs-6 text-gray-800">` + data["PERSPECTIVA_NOM"] + `</div>
+														</div>
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+															<div class="d-flex align-items-center">
+																<div class="fs-4 fw-bolder">Criterio</div>
+															</div>
+															<div class="fw-bold fs-6 text-gray-800">` + data["CRITERIO_NOM"] + `</div>
 														</div>
 													</div>
 												</div>
