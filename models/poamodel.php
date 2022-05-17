@@ -234,7 +234,7 @@ class PoaModel extends Model
 
 
 
-        
+
             $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $PROYECTOA_NOM);
             $query->bindParam(2, $PROYECTOA_RESPONSABLE);
@@ -294,7 +294,7 @@ class PoaModel extends Model
 
 
 
-        
+
             $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".edit_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $PROYECTOA_ID);
             $query->bindParam(2, $PROYECTOA_NOM);
@@ -332,10 +332,11 @@ class PoaModel extends Model
     {
 
         $id_proyecto = $parametros["id_proyecto"];
+
         try {
             $sql = "CALL " . constant("DB") . ".ActividadesProyectosPOA (?) ";
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(1, $id_proyecto);
+            $query->bindParam(1, ($id_proyecto));
 
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -370,7 +371,7 @@ class PoaModel extends Model
         // $FCREADO = $ACTIV_FINICIO;
 
         try {
-           
+
             $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $ACTIV_NOM);
             $query->bindParam(2, $ACTIV_RESPONSABLE);

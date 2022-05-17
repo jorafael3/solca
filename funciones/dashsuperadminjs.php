@@ -792,11 +792,13 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var data = {
             id_proyecto: ID_PROYECTO
         };
+        console.log("PROYECTO ID",data);
         AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
 
-            create_proyect_targets_cards(response);
             ARRAY_DATA_ACTIVIDADES = response;
             console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
+            create_proyect_targets_cards(response);
+
             $('html, body').animate({
                 scrollTop: $("#Seccion_Proyectos_Detalle").offset().top
             }, 1000);
@@ -856,6 +858,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         jQuery.each(arrdata, function(key, value) {
 
             var ACTIV_NOM = value.ACTIV_NOM;
+            var ACTIV_RESPONSABLE = value.ACTIV_RESPONSABLE;
             var ACTIV_FINICIO = value.ACTIV_FINICIO;
             var ACTIV_FFINAL = value.ACTIV_FFINAL;
             var AVANCE_PORCENTAJE = value.AVANCE_PORCENTAJE;
@@ -929,6 +932,12 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                                         <div id="" class="fs-6 fw-bolder">Ultima Actualizacion</div>
                                     </div>
                                     <div class="fw-bold fs-6 text-gray-700">` + ULTIMO_AVANCE + `</div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div id="" class="fs-6 fw-bolder">Responsable</div>
+                                    </div>
+                                    <div class="fw-bold fs-6 text-gray-700">` + ACTIV_RESPONSABLE + `</div>
                                 </div>
                             </div>
                         </div>
