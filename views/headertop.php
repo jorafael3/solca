@@ -158,9 +158,7 @@ echo $AREA_NOM;
                             <div class="fw-bolder d-flex align-items-center fs-5"><?php echo $USer_NAme ?>
                                 <span class="badge badge-light-info fw-bolder fs-8 px-2 py-1 ms-2"><?php echo $tipo ?></span>
                             </div>
-                            <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $Email ?></a>
                             <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $AREA_NOM ?></a>
-                            <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $AREA_ID ?></a>
                         </div>
                         <!--end::Username-->
                     </div>
