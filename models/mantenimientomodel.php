@@ -19,7 +19,7 @@ class MantenimientoModel extends Model
     {
 
         try {
-            $sql = "CALL " . constant("DB") . ".ciudades_all";
+            $sql = "CALL " . constant("DB") . ".get_all_ciudades";
             $query = $this->db->connect()->prepare($sql);
 
             if ($query->execute()) {
@@ -31,6 +31,25 @@ class MantenimientoModel extends Model
             }
         } catch (PDOException $e) {
             //return [];
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+    function Cargar_Areas_usuarios()
+    {
+        try {
+            $sql = "CALL " . constant("DB") . ".get_all_areas";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
             $e = $e->getMessage();
             return $e;
         }
@@ -64,6 +83,7 @@ class MantenimientoModel extends Model
         $user_Cedula =  $parametros["user_Cedula"];
         $user_Celular =  $parametros["user_Celular"];
         $user_ciudad =  $parametros["user_ciudad"];
+        $user_area =  $parametros["user_area"];
         $user_Contrasena =  $parametros["user_Contrasena"];
         $rol =  $parametros["rol"];
 
@@ -71,7 +91,7 @@ class MantenimientoModel extends Model
         $user_status = "S";
 
 
-        $query = "CALL " . constant("DB") . ".create_usuario (?,?,?,?,?,?,?);
+        $query = "CALL " . constant("DB") . ".create_usuario (?,?,?,?,?,?,?,?);
         ";
 
         try {
@@ -83,6 +103,7 @@ class MantenimientoModel extends Model
             $query->bindParam(5, $user_ciudad);
             $query->bindParam(6, $rol);
             $query->bindParam(7, $user_Contrasena);
+            $query->bindParam(8, $user_area);
 
             if ($query->execute()) {
                 $result = true;
@@ -127,12 +148,14 @@ class MantenimientoModel extends Model
             $US_ID = $parametros["US_ID"];
             $US_ACTIVO = $parametros["US_ACTIVO"];
             $TIPOUS_ID = $parametros["TIPOUS_ID"];
+            $AREA_ID =  $parametros["AREA_ID"];
 
-            $sql = "CALL  " . constant("DB") . ".edit_usuarios_estado_tipo (?,?,?)";
+            $sql = "CALL  " . constant("DB") . ".edit_usuarios_estado_tipo (?,?,?,?)";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $US_ACTIVO);
             $query->bindParam(2, $TIPOUS_ID);
             $query->bindParam(3, $US_ID);
+            $query->bindParam(4, $AREA_ID);
 
             if ($query->execute()) {
                 echo json_encode(true);

@@ -25,25 +25,25 @@ require 'views/header.php';
                 <div class="card-toolbar">
 
                 </div> -->
-            </div>
-            <div class="card-body">
-
-                <div class="table-responsive">
-                    <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaUsuarios" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                        <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
-
-                        </thead>
-                        <tbody class="fw-6 fw-bold text-gray-600">
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <!--end::Body-->
         </div>
-        <!--end::Mixed Widget 2-->
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table style="width: 100%; font-weight: bold; font-size: 16px;" id="TablaUsuarios" class="display table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                    <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
+
+                    </thead>
+                    <tbody class="fw-6 fw-bold text-gray-600">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!--end::Body-->
     </div>
+    <!--end::Mixed Widget 2-->
+</div>
 
 </div>
 
@@ -156,6 +156,21 @@ require 'views/header.php';
                                 foreach ($this->ciud as $row) {
                                 ?>
                                     <option value=<?php echo ($row["CIUDAD_ID"]); ?>><?php echo ($row["CIUDAD_NOM"]); ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">Area</label>
+                            <select id="user_area" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione un Area" name="target_assign" required>
+                                <option value=""></option>
+
+                                <?php
+                                foreach ($this->areas as $row) {
+                                ?>
+                                    <option value=<?php echo ($row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
                                 <?php
                                 }
                                 ?>
@@ -299,6 +314,21 @@ require 'views/header.php';
 
                         <!--end::Input group-->
                         <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">Area</label>
+                            <select id="user_area_act" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione un Area" name="target_assign" required>
+                                <option value=""></option>
+
+                                <?php
+                                foreach ($this->areas as $row) {
+                                ?>
+                                    <option value=<?php echo ($row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <div class="mb-7">
                             <!--begin::Label-->
                             <label class="required fw-bold fs-6 mb-5">Roles</label>

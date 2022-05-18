@@ -20,6 +20,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
         var user_Cedula = $("#user_Cedula").val();
         var user_Celular = $("#user_Celular").val();
         var user_ciudad = $("#user_ciudad").val();
+        var user_area = $("#user_area").val();
         var rol = 1;
         var rol1 = document.getElementById("kt_modal_update_role_option_1");
         var rol2 = document.getElementById("kt_modal_update_role_option_2");
@@ -56,6 +57,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
                 user_Cedula: user_Cedula,
                 user_Celular: user_Celular,
                 user_ciudad: user_ciudad,
+                user_area: user_area,
                 user_Contrasena: user_Contrasena,
                 rol: rol
             }
@@ -66,6 +68,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
                     $("#kt_modal_add_user").modal('hide');
                     Mensaje_Guardado_ok();
                     $("#BtnReset").trigger('click');
+                    ListarUsuarios();
                 } else {
                     Mensaje_Error("Oops", "Ocurrio un error al guardar los datos");
 
@@ -119,6 +122,9 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
                 data: "TIPOUS_NOM",
                 title: "Tipo "
             }, {
+                data: "AREA_NOM",
+                title: "Area "
+            }, {
                 data: "US_ACTIVO",
                 title: "Estado"
             }, {
@@ -131,10 +137,10 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
             "createdRow": function(row, data, index, cell) {
 
                 if (data["US_ACTIVO"] == "S") {
-                    $('td', row).eq(3).html("<span style='font-size:16px;' class='badge badge-light-success fw-bolder'>ACTIVO</span>");
+                    $('td', row).eq(4).html("<span style='font-size:16px;' class='badge badge-light-success fw-bolder'>ACTIVO</span>");
                 }
                 if (data["US_ACTIVO"] == "N") {
-                    $('td', row).eq(3).html("<span style='font-size:16px;' class='badge badge-light-danger'>INACTIVO</span>");
+                    $('td', row).eq(4).html("<span style='font-size:16px;' class='badge badge-light-danger'>INACTIVO</span>");
                 }
             }
 
@@ -150,6 +156,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
             e.preventDefault();
             var data = table.row(this).data();
             console.log(data);
+            $("#user_area_act").val(data["AREA_ID"]).change();
             Validar_Actualizar_Datos_usuario(data);
 
         });
@@ -193,6 +200,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
 
         var activo = document.getElementById("Check_estado_activo");
         var inactivo = document.getElementById("Check_estado_inactivo");
+        var user_area = $("#user_area_act").val();
 
         var rol;
         var estado;
@@ -217,10 +225,12 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
         var data2 = {
             US_ID: US_ID_GLOBAL,
             US_ACTIVO: estado,
-            TIPOUS_ID: rol
+            TIPOUS_ID: rol,
+            AREA_ID:user_area
         }
 
         AjaxSendReceive(urlActualizar_usuario, data2, function(response) {
+            console.log(response);
             if (response == true) {
                 $("#kt_modal_add_user_edit").modal('hide');
                 Mensaje_Ok("Exito", "Los datos se actualizaron correctamente");

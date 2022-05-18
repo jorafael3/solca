@@ -4,7 +4,9 @@ $avatar  = constant('URL') . "public/assets/media/avatars/blank.png";
 $USer_NAme = $_SESSION["US_NOMBRE"];
 $Email = $_SESSION["US_EMAIL"];
 $tipo = $_SESSION["TIPOUS_NOM"];
-
+$AREA_NOM = $_SESSION["AREA_NOM"];
+$AREA_ID = $_SESSION["AREA_ID"];
+echo $AREA_NOM;
 
 ?>
 
@@ -157,6 +159,8 @@ $tipo = $_SESSION["TIPOUS_NOM"];
                                 <span class="badge badge-light-info fw-bolder fs-8 px-2 py-1 ms-2"><?php echo $tipo ?></span>
                             </div>
                             <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $Email ?></a>
+                            <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $AREA_NOM ?></a>
+                            <a href="#" class="fw-bold text-muted text-hover-primary fs-7"><?php echo $AREA_ID ?></a>
                         </div>
                         <!--end::Username-->
                     </div>
