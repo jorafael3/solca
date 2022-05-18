@@ -17,7 +17,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                 <?php
                 if ($TIPOUS_ID == 1) {
                 ?>
-                    <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
+                    <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
                         <option value="Todos">TODOS</option>
                         <?php
                         foreach ($this->areas as $row) {
@@ -32,7 +32,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
 
                 } else if ($TIPOUS_ID == 4) {
                 ?>
-                    <select disabled="true" style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
+                    <select disabled="true" style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
                         <option value="<?php echo $AREA_ID ?>"><?php echo $AREA_NOM ?></option>
                     </select>
 
