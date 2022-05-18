@@ -6,7 +6,6 @@ $Email = $_SESSION["US_EMAIL"];
 $tipo = $_SESSION["TIPOUS_NOM"];
 $AREA_NOM = $_SESSION["AREA_NOM"];
 $AREA_ID = $_SESSION["AREA_ID"];
-echo $AREA_NOM;
 
 ?>
 

@@ -2,28 +2,47 @@
 
 require 'views/header.php';
 $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
-
+$AREA_NOM = $_SESSION["AREA_NOM"];
+$AREA_ID = $_SESSION["AREA_ID"];
 ?>
 
 
 <div class="row gy-5 g-xl-8">
 
     <div class="col-12">
-        <h4>Areas</h4>
+        <h4>Area</h4>
         <div class="col-12 col-md-6">
             <div class="m-0">
 
-                <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
-                    <option value="Todos">TODOS</option>
-                    <?php
-                    foreach ($this->areas as $row) {
-                    ?>
+                <?php
+                if ($TIPOUS_ID == 1) {
+                ?>
+                    <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
+                        <option value="Todos">TODOS</option>
+                        <?php
+                        foreach ($this->areas as $row) {
+                        ?>
 
-                        <option value=<?php echo str_replace(' ', '', $row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
+                            <option value=<?php echo str_replace(' ', '', $row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                <?php
+
+                } else if ($TIPOUS_ID == 4) {
+                ?>
+                    <select disabled="true" style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select-sm bg-body border-body fw-bolder w-160px select_Filter">
+                        <option value="<?php echo $AREA_ID ?>"><?php echo $AREA_NOM ?></option>
+                    </select>
+
+                <?php
+                }
+                ?>
+
+
+
+
             </div>
         </div>
     </div>
@@ -638,7 +657,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2023</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2023" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2023"/>
+                                <input type="text" id="PRY_Meta2023" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2023" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -646,7 +665,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2024</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2024" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2024"/>
+                                <input type="text" id="PRY_Meta2024" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2024" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -654,7 +673,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2025</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2025" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2025"  />
+                                <input type="text" id="PRY_Meta2025" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2025" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -662,7 +681,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2026</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2026" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2026"  />
+                                <input type="text" id="PRY_Meta2026" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2026" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -670,7 +689,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2027</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2027" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2027"  />
+                                <input type="text" id="PRY_Meta2027" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2027" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -678,7 +697,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2028</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2028" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2028"  />
+                                <input type="text" id="PRY_Meta2028" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2028" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
@@ -686,7 +705,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2029</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2029" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2029"  />
+                                <input type="text" id="PRY_Meta2029" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2029" />
                                 <!--end::Input-->
                             </div>
 
@@ -695,7 +714,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Meta 2030</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" id="PRY_Meta2030" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2030"  />
+                                <input type="text" id="PRY_Meta2030" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Meta 2030" />
                                 <!--end::Input-->
                             </div>
 
@@ -955,7 +974,15 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
             Get_Criterios(id, nombre);
         }
         Get_Criterios(1, "Direccion");
-        Get_Poa();
+
+        var tipo_us = '<?php echo $TIPOUS_ID ?>';
+        if (tipo_us == 1) {
+            Get_Poa();
+
+        } else if (tipo_us == 4) {
+            var are = '<?php echo $AREA_ID ?>';
+            POA_FILTRAR_DEPTS(are);
+        }
 
 
         $(document).ready(function() {
@@ -1047,7 +1074,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
             Nueva_Perspectiva();
         }
 
-        function Btn_Actualizar_Proyecto(){
+        function Btn_Actualizar_Proyecto() {
             Actualizar_Proyecto();
         }
 

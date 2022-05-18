@@ -243,6 +243,12 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         // }
         // console.log(DATA_FILTRADA);
         // Tabla_Poa(DATA_FILTRADA);
+        $("#Seccion_Perspectivas").show(100);
+        $("#Seccion_Proyectos_Detalle").hide(100);
+        $("#Pr_En_Revision").empty();
+        $("#Pr_En_Progreso").empty();
+        $("#Pr_Terminados").empty();
+
         Get_Poa();
 
     }
@@ -792,7 +798,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var data = {
             id_proyecto: ID_PROYECTO
         };
-        console.log("PROYECTO ID",data);
+        console.log("PROYECTO ID", data);
         AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
 
             ARRAY_DATA_ACTIVIDADES = response;
