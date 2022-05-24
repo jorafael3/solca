@@ -52368,3 +52368,31 @@ body {
     height: 10px;
 
 }
+
+::-webkit-scrollbar:vertical{
+    padding: 10px;
+    height: 10px;
+    width: 12px;
+    background: whitesmoke;
+    
+}
+::-webkit-scrollbar-thumb:vertical{
+    background: gray;
+    border-radius: 10px;
+    height: 10px;
+    padding-top: 10px;
+
+}
+
+:hover::-webkit-scrollbar:vertical{
+    height: 10px;
+    width: 8px;
+    background: whitesmoke;
+    
+}
+:hover::-webkit-scrollbar-thumb:vertical{
+    background: gray;
+    border-radius: 0px;
+    height: 10px;
+
+}

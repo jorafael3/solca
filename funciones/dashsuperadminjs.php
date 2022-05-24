@@ -319,7 +319,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             destroy: true,
             data: data,
             dom: 'rtip',
-            scrollY: 450,
+            scrollY: 480,
             scrollX: true,
             scrollCollapse: true,
             paging: false,
