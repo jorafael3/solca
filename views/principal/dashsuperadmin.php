@@ -226,7 +226,7 @@ $resumen = $this->resumen;
             <div class="m-0">
                 <div class="card-header border-0 pt-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder fs-3 mb-1">Proyecto Recientes</span>
+                        <span class="card-label fw-bolder fs-3 mb-1">Proyectos Recientes (10)</span>
                     </h3>
 
                 </div>

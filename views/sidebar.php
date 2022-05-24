@@ -256,7 +256,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
     <!--end::Aside menu-->
     <!-- begin::Footer-->
-    <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
+    <div class="aside-footer flex-column-auto pt-1 pb-2 px-5" id="kt_aside_footer">
         <a href="#" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Acerca de">
             <span class="btn-label">Acerca de</span>
             <span class="svg-icon btn-icon svg-icon-2">
@@ -270,5 +270,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
             </span>
         </a>
     </div>
+
+    
     <!--end::Footer -->
 </div>
