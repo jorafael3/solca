@@ -34,14 +34,17 @@ class Principal extends Controller
      * Y CARGA LAS PERSPECTIVAS
      */
 
+     /*** SUPERADMIN  */
     function DashboardSuperAdmin()
     {
-        $PErspectivas =  $this->model->Get_Perspectivas();
-        $this->view->Perspect = $PErspectivas;
-        $Responsables =  $this->model->Get_Responsables();
-        $this->view->resp = $Responsables;
-        $Indicadores =  $this->model->Get_indicadores();
-        $this->view->Indica = $Indicadores;
-        $this->view->render('principal/dashsuperadmin'); 
+        $resumen =  $this->model->Get_Resumen(1);
+        $this->view->resumen = $resumen;
+        $this->view->render('principal/dashsuperadmin');
+    }
+
+    function Get_last_projects()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_last_projects(2);
     }
 }

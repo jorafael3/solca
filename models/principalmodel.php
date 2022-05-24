@@ -15,12 +15,13 @@ class PrincipalModel extends Model
     /**
      * OBTENER PERSPECTIVAS PARA DASHBOARD SUPERADMIN
      */
-    function Get_Perspectivas()
+    function Get_Resumen($tipo)
     {
-
         try {
-            $sql = "CALL " . constant("DB") . ".Perspectivas ";
+            $sql = "CALL " . constant("DB") . ".resumen (?)";
             $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $tipo);
+
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
@@ -34,35 +35,17 @@ class PrincipalModel extends Model
         }
     }
 
-    function Get_Responsables()
+    function Get_last_projects($tipo)
     {
         try {
-            $sql = "SELECT * FROM " . constant("DB") . ".usuarios";
+            $sql = "CALL " . constant("DB") . ".resumen (?)";
             $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $tipo);
 
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-            } else {
-                $err = $query->errorInfo();
-                echo json_encode($err);
+                echo json_encode($result);
                 exit();
-            }
-        } catch (PDOException $e) {
-            $e = $e->getMessage();
-            return $e;
-        }
-    }
-
-    function Get_indicadores()
-    {
-        try {
-            $sql = "SELECT * FROM " . constant("DB") . ".indicadores";
-            $query = $this->db->connect()->prepare($sql);
-
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
             } else {
                 $err = $query->errorInfo();
                 echo json_encode($err);
