@@ -52372,7 +52372,7 @@ body {
 ::-webkit-scrollbar:vertical{
     padding: 10px;
     height: 10px;
-    width: 12px;
+    width: 8px;
     background: whitesmoke;
     
 }
