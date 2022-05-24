@@ -367,6 +367,8 @@ class PoaModel extends Model
         // $CRITERIO_ID = $parametros["CRITERIO_ID"];
         $POA_ID = $parametros["POA_ID"];
         $ACT_Obs = $parametros["ACT_Obs"];
+        $creador =  $_SESSION["US_ID"];
+
         // $ACTIV_ACTIVO = $parametros["ACTIV_ACTIVO"];
         // $ACTIV_ELIMINADO = $parametros["ACTIV_ELIMINADO"];
         // $HCREADO = $parametros["HCREADO"];
@@ -374,7 +376,7 @@ class PoaModel extends Model
 
         try {
 
-            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?) ");
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $ACTIV_NOM);
             $query->bindParam(2, $ACTIV_RESPONSABLE);
             $query->bindParam(3, $ACTIV_FINICIO);
@@ -383,6 +385,7 @@ class PoaModel extends Model
             $query->bindParam(6, $OBJEST_ID);
             $query->bindParam(7, $POA_ID);
             $query->bindParam(8, $ACT_Obs);
+            $query->bindParam(9, $creador);
 
 
             if ($query->execute()) {
