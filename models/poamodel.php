@@ -216,6 +216,7 @@ class PoaModel extends Model
             $PROYECTOA_INDICADOR = $parametros["PROYECTOA_INDICADOR"];
             $POA_ID = $parametros["POA_ID"];
             $OBJEST_ID = $parametros["OBJEST_ID"];
+            $creador =  $_SESSION["US_ID"];
             // $PERSPECTIVA_ID = $parametros["PERSPECTIVA_ID"];
             // $CRITERIO_ID = $parametros["CRITERIO_ID"];
             $PROYECTOA_META_2022 = $parametros["PROYECTOA_META_2022"];
@@ -235,7 +236,7 @@ class PoaModel extends Model
 
 
 
-            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_proyecto_poa (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $PROYECTOA_NOM);
             $query->bindParam(2, $PROYECTOA_RESPONSABLE);
             $query->bindParam(3, $PROYECTOA_RESPONSABLE_ID);
@@ -251,6 +252,7 @@ class PoaModel extends Model
             $query->bindParam(13, $PROYECTOA_META_2028);
             $query->bindParam(14, $PROYECTOA_META_2029);
             $query->bindParam(15, $PROYECTOA_META_2030);
+            $query->bindParam(16, $creador);
 
             if ($query->execute()) {
                 echo json_encode(true);
