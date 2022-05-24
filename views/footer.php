@@ -5,7 +5,7 @@
                        </div>
                        <!--end::Content-->
                        <!--begin::Footer-->
-                       <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                       <div class="footer header-fixed py-4 d-flex flex-lg-column" id="kt_footer" style="width: 100%;position: fixed;left: 0;bottom: 0;">
                            <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
                                <div class="text-dark order-2 order-md-1">
                                    <span class="text-muted fw-bold me-1">2022©</span>
@@ -13,7 +13,7 @@
 
                                <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                                    <li class="menu-item">
-                                   <img  src="<?php echo constant("URL") ?>public/assets/images/softlogo.PNG" alt="logo">
+                                       <img src="<?php echo constant("URL") ?>public/assets/images/softlogo.PNG" alt="logo">
                                    </li>
                                    <!-- <li class="menu-item">
                                        <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
@@ -69,6 +69,6 @@
                        <script src="<?php echo constant('URL') ?>public/assets/js/custom/utilities/modals/users-search.js"></script>
                        <!--end::Page Custom Javascript-->
                        <!--end::Javascript-->
-                     </body>
+                       </body>
 
                        </html>
