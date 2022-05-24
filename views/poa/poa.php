@@ -212,7 +212,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
         </div>
         <div class="d-flex flex-wrap flex-stack my-5">
             <!--begin::Heading-->
-            <h2 class="fs-2 fw-bold my-2">Projectos
+            <h2 class="fs-2 fw-bold my-2">Proyectos
                 <span class="fs-6 text-gray-400 ms-1"></span>
             </h2>
             <!--end::Heading-->

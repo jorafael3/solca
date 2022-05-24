@@ -319,7 +319,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             destroy: true,
             data: data,
             dom: 'rtip',
-            scrollY: 350,
+            scrollY: 450,
             scrollX: true,
             scrollCollapse: true,
             paging: false,
@@ -351,7 +351,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 												<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
 													<div class="d-flex flex-column">
 														<div class="d-flex align-items-center mb-1">
-															<a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3">Nombre</a>
+															<a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3"></a>
 														</div>
 														<div class="d-flex flex-wrap fw-bold mb-4 fs-4 text-gray-700">` + data["OBJEST_NOM"] + `</div>
 													</div>
