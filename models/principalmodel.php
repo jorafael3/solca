@@ -56,4 +56,28 @@ class PrincipalModel extends Model
             return $e;
         }
     }
+
+    //*** POA */
+
+    function Get_Resumen_area($tipo)
+    {
+        try {
+            $area = $_SESSION["AREA_ID"];
+            $sql = "CALL " . constant("DB") . ".resumen_area (?,?)";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $tipo);
+            $query->bindParam(2, $area);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                return $err;
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 }

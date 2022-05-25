@@ -21,11 +21,12 @@ class Principal extends Controller
         if ($nivel == 1) {
             $this->DashboardSuperAdmin();
         } else if ($nivel == 2) {
-            $this->view->render('principal/dasharea');
+            //$this->DashboardPoa();
         } else if ($nivel == 3) {
             $this->view->render('principal/dashadmin');
         } else if ($nivel == 4) {
-            $this->view->render('principal/dashpoa');
+            $this->DashboardPoa();
+
         }
     }
 
@@ -34,7 +35,7 @@ class Principal extends Controller
      * Y CARGA LAS PERSPECTIVAS
      */
 
-     /*** SUPERADMIN  */
+    /*** SUPERADMIN  */
     function DashboardSuperAdmin()
     {
         $resumen =  $this->model->Get_Resumen(1);
@@ -46,5 +47,13 @@ class Principal extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_last_projects(2);
+    }
+
+    //**** POA */
+    function DashboardPoa()
+    {
+        $resumen =  $this->model->Get_Resumen_area(1,1);
+        $this->view->resumen = $resumen;
+        $this->view->render('principal/dashpoa');
     }
 }
