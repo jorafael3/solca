@@ -511,7 +511,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
-                                <select id="ACT_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                <select id="ACT_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Responsable" name="target_assign" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
@@ -807,7 +807,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
-                                <select id="ACT_Responsable_edit" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                <select id="ACT_Responsable_edit" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Responsable" name="target_assign" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
