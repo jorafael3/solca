@@ -4,6 +4,7 @@ require 'views/header.php';
 $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 $AREA_NOM = $_SESSION["AREA_NOM"];
 $AREA_ID = $_SESSION["AREA_ID"];
+
 ?>
 
 
@@ -515,7 +516,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                     <?php
                                     foreach ($this->resp as $row) {
                                     ?>
-                                        <option value=<?php echo ($row["US_APELLNOM"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
+                                        <option value=<?php echo ($row["US_ID"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
                                     <?php
                                     }
                                     ?>
@@ -792,6 +793,33 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 </select>
                                 <!--end::Input-->
                             </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Nombre De la Actividad</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="ACT_Nombre_edit" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre" required />
+                                <!--end::Input-->
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Responsable</label>
+                                <!--end::Label-->
+                                <select id="ACT_Responsable_edit" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Seleccione Medio de Verificacion" name="target_assign" required>
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->resp as $row) {
+                                    ?>
+                                        <option value=<?php echo ($row["US_ID"]); ?>><?php echo ($row["US_APELLNOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->

@@ -380,6 +380,7 @@ class PoaModel extends Model
     {
         $ACTIV_NOM = $parametros["ACTIV_NOM"];
         $ACTIV_RESPONSABLE = $parametros["ACTIV_RESPONSABLE"];
+        $ACTIV_RESPONSABLE_ID = $parametros["ACTIV_RESPONSABLE_ID"];
         $ACTIV_FINICIO = $parametros["ACTIV_FINICIO"];
         $ACTIV_FFINAL = $parametros["ACTIV_FFINAL"];
         $PROYECTOA_ID = $parametros["PROYECTOA_ID"];
@@ -397,7 +398,7 @@ class PoaModel extends Model
 
         try {
 
-            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?,?) ");
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".create_actividad (?,?,?,?,?,?,?,?,?,?) ");
             $query->bindParam(1, $ACTIV_NOM);
             $query->bindParam(2, $ACTIV_RESPONSABLE);
             $query->bindParam(3, $ACTIV_FINICIO);
@@ -407,6 +408,7 @@ class PoaModel extends Model
             $query->bindParam(7, $POA_ID);
             $query->bindParam(8, $ACT_Obs);
             $query->bindParam(9, $creador);
+            $query->bindParam(10, $ACTIV_RESPONSABLE_ID);
 
 
             if ($query->execute()) {
@@ -428,13 +430,19 @@ class PoaModel extends Model
     {
         $ACTIV_ID = $parametros["ACTV_ID"];
         $ACTV_ESTADO = $parametros["ACTV_ESTADO"];
+        $ACTIV_NOM = $parametros["ACTIV_NOM"];
+        $ACTIV_RESPONSABLE_ID = $parametros["ACTIV_RESPONSABLE_ID"];
+        $ACTIV_RESPONSABLE_TEXT = $parametros["ACTIV_RESPONSABLE_TEXT"];
         // $Progreso = $parametros["Progreso"];
 
         try {
-            $sql = "CALL " . constant("DB") . ".edit_actividad_estado (?,?)";
+            $sql = "CALL " . constant("DB") . ".edit_actividad_estado (?,?,?,?,?)";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $ACTV_ESTADO);
             $query->bindParam(2, $ACTIV_ID);
+            $query->bindParam(3, $ACTIV_NOM);
+            $query->bindParam(4, $ACTIV_RESPONSABLE_TEXT);
+            $query->bindParam(5, $ACTIV_RESPONSABLE_ID);
 
             if ($query->execute()) {
                 $avance = $this->Guardar_ACtividad_avance($parametros);

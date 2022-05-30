@@ -1052,6 +1052,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTIV_NOM = $("#ACT_Nombre").val();
         var ACT_Obs = $("#ACT_Obs").val();
         var ACTIV_RESPONSABLE = $("#ACT_Responsable option:selected").text();
+        var ACTIV_RESPONSABLE_ID = $("#ACT_Responsable").val();
         var Pr_ID = PROYECTO_ID;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_PROYECT));
         let POA_INFO = arrdata.filter(id => id.ID_PROYECTO == Pr_ID);
@@ -1062,6 +1063,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var DATA_TO_SEND = {
             ACTIV_NOM: ACTIV_NOM,
             ACTIV_RESPONSABLE: ACTIV_RESPONSABLE,
+            ACTIV_RESPONSABLE_ID:ACTIV_RESPONSABLE_ID,
             ACTIV_FFINAL: ACTIV_FFINAL,
             ACTIV_FINICIO: ACTIV_FINICIO,
             CRITERIO_ID: POA_INFO[0]["CRITERIO_ID"],
@@ -1106,6 +1108,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTV_ID = id;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
+        console.log("ACTIVIDAD_INFO",ACTIVIDAD_INFO);
         var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
         var AVANCE_RESPONSABLE = ACTIVIDAD_INFO[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AVANCE_SUPERVISION = ACTIVIDAD_INFO[0]["max(AV.AVANCE_SUPERVISION)"];
@@ -1113,6 +1116,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             AVANCE_SUPERVISION = 0;
         }
         $('#ACTV_ACT_ESTADO').val(ACTV_ESTADO);
+        $('#ACT_Nombre_edit').val(ACTIVIDAD_INFO[0]["ACTIV_NOM"]);
+        $('#ACT_Responsable_edit').val(ACTIVIDAD_INFO[0]["RESPONSABLE_ID"]).change();
 
         var slider = document.getElementById('slider');
         var slider_2 = document.getElementById('slider_2');
@@ -1175,6 +1180,10 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     function Actualizar_Actividad() {
         var ACTV_ID = ACTV_ACTUAL_EDIT;
         var estado = $("#ACTV_ACT_ESTADO").val();
+        var nombre = $("#ACT_Nombre_edit").val();
+        var responsable = $("#ACT_Responsable_edit").val();
+        var responsable_text = $("#ACT_Responsable_edit option:selected").text();
+
         var slider = document.getElementById('slider');
         var slider_2 = document.getElementById('slider_2');
         var Progreso_respo = slider.noUiSlider.get();
@@ -1183,6 +1192,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var data = {
             ACTV_ID: ACTV_ID,
             ACTV_ESTADO: estado,
+            ACTIV_NOM: nombre,
+            ACTIV_RESPONSABLE_ID: responsable,
+            ACTIV_RESPONSABLE_TEXT: responsable_text,
             Progreso_respo: Progreso_respo,
             Progreso_superv: Progreso_superv,
         }
