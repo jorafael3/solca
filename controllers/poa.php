@@ -85,5 +85,11 @@ class Poa extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Actualizar_Proyecto($array);
     }
+
+    function Eliminar_Proyecto()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Eliminar_Proyecto($array);
+    }
    
 }

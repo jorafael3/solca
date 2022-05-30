@@ -329,6 +329,27 @@ class PoaModel extends Model
         }
     }
 
+    function Eliminar_Proyecto($parametros)
+    {
+        try {
+            $PROYECTOA_ID = $parametros["PROYECTOA_ID"];
+            $query = $this->db->connect()->prepare("CALL " . constant("DB") . ".edit_proyecto_poa_eliminar (?) ");
+            $query->bindParam(1, $PROYECTOA_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     //** ACTIVIDADES **/
     function Get_Proyectos_Detalles($parametros)
     {

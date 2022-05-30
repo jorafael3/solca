@@ -9,6 +9,7 @@ $urlGet_Proyectos_detalles = constant("URL") . "poa/Get_Proyectos_Detalles";
 $urlNueva_Actividad = constant("URL") . "poa/Nueva_Actividad";
 $urlNuevo_Proyecto = constant("URL") . "poa/Nuevo_Proyecto";
 $urlActualizar_Proyecto = constant("URL") . "poa/Actualizar_Proyecto";
+$urlEliminar_Proyecto = constant("URL") . "poa/Eliminar_Proyecto";
 $urlActualizar_Actividad = constant("URL") . "poa/Actualizar_Actividad";
 $urlEliminar_Actividad = constant("URL") . "poa/Eliminar_Actividad";
 
@@ -25,6 +26,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var urlNueva_Actividad = '<?php echo $urlNueva_Actividad ?>';
     var urlNuevo_Proyecto = '<?php echo $urlNuevo_Proyecto ?>';
     var urlActualizar_Proyecto = '<?php echo $urlActualizar_Proyecto ?>';
+    var urlEliminar_Proyecto = '<?php echo $urlEliminar_Proyecto ?>';
     var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
     var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
@@ -345,13 +347,13 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                     var html = `
                     
                     <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
-                    <button class="btn btn-active-light-primary btn-active-color-primary">
+                    <button class="btn btn-active-light-primary-dark btn-active-color-primary">
 											<div class="flex-grow-1">
 
 												<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
 													<div class="d-flex flex-column">
 														<div class="d-flex align-items-center mb-1">
-															<a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3"></a>
+															<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-3"></a>
 														</div>
 														<div class="d-flex flex-wrap fw-bold mb-4 fs-4 text-gray-700">` + data["OBJEST_NOM"] + `</div>
 													</div>
@@ -738,7 +740,22 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     function Proyecto_Eliminar(id) {
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
         let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
-        console.log(Proyect_info);
+        Proyect_info[0]["PROYECTOA_ACTIVO"] = "N";
+        Proyect_info[0]["PROYECTOA_ELIMINADO"] = "S";
+        var data = {
+            PROYECTOA_ID : Proyect_info[0]["PROYECTOA_ID"]
+        }
+        console.log(data);
+
+        AjaxSendReceive(urlEliminar_Proyecto, data, function(response) {
+            console.log(response)
+            if (response == true) {
+                var datas = {
+                    POA_ID: POA_ID
+                }
+                Get_Proyectos(datas);
+            }
+        })
     }
 
     function Limpiar_Proyectos() {

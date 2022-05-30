@@ -39920,6 +39920,33 @@ a:hover {
     border-color: #f1416c !important
 }
 
+.btn-check:active+.btn.btn-active-light-primary-dark, .btn-check:checked+.btn.btn-active-light-primary-dark, .btn.btn-active-light-primary-dark.active, .btn.btn-active-light-primary-dark.show, .btn.btn-active-light-primary-dark:active:not(.btn-active), .btn.btn-active-light-primary-dark:focus:not(.btn-active), .btn.btn-active-light-primary-dark:hover:not(.btn-active), .show>.btn.btn-active-light-primary-dark {
+    color: #273746;
+    border-color: #2471A3;
+    background-color: #D6EAF8 !important
+}
+
+.btn-check:active+.btn.btn-active-light-primary-dark i, .btn-check:checked+.btn.btn-active-light-primary-dark i, .btn.btn-active-light-primary-dark.active i, .btn.btn-active-light-primary-dark.show i, .btn.btn-active-light-primary-dark:active:not(.btn-active) i, .btn.btn-active-light-primary-dark:focus:not(.btn-active) i, .btn.btn-active-light-primary-dark:hover:not(.btn-active) i, .show>.btn.btn-active-light-primary-dark i {
+    color: #2471A3
+}
+
+.btn-check:active+.btn.btn-active-light-primary-dark .svg-icon svg [fill]:not(.permanent):not(g), .btn-check:checked+.btn.btn-active-light-primary-dark .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark.active .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark.show .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:active:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:focus:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:hover:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .show>.btn.btn-active-light-primary-dark .svg-icon svg [fill]:not(.permanent):not(g) {
+    transition: fill .3s ease;
+    fill: #2471A3
+}
+
+.btn-check:active+.btn.btn-active-light-primary-dark .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn-check:checked+.btn.btn-active-light-primary-dark .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark.active .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark.show .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:active:not(.btn-active) .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:focus:not(.btn-active) .svg-icon svg:hover [fill]:not(.permanent):not(g), .btn.btn-active-light-primary-dark:hover:not(.btn-active) .svg-icon svg:hover [fill]:not(.permanent):not(g), .show>.btn.btn-active-light-primary-dark .svg-icon svg:hover [fill]:not(.permanent):not(g) {
+    transition: fill .3s ease
+}
+
+.btn-check:active+.btn.btn-active-light-primary-dark.dropdown-toggle:after, .btn-check:checked+.btn.btn-active-light-primary-dark.dropdown-toggle:after, .btn.btn-active-light-primary-dark.active.dropdown-toggle:after, .btn.btn-active-light-primary-dark.show.dropdown-toggle:after, .btn.btn-active-light-primary-dark:active:not(.btn-active).dropdown-toggle:after, .btn.btn-active-light-primary-dark:focus:not(.btn-active).dropdown-toggle:after, .btn.btn-active-light-primary-dark:hover:not(.btn-active).dropdown-toggle:after, .show>.btn.btn-active-light-primary-dark.dropdown-toggle:after {
+    color: #2471A3
+}
+
+.btn.btn-active-light-primary-dark.btn-outline:not(.btn-outline-default) {
+    border-color: #2471A3 !important
+}
+
 .btn.btn-dark {
     color: #fff;
     border-color: #181c32;
