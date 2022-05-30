@@ -36,11 +36,11 @@
                         <br />an outline and checking facts
                     </div> -->
 
-                    <div class="col-12 p-3">
+                    <div class="col-12 p-5">
                         <!--begin::Card-->
                         <div class="card">
                             <!--begin::Card body-->
-                            <div style="background-color: #27AE60;" class="card-body shadow-sm d-flex flex-center flex-column pt-5 p-3">
+                            <div style="background-color: #27AE60;" class="card-body rounded shadow-sm d-flex flex-center flex-column pt-5 p-3">
                                 <div class="symbol symbol-115px symbol-circle mb-1">
                                     <i style="font-size: 45px;" class="fa fa-eye text-light"></i>
                                 </div>
@@ -62,11 +62,11 @@
                         <!--end::Card-->
                     </div>
 
-                    <div class="col-12 p-3">
+                    <div class="col-12 p-5">
                         <!--begin::Card-->
                         <div class="card">
                             <!--begin::Card body-->
-                            <div style="background-color: #2980B9;" class="card-body bg-primary shadow-sm d-flex flex-center flex-column pt-5 p-3">
+                            <div style="background-color: #2980B9;" class="rounded card-body bg-primary shadow-sm d-flex flex-center flex-column pt-5 p-3">
                                 <div class="symbol symbol-115px symbol-circle mb-1">
                                     <i style="font-size: 45px;" class="fa fa-users text-light"></i>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="border border-gray-700 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
                                         <div class="fs-5  text-light">
                                             <span>
-                                               Salvar la mayor cantidad de vidas.
+                                                Salvar la mayor cantidad de vidas.
                                             </span>
                                         </div>
                                     </div>
@@ -85,11 +85,11 @@
                         <!--end::Card-->
                     </div>
 
-                    <div class="col-12 p-3">
+                    <div class="col-12 p-5">
                         <!--begin::Card-->
                         <div class="card">
                             <!--begin::Card body-->
-                            <div style="background-color: #27AE60;" class="card-body shadow-sm d-flex flex-center flex-column pt-5 p-3">
+                            <div style="background-color: #27AE60;" class="rounded card-body shadow-sm d-flex flex-center flex-column pt-5 p-3">
                                 <div class="symbol symbol-115px symbol-circle mb-1">
                                     <i style="font-size: 45px;" class="fa fa-bullseye text-light"></i>
                                 </div>
@@ -98,9 +98,9 @@
                                     <div class="border border-gray-700 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
                                         <div class="fs-5  text-light">
                                             <span>
-                                            Prevenir y detectar precozmente el cáncer y atender a los pacientes oncológicos 
-                                            de manera oportuna y solicitaria con tecnoloía, tratamientos adecuados 
-                                            y transparencia de gestión.
+                                                Prevenir y detectar precozmente el cáncer y atender a los pacientes oncológicos
+                                                de manera oportuna y solicitaria con tecnoloía, tratamientos adecuados
+                                                y transparencia de gestión.
                                             </span>
                                         </div>
                                     </div>
@@ -110,16 +110,14 @@
                         <!--end::Card-->
                     </div>
 
-
-
                 </div>
                 <!--end::Content-->
             </div>
             <!--begin::Aside-->
             <!--begin::Content-->
-            <div class="col-xl-7 col-md-12 flex-row-fluid d-flex flex-center justfiy-content-xl-first p-10">
+            <div class="col-xl-7 col-md-12 flex-row-fluid d-flex flex-center justfiy-content-xl-first p-20">
                 <!--begin::Wrapper-->
-                <div class="d-flex flex-center p-15 shadow-sm bg-body rounded w-100 w-md-550px mx-auto ms-xl-20">
+                <div class="d-flex flex-center p-15 shadow-sm bg-body rounded w-120 w-md-550px mx-auto ms-xl-20">
                     <!--begin::Form-->
                     <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="<?php echo constant('URL') ?>" method="POST">
                         <!--begin::Heading-->
