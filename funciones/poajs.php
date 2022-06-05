@@ -995,10 +995,13 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
     function Actualizar_Arrastrando() {
 
-
+        console.log(ACTV_ID_DRAG);
         var ACTV_ID = ACTV_ID_DRAG[0]["ACTIV_ID"];
         var AV_RESPONSABLE = ACTV_ID_DRAG[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AV_SUPERVISOR = ACTV_ID_DRAG[0]["max(AV.AVANCE_SUPERVISION)"];
+        var ACTIV_NOM = ACTV_ID_DRAG[0]["ACTIV_NOM"];
+        var ACTIV_RESPONSABLE_ID = ACTV_ID_DRAG[0]["RESPONSABLE_ID"];
+        var ACTIV_RESPONSABLE_TEXT = ACTV_ID_DRAG[0]["ACTIV_RESPONSABLE"];
 
         var estado;
         var id = TARGET_ID;
@@ -1023,15 +1026,18 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             ACTV_ESTADO: estado,
             Progreso_respo: Progreso_respo,
             Progreso_superv: Progreso_superv,
+            ACTIV_NOM: ACTIV_NOM,
+            ACTIV_RESPONSABLE_ID: ACTIV_RESPONSABLE_ID,
+            ACTIV_RESPONSABLE_TEXT: ACTIV_RESPONSABLE_TEXT,
         }
         console.log(data);
 
-        AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
-            console.log(response);
-            if (response == true) {
-                Proyecto_info_Drag(PROYECTO_ID);
-            }
-        });
+        // AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
+        //     console.log(response);
+        //     if (response == true) {
+        //         Proyecto_info_Drag(PROYECTO_ID);
+        //     }
+        // });
     }
 
     function Drag(id) {
