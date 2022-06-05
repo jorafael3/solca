@@ -15,6 +15,9 @@ $urlEliminar_Actividad = constant("URL") . "poa/Eliminar_Actividad";
 
 $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
+$urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porcentaje_Avance";
+
+
 ?>
 
 <script>
@@ -30,6 +33,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     var urlActualizar_Actividad = '<?php echo $urlActualizar_Actividad ?>';
     var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
+    var urlGet_Proyectos_Porcentaje_Avance = '<?php echo $urlGet_Proyectos_Porcentaje_Avance ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -431,12 +435,33 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         AjaxSendReceive(urlGet_Proyectos, data, function(response) {
 
             ARR_PROYECTOS = [];
-            ARR_PROYECTOS = response;
             var arrdata = JSON.parse(JSON.stringify(response));
-            let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ACTIVO) == "S");
+            ARR_PROYECTOS = arrdata;
 
-            Crear_proyectos(Proyect_info);
-            console.log("PROYECTOS", ARR_PROYECTOS);
+            // function Arr(data, callback) {
+
+            //     data.map(function(x, y) {
+            //         console.log(x);
+            //         var data = {
+            //             "id": x.PROYECTOA_ID
+            //         }
+            //         AjaxSendReceive(urlGet_Proyectos_Porcentaje_Avance, data, function(response) {
+            //             x.PORCENTAJE = response[0]["avance"];
+            //         });
+            //         return x;
+            //     });
+            //     callback(data);
+            // }
+
+            // Arr(arrdata, function(response) {
+            //     setTimeout(Crear_proyectos(response), 2000);
+            //     console.log("PROYECTOS", response);
+
+            // })
+            setTimeout(Crear_proyectos(arrdata), 2000);
+
+            let Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ACTIVO) == "S");
+            // AjaxSendReceive(ur)
 
             /**
              * VAMOS  A LA SECCION PROYECTOS AUTOMATICAMENTE
@@ -457,6 +482,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var arrdata = JSON.parse(JSON.stringify(data));
         $("#Lista_proyectos").empty();
         ARRAY_DATA_PROYECT = [];
+        console.log("arrdata", arrdata);
+
         jQuery.each(arrdata, function(key, value) {
 
             var estado = value.PROYECTOA_ACTIVO;
@@ -466,31 +493,40 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
             var Fecha_creacion = value.FCREADO;
             var Responsable = value.PROYECTOA_RESPONSABLE;
             var ID_PROYECTO = value.PROYECTOA_ID;
-
             var data = {
-                ID_PROYECTO: ID_PROYECTO,
-                PROYECTOA_ACTIVO: estado,
-                CRITERIO_ID: value.CRITERIO_ID,
-                POA_ID: value.POA_ID,
-                OBJEST_ID: value.OBJEST_ID,
-                PERSPECTIVA_ID: value.PERSPECTIVA_ID
-            };
-
-            ARRAY_DATA_PROYECT.push(data);
-
-            var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
-            var funcionELiminar = "Proyecto_Eliminar(" + ID_PROYECTO + ");";
-            var funcionedit = "Proyecto_Edit(" + ID_PROYECTO + ");";
-
-            if (estado == "S") {
-                estado = "Activo";
-            } else if (estado == "N") {
-                estado = "Desactivado";
-                estado_color = "badge-light-danger";
-                funcion = "";
+                "id": ID_PROYECTO
             }
+            AjaxSendReceive(urlGet_Proyectos_Porcentaje_Avance, data, function(response) {
+                var por_avance = response[0]["avance"];
+                por_avance = parseFloat(por_avance).toFixed(2)
+                console.log("response", response);
+                // if(por_avance == null){
+                //     por_avance = 0;
+                // }
+                var data = {
+                    ID_PROYECTO: ID_PROYECTO,
+                    PROYECTOA_ACTIVO: estado,
+                    CRITERIO_ID: value.CRITERIO_ID,
+                    POA_ID: value.POA_ID,
+                    OBJEST_ID: value.OBJEST_ID,
+                    PERSPECTIVA_ID: value.PERSPECTIVA_ID
+                };
 
-            var Proyect_card = `<div class="col-md-6 col-xl-4" >
+                ARRAY_DATA_PROYECT.push(data);
+
+                var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
+                var funcionELiminar = "Proyecto_Eliminar(" + ID_PROYECTO + ");";
+                var funcionedit = "Proyecto_Edit(" + ID_PROYECTO + ");";
+
+                if (estado == "S") {
+                    estado = "Activo";
+                } else if (estado == "N") {
+                    estado = "Desactivado";
+                    estado_color = "badge-light-danger";
+                    funcion = "";
+                }
+
+                var Proyect_card = `<div class="col-md-6 col-xl-4" >
 											<div class="card-header border-0 pt-9">
 												<div class="card-title m-0">
                                                     <button onclick="` + funcionELiminar + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -530,8 +566,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 													</div>
 													
 												</div>
-												<div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="This project 50% completed">
-													<div class="bg-primary rounded h-4px" role="progressbar" style="width: 100%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <h6>` + por_avance + `%</h6>
+												<div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="Este proyecto esta ` + por_avance + `% completo">
+													<div class="bg-primary rounded h-8px" role="progressbar" style="width: ` + por_avance + `%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 												<div class="symbol-group symbol-hover">
                                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
@@ -542,7 +579,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 											</div>
 										</a>
 									</div>`;
-            $("#Lista_proyectos").append(Proyect_card);
+                $("#Lista_proyectos").append(Proyect_card);
+
+            });
 
         });
     }
@@ -743,7 +782,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         Proyect_info[0]["PROYECTOA_ACTIVO"] = "N";
         Proyect_info[0]["PROYECTOA_ELIMINADO"] = "S";
         var data = {
-            PROYECTOA_ID : Proyect_info[0]["PROYECTOA_ID"]
+            PROYECTOA_ID: Proyect_info[0]["PROYECTOA_ID"]
         }
         console.log(data);
 
@@ -1032,12 +1071,12 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         }
         console.log(data);
 
-        // AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
-        //     console.log(response);
-        //     if (response == true) {
-        //         Proyecto_info_Drag(PROYECTO_ID);
-        //     }
-        // });
+        AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
+            console.log(response);
+            if (response == true) {
+                Proyecto_info_Drag(PROYECTO_ID);
+            }
+        });
     }
 
     function Drag(id) {
@@ -1069,7 +1108,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var DATA_TO_SEND = {
             ACTIV_NOM: ACTIV_NOM,
             ACTIV_RESPONSABLE: ACTIV_RESPONSABLE,
-            ACTIV_RESPONSABLE_ID:ACTIV_RESPONSABLE_ID,
+            ACTIV_RESPONSABLE_ID: ACTIV_RESPONSABLE_ID,
             ACTIV_FFINAL: ACTIV_FFINAL,
             ACTIV_FINICIO: ACTIV_FINICIO,
             CRITERIO_ID: POA_INFO[0]["CRITERIO_ID"],
@@ -1114,7 +1153,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var ACTV_ID = id;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
-        console.log("ACTIVIDAD_INFO",ACTIVIDAD_INFO);
+        console.log("ACTIVIDAD_INFO", ACTIVIDAD_INFO);
         var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
         var AVANCE_RESPONSABLE = ACTIVIDAD_INFO[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AVANCE_SUPERVISION = ACTIVIDAD_INFO[0]["max(AV.AVANCE_SUPERVISION)"];
