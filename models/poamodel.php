@@ -210,7 +210,7 @@ class PoaModel extends Model
             $sql = "CALL " . constant("DB") . ".proyectos_poa (?) ";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(1, $poa_id);
-
+            $item = [];
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode($result);
@@ -225,6 +225,29 @@ class PoaModel extends Model
             return $e;
         }
     }
+
+    function Get_Proyectos_Porcentaje_Avance($parametros)
+    {
+        try {
+            $id = $parametros["id"];
+            $sql = "CALL " . constant("DB") . ".Avance_Proyecto (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $id);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     function Nuevo_Proyecto($parametros)
     {
         try {

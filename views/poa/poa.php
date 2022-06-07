@@ -220,7 +220,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
             <!--begin::Controls-->
             <div class="d-flex flex-wrap my-1">
                 <!--begin::Select wrapper-->
-                <div class="m-0">
+                <div class="m-0" style="display: none;">
                     <!--begin::Select-->
                     <select onchange="BTN_Filtrar_pry(this.value)" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body fw-bolder w-125px">
                         <option value="1">Todos</option>
@@ -511,7 +511,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
-                                <select id="ACT_Responsable" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Responsable" name="target_assign" required>
+                                <select id="ACT_Responsable" class="form-select form-select-solid select25" data-placeholder="Responsable" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
@@ -825,7 +825,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Responsable</label>
                                 <!--end::Label-->
-                                <select id="ACT_Responsable_edit" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Responsable" name="target_assign" required>
+                                <select id="ACT_Responsable_edit" class="form-select form-select-solid select24" data-placeholder="Responsable" name="target_assign" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->resp as $row) {
@@ -981,6 +981,14 @@ $AREA_ID = $_SESSION["AREA_ID"];
     <script>
         $('.select23').select2({
             dropdownParent: $('#kt_modal_Nuevo_Proyecto')
+        });
+
+        $('.select24').select2({
+            dropdownParent: $('#kt_modal_Actividad_Edit')
+        });
+
+        $('.select25').select2({
+            dropdownParent: $('#kt_modal_add_user')
         });
 
         $('.select_Filter').select2({
