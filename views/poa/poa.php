@@ -595,6 +595,24 @@ $AREA_ID = $_SESSION["AREA_ID"];
                     <form id="form2" onsubmit="return false">
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
+                        <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Objetivo Estrategico</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select id="PRY_Objetivo" class="form-select form-select-solid select23" name="target_assign" data-placeholder="Objetivo Estrategico">
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->objetivos as $row) {
+                                    ?>
+                                        <option value=<?php echo $row["OBJEST_ID"]; ?>><?php echo ($row["OBJEST_NOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+
+
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Nombre Del Proyecto</label>
@@ -1052,6 +1070,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
             $("#PRY_Meta2029").val("");
             $("#PRY_Meta2030").val("");
             $("#PRY_Responsable").val(0).change();
+            $("#PRY_Objetivo").val(0).change();
             // $("#PRY_indicador").val(0).change();
             $("#PRY_indicador").val("");
 

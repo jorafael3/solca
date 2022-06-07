@@ -1,4 +1,5 @@
 <?php
+
 $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $u = "$_SERVER[HTTP_HOST]";
 define('URL','http://'.$u.'/solca/');// ip local:puerto
@@ -20,6 +21,5 @@ define('CHARSET', 'utf8mb4');
 // [14:53, 5/3/2022] Edison Sanchez: usuario ugtikepkfhpg6
 // [14:54, 5/3/2022] Edison Sanchez: contraseña
 // [14:54, 5/3/2022] Edison Sanchez: #`3118&@q{*1
-
 
 ?>

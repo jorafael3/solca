@@ -568,6 +568,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
     }
 
     function Nuevo_Proyecto() {
+        var PROYECTO_OBJ = $("#PRY_Objetivo").val();
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
         var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
@@ -605,7 +606,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
                 // PERSPECTIVA_ID: PERSPECTIVA_ID,
                 //CRITERIO_ID: CRITERIO_ID,
                 POA_ID: ARRAY_DATA_POA["POA_ID"],
-                OBJEST_ID: ARRAY_DATA_POA["OBJEST_ID"],
+                OBJEST_ID: PROYECTO_OBJ,
                 PROYECTOA_META_2022: PROYECTOA_META_2022,
                 PROYECTOA_META_2023: PROYECTOA_META_2023,
                 PROYECTOA_META_2024: PROYECTOA_META_2024,
@@ -619,14 +620,14 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
             console.log("SEND", DATA_TO_SEND);
 
-            AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
-                console.log(response);
-                if (response == true) {
-                    $("#kt_modal_Nuevo_Proyecto").modal('hide');
-                    Mensaje_Guardado_ok();
-                    Get_Proyectos(ARRAY_DATA_POA);
-                }
-            })
+            // AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
+            //     console.log(response);
+            //     if (response == true) {
+            //         $("#kt_modal_Nuevo_Proyecto").modal('hide');
+            //         Mensaje_Guardado_ok();
+            //         Get_Proyectos(ARRAY_DATA_POA);
+            //     }
+            // })
         }
 
 
@@ -639,6 +640,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         var Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
         ARRAY_DATA_PROYECT_INDIVIDUAL = Proyect_info;
         var PROYECTOA_NOM = Proyect_info[0]["PROYECTOA_NOM"];
+        var PROYECTOA_OBJ= Proyect_info[0]["OBJEST_ID"];
         var PROYECTOA_RESPONSABLE = Proyect_info[0]["USUARIOS_ID"];
         var PROYECTOA_INDICADOR = Proyect_info[0]["PROYECTOA_INDICADOR"];
         var PROYECTOA_META_2022 = Proyect_info[0]["PROYECTOA_META_2022"];
@@ -664,7 +666,9 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
         //     return $(this).text() == PROYECTOA_INDICADOR;
         // }).attr('selected', true).change();
         // $("#PRY_Responsable").select2("val", PROYECTOA_RESPONSABLE.replaceAll(" ",""));
+        $('#PRY_Objetivo').val(PROYECTOA_OBJ).change();
         $('#PRY_Responsable').val(PROYECTOA_RESPONSABLE).change();
+
         $("#PRY_indicador").val(PROYECTOA_INDICADOR)
         $("#PRY_Nombre").val(PROYECTOA_NOM);
         $("#PRY_Meta2022").val(PROYECTOA_META_2022);

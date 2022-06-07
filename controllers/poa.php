@@ -27,7 +27,9 @@ class Poa extends Controller
         $this->view->Indica = $Indicadores;
         $departamentos =  $this->model->Get_Areas_on_load();
         $this->view->areas = $departamentos;
-        $this->Poarender(); 
+        $objetivos =  $this->model->Get_Objetivos_ES_on_load();
+        $this->view->objetivos = $objetivos;
+        $this->Poarender();
     }
 
     function Get_Perspectivas()
@@ -91,5 +93,4 @@ class Poa extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Eliminar_Proyecto($array);
     }
-   
 }

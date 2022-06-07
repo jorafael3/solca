@@ -153,6 +153,24 @@ class PoaModel extends Model
         }
     }
 
+    function Get_Objetivos_ES_on_load()
+    {
+
+        try {
+            $sql = "CALL " . constant("DB") . ".get_all_objetivos_Estrategicos ";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } else {
+                $err = $query->errorInfo();
+                return $err;
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 
     //** POA */
 
