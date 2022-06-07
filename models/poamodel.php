@@ -201,6 +201,33 @@ class PoaModel extends Model
         }
     }
 
+    function Nuevo_Poa($parametros)
+    {
+        $AREA_ID = $parametros["AREA_ID"];
+        $DEPT_ID = $parametros["DEPT_ID"];
+        $OBJ_ID = $parametros["OBJ_ID"];
+
+        try {
+            $sql = "CALL " . constant("DB") . ".create_poa (?,?,?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $DEPT_ID);
+            $query->bindParam(2, $AREA_ID);
+            $query->bindParam(3, $OBJ_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     //** PROYECTO  */
     function Get_Proyectos($parametros)
     {

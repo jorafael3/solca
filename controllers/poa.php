@@ -25,10 +25,12 @@ class Poa extends Controller
         $this->view->resp = $Responsables;
         $Indicadores =  $this->model->Get_indicadores_on_load();
         $this->view->Indica = $Indicadores;
-        $departamentos =  $this->model->Get_Areas_on_load();
-        $this->view->areas = $departamentos;
+        $areas =  $this->model->Get_Areas_on_load();
+        $this->view->areas = $areas;
         $objetivos =  $this->model->Get_Objetivos_ES_on_load();
         $this->view->objetivos = $objetivos;
+        $departamentos =  $this->model->Get_Departamentos_on_load();
+        $this->view->departamentos = $departamentos;
         $this->Poarender();
     }
 
@@ -41,6 +43,11 @@ class Poa extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Criterios($array);
+    }
+    function Nuevo_Poa()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Nuevo_Poa($array);
     }
     function Get_Poa()
     {

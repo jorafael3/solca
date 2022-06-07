@@ -16,6 +16,8 @@ $urlEliminar_Actividad = constant("URL") . "poa/Eliminar_Actividad";
 $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
 $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porcentaje_Avance";
+$urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
+
 
 
 ?>
@@ -34,6 +36,7 @@ $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porce
     var urlEliminar_Actividad = '<?php echo $urlEliminar_Actividad ?>';
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
     var urlGet_Proyectos_Porcentaje_Avance = '<?php echo $urlGet_Proyectos_Porcentaje_Avance ?>';
+    var urlNuevo_Poa = '<?php echo $urlNuevo_Poa ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -242,6 +245,8 @@ $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porce
     //********* */ POAS **********/
     function POA_FILTRAR_DEPTS(id) {
         FILTER_ID_DEPT = id;
+        console.log(id)
+
         // var arrdata = JSON.parse(JSON.stringify(ARR_POAS));
         // let DATA_FILTRADA = arrdata.filter(id_d => (id_d.DEPTO_ID) == id);
         // if (id == "") {
@@ -257,6 +262,28 @@ $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porce
 
         Get_Poa();
 
+    }
+
+    function Nuevo_Poa() {
+        var AREA_ID = FILTER_ID_DEPT;
+        var DEPT_ID = $("#PRY_POA_OBJ").val()
+        var OBJ_ID = $("#PRY_POA_DEP").val()
+
+        if (AREA_ID == "Todos") {} else {
+            var data = {
+                AREA_ID: AREA_ID,
+                DEPT_ID: DEPT_ID,
+                OBJ_ID: OBJ_ID,
+            }
+            console.log(data);
+            AjaxSendReceive(urlNuevo_Poa, data, function(response) {
+                console.log(response);
+                if (response == true) {
+                    Get_Poa()
+                    $("#kt_modal_Create_Poa").modal('hide');
+                }
+            });
+        }
     }
 
     function Get_Poa() {
@@ -679,7 +706,7 @@ $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porce
         var Proyect_info = arrdata.filter(pr => (pr.PROYECTOA_ID) == id);
         ARRAY_DATA_PROYECT_INDIVIDUAL = Proyect_info;
         var PROYECTOA_NOM = Proyect_info[0]["PROYECTOA_NOM"];
-        var PROYECTOA_OBJ= Proyect_info[0]["OBJEST_ID"];
+        var PROYECTOA_OBJ = Proyect_info[0]["OBJEST_ID"];
         var PROYECTOA_RESPONSABLE = Proyect_info[0]["USUARIOS_ID"];
         var PROYECTOA_INDICADOR = Proyect_info[0]["PROYECTOA_INDICADOR"];
         var PROYECTOA_META_2022 = Proyect_info[0]["PROYECTOA_META_2022"];

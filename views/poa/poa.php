@@ -11,39 +11,48 @@ $AREA_ID = $_SESSION["AREA_ID"];
 <div class="row gy-5 g-xl-8">
 
     <div class="col-12">
-        <h4>Area</h4>
-        <div class="col-12 col-md-6">
-            <div class="m-0">
+        <div class="row">
 
-                <?php
-                if ($TIPOUS_ID == 1) {
-                ?>
-                    <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
-                        <option value="Todos">TODOS</option>
-                        <?php
-                        foreach ($this->areas as $row) {
-                        ?>
+            <h4>Area</h4>
+            <div class="col-8 col-md-6">
+                <div class="m-0">
 
-                            <option value=<?php echo str_replace(' ', '', $row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                <?php
+                    <?php
+                    if ($TIPOUS_ID == 1) {
+                    ?>
+                        <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
+                            <option value="Todos">TODOS</option>
+                            <?php
+                            foreach ($this->areas as $row) {
+                            ?>
 
-                } else if ($TIPOUS_ID == 4) {
-                ?>
-                    <select disabled="true" style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
-                        <option value="<?php echo $AREA_ID ?>"><?php echo $AREA_NOM ?></option>
-                    </select>
+                                <option value=<?php echo str_replace(' ', '', $row["AREA_ID"]); ?>><?php echo ($row["AREA_NOM"]); ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    <?php
 
-                <?php
-                }
-                ?>
+                    } else if ($TIPOUS_ID == 4) {
+                    ?>
+                        <select disabled="true" style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
+                            <option value="<?php echo $AREA_ID ?>"><?php echo $AREA_NOM ?></option>
+                        </select>
+
+                    <?php
+                    }
+                    ?>
 
 
 
 
+                </div>
+
+            </div>
+            <div class="col-4 col-md-6">
+                <div class="m-0">
+                    <button id="Btn_Nuevo_poa_" onclick="Btn_Nuevo_Poa()" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Poa</button>
+                </div>
             </div>
         </div>
     </div>
@@ -170,6 +179,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                     </div>
 
                     <div class="col-md-12 col-12">
+
 
                         <div class="table-responsive border-gray-200">
                             <div class="d-flex flex-wrap flex-stack my-5">
@@ -466,6 +476,97 @@ $AREA_ID = $_SESSION["AREA_ID"];
     </div>
 
 
+    <div class="modal fade" id="kt_modal_Create_Poa" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header_edit">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">Nuevo Poa</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1 btn_close_mo_poa">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <form id="form2" onsubmit="return false">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Objetivo Estrategico</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select id="PRY_POA_OBJ" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Objetivo Estrategico">
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->objetivos as $row) {
+                                    ?>
+                                        <option value=<?php echo $row["OBJEST_ID"]; ?>><?php echo ($row["OBJEST_NOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">Departamento</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select id="PRY_POA_DEP" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Departamentos">
+                                    <option value=""></option>
+                                    <?php
+                                    foreach ($this->departamentos as $row) {
+                                    ?>
+                                        <option value=<?php echo $row["DEPTO_ID"]; ?>><?php echo ($row["DEPTO_NOM"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+
+                            </div>
+
+
+                        </div>
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
+
+                            <button onclick="Btn_Nuevo_poa_crear()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <span class="indicator-label">Guardar</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
     <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -595,7 +696,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                     <form id="form2" onsubmit="return false">
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
-                        <div class="fv-row mb-7">
+                            <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Objetivo Estrategico</label>
                                 <!--end::Label-->
@@ -961,7 +1062,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.2/js/dataTables.fixedHeader.min.js"></script>
-    
+
     <script src="<?php echo constant('URL') ?>funciones/utils/mensajes.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -990,11 +1091,12 @@ $AREA_ID = $_SESSION["AREA_ID"];
         $('.select25').select2({
             dropdownParent: $('#kt_modal_add_user')
         });
-
+        $('.select26').select2({
+            dropdownParent: $('#kt_modal_Create_Poa')
+        });
         $('.select_Filter').select2({
             // dropdownParent: $('#kt_modal_Nuevo_Proyecto')
         });
-
         var TARGET_ID;
         dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
             revertOnSpill: true,
@@ -1064,6 +1166,9 @@ $AREA_ID = $_SESSION["AREA_ID"];
         $(".btn_close_mo").click(function() {
             $("#kt_modal_add_user").modal('hide');
         });
+        $(".btn_close_mo_poa").click(function() {
+            $("#kt_modal_Create_Poa").modal('hide');
+        });
 
         $(".btn_close_mo_2").click(function() {
             $("#kt_modal_Nuevo_Proyecto").modal('hide');
@@ -1132,6 +1237,21 @@ $AREA_ID = $_SESSION["AREA_ID"];
 
         function Btn_Actualizar_Proyecto() {
             Actualizar_Proyecto();
+        }
+
+        function Btn_Nuevo_poa_crear() {
+            Nuevo_Poa();
+        }
+
+        function Btn_Nuevo_Poa() {
+            var AREA_ID = $("#Poa_Filter").val();
+            if (AREA_ID == "Todos") {
+                Mensaje_Info("Error", "Debe Seleccionar un Area", "error");
+            } else {
+                $("#kt_modal_Create_Poa").modal('show');
+                var DEPT_ID = $("#PRY_POA_OBJ").val(0).change();
+                var OBJ_ID = $("#PRY_POA_DEP").val(0).change();
+            }
         }
 
         var TIPOUS_ID = '<?php echo $TIPOUS_ID ?>';
