@@ -29,8 +29,6 @@ class Poa extends Controller
         $this->view->areas = $areas;
         $objetivos =  $this->model->Get_Objetivos_ES_on_load();
         $this->view->objetivos = $objetivos;
-        $departamentos =  $this->model->Get_Departamentos_on_load();
-        $this->view->departamentos = $departamentos;
         $this->Poarender();
     }
 
@@ -44,6 +42,13 @@ class Poa extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Criterios($array);
     }
+    //******** POA */
+
+    function Get_Depst_Por_Area()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Depst_Por_Area($array);
+    }
     function Nuevo_Poa()
     {
         $array = json_decode(file_get_contents("php://input"), true);
@@ -54,6 +59,8 @@ class Poa extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_Poa($array);
     }
+    //*********************** */
+
     function Get_Proyectos()
     {
         $array = json_decode(file_get_contents("php://input"), true);

@@ -40,6 +40,8 @@ class Principal extends Controller
     {
         $resumen =  $this->model->Get_Resumen(1);
         $this->view->resumen = $resumen;
+        $servicios =  $this->model->Get_Servicios();
+        $this->view->servicios = $servicios;
         $this->view->render('principal/dashsuperadmin');
     }
 
@@ -47,6 +49,12 @@ class Principal extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Get_last_projects(2);
+    }
+
+    function Get_Permanencia()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Permanencia($array);
     }
 
     //**** POA */

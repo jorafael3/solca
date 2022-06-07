@@ -2,6 +2,7 @@
 
 
 $urlGetProjects = constant("URL") . "principal/Get_last_projects";
+$urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
 
 
 ?>
@@ -9,6 +10,7 @@ $urlGetProjects = constant("URL") . "principal/Get_last_projects";
 
 <script>
     var urlGetProjects = '<?php echo $urlGetProjects ?>';
+    var urlGet_Permanencia = '<?php echo $urlGet_Permanencia ?>';
 
     function Get_last_projects() {
 
@@ -63,47 +65,47 @@ $urlGetProjects = constant("URL") . "principal/Get_last_projects";
 
                 // var fecha = `
                 //         <div class="border border-gray-300 border-dashed rounded min-w-120px py-3 px-4 me-1 mb-3">
-				// 			<div class="d-flex align-items-center">
-				// 				<div class="fs-4 fw-bolder"></div>
-				// 			</div>
-				// 			<div class="fw-bold fs-6 text-gray-800">` + data["FCREADO"] + `</div>
-				// 		</div>`;
+                // 			<div class="d-flex align-items-center">
+                // 				<div class="fs-4 fw-bolder"></div>
+                // 			</div>
+                // 			<div class="fw-bold fs-6 text-gray-800">` + data["FCREADO"] + `</div>
+                // 		</div>`;
                 // $('td', row).eq(0).html(fecha);
 
                 // var hora = `
                 //         <div class="border border-gray-300 border-dashed rounded min-w-90px py-3 px-4 me-1 mb-3">
-				// 			<div class="d-flex align-items-center">
-				// 				<div class="fs-4 fw-bolder"></div>
-				// 			</div>
-				// 			<div class="fw-bold fs-6 text-gray-800">` + data["HCREADO"] + `</div>
-				// 		</div>`;
+                // 			<div class="d-flex align-items-center">
+                // 				<div class="fs-4 fw-bolder"></div>
+                // 			</div>
+                // 			<div class="fw-bold fs-6 text-gray-800">` + data["HCREADO"] + `</div>
+                // 		</div>`;
                 // $('td', row).eq(1).html(hora);
                 // var proy = `
                 //         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-1 mb-3">
-				// 			<div class="d-flex align-items-center">
-				// 				<div class="fs-4 fw-bolder"></div>
-				// 			</div>
-				// 			<div class="fw-bold fs-6 text-gray-800">` + data["PROYECTOA_NOM"] + `</div>
-				// 		</div>`;
+                // 			<div class="d-flex align-items-center">
+                // 				<div class="fs-4 fw-bolder"></div>
+                // 			</div>
+                // 			<div class="fw-bold fs-6 text-gray-800">` + data["PROYECTOA_NOM"] + `</div>
+                // 		</div>`;
                 // $('td', row).eq(2).html(proy);
                 // var res = `
                 //         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-0 mb-3">
-				// 			<div class="d-flex align-items-center">
-				// 				<div class="fs-4 fw-bolder"></div>
-				// 			</div>
-				// 			<div class="fw-bold fs-6 text-gray-800">` + data["PROYECTOA_RESPONSABLE"] + `</div>
-				// 		</div>`;
+                // 			<div class="d-flex align-items-center">
+                // 				<div class="fs-4 fw-bolder"></div>
+                // 			</div>
+                // 			<div class="fw-bold fs-6 text-gray-800">` + data["PROYECTOA_RESPONSABLE"] + `</div>
+                // 		</div>`;
                 // $('td', row).eq(3).html(res);
                 // if(data["US_APELLNOM"] == null){
                 //     data["US_APELLNOM"] = "";
                 // }
                 // var res = `
                 //         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-0 mb-3">
-				// 			<div class="d-flex align-items-center">
-				// 				<div class="fs-4 fw-bolder"></div>
-				// 			</div>
-				// 			<div class="fw-bold fs-6 text-gray-800">` + data["US_APELLNOM"] + `</div>
-				// 		</div>`;
+                // 			<div class="d-flex align-items-center">
+                // 				<div class="fs-4 fw-bolder"></div>
+                // 			</div>
+                // 			<div class="fw-bold fs-6 text-gray-800">` + data["US_APELLNOM"] + `</div>
+                // 		</div>`;
                 // $('td', row).eq(4).html(res);
             }
 
@@ -113,6 +115,38 @@ $urlGetProjects = constant("URL") . "principal/Get_last_projects";
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
+    }
+
+    function Get_Permanencia_OnLoad() {
+        var data = {
+            SERV: "TODOS"
+        }
+        AjaxSendReceive(urlGet_Permanencia, data, function(response) {
+            console.log(response);
+            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            $("#DSA_PER_SER").text("Permanencia General Solca");
+
+        });
+    }
+    Get_Permanencia_OnLoad();
+
+    function Btn_Get_Permanencia() {
+        var Servicio = $("#DSA_SERVICIOS option:selected").text();
+        console.log(Servicio);
+        var data = {
+            SERV: Servicio
+        }
+        AjaxSendReceive(urlGet_Permanencia, data, function(response) {
+            console.log(response);
+            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            if (Servicio == "TODOS") {
+                $("#DSA_PER_SER").text("Permanencia General Solca");
+            } else {
+                $("#DSA_PER_SER").text(Servicio);
+
+            }
+
+        });
     }
 
     function AjaxSendReceive(url, data, callback) {

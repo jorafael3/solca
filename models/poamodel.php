@@ -72,18 +72,23 @@ class PoaModel extends Model
         }
     }
 
-    function Get_Departamentos_on_load()
+    function Get_Depst_Por_Area($parametros)
     {
 
         try {
-            $sql = "CALL " . constant("DB") . ".get_departamentos ";
+            $AREA_ID = $parametros["AREA_ID"];
+            $sql = "CALL " . constant("DB") . ".get_departamentos_por_area (?)";
             $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $AREA_ID);
+
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
+                echo json_encode($result);
+                exit();
             } else {
                 $err = $query->errorInfo();
-                return $err;
+                echo json_encode($err);
+                exit();
             }
         } catch (PDOException $e) {
             $e = $e->getMessage();

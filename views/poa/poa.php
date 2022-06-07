@@ -512,7 +512,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Objetivo Estrategico</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="PRY_POA_OBJ" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Objetivo Estrategico">
+                                <select id="PRY_POA_OBJ" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Objetivo Estrategico" required>
                                     <option value=""></option>
                                     <?php
                                     foreach ($this->objetivos as $row) {
@@ -530,15 +530,15 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                 <label class="required fw-bold fs-6 mb-2">Departamento</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select id="PRY_POA_DEP" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Departamentos">
-                                    <option value=""></option>
+                                <select id="PRY_POA_DEP" class="form-select form-select-solid select26" name="target_assign" data-placeholder="Departamento" required>
+                                    <!-- <option value=""></option>
                                     <?php
                                     foreach ($this->departamentos as $row) {
                                     ?>
                                         <option value=<?php echo $row["DEPTO_ID"]; ?>><?php echo ($row["DEPTO_NOM"]); ?></option>
                                     <?php
                                     }
-                                    ?>
+                                    ?> -->
                                 </select>
 
                             </div>
@@ -696,11 +696,8 @@ $AREA_ID = $_SESSION["AREA_ID"];
                     <form id="form2" onsubmit="return false">
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
+                            <!-- <div class="fv-row mb-7">
                                 <label class="required fw-bold fs-6 mb-2">Objetivo Estrategico</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
                                 <select id="PRY_Objetivo" class="form-select form-select-solid select23" name="target_assign" data-placeholder="Objetivo Estrategico">
                                     <option value=""></option>
                                     <?php
@@ -711,9 +708,8 @@ $AREA_ID = $_SESSION["AREA_ID"];
                                     }
                                     ?>
                                 </select>
+                            </div> -->
 
-
-                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">Nombre Del Proyecto</label>

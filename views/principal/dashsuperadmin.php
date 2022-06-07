@@ -181,7 +181,7 @@ $resumen = $this->resumen;
         <!--begin::Row-->
         <div class="row g-5 g-xl-10">
             <!--begin::Col-->
-            <div class="col-xl-6">
+            <div class="col-xl-3">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
@@ -197,7 +197,7 @@ $resumen = $this->resumen;
                 <!--end::Statistics Widget 5-->
             </div>
 
-            <div class="col-xl-6">
+            <div class="col-xl-3">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-warning hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
@@ -218,31 +218,20 @@ $resumen = $this->resumen;
                 <!--end::Statistics Widget 5-->
             </div>
 
-
-
-            <div class="col-sm-6 col-xl-12">
-                <!--begin::Card-->
-                <div class="card">
-                    <!--begin::Card header-->
-                    <div class="card-header flex-nowrap border-0">
-                        <!--begin::Card title-->
-                        <div class="card-title m-0">
-                            <!--begin::Icon-->
-                            <div class="symbol symbol-45px w-45px bg-light me-5">
-                                <img src="assets/media/svg/brand-logos/twitch.svg" alt="image" class="p-3" />
-                            </div>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <a href="#" class="fs-4 fw-bold text-hover-primary text-gray-600 m-0">Twitch Posts</a>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Card title-->
-                        <!--begin::Card toolbar-->
-                        <div class="card-toolbar m-0">
+            <div class="col-xl-6">
+                <!--begin::Mixed Widget 6-->
+                <div class="card card-xl-stretch mb-xl-8">
+                    <!--begin::Beader-->
+                    <div class="card-header border-0 py-5">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bolder fs-3 mb-1">Permanencia</span>
+                            <span id="DSA_PER_SER" class="text-muted fw-bold fs-7">Permanencia solca</span>
+                        </h3>
+                        <div class="card-toolbar">
                             <!--begin::Menu-->
-                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-primary btn-active-light-primary me-n3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                <span class="svg-icon svg-icon-3 svg-icon-primary">
+                                <span class="svg-icon svg-icon-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
@@ -254,118 +243,94 @@ $resumen = $this->resumen;
                                 </span>
                                 <!--end::Svg Icon-->
                             </button>
-                            <!--begin::Menu 3-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-                                <!--begin::Heading-->
-                                <div class="menu-item px-3">
-                                    <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
+                            <!--begin::Menu 1-->
+                            <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620793759118c">
+                                <!--begin::Header-->
+                                <div class="px-7 py-5">
+                                    <div class="fs-5 text-dark fw-bolder">Opciones</div>
                                 </div>
-                                <!--end::Heading-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Create Invoice</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link flex-stack px-3">Create Payment
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Generate Bill</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                                    <a href="#" class="menu-link px-3">
-                                        <span class="menu-title">Subscription</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <!--begin::Menu sub-->
-                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Plans</a>
+                                <!--end::Header-->
+                                <!--begin::Menu separator-->
+                                <div class="separator border-gray-200"></div>
+                                <!--end::Menu separator-->
+                                <!--begin::Form-->
+                                <div class="px-7 py-5">
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fw-bold">Servicios:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <div>
+                                            <select id="DSA_SERVICIOS" class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Seleccione" data-dropdown-parent="#kt_menu_620793759118c" data-allow-clear="true">
+                                                <option value="TODOS">TODOS</option>
+
+                                                <?php
+                                                foreach ($this->servicios as $row) {
+                                                ?>
+                                                    <option value=<?php echo $row["SERV_ID"]; ?>><?php echo ($row["SERV_NOM"]); ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Billing</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3">
-                                                <!--begin::Switch-->
-                                                <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <!--begin::Input-->
-                                                    <input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications" />
-                                                    <!--end::Input-->
-                                                    <!--end::Label-->
-                                                    <span class="form-check-label text-muted fs-6">Recuring</span>
-                                                    <!--end::Label-->
-                                                </label>
-                                                <!--end::Switch-->
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
+                                        <!--end::Input-->
                                     </div>
-                                    <!--end::Menu sub-->
+
+                                    <div class="d-flex justify-content-end">
+                                        <button onclick="Btn_Get_Permanencia()" type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Aplicar</button>
+                                    </div>
+                                    <!--end::Actions-->
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3 my-1">
-                                    <a href="#" class="menu-link px-3">Settings</a>
-                                </div>
-                                <!--end::Menu item-->
+                                <!--end::Form-->
                             </div>
-                            <!--end::Menu 3-->
+                            <!--end::Menu 1-->
                             <!--end::Menu-->
                         </div>
-                        <!--end::Card toolbar-->
                     </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body d-flex flex-column px-9 pt-6 pb-8">
-                        <!--begin::Heading-->
-                        <div class="fs-2tx fw-bolder mb-3">$500.00</div>
-                        <!--end::Heading-->
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body p-0 d-flex flex-column">
                         <!--begin::Stats-->
-                        <div class="d-flex align-items-center flex-wrap mb-5 mt-auto fs-6">
-                            <!--SVG file not found: icons/duotune/arrows/Up-right.svg-->
-                            <!--begin::Number-->
-                            <div class="fw-bolder text-danger me-2">+40.5%</div>
-                            <!--end::Number-->
-                            <!--begin::Label-->
-                            <div class="fw-bold text-gray-400">more impressions</div>
-                            <!--end::Label-->
+                        <div class="card-px pt-1 pb-1 flex-grow-1">
+                            <!--begin::Row-->
+                            <div class="row g-0 mt-0 mb-5">
+                                <!--begin::Col-->
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="black" />
+                                                        <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="PER_PERMANENCIA" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Dias</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+
                         </div>
-                        <!--end::Stats-->
-                        <!--begin::Indicator-->
-                        <div class="d-flex align-items-center fw-bold">
-                            <span class="badge bg-light text-gray-700 px-3 py-2 me-2">0.5%</span>
-                            <span class="text-gray-400 fs-7">MRR</span>
-                            <i class="fas fa-exclamation-circle fs-7 ms-2" data-bs-toggle="tooltip" title="Recurring"></i>
-                        </div>
-                        <!--end::Indicator-->
+
                     </div>
-                    <!--end::Card body-->
+                    <!--end::Body-->
                 </div>
-                <!--end::Card-->
+                <!--end::Mixed Widget 6-->
             </div>
-
-
-
         </div>
         <div class="card">
 
@@ -404,7 +369,9 @@ $resumen = $this->resumen;
         </div>
     </div>
 
-    <div class="col-xl-6 mb-5 mb-xl-10">
+    <div class="col-xl-4 mb-5 mb-xl-10">
+
+
     </div>
 
 

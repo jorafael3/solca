@@ -17,6 +17,8 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 
 $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porcentaje_Avance";
 $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
+$urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
+
 
 
 
@@ -37,6 +39,7 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
     var urlNueva_perspectiva = '<?php echo $urlNueva_perspectiva ?>';
     var urlGet_Proyectos_Porcentaje_Avance = '<?php echo $urlGet_Proyectos_Porcentaje_Avance ?>';
     var urlNuevo_Poa = '<?php echo $urlNuevo_Poa ?>';
+    var urlGet_Depst_Por_Area = '<?php echo $urlGet_Depst_Por_Area ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -246,7 +249,22 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
     function POA_FILTRAR_DEPTS(id) {
         FILTER_ID_DEPT = id;
         console.log(id)
-
+        var data = {
+            AREA_ID: id
+        }
+        AjaxSendReceive(urlGet_Depst_Por_Area, data, function(response) {
+            console.log(response);
+            var cbEmbarque = document.getElementById("PRY_POA_DEP");
+            $('#PRY_POA_DEP option').remove(); // clear all values 
+            $('#PRY_POA_DEP ').append('<option value=""></option>');
+            jQuery.each(response, function(key, value) {
+                //alert(value.Marca);
+                option = document.createElement("option");
+                option.value = value.DEPTO_ID;
+                option.text = value.DEPTO_NOM;
+                cbEmbarque.appendChild(option);
+            });
+        });
         // var arrdata = JSON.parse(JSON.stringify(ARR_POAS));
         // let DATA_FILTRADA = arrdata.filter(id_d => (id_d.DEPTO_ID) == id);
         // if (id == "") {
@@ -269,8 +287,15 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
         var DEPT_ID = $("#PRY_POA_OBJ").val()
         var OBJ_ID = $("#PRY_POA_DEP").val()
 
-        if (AREA_ID == "Todos") {} else {
-            var data = {
+        if (AREA_ID == "Todos") {
+
+        } else {
+            if (DEPT_ID == "") {
+
+            } else if (OBJ_ID == "") {
+
+            } else {
+                var data = {
                 AREA_ID: AREA_ID,
                 DEPT_ID: DEPT_ID,
                 OBJ_ID: OBJ_ID,
@@ -283,6 +308,8 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
                     $("#kt_modal_Create_Poa").modal('hide');
                 }
             });
+            }
+           
         }
     }
 
@@ -634,7 +661,7 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
     }
 
     function Nuevo_Proyecto() {
-        var PROYECTO_OBJ = $("#PRY_Objetivo").val();
+        // var PROYECTO_OBJ = $("#PRY_Objetivo").val();
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
         var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
@@ -672,7 +699,7 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
                 // PERSPECTIVA_ID: PERSPECTIVA_ID,
                 //CRITERIO_ID: CRITERIO_ID,
                 POA_ID: ARRAY_DATA_POA["POA_ID"],
-                OBJEST_ID: PROYECTO_OBJ,
+                OBJEST_ID: ARRAY_DATA_POA["OBJEST_ID"],
                 PROYECTOA_META_2022: PROYECTOA_META_2022,
                 PROYECTOA_META_2023: PROYECTOA_META_2023,
                 PROYECTOA_META_2024: PROYECTOA_META_2024,
@@ -686,14 +713,14 @@ $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
 
             console.log("SEND", DATA_TO_SEND);
 
-            // AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
-            //     console.log(response);
-            //     if (response == true) {
-            //         $("#kt_modal_Nuevo_Proyecto").modal('hide');
-            //         Mensaje_Guardado_ok();
-            //         Get_Proyectos(ARRAY_DATA_POA);
-            //     }
-            // })
+            AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
+                console.log(response);
+                if (response == true) {
+                    $("#kt_modal_Nuevo_Proyecto").modal('hide');
+                    Mensaje_Guardado_ok();
+                    Get_Proyectos(ARRAY_DATA_POA);
+                }
+            })
         }
 
 
