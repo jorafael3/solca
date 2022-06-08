@@ -181,7 +181,7 @@ $resumen = $this->resumen;
         <!--begin::Row-->
         <div class="row g-5 g-xl-10">
             <!--begin::Col-->
-            <div class="col-xl-3">
+            <div class="col-xl-6">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
@@ -197,9 +197,9 @@ $resumen = $this->resumen;
                 <!--end::Statistics Widget 5-->
             </div>
 
-            <div class="col-xl-3">
+            <div class="col-xl-6">
                 <!--begin::Statistics Widget 5-->
-                <a href="#" class="card bg-warning hoverable card-xl-stretch mb-xl-8">
+                <a href="#" class="card bg-danger hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
                     <div class="card-body">
                         <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
@@ -218,7 +218,7 @@ $resumen = $this->resumen;
                 <!--end::Statistics Widget 5-->
             </div>
 
-            <div class="col-xl-6">
+            <div class="col-xl-12">
                 <!--begin::Mixed Widget 6-->
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Beader-->
@@ -303,6 +303,105 @@ $resumen = $this->resumen;
                                         <div class="symbol symbol-50px me-3">
                                             <div class="symbol-label bg-light-danger">
                                                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-primary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path opacity="0.3" d="M20.9 12.9C20.3 12.9 19.9 12.5 19.9 11.9C19.9 11.3 20.3 10.9 20.9 10.9H21.8C21.3 6.2 17.6 2.4 12.9 2V2.9C12.9 3.5 12.5 3.9 11.9 3.9C11.3 3.9 10.9 3.5 10.9 2.9V2C6.19999 2.5 2.4 6.2 2 10.9H2.89999C3.49999 10.9 3.89999 11.3 3.89999 11.9C3.89999 12.5 3.49999 12.9 2.89999 12.9H2C2.5 17.6 6.19999 21.4 10.9 21.8V20.9C10.9 20.3 11.3 19.9 11.9 19.9C12.5 19.9 12.9 20.3 12.9 20.9V21.8C17.6 21.3 21.4 17.6 21.8 12.9H20.9Z" fill="black" />
+                                                        <path d="M16.9 10.9H13.6C13.4 10.6 13.2 10.4 12.9 10.2V5.90002C12.9 5.30002 12.5 4.90002 11.9 4.90002C11.3 4.90002 10.9 5.30002 10.9 5.90002V10.2C10.6 10.4 10.4 10.6 10.2 10.9H9.89999C9.29999 10.9 8.89999 11.3 8.89999 11.9C8.89999 12.5 9.29999 12.9 9.89999 12.9H10.2C10.4 13.2 10.6 13.4 10.9 13.6V13.9C10.9 14.5 11.3 14.9 11.9 14.9C12.5 14.9 12.9 14.5 12.9 13.9V13.6C13.2 13.4 13.4 13.2 13.6 12.9H16.9C17.5 12.9 17.9 12.5 17.9 11.9C17.9 11.3 17.5 10.9 16.9 10.9Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="PER_PERMANENCIA" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Dias</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-warning">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="" class="fs-1 text-dark fw-bolder">2815</div>
+                                            <div class="fs-7 text-muted fw-bold">Pacientes</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-info">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" fill ="black"/>
+                                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill ="black"/>
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Doctores</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M20 19.725V18.725C20 18.125 19.6 17.725 19 17.725H5C4.4 17.725 4 18.125 4 18.725V19.725H3C2.4 19.725 2 20.125 2 20.725V21.725H22V20.725C22 20.125 21.6 19.725 21 19.725H20Z" fill="black" />
+                                                        <path opacity="0.3" d="M22 6.725V7.725C22 8.325 21.6 8.725 21 8.725H18C18.6 8.725 19 9.125 19 9.725C19 10.325 18.6 10.725 18 10.725V15.725C18.6 15.725 19 16.125 19 16.725V17.725H15V16.725C15 16.125 15.4 15.725 16 15.725V10.725C15.4 10.725 15 10.325 15 9.725C15 9.125 15.4 8.725 16 8.725H13C13.6 8.725 14 9.125 14 9.725C14 10.325 13.6 10.725 13 10.725V15.725C13.6 15.725 14 16.125 14 16.725V17.725H10V16.725C10 16.125 10.4 15.725 11 15.725V10.725C10.4 10.725 10 10.325 10 9.725C10 9.125 10.4 8.725 11 8.725H8C8.6 8.725 9 9.125 9 9.725C9 10.325 8.6 10.725 8 10.725V15.725C8.6 15.725 9 16.125 9 16.725V17.725H5V16.725C5 16.125 5.4 15.725 6 15.725V10.725C5.4 10.725 5 10.325 5 9.725C5 9.125 5.4 8.725 6 8.725H3C2.4 8.725 2 8.325 2 7.725V6.725L11 2.225C11.6 1.925 12.4 1.925 13.1 2.225L22 6.725ZM12 3.725C11.2 3.725 10.5 4.425 10.5 5.225C10.5 6.025 11.2 6.725 12 6.725C12.8 6.725 13.5 6.025 13.5 5.225C13.5 4.425 12.8 3.725 12 3.725Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Agencias</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                                 <span class="svg-icon svg-icon-1 svg-icon-danger">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="black" />
@@ -315,8 +414,33 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="PER_PERMANENCIA" class="fs-1 text-dark fw-bolder"></div>
-                                            <div class="fs-7 text-muted fw-bold">Dias</div>
+                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Servicios</div>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="d-flex align-items-center me-2">
+                                        <!--begin::Symbol-->
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label bg-light-danger">
+                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                                <span class="svg-icon svg-icon-1 svg-icon-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="black" />
+                                                        <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <!--end::Symbol-->
+                                        <!--begin::Title-->
+                                        <div>
+                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div class="fs-7 text-muted fw-bold">Especialidades</div>
                                         </div>
                                         <!--end::Title-->
                                     </div>

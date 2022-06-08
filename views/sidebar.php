@@ -257,7 +257,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
     <!--end::Aside menu-->
     <!-- begin::Footer-->
     <div class="aside-footer flex-column-auto pt-1 pb-2 px-5" id="kt_aside_footer">
-        <a href="#" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Acerca de">
+        <a href="<?php echo constant("URL") ?>acerca_de" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Acerca de">
             <span class="btn-label">Acerca de</span>
             <span class="svg-icon btn-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
