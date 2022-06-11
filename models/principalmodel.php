@@ -38,7 +38,7 @@ class PrincipalModel extends Model
     function Get_Servicios()
     {
         try {
-            $sql = "CALL " . constant("DB") . ".get_all_servicios";
+            $sql = "CALL " . constant("DB") . ".get_all_servicios_atenciones";
             $query = $this->db->connect()->prepare($sql);
             if ($query->execute()) {
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -75,6 +75,8 @@ class PrincipalModel extends Model
         }
     }
 
+    //*** DASHBOARD SUPER ADMIN CARTILLA PERMANENCIA */
+
     function Get_Permanencia($parametros)
     {
         try {
@@ -97,6 +99,33 @@ class PrincipalModel extends Model
             return $e;
         }
     }
+
+    function Get_Atencion_Servicio($parametros)
+    {
+        try {
+            $anio = $parametros["ANIO"];
+            $servicio = $parametros["SERV"];
+            $sql = "CALL " . constant("DB") . ".ResumenAtencionPorServicio (?,?)";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $anio);
+            $query->bindParam(2, $servicio);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
+
 
     //*** POA */
 

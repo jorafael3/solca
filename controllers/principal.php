@@ -57,6 +57,12 @@ class Principal extends Controller
         $function = $this->model->Get_Permanencia($array);
     }
 
+    function Get_Atencion_Servicio()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_Atencion_Servicio($array);
+    }
+
     //**** POA */
     function DashboardPoa()
     {

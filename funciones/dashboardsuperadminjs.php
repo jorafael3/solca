@@ -3,6 +3,7 @@
 
 $urlGetProjects = constant("URL") . "principal/Get_last_projects";
 $urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
+$urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
 
 
 ?>
@@ -11,6 +12,7 @@ $urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
 <script>
     var urlGetProjects = '<?php echo $urlGetProjects ?>';
     var urlGet_Permanencia = '<?php echo $urlGet_Permanencia ?>';
+    var urlGet_Atencion_Servicio = '<?php echo $urlGet_Atencion_Servicio ?>';
 
     function Get_last_projects() {
 
@@ -117,36 +119,73 @@ $urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
         }, 1000);
     }
 
+    //**** PERMANECIA ****/
+
     function Get_Permanencia_OnLoad() {
+        var ANIO = moment().format("YYYY");
         var data = {
-            SERV: "TODOS"
+            SERV: "TODOS",
+            ANIO: ANIO
         }
+        console.log(data);
+        $("#DSA_PER_SER").text("Datos Generales Solca"+ " " + ANIO);
+
         AjaxSendReceive(urlGet_Permanencia, data, function(response) {
             console.log(response);
             $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
-            $("#DSA_PER_SER").text("Permanencia General Solca");
+
+        });
+        AjaxSendReceive(urlGet_Atencion_Servicio, data, function(response) {
+            console.log(response);
+            $("#DSA_PER_PACIENTES").text(response[0]["Pacientes"]);
+            $("#DSA_PER_DOCTORES").text(response[0]["Doctores"]);
+            $("#DSA_PER_AGENCIAS").text(response[0]["Agencias"]);
+            $("#DSA_PER_SERVICIOS").text(response[0]["Servicios"]);
+            $("#DSA_PER_ESPECIALIDADES").text(response[0]["Especialidades"]);
+            // $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            // $("#DSA_PER_SER").text("Permanencia General Solca");
 
         });
     }
+
     Get_Permanencia_OnLoad();
 
     function Btn_Get_Permanencia() {
-        var Servicio = $("#DSA_SERVICIOS option:selected").text();
+        var Servicio = $("#DSA_SERVICIOS").val();
+        var Servicio_text = $("#DSA_SERVICIOS option:selected").text();
+        var ANIO = $("#DSA_SERVICIOS_ANIO").val();
         console.log(Servicio);
         var data = {
-            SERV: Servicio
+            SERV: Servicio,
+            ANIO: ANIO
+        }
+        console.log(data);
+        if (Servicio == "TODOS") {
+            $("#DSA_PER_SER").text("Datos Generales Solca" + " " + ANIO);
+        } else {
+            $("#DSA_PER_SER").text(Servicio_text + " " + ANIO);
         }
         AjaxSendReceive(urlGet_Permanencia, data, function(response) {
             console.log(response);
             $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
-            if (Servicio == "TODOS") {
-                $("#DSA_PER_SER").text("Permanencia General Solca");
-            } else {
-                $("#DSA_PER_SER").text(Servicio);
-
-            }
 
         });
+
+        AjaxSendReceive(urlGet_Atencion_Servicio, data, function(response) {
+            console.log(response);
+            $("#DSA_PER_PACIENTES").text(response[0]["Pacientes"]);
+            $("#DSA_PER_DOCTORES").text(response[0]["Doctores"]);
+            $("#DSA_PER_AGENCIAS").text(response[0]["Agencias"]);
+            $("#DSA_PER_SERVICIOS").text(response[0]["Servicios"]);
+            $("#DSA_PER_ESPECIALIDADES").text(response[0]["Especialidades"]);
+            // $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            // if (Servicio == "TODOS") {
+            //     $("#DSA_PER_SER").text("Permanencia General Solca");
+            // } else {
+            //     $("#DSA_PER_SER").text(Servicio);
+            // }
+        });
+
     }
 
     function AjaxSendReceive(url, data, callback) {

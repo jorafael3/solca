@@ -3,6 +3,10 @@
 require 'views/header.php';
 $nombre =   $_SESSION["US_NOMBRE"];
 $resumen = $this->resumen;
+
+$anio_Actual = date('Y');
+
+
 ?>
 
 <div class="row gy-5 g-xl-8">
@@ -224,8 +228,8 @@ $resumen = $this->resumen;
                     <!--begin::Beader-->
                     <div class="card-header border-0 py-5">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Permanencia</span>
-                            <span id="DSA_PER_SER" class="text-muted fw-bold fs-7">Permanencia solca</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Permanencia y Atencion por servicio</span>
+                            <span id="DSA_PER_SER" class="text-muted fw-bold fs-5">Datos Generales solca</span>
                         </h3>
                         <div class="card-toolbar">
                             <!--begin::Menu-->
@@ -268,7 +272,26 @@ $resumen = $this->resumen;
                                                 <?php
                                                 foreach ($this->servicios as $row) {
                                                 ?>
-                                                    <option value=<?php echo $row["SERV_ID"]; ?>><?php echo ($row["SERV_NOM"]); ?></option>
+                                                    <option value=<?php echo $row["COD_SERVICIO"]; ?>><?php echo ($row["NOMBRE_SERVICIO"]); ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <!--end::Input-->
+                                    </div>
+
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fw-bold">Año:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <div>
+                                            <select id="DSA_SERVICIOS_ANIO" class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Anio" data-dropdown-parent="#kt_menu_620793759118c" data-allow-clear="true">
+                                                <?php
+                                                for ($i = 2016; $i <= $anio_Actual; $i++) {
+                                                ?>
+                                                    <option value=<?php echo $i; ?>><?php echo ($i); ?></option>
                                                 <?php
                                                 }
                                                 ?>
@@ -315,7 +338,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="PER_PERMANENCIA" class="fs-1 text-dark fw-bolder"></div>
+                                            <div id="PER_PERMANENCIA" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Dias</div>
                                         </div>
                                         <!--end::Title-->
@@ -339,7 +362,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="" class="fs-1 text-dark fw-bolder">2815</div>
+                                            <div id="DSA_PER_PACIENTES" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Pacientes</div>
                                         </div>
                                         <!--end::Title-->
@@ -354,8 +377,8 @@ $resumen = $this->resumen;
                                                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                                 <span class="svg-icon svg-icon-1 svg-icon-info">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-person-badge" viewBox="0 0 16 16">
-                                                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" fill ="black"/>
-                                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill ="black"/>
+                                                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" fill="black" />
+                                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="black" />
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
@@ -364,7 +387,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div id="DSA_PER_DOCTORES" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Doctores</div>
                                         </div>
                                         <!--end::Title-->
@@ -389,7 +412,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div id="DSA_PER_AGENCIAS" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Agencias</div>
                                         </div>
                                         <!--end::Title-->
@@ -414,7 +437,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div id="DSA_PER_SERVICIOS" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Servicios</div>
                                         </div>
                                         <!--end::Title-->
@@ -439,7 +462,7 @@ $resumen = $this->resumen;
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div>
-                                            <div id="" class="fs-1 text-dark fw-bolder"></div>
+                                            <div id="DSA_PER_ESPECIALIDADES" class="fs-2 text-dark fw-bolder"></div>
                                             <div class="fs-7 text-muted fw-bold">Especialidades</div>
                                         </div>
                                         <!--end::Title-->
