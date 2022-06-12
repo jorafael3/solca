@@ -4,7 +4,6 @@ require 'views/header.php';
 $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 $AREA_NOM = $_SESSION["AREA_NOM"];
 $AREA_ID = $_SESSION["AREA_ID"];
-
 ?>
 
 
@@ -14,6 +13,16 @@ $AREA_ID = $_SESSION["AREA_ID"];
         <div class="row">
 
             <h4>Area</h4>
+            <?php
+            if ($AREA_ID == "") {
+
+            ?>
+                <h4>Sin Area designada</h4>
+
+            <?php
+            }
+
+            ?>
             <div class="col-8 col-md-6">
                 <div class="m-0">
 
@@ -258,6 +267,16 @@ $AREA_ID = $_SESSION["AREA_ID"];
             <!--end::Controls-->
         </div>
 
+        <div id="PRY_PROYECT_EMPTY" class="row g-6 g-xl-9" style="height: 200px;display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h1>NO HAY PROYECTOS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-6 g-xl-9" id="Lista_proyectos">
 
         </div>
@@ -361,7 +380,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                 if ($TIPOUS_ID == 1 || $TIPOUS_ID == 4) {
                 ?>
                     <div class="card-body">
-                        <button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
+                        <button onclick="Btn_NUEVA_ACTIVIDAD()" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
                     </div>
                 <?php
 
@@ -379,62 +398,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                             </div>
                             <!--begin::Menu-->
                             <div>
-                                <!-- <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <span class="svg-icon svg-icon-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                            </g>
-                                        </svg>
-                                    </span>
-                                </button> -->
-                                <!-- <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_620792f3e9ec4">
-                                    <div class="px-7 py-5">
-                                        <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                                    </div>
-                                    <div class="separator border-gray-200"></div>
-                                    <div class="px-7 py-5">
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Status:</label>
-                                            <div>
-                                                <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" data-dropdown-parent="#kt_menu_620792f3e9ec4" data-allow-clear="true">
-                                                    <option></option>
-                                                    <option value="1">Approved</option>
-                                                    <option value="2">Pending</option>
-                                                    <option value="2">In Process</option>
-                                                    <option value="2">Rejected</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Member Type:</label>
-                                            <div class="d-flex">
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                    <span class="form-check-label">Author</span>
-                                                </label>
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="2" checked="checked" />
-                                                    <span class="form-check-label">Customer</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="mb-10">
-                                            <label class="form-label fw-bold">Notifications:</label>
-                                            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-                                                <label class="form-check-label">Enabled</label>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
-                                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-                                        </div>
-                                    </div>
-                                </div> -->
+
                             </div>
                         </div>
                         <div class="h-3px w-100 bg-warning"></div>
@@ -471,6 +435,17 @@ $AREA_ID = $_SESSION["AREA_ID"];
                             <!--end::Menu-->
                         </div>
                         <div class="h-3px w-100 bg-success"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="PRY_ACTIVIDADES_EMPTY" class="row g-6 g-xl-9" style="height: 200px;display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h1>NO HAY ACTIVIDADES</h1>
                     </div>
                 </div>
             </div>
@@ -650,7 +625,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                             <div class="fv-row mb-7">
                                 <label class="required fs-6 fw-bold mb-2">Fecha de Finalizacion</label>
                                 <!--begin::Input-->
-                                <input type="text" class="form-control" name="datepicker" id="datepicker2" />
+                                <input autocomplete="off" type="text" class="form-control" name="datepicker" id="datepicker2" />
 
                             </div>
 
@@ -1233,6 +1208,13 @@ $AREA_ID = $_SESSION["AREA_ID"];
         }, function(start, end, label) {
             FECHA = start.format('YYYY-MM-DD')
         });
+
+        function Btn_NUEVA_ACTIVIDAD() {
+            $("#ACT_Nombre").val("");
+            $("#ACT_Responsable").val(0).change();
+            $("#datepicker2").val("");
+            $("#ACT_Obs").val("");
+        }
 
         function Btn_Nueva_Actividad() {
             if (FECHA == undefined) {

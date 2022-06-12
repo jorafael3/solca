@@ -291,21 +291,20 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
     function Nuevo_Poa() {
         var AREA_ID = FILTER_ID_DEPT;
-        var DEPT_ID = $("#PRY_POA_OBJ").val()
-        var OBJ_ID = $("#PRY_POA_DEP").val()
-
+        var DEPT_ID_ = $("#PRY_POA_DEP").val()
+        var OBJ_ID_ = $("#PRY_POA_OBJ").val()
         if (AREA_ID == "Todos") {
 
         } else {
-            if (DEPT_ID == "") {
+            if (DEPT_ID_ == "") {
 
-            } else if (OBJ_ID == "") {
+            } else if (OBJ_ID_ == "") {
 
             } else {
                 var data = {
                     AREA_ID: AREA_ID,
-                    DEPT_ID: DEPT_ID,
-                    OBJ_ID: OBJ_ID,
+                    DEPT_ID: DEPT_ID_,
+                    OBJ_ID: OBJ_ID_,
                 }
                 console.log(data);
                 AjaxSendReceive(urlNuevo_Poa, data, function(response) {
@@ -545,112 +544,120 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         ARRAY_DATA_PROYECT = [];
         console.log("arrdata", arrdata);
 
-        jQuery.each(arrdata, function(key, value) {
+        if (arrdata.length == 0) {
+            console.log("SIN PROYECTOS");
+            $("#PRY_PROYECT_EMPTY").show(100);
+        } else {
+            $("#PRY_PROYECT_EMPTY").hide(100);
+            jQuery.each(arrdata, function(key, value) {
 
-            var estado = value.PROYECTOA_ACTIVO;
-            var estado_color = "badge-light-primary";
-            var nombre = value.PROYECTOA_NOM;
-            var indicador = value.PROYECTOA_INDICADOR;
-            var Fecha_creacion = value.FCREADO;
-            var Responsable = value.PROYECTOA_RESPONSABLE;
-            var ID_PROYECTO = value.PROYECTOA_ID;
-            var data = {
-                "id": ID_PROYECTO
-            }
-            AjaxSendReceive(urlGet_Proyectos_Porcentaje_Avance, data, function(response) {
-                var por_avance = response[0]["avance"];
-                por_avance = parseFloat(por_avance).toFixed(2)
-                console.log("response", response);
-                var Visivilidad = TIPOUS_ID;
-                console.log("Visivilidad", Visivilidad);
-                // if(por_avance == null){
-                //     por_avance = 0;
-                // }
+                var estado = value.PROYECTOA_ACTIVO;
+                var estado_color = "badge-light-primary";
+                var nombre = value.PROYECTOA_NOM;
+                var indicador = value.PROYECTOA_INDICADOR;
+                var Fecha_creacion = value.FCREADO;
+                var Responsable = value.PROYECTOA_RESPONSABLE;
+                var ID_PROYECTO = value.PROYECTOA_ID;
                 var data = {
-                    ID_PROYECTO: ID_PROYECTO,
-                    PROYECTOA_ACTIVO: estado,
-                    CRITERIO_ID: value.CRITERIO_ID,
-                    POA_ID: value.POA_ID,
-                    OBJEST_ID: value.OBJEST_ID,
-                    PERSPECTIVA_ID: value.PERSPECTIVA_ID
-                };
-
-                ARRAY_DATA_PROYECT.push(data);
-
-                var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
-                var funcionELiminar = "Proyecto_Eliminar(" + ID_PROYECTO + ");";
-                var funcionedit = "Proyecto_Edit(" + ID_PROYECTO + ");";
-
-                if (estado == "S") {
-                    estado = "Activo";
-                } else if (estado == "N") {
-                    estado = "Desactivado";
-                    estado_color = "badge-light-danger";
-                    funcion = "";
+                    "id": ID_PROYECTO
                 }
-                if (Visivilidad == 5) {
-                    Visivilidad = "d-none"
-                }
+                AjaxSendReceive(urlGet_Proyectos_Porcentaje_Avance, data, function(response) {
+                    var por_avance = response[0]["avance"];
+                    por_avance = parseFloat(por_avance).toFixed(2)
+                    console.log("response", response);
+                    var Visivilidad = TIPOUS_ID;
+                    console.log("Visivilidad", Visivilidad);
+                    // if(por_avance == null){
+                    //     por_avance = 0;
+                    // }
+                    var data = {
+                        ID_PROYECTO: ID_PROYECTO,
+                        PROYECTOA_ACTIVO: estado,
+                        CRITERIO_ID: value.CRITERIO_ID,
+                        POA_ID: value.POA_ID,
+                        OBJEST_ID: value.OBJEST_ID,
+                        PERSPECTIVA_ID: value.PERSPECTIVA_ID
+                    };
+
+                    ARRAY_DATA_PROYECT.push(data);
+
+                    var funcion = "Proyecto_info(" + ID_PROYECTO + ");";
+                    var funcionELiminar = "Proyecto_Eliminar(" + ID_PROYECTO + ");";
+                    var funcionedit = "Proyecto_Edit(" + ID_PROYECTO + ");";
+
+                    if (estado == "S") {
+                        estado = "Activo";
+                    } else if (estado == "N") {
+                        estado = "Desactivado";
+                        estado_color = "badge-light-danger";
+                        funcion = "";
+                    }
+                    if (Visivilidad == 5) {
+                        Visivilidad = "d-none"
+                    }
 
 
-                var Proyect_card = `<div class="col-md-6 col-xl-4" >
-											<div class="card-header border-0 pt-9">
-												<div class="card-title m-0">
-                                                    <button onclick="` + funcionELiminar + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                        <span class="svg-icon svg-icon-2">
-                                                        <i class="fa fa-trash"></i>
-                                                        </span>
-                                                    
-                                                    </button>
-                                                    <button onclick="` + funcionedit + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                                    <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                                    <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                                    <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </button>
-												</div>
-												<div class="card-toolbar">
-													<span class="badge ` + estado_color + ` fw-bolder me-auto px-4 py-3">` + estado + `</span>
-												</div>
-											</div>
-                                        <a disabled href="#" onclick="` + funcion + `return false;" class="card border-hover-primary">
+                    var Proyect_card = `<div class="col-md-6 col-xl-4" >
+                                <div class="card-header border-0 pt-9">
+                                    <div class="card-title m-0">
+                                        <button onclick="` + funcionELiminar + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                            <span class="svg-icon svg-icon-2">
+                                            <i class="fa fa-trash"></i>
+                                            </span>
+                                        
+                                        </button>
+                                        <button onclick="` + funcionedit + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
+                                                        <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                        <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                        <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </button>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <span class="badge ` + estado_color + ` fw-bolder me-auto px-4 py-3">` + estado + `</span>
+                                    </div>
+                                </div>
+                            <a disabled href="#" onclick="` + funcion + `return false;" class="card border-hover-primary">
 
-											<div class="card-body p-9">
-												<div class="fs-5 fw-bolder text-dark">` + nombre + `</div>
-												<p class="text-gray-600 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
-												<div class="d-flex flex-wrap mb-5">
-													<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
-														<div class="fs-6 text-gray-800 fw-bolder">` + Fecha_creacion + `</div>
-														<div class="fw-bold text-gray-400">Creado</div>
-													</div>
-													
-												</div>
-                                                <h6>` + por_avance + `%</h6>
-												<div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="Este proyecto esta ` + por_avance + `% completo">
-													<div class="bg-primary rounded h-8px" role="progressbar" style="width: ` + por_avance + `%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-												</div>
-												<div class="symbol-group symbol-hover">
-                                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
-														<div class="fs-6 text-gray-800 fw-bolder">` + Responsable + `</div>
-														<div class="fw-bold text-gray-400">Responsable</div>
-													</div>
-												</div>
-											</div>
-										</a>
-									</div>`;
-                $("#Lista_proyectos").append(Proyect_card);
+                                <div class="card-body p-9">
+                                    <div class="fs-5 fw-bolder text-dark">` + nombre + `</div>
+                                    <p class="text-gray-600 fw-bold fs-7 mt-1 mb-7">` + indicador + `</p>
+                                    <div class="d-flex flex-wrap mb-5">
+                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
+                                            <div class="fs-6 text-gray-800 fw-bolder">` + Fecha_creacion + `</div>
+                                            <div class="fw-bold text-gray-400">Creado</div>
+                                        </div>
+                                        
+                                    </div>
+                                    <h6>` + por_avance + `%</h6>
+                                    <div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip" title="Este proyecto esta ` + por_avance + `% completo">
+                                        <div class="bg-primary rounded h-8px" role="progressbar" style="width: ` + por_avance + `%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="symbol-group symbol-hover">
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+                                            <div class="fs-6 text-gray-800 fw-bolder">` + Responsable + `</div>
+                                            <div class="fw-bold text-gray-400">Responsable</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>`;
+                    $("#Lista_proyectos").append(Proyect_card);
+
+                });
 
             });
+        }
 
-        });
+
     }
 
     function PRY_filtrar_Proyectos_Estado(id) {
@@ -930,6 +937,12 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
             ARRAY_DATA_ACTIVIDADES = response;
             console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
+            if(response.length == 0){
+                $("#PRY_ACTIVIDADES_EMPTY").show(100);
+            }else{
+                $("#PRY_ACTIVIDADES_EMPTY").hide(100);
+
+            }
             create_proyect_targets_cards(response);
 
             $('html, body').animate({
@@ -1066,7 +1079,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                                 </div>
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <div class="d-flex align-items-center">
-                                        <div id="" class="fs-6 fw-bolder">Ultima Actualizacion</div>
+                                        <div id="" class="fs-6 fw-bolder">Ultimo Avance</div>
                                     </div>
                                     <div class="fw-bold fs-6 text-gray-700">` + ULTIMO_AVANCE + `</div>
                                 </div>

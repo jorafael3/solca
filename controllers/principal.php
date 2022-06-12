@@ -23,7 +23,7 @@ class Principal extends Controller
         } else if ($nivel == 2) {
             //$this->DashboardPoa();
         } else if ($nivel == 3) {
-            $this->view->render('principal/dashadmin');
+            //$this->view->render('principal/dashadmin');
         } else if ($nivel == 4) {
             $this->DashboardPoa();
         } else if ($nivel == 5) {

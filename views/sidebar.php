@@ -55,7 +55,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                 <div class="menu-item">
                     <a class="menu-link" href="<?php echo constant("URL") ?>poa/Poa">
                         <span class="menu-icon">
-                            <i class="fa fa-home"></i>
+                            <i class="fa fa-database"></i>
                         </span>
                         <span class="menu-title">Poa</span>
                     </a>
@@ -72,7 +72,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                     <div class="menu-item">
                         <a class="menu-link" href="<?php echo constant("URL") ?>matrizestrategica/Matriz_Estrategica">
                             <span class="menu-icon">
-                                <i class="fa fa-home"></i>
+                                <i class="fa fa-tasks"></i>
                             </span>
                             <span class="menu-title">Matriz Estrategica</span>
                         </a>
