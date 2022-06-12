@@ -18,7 +18,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
                 <div class="m-0">
 
                     <?php
-                    if ($TIPOUS_ID == 1) {
+                    if ($TIPOUS_ID == 1 || $TIPOUS_ID == 5) {
                     ?>
                         <select style="width: 100%;" id="Poa_Filter" onchange="POA_FILTRAR_DEPTS(this.value)" name="status" class="form-select form-select bg-body border-body fw-bolder w-160px select_Filter">
                             <option value="Todos">TODOS</option>
@@ -49,11 +49,17 @@ $AREA_ID = $_SESSION["AREA_ID"];
                 </div>
 
             </div>
-            <div class="col-4 col-md-6">
-                <div class="m-0">
-                    <button id="Btn_Nuevo_poa_" onclick="Btn_Nuevo_Poa()" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Poa</button>
+            <?php
+            if ($TIPOUS_ID == 1) {
+            ?>
+                <div class="col-4 col-md-6">
+                    <div class="m-0">
+                        <button style="display: none;" id="Btn_Nuevo_poa_" onclick="Btn_Nuevo_Poa()" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Objetivo</button>
+                    </div>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 
@@ -217,9 +223,17 @@ $AREA_ID = $_SESSION["AREA_ID"];
 
     <div class="col-xl-12" id="Seccion_Proyectos" style="display: none;">
         <div class="row">
-            <div class="card-body">
-                <button style="width: 100%;" onclick="Limpiar_Proyectos()" data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
-            </div>
+            <?php
+
+            if ($TIPOUS_ID == 1 || $TIPOUS_ID == 4) {
+            ?>
+                <div class="card-body">
+                    <button style="width: 100%;" onclick="Limpiar_Proyectos()" data-bs-toggle="modal" data-bs-target="#kt_modal_Nuevo_Proyecto" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Nuevo Proyecto</button>
+                </div>
+            <?php
+
+            }
+            ?>
         </div>
         <div class="d-flex flex-wrap flex-stack my-5">
             <!--begin::Heading-->
@@ -342,9 +356,17 @@ $AREA_ID = $_SESSION["AREA_ID"];
 
         <div class="col-12">
             <div class="row">
-                <div class="card-body">
-                    <button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
-                </div>
+                <?php
+
+                if ($TIPOUS_ID == 1 || $TIPOUS_ID == 4) {
+                ?>
+                    <div class="card-body">
+                        <button style="width: 100%;" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Crear Nueva Actividad</button>
+                    </div>
+                <?php
+
+                }
+                ?>
             </div>
         </div>
         <div class="col-12">
@@ -1076,6 +1098,8 @@ $AREA_ID = $_SESSION["AREA_ID"];
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        var TIPOUS_ID = '<?php echo $TIPOUS_ID ?>';
+
         $('.select23').select2({
             dropdownParent: $('#kt_modal_Nuevo_Proyecto')
         });
@@ -1094,32 +1118,37 @@ $AREA_ID = $_SESSION["AREA_ID"];
             // dropdownParent: $('#kt_modal_Nuevo_Proyecto')
         });
         var TARGET_ID;
-        dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
-            revertOnSpill: true,
-            accepts: function(el, target, source, sibling) {
-                //console.log(el);
-                // TARGET_ID = target.id
-                // Actualizar_Arrastrando();
-                // console.log(source);
-                // console.log(sibling);
-                return true; // elements can be dropped in any of the `containers` by default
-            },
-            moves: function(el, source, handle, sibling) {
-                // TARGET_ID = source.id
-                // Actualizar_Arrastrando();
-                return true; // elements are always draggable by default
-            }
-        }).on('drop', function(el, source) {
-            console.log("droppp", source.id);
-            // if ($('drop-target').children.length > 0) {
-            // $('display').innerHTML = $('drop-target').innerHTML;
-            // } else {
-            // $('display').innerHTML = "Display";
-            // }
-            TARGET_ID = source.id
-            Actualizar_Arrastrando();
 
-        });
+        if (TIPOUS_ID == 1 || TIPOUS_ID == 4) {
+            dragula([document.getElementById('Pr_En_Revision'), document.getElementById('Pr_En_Progreso'), document.getElementById('Pr_Terminados')], {
+                revertOnSpill: true,
+                accepts: function(el, target, source, sibling) {
+                    //console.log(el);
+                    // TARGET_ID = target.id
+                    // Actualizar_Arrastrando();
+                    // console.log(source);
+                    // console.log(sibling);
+                    return true; // elements can be dropped in any of the `containers` by default
+                },
+                moves: function(el, source, handle, sibling) {
+                    // TARGET_ID = source.id
+                    // Actualizar_Arrastrando();
+                    return true; // elements are always draggable by default
+                }
+            }).on('drop', function(el, source) {
+                console.log("droppp", source.id);
+                // if ($('drop-target').children.length > 0) {
+                // $('display').innerHTML = $('drop-target').innerHTML;
+                // } else {
+                // $('display').innerHTML = "Display";
+                // }
+                TARGET_ID = source.id
+                Actualizar_Arrastrando();
+
+            });
+        }
+
+
         /**
          * OBTENEMOS LOS CRITERIOS AL PRESIONAR EL BOTON DE CADA PERSPECTIVA
          * */
@@ -1129,7 +1158,7 @@ $AREA_ID = $_SESSION["AREA_ID"];
         Get_Criterios(1, "Direccion");
 
         var tipo_us = '<?php echo $TIPOUS_ID ?>';
-        if (tipo_us == 1) {
+        if (tipo_us == 1 || tipo_us == 5) {
             Get_Poa();
 
         } else if (tipo_us == 4) {
@@ -1249,6 +1278,4 @@ $AREA_ID = $_SESSION["AREA_ID"];
                 var OBJ_ID = $("#PRY_POA_DEP").val(0).change();
             }
         }
-
-        var TIPOUS_ID = '<?php echo $TIPOUS_ID ?>';
     </script>

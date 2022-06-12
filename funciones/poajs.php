@@ -249,6 +249,13 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     function POA_FILTRAR_DEPTS(id) {
         FILTER_ID_DEPT = id;
         console.log(id)
+        if (id == "Todos") {
+            $("#Btn_Nuevo_poa_").hide(100);
+
+        } else {
+            $("#Btn_Nuevo_poa_").show(100);
+
+        }
         var data = {
             AREA_ID: id
         }
@@ -296,20 +303,20 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
             } else {
                 var data = {
-                AREA_ID: AREA_ID,
-                DEPT_ID: DEPT_ID,
-                OBJ_ID: OBJ_ID,
-            }
-            console.log(data);
-            AjaxSendReceive(urlNuevo_Poa, data, function(response) {
-                console.log(response);
-                if (response == true) {
-                    Get_Poa()
-                    $("#kt_modal_Create_Poa").modal('hide');
+                    AREA_ID: AREA_ID,
+                    DEPT_ID: DEPT_ID,
+                    OBJ_ID: OBJ_ID,
                 }
-            });
+                console.log(data);
+                AjaxSendReceive(urlNuevo_Poa, data, function(response) {
+                    console.log(response);
+                    if (response == true) {
+                        Get_Poa()
+                        $("#kt_modal_Create_Poa").modal('hide');
+                    }
+                });
             }
-           
+
         }
     }
 
@@ -554,6 +561,8 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                 var por_avance = response[0]["avance"];
                 por_avance = parseFloat(por_avance).toFixed(2)
                 console.log("response", response);
+                var Visivilidad = TIPOUS_ID;
+                console.log("Visivilidad", Visivilidad);
                 // if(por_avance == null){
                 //     por_avance = 0;
                 // }
@@ -579,17 +588,21 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                     estado_color = "badge-light-danger";
                     funcion = "";
                 }
+                if (Visivilidad == 5) {
+                    Visivilidad = "d-none"
+                }
+
 
                 var Proyect_card = `<div class="col-md-6 col-xl-4" >
 											<div class="card-header border-0 pt-9">
 												<div class="card-title m-0">
-                                                    <button onclick="` + funcionELiminar + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                    <button onclick="` + funcionELiminar + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                         <span class="svg-icon svg-icon-2">
                                                         <i class="fa fa-trash"></i>
                                                         </span>
                                                     
                                                     </button>
-                                                    <button onclick="` + funcionedit + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                    <button onclick="` + funcionedit + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
                                                         <span class="svg-icon svg-icon-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
@@ -975,6 +988,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var CON_REV = 0;
         var CON_PRO = 0;
         var CON_TER = 0;
+        var Visivilidad = TIPOUS_ID;
         jQuery.each(arrdata, function(key, value) {
 
             var ACTIV_NOM = value.ACTIV_NOM;
@@ -989,6 +1003,9 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             if (AVANCE_PORCENTAJE == "") {
                 AVANCE_PORCENTAJE = "0";
             }
+            if (Visivilidad == 5) {
+                Visivilidad = "d-none"
+            }
 
             if (ACTIV_ACTIVO != "N") {
 
@@ -1001,7 +1018,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                 var Proyect_card = `
             
             <div class="col-12 border border-gray-600 bg-light" style="margin-bottom:15px">
-                <a disabled href="#!" onmousedown="` + funcionD + `return false;" class="card border-hover-primary" style="cursor:grab;">
+                <a disabled href="#!" onmousedown="` + funcionD + ` return false;" class="card border-hover-primary" style="cursor:grab;">
                     <div class="card-header border-0 pt-9">
                         <div class="card-title m-0">
                             <div class="symbol  bg-light">
@@ -1009,7 +1026,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            <button onclick="` + funcion + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <button onclick="` + funcion + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <span class="svg-icon svg-icon-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -1021,7 +1038,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                                     </svg>
                                 </span>
                             </button>
-                            <button onclick="` + funcionELiminar + `return false;" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <button onclick="` + funcionELiminar + `return false;" class="` + Visivilidad + ` btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <span class="svg-icon svg-icon-2">
                                 <i class="fa fa-trash"></i>
                                 </span>

@@ -197,6 +197,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
         var rol2 = document.getElementById("Check_tipo_us_2");
         var rol3 = document.getElementById("Check_tipo_us_3");
         var rol4 = document.getElementById("Check_tipo_us_4");
+        var rol5 = document.getElementById("Check_tipo_us_5");
 
         var activo = document.getElementById("Check_estado_activo");
         var inactivo = document.getElementById("Check_estado_inactivo");
@@ -213,6 +214,8 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
             rol = 3;
         } else if (rol4.checked == true) {
             rol = 4;
+        }else if (rol5.checked == true) {
+            rol = 5;
         }
 
         if (activo.checked == true) {
@@ -228,6 +231,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
             TIPOUS_ID: rol,
             AREA_ID:user_area
         }
+        console.log(data2);
 
         AjaxSendReceive(urlActualizar_usuario, data2, function(response) {
             console.log(response);

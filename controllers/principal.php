@@ -26,7 +26,9 @@ class Principal extends Controller
             $this->view->render('principal/dashadmin');
         } else if ($nivel == 4) {
             $this->DashboardPoa();
-
+        } else if ($nivel == 5) {
+            /***DIRECTOR */
+            $this->DashboardSuperAdmin();
         }
     }
 
@@ -66,7 +68,7 @@ class Principal extends Controller
     //**** POA */
     function DashboardPoa()
     {
-        $resumen =  $this->model->Get_Resumen_area(1,1);
+        $resumen =  $this->model->Get_Resumen_area(1, 1);
         $this->view->resumen = $resumen;
         $this->view->render('principal/dashpoa');
     }

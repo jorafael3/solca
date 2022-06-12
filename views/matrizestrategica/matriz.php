@@ -285,7 +285,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade active show" id="kt_charts_widget_10_tab_content_1">
 
-                            <button onclick="btn_indicadores_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_indicadores_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Indicador" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Indicador</button>
+
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_indicadores" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -302,8 +309,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_2">
 
-                            <button onclick="btn_riesgos_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_riesgos_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Riesgo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Riesgo</button>
 
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Riesgos" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -318,8 +331,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_3">
-                            <button onclick="btn_fortalezas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Fortaleza</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_fortalezas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Fortaleza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Fortaleza</button>
 
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Fortalezas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -334,8 +353,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                         <!--end::Tap pane-->
                         <!--begin::Tap pane-->
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_4">
-                            <button onclick="btn_oportunidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_oportunidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Oportunidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Oportunidad</button>
 
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_oportunidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -348,8 +373,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                             </div>
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_5">
-                            <button onclick="btn_debilidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Debilidad</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_debilidades_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Debilidad" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Debilidad</button>
 
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Debilidades" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
@@ -363,8 +394,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
                         </div>
                         <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_6">
-                            <button onclick="btn_amenazas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Amenaza</button>
+                            <?php
+                            if ($TIPOUS_ID == 1) {
+                            ?>
+                                <button onclick="btn_amenazas_show()" data-bs-toggle="modal" data-bs-target="#kt_modal_add_Amenaza" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Amenaza</button>
 
+                            <?php
+                            }
+                            ?>
                             <div class="table-responsive" style="margin-top: 15px;">
                                 <table id="Tabla_Amenazas" style="width: 100%; font-weight: bold; font-size: 16px;" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                     <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
