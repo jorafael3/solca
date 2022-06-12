@@ -23,21 +23,20 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
         var user_area = $("#user_area").val();
         var rol = 1;
         var rol1 = document.getElementById("kt_modal_update_role_option_1");
-        var rol2 = document.getElementById("kt_modal_update_role_option_2");
-        var rol3 = document.getElementById("kt_modal_update_role_option_3");
+       // var rol2 = document.getElementById("kt_modal_update_role_option_2");
+       // var rol3 = document.getElementById("kt_modal_update_role_option_3");
         var rol4 = document.getElementById("kt_modal_update_role_option_4");
+        var rol5 = document.getElementById("kt_modal_update_role_option_5");
 
         var user_Contrasena = $("#user_Contrasena").val();
 
         //*** VALIDAMOS EL TIPO DE ROL SELECIONADO */
         if (rol1.checked == true) {
             rol = 1;
-        } else if (rol2.checked == true) {
-            rol = 2;
-        } else if (rol3.checked == true) {
-            rol = 3;
         } else if (rol4.checked == true) {
             rol = 4;
+        }else if (rol5.checked == true) {
+            rol = 5;
         }
 
         //** VALIDAMOS QUE NO PERMITA CAMPOS VACIOS */
@@ -194,8 +193,8 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
 
     function Actualizar_Datos_usuario() {
         var rol1 = document.getElementById("Check_tipo_us_1");
-        var rol2 = document.getElementById("Check_tipo_us_2");
-        var rol3 = document.getElementById("Check_tipo_us_3");
+        //var rol2 = document.getElementById("Check_tipo_us_2");
+        //var rol3 = document.getElementById("Check_tipo_us_3");
         var rol4 = document.getElementById("Check_tipo_us_4");
         var rol5 = document.getElementById("Check_tipo_us_5");
 
@@ -208,11 +207,7 @@ $urlActualizar_usuario = constant("URL") . "mantenimiento/Actualizar_usuario";
 
         if (rol1.checked == true) {
             rol = 1;
-        } else if (rol2.checked == true) {
-            rol = 2;
-        } else if (rol3.checked == true) {
-            rol = 3;
-        } else if (rol4.checked == true) {
+        }  else if (rol4.checked == true) {
             rol = 4;
         }else if (rol5.checked == true) {
             rol = 5;

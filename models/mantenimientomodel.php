@@ -58,7 +58,7 @@ class MantenimientoModel extends Model
     function Cargar_tipos_usuarios()
     {
         try {
-            $sql = "SELECT * FROM " . constant("DB") . ".tipos_usuarios";
+            $sql = "CALL " . constant("DB") . ".get_all_tipos_usuarios ";
             $query = $this->db->connect()->prepare($sql);
 
             if ($query->execute()) {
