@@ -68,6 +68,8 @@
                        <script src="<?php echo constant('URL') ?>public/assets/js/custom/utilities/modals/create-app.js"></script>
                        <script src="<?php echo constant('URL') ?>public/assets/js/custom/utilities/modals/users-search.js"></script>
                        <!--end::Page Custom Javascript-->
+                       <link href="<?php echo constant('URL') ?>public/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+                       <script src="<?php echo constant('URL') ?>public/assets/js/scripts.bundle.js"></script>
                        <!--end::Javascript-->
                        </body>
 

@@ -233,6 +233,29 @@ class PoaModel extends Model
         }
     }
 
+    function Eliminar_Poa($parametros)
+    {
+        $POA_ID = $parametros["POA_ID"];
+
+        try {
+            $sql = "CALL " . constant("DB") . ".edit_poa_eliminar (?) ";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $POA_ID);
+
+            if ($query->execute()) {
+                echo json_encode(true);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
+
     //** PROYECTO  */
     function Get_Proyectos($parametros)
     {

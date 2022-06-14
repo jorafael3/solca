@@ -18,6 +18,7 @@ $urlNueva_perspectiva = constant("URL") . "matrizestrategica/Nueva_perspectiva";
 $urlGet_Proyectos_Porcentaje_Avance = constant("URL") . "poa/Get_Proyectos_Porcentaje_Avance";
 $urlNuevo_Poa = constant("URL") . "poa/Nuevo_Poa";
 $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
+$urlEliminar_Poa = constant("URL") . "poa/Eliminar_Poa";
 
 
 
@@ -40,6 +41,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     var urlGet_Proyectos_Porcentaje_Avance = '<?php echo $urlGet_Proyectos_Porcentaje_Avance ?>';
     var urlNuevo_Poa = '<?php echo $urlNuevo_Poa ?>';
     var urlGet_Depst_Por_Area = '<?php echo $urlGet_Depst_Por_Area ?>';
+    var urlEliminar_Poa = '<?php echo $urlEliminar_Poa ?>';
 
     var PERSPECTIVA_ID;
     var CRITERIO_ID;
@@ -73,7 +75,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     function Get_Perspectivas() {
 
         AjaxSendReceive(urlGet_perspectiva, data = [], function(response) {
-            console.log(response);
+
             $("#PERSPECTIVAS_LIST").empty();
             var con = 1;
             jQuery.each(response, function(key, value) {
@@ -134,7 +136,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             }
 
             AjaxSendReceive(urlNueva_perspectiva, data, function(response) {
-                console.log(response);
+
                 if (response == true) {
                     $("#kt_modal_add_Perspectiva").modal('hide');
                     $("#PERS_Nombre").val("");
@@ -248,7 +250,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     //********* */ POAS **********/
     function POA_FILTRAR_DEPTS(id) {
         FILTER_ID_DEPT = id;
-        console.log(id)
+
         if (id == "Todos") {
             $("#Btn_Nuevo_poa_").hide(100);
 
@@ -260,7 +262,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             AREA_ID: id
         }
         AjaxSendReceive(urlGet_Depst_Por_Area, data, function(response) {
-            console.log(response);
+
             var cbEmbarque = document.getElementById("PRY_POA_DEP");
             $('#PRY_POA_DEP option').remove(); // clear all values 
             $('#PRY_POA_DEP ').append('<option value=""></option>');
@@ -277,7 +279,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         // if (id == "") {
         //     DATA_FILTRADA = ARR_POAS;
         // }
-        // console.log(DATA_FILTRADA);
+        // 
         // Tabla_Poa(DATA_FILTRADA);
         $("#Seccion_Perspectivas").show(100);
         $("#Seccion_Proyectos_Detalle").hide(100);
@@ -306,9 +308,9 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                     DEPT_ID: DEPT_ID_,
                     OBJ_ID: OBJ_ID_,
                 }
-                console.log(data);
+
                 AjaxSendReceive(urlNuevo_Poa, data, function(response) {
-                    console.log(response);
+
                     if (response == true) {
                         Get_Poa()
                         $("#kt_modal_Create_Poa").modal('hide');
@@ -344,7 +346,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                     Tabla_Poa(Data_filtrada);
 
                 }
-                console.log("POA", Data_filtrada);
+
 
                 $("#TablaListaPoa").show();
                 $("#Seccion_Proyectos").hide();
@@ -402,6 +404,19 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                 title: "",
                 className: "dt-center  btn_poa",
                 defaultContent: '<button class="btn btn-icon  w-50px h-50px btn-active-light-primary btn-active-color-primary btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true"><span class="svg-icon svg-icon-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" /><path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="black" /></svg></span></button>',
+                orderable: false
+            }, {
+                data: null,
+                title: "",
+                className: "dt-center  btn_poa_eliminar",
+                defaultContent: `<button class="btn btn-icon  w-50px h-50px btn-active-light-danger btn-active-color-danger btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
+                    <span class="svg-icon svg-icon-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" />
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="black"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="black"/>                        </svg>
+                    </span>
+                    </button>`,
                 orderable: false
             }],
             "createdRow": function(row, data, index, cell) {
@@ -472,6 +487,47 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             $("#Seccion_Proyectos").show();
 
         });
+
+        $('#TablaListaPoa tbody').on('click', 'td.btn_poa_eliminar', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            Eliminar_poa(data);
+
+        });
+    }
+
+    function Eliminar_poa(data) {
+
+        var data = {
+            POA_ID: data["POA_ID"],
+        }
+        AjaxSendReceive(urlEliminar_Poa, data, function(response) {
+
+            if (response == true) {
+                Get_Poa();
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.success("Objetivo Eliminado");
+            } else {
+                Mensaje_Info("Error al eliminar");
+            }
+        });
     }
 
     //********* */ PROYECTOS **********/
@@ -501,7 +557,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             // function Arr(data, callback) {
 
             //     data.map(function(x, y) {
-            //         console.log(x);
+            //         
             //         var data = {
             //             "id": x.PROYECTOA_ID
             //         }
@@ -515,7 +571,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
             // Arr(arrdata, function(response) {
             //     setTimeout(Crear_proyectos(response), 2000);
-            //     console.log("PROYECTOS", response);
+            //     
 
             // })
             setTimeout(Crear_proyectos(arrdata), 2000);
@@ -542,10 +598,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var arrdata = JSON.parse(JSON.stringify(data));
         $("#Lista_proyectos").empty();
         ARRAY_DATA_PROYECT = [];
-        console.log("arrdata", arrdata);
+
 
         if (arrdata.length == 0) {
-            console.log("SIN PROYECTOS");
+
             $("#PRY_PROYECT_EMPTY").show(100);
         } else {
             $("#PRY_PROYECT_EMPTY").hide(100);
@@ -564,9 +620,9 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                 AjaxSendReceive(urlGet_Proyectos_Porcentaje_Avance, data, function(response) {
                     var por_avance = response[0]["avance"];
                     por_avance = parseFloat(por_avance).toFixed(2)
-                    console.log("response", response);
+
                     var Visivilidad = TIPOUS_ID;
-                    console.log("Visivilidad", Visivilidad);
+
                     // if(por_avance == null){
                     //     por_avance = 0;
                     // }
@@ -661,7 +717,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     }
 
     function PRY_filtrar_Proyectos_Estado(id) {
-        console.log(id);
+
         var arrdata = JSON.parse(JSON.stringify(ARR_PROYECTOS));
 
         var arr;
@@ -702,7 +758,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var PROYECTOA_ACTIVO = "S";
         var PROYECTOA_ELIMINADO = "N";
 
-        console.log(PROYECTOA_RESPONSABLE_ID);
+
         if (PROYECTOA_NOM == "") {
 
         } else if (PROYECTOA_RESPONSABLE == "") {
@@ -731,10 +787,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                 PROYECTOA_META_2030: PROYECTOA_META_2030
             }
 
-            console.log("SEND", DATA_TO_SEND);
+
 
             AjaxSendReceive(urlNuevo_Proyecto, DATA_TO_SEND, function(response) {
-                console.log(response);
+
                 if (response == true) {
                     $("#kt_modal_Nuevo_Proyecto").modal('hide');
                     Mensaje_Guardado_ok();
@@ -805,7 +861,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     function Actualizar_Proyecto() {
         var PROYECTO_ID = PROYECTOA_ID;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_PROYECT_INDIVIDUAL));
-        console.log("PROYECTO INDIVIDUAL", arrdata);
+
         var PROYECTOA_NOM = $("#PRY_Nombre").val();
         var PROYECTOA_RESPONSABLE = $("#PRY_Responsable option:selected").text();
         var PROYECTOA_RESPONSABLE_ID = $("#PRY_Responsable").val();
@@ -840,10 +896,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             PROYECTOA_META_2030: PROYECTOA_META_2030
         }
 
-        console.log("SEND", DATA_TO_SEND);
+
 
         AjaxSendReceive(urlActualizar_Proyecto, DATA_TO_SEND, function(response) {
-            console.log(response)
+
             if (response == true) {
                 $("#kt_modal_Nuevo_Proyecto").modal('hide');
                 var data = {
@@ -862,10 +918,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var data = {
             PROYECTOA_ID: Proyect_info[0]["PROYECTOA_ID"]
         }
-        console.log(data);
+
 
         AjaxSendReceive(urlEliminar_Proyecto, data, function(response) {
-            console.log(response)
+
             if (response == true) {
                 var datas = {
                     POA_ID: POA_ID
@@ -932,14 +988,14 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var data = {
             id_proyecto: ID_PROYECTO
         };
-        console.log("PROYECTO ID", data);
+
         AjaxSendReceive(urlGet_Proyectos_detalles, data, function(response) {
 
             ARRAY_DATA_ACTIVIDADES = response;
-            console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
-            if(response.length == 0){
+
+            if (response.length == 0) {
                 $("#PRY_ACTIVIDADES_EMPTY").show(100);
-            }else{
+            } else {
                 $("#PRY_ACTIVIDADES_EMPTY").hide(100);
 
             }
@@ -984,7 +1040,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         AjaxSendReceive2(urlGet_Proyectos_detalles, data, function(response) {
             create_proyect_targets_cards(response);
             ARRAY_DATA_ACTIVIDADES = response;
-            console.log("Actividades", ARRAY_DATA_ACTIVIDADES);
+
         });
 
     }
@@ -1122,7 +1178,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
     function Actualizar_Arrastrando() {
 
-        console.log(ACTV_ID_DRAG);
+
         var ACTV_ID = ACTV_ID_DRAG[0]["ACTIV_ID"];
         var AV_RESPONSABLE = ACTV_ID_DRAG[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AV_SUPERVISOR = ACTV_ID_DRAG[0]["max(AV.AVANCE_SUPERVISION)"];
@@ -1157,10 +1213,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             ACTIV_RESPONSABLE_ID: ACTIV_RESPONSABLE_ID,
             ACTIV_RESPONSABLE_TEXT: ACTIV_RESPONSABLE_TEXT,
         }
-        console.log(data);
+
 
         AjaxSendReceive2(urlActualizar_Actividad, data, function(response) {
-            console.log(response);
+
             if (response == true) {
                 Proyecto_info_Drag(PROYECTO_ID);
             }
@@ -1171,7 +1227,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         // ACTV_ID_DRAG = id;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let Proyect_info = arrdata.filter(pr => (pr.ACTIV_ID) == id);
-        console.log("ARASTRANDO", Proyect_info);
+
         ACTV_ID_DRAG = Proyect_info;
     }
 
@@ -1221,10 +1277,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
 
         } else {
 
-            console.log(DATA_TO_SEND);
+
 
             AjaxSendReceive(urlNueva_Actividad, DATA_TO_SEND, function(response) {
-                console.log(response);
+
                 if (response == true) {
                     $("#kt_modal_add_user").modal('hide');
                     Mensaje_Guardado_ok();
@@ -1241,7 +1297,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
         var ACTV_ID = id;
         var arrdata = JSON.parse(JSON.stringify(ARRAY_DATA_ACTIVIDADES));
         let ACTIVIDAD_INFO = arrdata.filter(id => id.ACTIV_ID == ACTV_ID);
-        console.log("ACTIVIDAD_INFO", ACTIVIDAD_INFO);
+
         var ACTV_ESTADO = ACTIVIDAD_INFO[0]["ACTV_ESTADO"];
         var AVANCE_RESPONSABLE = ACTIVIDAD_INFO[0]["max(AV.AVANCE_PORCENTAJE)"];
         var AVANCE_SUPERVISION = ACTIVIDAD_INFO[0]["max(AV.AVANCE_SUPERVISION)"];
@@ -1331,10 +1387,10 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
             Progreso_respo: Progreso_respo,
             Progreso_superv: Progreso_superv,
         }
-        console.log(data);
+
 
         AjaxSendReceive(urlActualizar_Actividad, data, function(response) {
-            console.log(response);
+
             if (response == true) {
                 $("#kt_modal_Actividad_Edit").modal('hide');
                 Mensaje_Guardado_ok();
@@ -1344,7 +1400,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
     }
 
     function Actividad_Eliminar(id) {
-        console.log(id);
+
 
         Swal.fire({
             title: 'Estas Seguro?',
@@ -1360,7 +1416,7 @@ $urlGet_Depst_Por_Area = constant("URL") . "poa/Get_Depst_Por_Area";
                     ACTV_ID: id,
                 }
                 AjaxSendReceive(urlEliminar_Actividad, data, function(response) {
-                    console.log(response);
+
                     if (response == true) {
                         Swal.fire(
                             'Eliminada!',

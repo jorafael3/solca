@@ -54,6 +54,11 @@ class Poa extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Nuevo_Poa($array);
     }
+    function Eliminar_Poa()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Eliminar_Poa($array);
+    }
     function Get_Poa()
     {
         $array = json_decode(file_get_contents("php://input"), true);
