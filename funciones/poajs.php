@@ -383,6 +383,32 @@ $urlEliminar_Poa = constant("URL") . "poa/Eliminar_Poa";
 
     function Tabla_Poa(data) {
         $('#TablaListaPoa').empty();
+
+        var Columnas = [{
+            data: null,
+            title: "",
+            className: "dt-center  btn_poa",
+            defaultContent: '<button class="btn btn-icon  w-50px h-50px btn-active-light-primary btn-active-color-primary btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true"><span class="svg-icon svg-icon-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" /><path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="black" /></svg></span></button>',
+            orderable: false
+        }];
+
+
+        if (TIPOUS_ID == 1) {
+            Columnas.push({
+                data: null,
+                title: "",
+                className: "dt-center  btn_poa_eliminar",
+                defaultContent: `<button class="btn btn-icon  w-50px h-50px btn-active-light-danger btn-active-color-danger btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
+                    <span class="svg-icon svg-icon-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" />
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="black"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="black"/>                        </svg>
+                    </span>
+                    </button>`,
+                orderable: false
+            })
+        }
         var table = $('#TablaListaPoa').DataTable({
             destroy: true,
             data: data,
@@ -399,26 +425,7 @@ $urlEliminar_Poa = constant("URL") . "poa/Eliminar_Poa";
             "drawCallback": function() {
                 $(this.api().table().header()).hide();
             },
-            columns: [{
-                data: null,
-                title: "",
-                className: "dt-center  btn_poa",
-                defaultContent: '<button class="btn btn-icon  w-50px h-50px btn-active-light-primary btn-active-color-primary btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true"><span class="svg-icon svg-icon-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" /><path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="black" /></svg></span></button>',
-                orderable: false
-            }, {
-                data: null,
-                title: "",
-                className: "dt-center  btn_poa_eliminar",
-                defaultContent: `<button class="btn btn-icon  w-50px h-50px btn-active-light-danger btn-active-color-danger btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
-                    <span class="svg-icon svg-icon-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
-                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black" />
-                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="black"/>
-                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="black"/>                        </svg>
-                    </span>
-                    </button>`,
-                orderable: false
-            }],
+            columns: Columnas,
             "createdRow": function(row, data, index, cell) {
 
 
@@ -498,36 +505,39 @@ $urlEliminar_Poa = constant("URL") . "poa/Eliminar_Poa";
 
     function Eliminar_poa(data) {
 
-        var data = {
-            POA_ID: data["POA_ID"],
-        }
-        AjaxSendReceive(urlEliminar_Poa, data, function(response) {
-
-            if (response == true) {
-                Get_Poa();
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-center",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-
-                toastr.success("Objetivo Eliminado");
-            } else {
-                Mensaje_Info("Error al eliminar");
+        if (TIPOUS_ID == 1) {
+            var data = {
+                POA_ID: data["POA_ID"],
             }
-        });
+            AjaxSendReceive(urlEliminar_Poa, data, function(response) {
+
+                if (response == true) {
+                    Get_Poa();
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.success("Objetivo Eliminado");
+                } else {
+                    Mensaje_Info("Error al eliminar");
+                }
+            });
+        }
+
     }
 
     //********* */ PROYECTOS **********/
