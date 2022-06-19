@@ -22,7 +22,7 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
 
         });
     }
-    Get_last_projects();
+    // Get_last_projects();
 
     function Tabla_proyectos_recientes(data) {
         var tb = $('#DS_SU_TABLA_PR_RECIENTES');
@@ -128,11 +128,11 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
             ANIO: ANIO
         }
         console.log(data);
-        $("#DSA_PER_SER").text("Datos Generales Solca"+ " " + ANIO);
+        $("#DSA_PER_SER").text("Datos Generales Solca" + " " + ANIO);
 
         AjaxSendReceive(urlGet_Permanencia, data, function(response) {
             console.log(response);
-            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0) + " d");
 
         });
         AjaxSendReceive(urlGet_Atencion_Servicio, data, function(response) {
@@ -142,6 +142,12 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
             $("#DSA_PER_AGENCIAS").text(response[0]["Agencias"]);
             $("#DSA_PER_SERVICIOS").text(response[0]["Servicios"]);
             $("#DSA_PER_ESPECIALIDADES").text(response[0]["Especialidades"]);
+
+            $("#PER_Dias").text(parseFloat(response[0]["dias"]).toFixed(0));
+            $("#DSA_PER_DIAS_SUB").text(parseFloat(response[0]["diasConsultaSubsecuente"]).toFixed(0));
+            $("#DSA_PER_DIAS_PRIMERA_CON").text(parseFloat(response[0]["diasPrimeraConsulta"]).toFixed(0));
+            $("#DSA_PER_PROCEDIMIENTOS").text(parseFloat(response[0]["diasProcedimiento"]).toFixed(0));
+
             // $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
             // $("#DSA_PER_SER").text("Permanencia General Solca");
 
@@ -167,7 +173,7 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
         }
         AjaxSendReceive(urlGet_Permanencia, data, function(response) {
             console.log(response);
-            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
+            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0) + " d");
 
         });
 
@@ -178,6 +184,11 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
             $("#DSA_PER_AGENCIAS").text(response[0]["Agencias"]);
             $("#DSA_PER_SERVICIOS").text(response[0]["Servicios"]);
             $("#DSA_PER_ESPECIALIDADES").text(response[0]["Especialidades"]);
+
+            $("#PER_Dias").text(parseFloat(response[0]["dias"]).toFixed(0));
+            $("#DSA_PER_DIAS_SUB").text(parseFloat(response[0]["diasConsultaSubsecuente"]).toFixed(0));
+            $("#DSA_PER_DIAS_PRIMERA_CON").text(parseFloat(response[0]["diasPrimeraConsulta"]).toFixed(0));
+            $("#DSA_PER_PROCEDIMIENTOS").text(parseFloat(response[0]["diasProcedimiento"]).toFixed(0));
             // $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0));
             // if (Servicio == "TODOS") {
             //     $("#DSA_PER_SER").text("Permanencia General Solca");
