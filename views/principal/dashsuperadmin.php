@@ -185,7 +185,7 @@ $anio_Actual = date('Y');
         <!--begin::Row-->
         <div class="row g-5 g-xl-10">
             <!--begin::Col-->
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
@@ -201,7 +201,7 @@ $anio_Actual = date('Y');
                 <!--end::Statistics Widget 5-->
             </div>
 
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card bg-danger hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
@@ -216,6 +216,27 @@ $anio_Actual = date('Y');
                         <!--end::Svg Icon-->
                         <div class="text-white fw-bolder fs-2 mb-2 mt-5"><?php echo $resumen[0]["areas"] ?></div>
                         <div class="fw-bold text-white fs-2">Areas</div>
+                    </div>
+                    <!--end::Body-->
+                </a>
+                <!--end::Statistics Widget 5-->
+            </div>
+
+            <div class="col-xl-4">
+                <!--begin::Statistics Widget 5-->
+                <a href="#" class="card  hoverable card-xl-stretch mb-xl-8">
+                    <!--begin::Body-->
+                    <div class="card-body">
+                        <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
+                        <span class="svg-icon svg-icon-dark svg-icon-3x ms-n1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path opacity="0.3" d="M20.9 12.9C20.3 12.9 19.9 12.5 19.9 11.9C19.9 11.3 20.3 10.9 20.9 10.9H21.8C21.3 6.2 17.6 2.4 12.9 2V2.9C12.9 3.5 12.5 3.9 11.9 3.9C11.3 3.9 10.9 3.5 10.9 2.9V2C6.19999 2.5 2.4 6.2 2 10.9H2.89999C3.49999 10.9 3.89999 11.3 3.89999 11.9C3.89999 12.5 3.49999 12.9 2.89999 12.9H2C2.5 17.6 6.19999 21.4 10.9 21.8V20.9C10.9 20.3 11.3 19.9 11.9 19.9C12.5 19.9 12.9 20.3 12.9 20.9V21.8C17.6 21.3 21.4 17.6 21.8 12.9H20.9Z" fill="black" />
+                                <path d="M16.9 10.9H13.6C13.4 10.6 13.2 10.4 12.9 10.2V5.90002C12.9 5.30002 12.5 4.90002 11.9 4.90002C11.3 4.90002 10.9 5.30002 10.9 5.90002V10.2C10.6 10.4 10.4 10.6 10.2 10.9H9.89999C9.29999 10.9 8.89999 11.3 8.89999 11.9C8.89999 12.5 9.29999 12.9 9.89999 12.9H10.2C10.4 13.2 10.6 13.4 10.9 13.6V13.9C10.9 14.5 11.3 14.9 11.9 14.9C12.5 14.9 12.9 14.5 12.9 13.9V13.6C13.2 13.4 13.4 13.2 13.6 12.9H16.9C17.5 12.9 17.9 12.5 17.9 11.9C17.9 11.3 17.5 10.9 16.9 10.9Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                        <div id="PER_PERMANENCIA" class="text-dark fw-bolder fs-2 mb-2 mt-5">...</div>
+                        <div class="fw-bold text-dark fs-2">Permanencia</div>
                     </div>
                     <!--end::Body-->
                 </a>
@@ -320,30 +341,7 @@ $anio_Actual = date('Y');
                             <div class="row g-0 mt-0 mb-5">
                                 <!--begin::Col-->
 
-                                <div class="col">
-                                    <div class="d-flex align-items-center me-2">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-50px me-3">
-                                            <div class="symbol-label bg-light-danger">
-                                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                                                <span class="svg-icon svg-icon-1 svg-icon-primary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path opacity="0.3" d="M20.9 12.9C20.3 12.9 19.9 12.5 19.9 11.9C19.9 11.3 20.3 10.9 20.9 10.9H21.8C21.3 6.2 17.6 2.4 12.9 2V2.9C12.9 3.5 12.5 3.9 11.9 3.9C11.3 3.9 10.9 3.5 10.9 2.9V2C6.19999 2.5 2.4 6.2 2 10.9H2.89999C3.49999 10.9 3.89999 11.3 3.89999 11.9C3.89999 12.5 3.49999 12.9 2.89999 12.9H2C2.5 17.6 6.19999 21.4 10.9 21.8V20.9C10.9 20.3 11.3 19.9 11.9 19.9C12.5 19.9 12.9 20.3 12.9 20.9V21.8C17.6 21.3 21.4 17.6 21.8 12.9H20.9Z" fill="black" />
-                                                        <path d="M16.9 10.9H13.6C13.4 10.6 13.2 10.4 12.9 10.2V5.90002C12.9 5.30002 12.5 4.90002 11.9 4.90002C11.3 4.90002 10.9 5.30002 10.9 5.90002V10.2C10.6 10.4 10.4 10.6 10.2 10.9H9.89999C9.29999 10.9 8.89999 11.3 8.89999 11.9C8.89999 12.5 9.29999 12.9 9.89999 12.9H10.2C10.4 13.2 10.6 13.4 10.9 13.6V13.9C10.9 14.5 11.3 14.9 11.9 14.9C12.5 14.9 12.9 14.5 12.9 13.9V13.6C13.2 13.4 13.4 13.2 13.6 12.9H16.9C17.5 12.9 17.9 12.5 17.9 11.9C17.9 11.3 17.5 10.9 16.9 10.9Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </div>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div>
-                                            <div id="PER_PERMANENCIA" class="fs-2 text-dark fw-bolder"></div>
-                                            <div class="fs-7 text-muted fw-bold">Permanencia</div>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                </div>
+
 
                                 <div class="col">
                                     <div class="d-flex align-items-center me-2">
@@ -474,11 +472,20 @@ $anio_Actual = date('Y');
                             </div>
 
                             <hr>
-                            <h3 class="card-title align-items-start flex-column">
+                            <!-- <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label fw-bolder fs-3 mb-1">Dias de Atencion</span>
                             </h3>
-                            <span id="DSA_PER_SER" class="text-muted fw-bold fs-5">Los datos estan en dias</span>
+                            <span id="DSA_PER_SER" class="text-muted fw-bold fs-5">Los datos estan en dias</span> -->
+
                             <div class="row g-0 mt-0 mb-5 pt-5">
+                                <div class="table-responsive">
+                                    <table id="DSA_TABLA_ATENCION_SERVICIO" class="display table table-striped table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="row g-0 mt-0 mb-5 pt-5" style="display: none;">
                                 <!--begin::Col-->
 
                                 <div class="col">

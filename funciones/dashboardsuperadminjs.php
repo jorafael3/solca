@@ -4,6 +4,7 @@
 $urlGetProjects = constant("URL") . "principal/Get_last_projects";
 $urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
 $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
+$urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Servicio_tabla";
 
 
 ?>
@@ -13,6 +14,7 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
     var urlGetProjects = '<?php echo $urlGetProjects ?>';
     var urlGet_Permanencia = '<?php echo $urlGet_Permanencia ?>';
     var urlGet_Atencion_Servicio = '<?php echo $urlGet_Atencion_Servicio ?>';
+    var urlGet_Atencion_Servicio_tabla = '<?php echo $urlGet_Atencion_Servicio_tabla ?>';
 
     function Get_last_projects() {
 
@@ -135,6 +137,10 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
             $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0) + " d");
 
         });
+        AjaxSendReceive(urlGet_Atencion_Servicio_tabla, data, function(response) {
+            console.log("ATENCION", response);
+            Tabla_Atencion_por_servicio(response);
+        });
         AjaxSendReceive(urlGet_Atencion_Servicio, data, function(response) {
             console.log(response);
             $("#DSA_PER_PACIENTES").text(response[0]["Pacientes"]);
@@ -177,6 +183,12 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
 
         });
 
+        AjaxSendReceive(urlGet_Atencion_Servicio_tabla, data, function(response) {
+            console.log("ATENCION", response);
+            Tabla_Atencion_por_servicio(response);
+
+        });
+
         AjaxSendReceive(urlGet_Atencion_Servicio, data, function(response) {
             console.log(response);
             $("#DSA_PER_PACIENTES").text(response[0]["Pacientes"]);
@@ -197,6 +209,72 @@ $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
             // }
         });
 
+    }
+
+    function Tabla_Atencion_por_servicio(data) {
+        var tb = $('#DSA_TABLA_ATENCION_SERVICIO');
+        var table = tb.DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 200,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "drawCallback": function() {
+                // $(this.api().table().header()).hide();
+            },
+
+            "columnDefs": [{
+                "width": "15%",
+                "targets": 0
+            }],
+            order: [
+                [0, "asc"]
+            ],
+            columns: [{
+                data: "TIPO_CONSULTA",
+                title: "Tipo Consulta"
+            }, {
+                data: "Agencias",
+                title: "Agencias"
+            }, {
+                data: "Doctores",
+                title: "Doctores "
+            }, {
+                data: "Especialidades",
+                title: "Especialidades "
+            }, {
+                data: "Pacientes",
+                title: "Pacientes"
+            }, {
+                data: "Servicios",
+                title: "Servicios"
+            }, {
+                data: "dias",
+                title: "dias"
+            }, {
+                data: "minutos",
+                title: "minutos"
+            }],
+            "createdRow": function(row, data, index, cell) {
+
+                $('td', row).eq(0).addClass("text-center");
+                $('td', row).eq(1).addClass("text-center");
+                $('td', row).eq(2).addClass("text-center");
+                $('td', row).eq(3).addClass("text-center");
+                $('td', row).eq(4).addClass("text-center");
+                $('td', row).eq(5).addClass("text-center");
+                $('td', row).eq(6).addClass("text-center");
+                $('td', row).eq(7).addClass("text-center");
+            }
+
+        });
+        // new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
     }
 
     function AjaxSendReceive(url, data, callback) {
