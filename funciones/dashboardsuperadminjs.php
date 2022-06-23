@@ -132,11 +132,11 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
         console.log(data);
         $("#DSA_PER_SER").text("Datos Generales Solca" + " " + ANIO);
 
-        AjaxSendReceive(urlGet_Permanencia, data, function(response) {
-            console.log(response);
-            $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0) + " d");
+        // AjaxSendReceive(urlGet_Permanencia, data, function(response) {
+        //     console.log(response);
+        //     $("#PER_PERMANENCIA").text(parseFloat(response[0]["permanencia"]).toFixed(0) + " d");
 
-        });
+        // });
         AjaxSendReceive(urlGet_Atencion_Servicio_tabla, data, function(response) {
             console.log("ATENCION", response);
             Tabla_Atencion_por_servicio(response);
@@ -235,30 +235,18 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
             ],
             columns: [{
                 data: "TIPO_CONSULTA",
-                title: "Tipo Consulta"
-            }, {
-                data: "Agencias",
-                title: "Agencias"
-            }, {
-                data: "Doctores",
-                title: "Doctores "
-            }, {
-                data: "Especialidades",
-                title: "Especialidades "
+                // title: "Tipo Consulta"
             }, {
                 data: "Pacientes",
-                title: "Pacientes"
-            }, {
-                data: "Servicios",
-                title: "Servicios"
+                // title: "Pacientes"
             }, {
                 data: "dias",
-                title: "dias",
+                // title: "Días de espera",
                 render: $.fn.dataTable.render.number(',', '.', 0, '')
 
             }, {
                 data: "minutos",
-                title: "minutos",
+                title: "Minutos atención",
                 render: $.fn.dataTable.render.number(',', '.', 0, '')
 
             }],
@@ -268,10 +256,10 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
                 $('td', row).eq(1).addClass("text-center");
                 $('td', row).eq(2).addClass("text-center");
                 $('td', row).eq(3).addClass("text-center");
-                $('td', row).eq(4).addClass("text-center");
-                $('td', row).eq(5).addClass("text-center");
-                $('td', row).eq(6).addClass("text-center");
-                $('td', row).eq(7).addClass("text-center");
+                // $('td', row).eq(4).addClass("text-center");
+                // $('td', row).eq(5).addClass("text-center");
+                // $('td', row).eq(6).addClass("text-center");
+                // $('td', row).eq(7).addClass("text-center");
             }
 
         });
