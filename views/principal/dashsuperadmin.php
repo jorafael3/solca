@@ -194,7 +194,7 @@ $anio_Actual = date('Y');
                         <i class="fa fa-user fs-1"></i>
                         <!--end::Svg Icon-->
                         <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5"><?php echo $resumen[0]["usuarios"] ?></div>
-                        <div class="fw-bold text-gray-100">Usuarios</div>
+                        <div class="fw-bold text-gray-100 fs-2" >Usuarios</div>
                     </div>
                     <!--end::Body-->
                 </a>
