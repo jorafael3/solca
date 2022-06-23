@@ -230,7 +230,7 @@ $anio_Actual = date('Y');
 
             <div class="col-xl-4">
                 <!--begin::Statistics Widget 5-->
-                <a href="#" class="card  hoverable card-xl-stretch mb-xl-8">
+                <a href="#" class="card bg-light-success  hoverable card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
                     <div class="card-body">
                         <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
