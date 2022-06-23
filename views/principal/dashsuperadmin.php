@@ -191,10 +191,16 @@ $anio_Actual = date('Y');
                     <!--begin::Body-->
                     <div class="card-body">
                         <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm008.svg-->
-                        <i class="fa fa-user fs-1"></i>
+                        <span class="svg-icon svg-icon-white svg-icon-3x ms-n1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path fill="black" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                                <path fill="black" d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                            </svg>
+                        </span>
                         <!--end::Svg Icon-->
                         <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5"><?php echo $resumen[0]["usuarios"] ?></div>
-                        <div class="fw-bold text-gray-100 fs-2" >Usuarios</div>
+                        <div class="fw-bold text-gray-100 fs-2">Usuarios</div>
                     </div>
                     <!--end::Body-->
                 </a>
