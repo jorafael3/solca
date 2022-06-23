@@ -253,10 +253,14 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
                 title: "Servicios"
             }, {
                 data: "dias",
-                title: "dias"
+                title: "dias",
+                render: $.fn.dataTable.render.number(',', '.', 0, '')
+
             }, {
                 data: "minutos",
-                title: "minutos"
+                title: "minutos",
+                render: $.fn.dataTable.render.number(',', '.', 0, '')
+
             }],
             "createdRow": function(row, data, index, cell) {
 
