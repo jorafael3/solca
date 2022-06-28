@@ -88,7 +88,7 @@ require 'views/header.php';
                             <!--end::Name-->
                             <div class="text-muted fs-6 fw-bold mt-1">Desarrollador y DBA</div>
                             <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">esanchezf@gmail.com</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">chupysanchez@gmail.com</div>
                             <!--begin::Position-->
                         </div>
                         <!--end::Person-->
