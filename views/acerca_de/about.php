@@ -97,7 +97,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <div class="text-center">
                         <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/images/jo.png')"></div>
+                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/images/jo.PNG')"></div>
                         <!--end::Photo-->
                         <!--begin::Person-->
                         <div class="mb-0">
