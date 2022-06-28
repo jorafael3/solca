@@ -65,20 +65,21 @@ require 'views/header.php';
             <!--begin::Slider-->
             <div class="tns tns-default mb-10">
                 <!--begin::Wrapper-->
-                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 2}, 992: {items: 2}}">
+                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
                     <!--begin::Item-->
-                    <!-- <div class="text-center">
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/media/avatars/300-15.jpg')"></div>
+                    <div class="text-center">
+                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/images/jm.jpeg')"></div>
                         <div class="mb-0">
                             <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Jaime Andres Palomeque</a>
-                            <div class="text-muted fs-6 fw-bold mt-1">Development Lead</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">Arquitecto de software</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">jpalomeque@yahoo.com</div>
                         </div>
-                    </div> -->
+                    </div>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="text-center">
                         <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/media/avatars/300-7.jpg')"></div>
+                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/images/ed.jpeg')"></div>
                         <!--end::Photo-->
                         <!--begin::Person-->
                         <div class="mb-0">
@@ -96,7 +97,7 @@ require 'views/header.php';
                     <!--begin::Item-->
                     <div class="text-center">
                         <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/media/avatars/300-1.jpg')"></div>
+                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/images/jo.png')"></div>
                         <!--end::Photo-->
                         <!--begin::Person-->
                         <div class="mb-0">
