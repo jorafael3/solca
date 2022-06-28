@@ -459,9 +459,9 @@ $anio_Actual = date('Y');
                                         <thead>
                                             <tr>
                                                 <td class="text-center fw-bold">Tipo Consulta</td>
-                                                <td class="text-center fw-bold">Pacientes</td>
-                                                <td class="text-center fw-bold">Días de espera</td>
-                                                <td class="text-center fw-bold">Minutos atencion</td>
+                                                <td class="text-center fw-bold">Atenciones</td>
+                                                <td class="text-center fw-bold">Promedio de días de espera</td>
+                                                <td class="text-center fw-bold">Promedio de minutos atencion</td>
                                             </tr>
                                         </thead>
                                     </table>

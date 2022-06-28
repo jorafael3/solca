@@ -21,8 +21,8 @@ require 'views/header.php';
 
                     <!--end::Title-->
                     <!--begin::Text-->
-                    <div class="fs-5 text-muted fw-bold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been
-                        <br />successfully deployed by small businesses to global enterprises
+                    <div class="fs-5 text-muted fw-bold">
+                       
                     </div>
                     <!--end::Text-->
                 </div>
@@ -32,17 +32,15 @@ require 'views/header.php';
             </div>
             <!--end::Wrapper-->
             <!--begin::Description-->
-            <div class="fs-5 fw-bold text-gray-600">
+            <div class="fs-3 fw-bold text-gray-600">
 
-                <p class="mb-17">I can hear your objections already. “But Dan, I have
-                    to blog for a cardboard box manufacturing company.” I feel your pain,
-                    I really do. During the course of my career, I’ve written content
-                    for dozens of clients in some less-than-thrilling industries
-                    (such as financial regulatory compliance and corporate housing),
-                    but the hallmark of a professional blogger is the ability
-                    to write well about any topic, no matter how dry it may be.
-                    Blogging is a lot easier, however, if you can muster at l
-                    east a little enthusiasm for the topic at hand.</p>
+                <p class="mb-17">
+                    Somos un grupo de amigos apasionados por aprender dia a dia nuevas tecnologias,
+                    no enfocamos en el desarrollo de aplicaciones web.
+                    Ofrecemos un servicio personalizado, profesional y confiable.
+
+                    
+                </p>
                 <!--end::Text-->
             </div>
             <!--end::Description-->
@@ -58,8 +56,8 @@ require 'views/header.php';
                 <h3 class="fs-2hx text-dark mb-5">Nuestro Equipo</h3>
                 <!--end::Title-->
                 <!--begin::Sub-title-->
-                <div class="fs-5 text-muted fw-bold">It’s no doubt that when a development takes longer to complete, additional costs to
-                    <br />integrate and test each extra feature creeps up and haunts most of us.
+                <div class="fs-5 text-muted fw-bold">
+                    
                 </div>
                 <!--end::Sub-title=-->
             </div>
@@ -67,23 +65,15 @@ require 'views/header.php';
             <!--begin::Slider-->
             <div class="tns tns-default mb-10">
                 <!--begin::Wrapper-->
-                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
+                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 2}, 992: {items: 2}}">
                     <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
+                    <!-- <div class="text-center">
                         <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('<?php echo constant("URL") ?>public/assets/media/avatars/300-15.jpg')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
                         <div class="mb-0">
-                            <!--begin::Name-->
                             <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Jaime Andres Palomeque</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
                             <div class="text-muted fs-6 fw-bold mt-1">Development Lead</div>
-                            <!--begin::Position-->
                         </div>
-                        <!--end::Person-->
-                    </div>
+                    </div> -->
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="text-center">
@@ -95,8 +85,9 @@ require 'views/header.php';
                             <!--begin::Name-->
                             <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Edison Sanchez</a>
                             <!--end::Name-->
+                            <div class="text-muted fs-6 fw-bold mt-1">Desarrollador y DBA</div>
                             <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">Creative Director</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">esanchezf@gmail.com</div>
                             <!--begin::Position-->
                         </div>
                         <!--end::Person-->
@@ -113,7 +104,8 @@ require 'views/header.php';
                             <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Jorge Alvarado</a>
                             <!--end::Name-->
                             <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">Python Expert</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">Desarrollador web</div>
+                            <div class="text-muted fs-6 fw-bold mt-1">jalvaradoe3@gmail.com</div>
                             <!--begin::Position-->
                         </div>
                         <!--end::Person-->

@@ -246,7 +246,7 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
 
             }, {
                 data: "minutos",
-                title: "Minutos atención",
+                title: "Promedio de minutos atención",
                 render: $.fn.dataTable.render.number(',', '.', 0, '')
 
             }],
