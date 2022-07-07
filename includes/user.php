@@ -26,6 +26,7 @@ class User extends Model
                     $US_NOMBRE = "";
                     $US_ID = "";
                     $TIPOUS_ID = "";
+                    $ARR_AREAS =[];
                     foreach ($result as $row) {
                         $US_ID = $row["US_ID"];
                         $US_NOMBRE = $row["US_APELLNOM"];
@@ -33,9 +34,15 @@ class User extends Model
                         $TIPOUS_ID = $row["TIPOUS_ID"];
                         $TIPOUS_NOM = $row["TIPOUS_NOM"];
                         $US_ACTIVO = $row["US_ACTIVO"];
+                        $d = array(
+                            "AREA_ID"=>$row["AREA_ID"],
+                            "AREA_NOM"=>$row["AREA_NOM"]
+                        );
+                        array_push($ARR_AREAS,$d);
                         $AREA_ID = $row["AREA_ID"];
                         $AREA_NOM = $row["AREA_NOM"];
                     }
+                    // var_dump($ARR_AREAS);
                     // return $tipo;
 
                     if ($US_ACTIVO == "S") {
@@ -46,6 +53,7 @@ class User extends Model
                         $_SESSION["US_EMAIL"] = $US_EMAIL;
                         $_SESSION["TIPOUS_ID"] = $TIPOUS_ID;
                         $_SESSION["TIPOUS_NOM"] = $TIPOUS_NOM;
+                        $_SESSION["AREAS_ARR"] = $ARR_AREAS;
                         $_SESSION["AREA_ID"] = $AREA_ID;
                         $_SESSION["AREA_NOM"] = $AREA_NOM;
 
