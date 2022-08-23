@@ -78,4 +78,9 @@ class Principal extends Controller
         $this->view->resumen = $resumen;
         $this->view->render('principal/dashpoa');
     }
+    function Get_data_totales()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Get_data_totales($array);
+    }
 }

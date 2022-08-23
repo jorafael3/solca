@@ -5,6 +5,7 @@ $urlGetProjects = constant("URL") . "principal/Get_last_projects";
 $urlGet_Permanencia = constant("URL") . "principal/Get_Permanencia";
 $urlGet_Atencion_Servicio = constant("URL") . "principal/Get_Atencion_Servicio";
 $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Servicio_tabla";
+$urlGet_data_totales = constant("URL") . "principal/Get_data_totales";
 
 
 ?>
@@ -15,6 +16,7 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
     var urlGet_Permanencia = '<?php echo $urlGet_Permanencia ?>';
     var urlGet_Atencion_Servicio = '<?php echo $urlGet_Atencion_Servicio ?>';
     var urlGet_Atencion_Servicio_tabla = '<?php echo $urlGet_Atencion_Servicio_tabla ?>';
+    var urlGet_data_totales = '<?php echo $urlGet_data_totales ?>';
 
     function Get_last_projects() {
 
@@ -261,6 +263,129 @@ $urlGet_Atencion_Servicio_tabla = constant("URL") . "principal/Get_Atencion_Serv
                 // $('td', row).eq(6).addClass("text-center");
                 // $('td', row).eq(7).addClass("text-center");
             }
+
+        });
+        // new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 1000);
+    }
+
+    function Get_Datos_Totales() {
+        var x = [{
+            "DATO1": "asd",
+            "DATO2": "add",
+            "DATO3": "aassd",
+            "DATO6": 10,
+            "DATO7": 20,
+            "DATO8": 30,
+        }];
+        Tabla_Datos_Totales(x)
+
+        // AjaxSendReceive(urlGet_data_totales, [], function(x) {
+        //     Tabla_Datos_Totales(x)
+        // });
+    }
+    Get_Datos_Totales();
+
+    function Tabla_Datos_Totales(data) {
+        var tb = $('#DASH_TABLA_DATOS');
+
+        var table = tb.DataTable({
+            destroy: true,
+            data: data,
+            dom: 'rtip',
+            scrollY: 200,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "drawCallback": function() {
+                // $(this.api().table().header()).hide();
+            },
+
+            "columnDefs": [{
+                "width": "15%",
+                "targets": 0
+            }],
+            order: [
+                [0, "desc"]
+            ],
+            columns: [{
+                data: "DATO1",
+                title: "DATO1 "
+            }, {
+                data: "DATO2",
+                title: "DATO2"
+            }, {
+                data: "DATO3",
+                title: "DATO3 "
+            }, {
+                data: "DATO6",
+                title: "DATO6 "
+            }, {
+                data: "DATO7",
+                title: "DATO7"
+            }, {
+                data: "DATO8",
+                title: "DATO8"
+            }],
+            "createdRow": function(row, data, index, cell) {
+
+                var texto;
+                var valor;
+
+                if (data["DATO6"]) {
+                    texto = data["DATO6"];
+                    valor = data["DATO6"];
+
+                    var fecha = `
+                        <div class="d-flex flex-column w-100 me-2">
+                            <div class="d-flex flex-stack mb-2">
+                                <span class="text-muted me-2 fs-7 fw-bold">` + texto + `%</span>
+                            </div>
+                            <div class="progress h-6px w-100">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: ` + valor + `%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>`;
+                    $('td', row).eq(3).html(fecha);
+
+                }
+                if (data["DATO7"]) {
+                    texto = data["DATO7"];
+                    valor = data["DATO7"];
+
+                    var fecha = `
+                        <div class="d-flex flex-column w-100 me-2">
+                            <div class="d-flex flex-stack mb-2">
+                                <span class="text-muted me-2 fs-7 fw-bold">` + texto + `%</span>
+                            </div>
+                            <div class="progress h-6px w-100">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: ` + valor + `%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>`;
+                    $('td', row).eq(4).html(fecha);
+
+                }
+                if (data["DATO8"]) {
+                    texto = data["DATO8"];
+                    valor = data["DATO8"];
+                    var fecha = `
+                        <div class="d-flex flex-column w-100 me-2">
+                            <div class="d-flex flex-stack mb-2">
+                                <span class="text-muted me-2 fs-7 fw-bold">` + texto + `%</span>
+                            </div>
+                            <div class="progress h-6px w-100">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: ` + valor + `%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>`;
+                    $('td', row).eq(5).html(fecha);
+                }
+
+
+
+            }
+
 
         });
         // new $.fn.dataTable.FixedHeader(table);
