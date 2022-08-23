@@ -153,29 +153,24 @@ class PrincipalModel extends Model
     //*** DASHBOSRA DATOS TOTALES */
 
     function Get_data_totales($parametros){
-        echo json_encode("aasddasd");
-        exit();
-        // try {
-        //     $anio = $parametros["ANIO"];
-        //     $servicio = $parametros["SERV"];
-        //     $sql = "CALL " . constant("DB") . ".TablaAtencionPorServicio (?,?)";
-        //     $query = $this->db->connect()->prepare($sql);
-        //     $query->bindParam(1, $anio);
-        //     $query->bindParam(2, $servicio);
-
-        //     if ($query->execute()) {
-        //         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        //         echo json_encode($result);
-        //         exit();
-        //     } else {
-        //         $err = $query->errorInfo();
-        //         echo json_encode($err);
-        //         exit();
-        //     }
-        // } catch (PDOException $e) {
-        //     $e = $e->getMessage();
-        //     return $e;
-        // }
+        // echo json_encode("aasddasd");
+        // exit();
+        try {
+            $sql = "CALL " . constant("DB") . ".Get_avance_objetivos";
+            $query = $this->db->connect()->prepare($sql);
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
     }
 
     //*** POA */

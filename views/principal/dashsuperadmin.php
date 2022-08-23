@@ -519,6 +519,7 @@ $anio_Actual = date('Y');
 
                             <!--end::Table body-->
                         </table>
+
                         <!--end::Table-->
                     </div>
                     <!--end::Table container-->
@@ -537,7 +538,7 @@ $anio_Actual = date('Y');
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="DASH_TABLA_DATOS" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                    <table id="DASH_TABLA_DATOS" style="width: 100%;" class="table table-sm  table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                         <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                         </thead>
@@ -547,6 +548,7 @@ $anio_Actual = date('Y');
         </div>
     </div>
 </div>
+
 <?php require 'views/footer.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
