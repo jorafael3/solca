@@ -199,6 +199,34 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                             </div>
                         </div>
 
+
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <i class="bi bi-bar-chart-fill"></i>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Reportes</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                <div class="menu-item">
+                                    <a class="menu-link" href="<?php echo constant("URL") ?>reportes/PorProyecto">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Agrupados por proyecto</span>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
                     <?php
 
                     }
@@ -246,6 +274,7 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
 
                     </div>
                 </div>
+
 
 
 
