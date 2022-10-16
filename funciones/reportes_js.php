@@ -113,7 +113,7 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
         var table = $('#REP_REPORTES').DataTable({
             destroy: true,
             data: data,
-            dom: 'Brtip',
+            dom: 'Bfrtip',
             scrollY: 350,
             scrollX: true,
             scrollCollapse: true,
@@ -196,7 +196,7 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
         var table = $('#REP_REPORTES').DataTable({
             destroy: true,
             data: data,
-            dom: 'Brtip',
+            dom: 'Bfrtip',
             scrollY: 350,
             scrollX: true,
             scrollCollapse: true,
@@ -339,7 +339,7 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
         var table = $('#REP_REPORTES_AREAS').DataTable({
             destroy: true,
             data: data,
-            dom: 'Brtip',
+            dom: 'Bfrtip',
             scrollY: 350,
             scrollX: true,
             scrollCollapse: true,
