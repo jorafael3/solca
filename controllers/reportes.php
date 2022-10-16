@@ -32,4 +32,29 @@ class Reportes extends Controller
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Cargar_Reportes($array);
     }
+
+    //******************************************************************* */
+    //** POR OBJETIVO */
+
+    function PorObjetivorender()
+    {
+        $nivel = $_SESSION["TIPOUS_ID"];
+        if ($nivel == 1) {
+            $this->view->render('reportes/porobjetivo');
+        } else {
+            $this->view->render('errores/404');
+        }
+    }
+
+    function PorObjetivo()
+    {
+
+        $this->PorObjetivorender();
+    }
+
+    function Cargar_Reportes_Objetivo()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Reportes_Objetivo($array);
+    }
 }

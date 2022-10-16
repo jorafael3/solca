@@ -34,4 +34,28 @@ class ReportesModel extends Model
             return $e;
         }
     }
+
+    public function Cargar_Reportes_Objetivo($parametros)
+    {
+        $id = $parametros["id"];
+
+        try {
+            $sql = "CALL " . constant("DB") . ".get_avance_objetivo_porcriterio (?)";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(1, $id);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            $e = $e->getMessage();
+            return $e;
+        }
+    }
 }

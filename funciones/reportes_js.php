@@ -4,6 +4,7 @@ $urlGet_perspectiva = constant("URL") . "matrizestrategica/Get_Perspectivas";
 $urlGet_Criterios = constant("URL") . "matrizestrategica/Get_Criterios";
 $urlObjetivos_Estrategicos = constant("URL") . "matrizestrategica/Get_Objetivos_Estrategicos";
 $url_CARGAR_REPORTE = constant("URL") . "reportes/Cargar_Reportes";
+$url_Cargar_Reportes_Objetivo = constant("URL") . "reportes/Cargar_Reportes_Objetivo";
 
 
 ?>
@@ -19,6 +20,7 @@ $url_CARGAR_REPORTE = constant("URL") . "reportes/Cargar_Reportes";
     var urlGet_Criterios = '<?php echo $urlGet_Criterios ?>';
     var urlObjetivos_Estrategicos = '<?php echo $urlObjetivos_Estrategicos ?>';
     var url_CARGAR_REPORTE = '<?php echo $url_CARGAR_REPORTE ?>';
+    var url_Cargar_Reportes_Objetivo = '<?php echo $url_Cargar_Reportes_Objetivo ?>';
 
     var PERSPECTIVA_ID;
     var OBJET_ID;
@@ -98,12 +100,14 @@ $url_CARGAR_REPORTE = constant("URL") . "reportes/Cargar_Reportes";
         console.log('parametros: ', parametros);
         AjaxSendReceive(url_CARGAR_REPORTE, parametros, function(x) {
             console.log('x: ', x);
-            TABLA_REPORTES(x)
+            TABLA_REPORTES(x);
+            $("#SECCCION_POR_PROYECTO").show(100);
+
         });
     }
 
     function TABLA_REPORTES(data) {
-        $('#REP_REPORTES').empty();
+        // $('#REP_REPORTES').empty();
         var table = $('#REP_REPORTES').DataTable({
             destroy: true,
             data: data,
@@ -138,24 +142,138 @@ $url_CARGAR_REPORTE = constant("URL") . "reportes/Cargar_Reportes";
                     title:"# Act. finalizadas"
                 },{
                     data:"PorcentajeFinalizado",
-                    title:"% Avance",
+                    title:"% Avance Proyectos",
                     render: $.fn.dataTable.render.number(',', '.', 2, "%")
 
                 }
             ],
             "createdRow": function(row, data, index, cell) {
+                let color = "danger"
                 if(data["PorcentajeFinalizado"] >=100){
-                    $('td', row).eq(4).addClass("text-success");
+                    color="success"
                 }
-                if(data["PorcentajeFinalizado"] == 0){
-                    $('td', row).eq(4).addClass("text-danger");
+                if(data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] <100){
+                   color="warning"
                 }
+
+                let pr = `
+                    <div class="d-flex align-items-center w-100 mw-125px">
+						<div class="progress h-6px w-100 me-2 bg-light-warning">
+							<div class="progress-bar bg-`+color+`" role="progressbar" style="width: `+parseFloat(data["PorcentajeFinalizado"]).toFixed(2)+`%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="text-gray-400 fw-semibold">`+parseFloat(data["PorcentajeFinalizado"]).toFixed(2) +`%</span>
+					</div>
+                `
+                $('td', row).eq(4).html(pr);
+                $('td', row).eq(1).addClass("bg-light-warning");
+
             }
         });
         new $.fn.dataTable.FixedHeader(table);
         setTimeout(function() {
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
+    }
+    //*********************************************************** */
+    //* POR OBJETIVO
+
+    function CARGAR_REPORTE_POR_OBJETIVO() {
+        var parametros = {
+            id: $("#REP_CRIT").val()
+        }
+        console.log('parametros: ', parametros);
+        AjaxSendReceive(url_Cargar_Reportes_Objetivo, parametros, function(x) {
+            console.log('x: ', x);
+            TABLA_REPORTES_OBJETIVO(x);
+            $("#SECCCION_POR_OBJETIVO").show(100);
+        });
+    }
+
+    function TABLA_REPORTES_OBJETIVO(data) {
+        // $('#REP_REPORTES').empty();
+        var table = $('#REP_REPORTES').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'Brtip',
+            scrollY: 350,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "15%",
+                "targets": 0
+            }],
+            buttons:[
+                'excel'
+            ],
+            // "drawCallback": function() {
+            //     $(this.api().table().header()).hide();
+            // },
+            columns: [
+                {
+                    data:"OBJEST_NOM",
+                    title:"Objetivo Estrategico"
+                },{
+                    data:"proyectos",
+                    title:"# Proyectos"
+                },{
+                    data:"areas",
+                    title:"Areas"
+                },{
+                    data:"actividades",
+                    title:"# Act. Totales"
+                },{
+                    data:"FINALIZADO",
+                    title:"# Act. Finalizadas"
+                },{
+                    data:"PorcentajeFinalizado",
+                    title:"% Avance Proyectos",
+                    render: $.fn.dataTable.render.number(',', '.', 2, "%")
+
+                }
+            ],
+            "createdRow": function(row, data, index, cell) {
+                let color = "danger"
+                if(data["PorcentajeFinalizado"] >=100){
+                    color="success"
+                }
+                if(data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] <100){
+                   color="warning"
+                }
+
+                let areas = data["areas"].split(",");
+                console.log('areas: ', areas);
+                let ali = "";
+                areas.map(function(x){
+                    ali = ali+'<li>'+x+'</li>'
+                })
+                $('td', row).eq(1).addClass("text-center fs-1");
+                $('td', row).eq(3).addClass("text-center fs-1");
+                $('td', row).eq(4).addClass("text-center fs-1");
+                $('td', row).eq(2).html(`
+                        <ul>
+                            `+ali+`
+                        </ul>
+                `);
+
+                let pr = `
+                    <div class="d-flex align-items-center w-100 mw-125px">
+						<div class="progress h-6px w-100 me-2 bg-light-warning">
+							<div class="progress-bar bg-`+color+`" role="progressbar" style="width: `+parseFloat(data["PorcentajeFinalizado"]).toFixed(2)+`%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="text-gray-600 fw-semibold">`+parseFloat(data["PorcentajeFinalizado"]).toFixed(2) +`%</span>
+					</div>
+                `
+                $('td', row).eq(5).html(pr);
+                $('td', row).eq(1).addClass("bg-ligth-warning");
+
+            }
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 500);
     }
 
     function AjaxSendReceive(url, data, callback) {

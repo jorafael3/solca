@@ -124,7 +124,6 @@ $urlGet_data_totales = constant("URL") . "principal/Get_data_totales";
     }
 
     //**** PERMANECIA ****/
-
     function Get_Permanencia_OnLoad() {
         var ANIO = moment().format("YYYY");
         var data = {
@@ -162,8 +161,7 @@ $urlGet_data_totales = constant("URL") . "principal/Get_data_totales";
         });
     }
 
-    Get_Permanencia_OnLoad();
-
+    // Get_Permanencia_OnLoad();
     function Btn_Get_Permanencia() {
         var Servicio = $("#DSA_SERVICIOS").val();
         var Servicio_text = $("#DSA_SERVICIOS option:selected").text();
@@ -287,7 +285,7 @@ $urlGet_data_totales = constant("URL") . "principal/Get_data_totales";
             Tabla_Datos_Totales(x)
         });
     }
-    Get_Datos_Totales();
+    // Get_Datos_Totales();
 
     function Tabla_Datos_Totales(data) {
         var tb = $('#DASH_TABLA_DATOS');
