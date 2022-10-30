@@ -28,7 +28,10 @@ class Principal extends Controller
             $this->DashboardPoa();
         } else if ($nivel == 5) {
             /***DIRECTOR */
-            $this->DashboardSuperAdmin();
+            // $this->DashboardSuperAdmin();
+            // $this->view->render('matrizestrategica/matriz');
+            $url = constant("URl")."matrizestrategica/Matriz_Estrategica";
+            header( "Location: $url" );
         }
     }
 

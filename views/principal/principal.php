@@ -11,7 +11,10 @@ if ($nivel == 1) {
     require 'views/principal/dashadmin.php';
 }else if ($nivel == 4) {
     require 'views/principal/dashpoa.php';
+}else if ($nivel == 5) {
+    require 'views/matrizestrategica/matriz.php';
 }
+
 
 ?>
 

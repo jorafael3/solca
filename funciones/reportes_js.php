@@ -176,6 +176,7 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 1000);
     }
+
     //*********************************************************** */
     //* POR OBJETIVO
 
@@ -316,8 +317,6 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
         xmlhttp.send(data);
     }
 
-
-   
     //************************************************************* */
     //* POR AREAS
 
