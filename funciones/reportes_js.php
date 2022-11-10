@@ -441,7 +441,7 @@ $url_Cargar_Reportes_Uninversal = constant("URL") . "reportes/Cargar_Reportes_Un
             // },
             columns: [{
                 data: "CRITERIO_NOM",
-                title: "Criteria"
+                title: "Criterio"
             }, {
                 data: "PERSPECTIVA_NOM",
                 title: "Perspectiva"
