@@ -6,6 +6,7 @@ $urlObjetivos_Estrategicos = constant("URL") . "matrizestrategica/Get_Objetivos_
 $url_CARGAR_REPORTE = constant("URL") . "reportes/Cargar_Reportes";
 $url_Cargar_Reportes_Objetivo = constant("URL") . "reportes/Cargar_Reportes_Objetivo";
 $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
+$url_Cargar_Reportes_Uninversal = constant("URL") . "reportes/Cargar_Reportes_Universal";
 
 
 ?>
@@ -23,6 +24,7 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
     var url_CARGAR_REPORTE = '<?php echo $url_CARGAR_REPORTE ?>';
     var url_Cargar_Reportes_Objetivo = '<?php echo $url_Cargar_Reportes_Objetivo ?>';
     var url_Cargar_Reportes_Areas = '<?php echo $url_Cargar_Reportes_Areas ?>';
+    var url_Cargar_Reportes_Uninversal = '<?php echo $url_Cargar_Reportes_Uninversal ?>';
 
     var PERSPECTIVA_ID;
     var OBJET_ID;
@@ -43,7 +45,6 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
             });
         });
     }
-    Get_Perspectivas();
 
     function Get_Criterios(id) {
 
@@ -123,47 +124,45 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
                 "width": "15%",
                 "targets": 0
             }],
-            buttons:[
+            buttons: [
                 'excel'
             ],
             // "drawCallback": function() {
             //     $(this.api().table().header()).hide();
             // },
-            columns: [
-                {
-                    data:"proyectos",
-                    title:"Proyectos"
-                },{
-                    data:"AREA_NOM",
-                    title:"Area"
-                },{
-                    data:"actividades",
-                    title:"# Act Totales"
-                },{
-                    data:"FINALIZADO",
-                    title:"# Act. finalizadas"
-                },{
-                    data:"PorcentajeFinalizado",
-                    title:"% Avance Proyectos",
-                    // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            columns: [{
+                data: "proyectos",
+                title: "Proyectos"
+            }, {
+                data: "AREA_NOM",
+                title: "Area"
+            }, {
+                data: "actividades",
+                title: "# Act Totales"
+            }, {
+                data: "FINALIZADO",
+                title: "# Act. finalizadas"
+            }, {
+                data: "PorcentajeFinalizado",
+                title: "% Avance Proyectos",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
 
-                }
-            ],
+            }],
             "createdRow": function(row, data, index, cell) {
                 let color = "danger"
-                if(data["PorcentajeFinalizado"] >=100){
-                    color="success"
+                if (data["PorcentajeFinalizado"] >= 100) {
+                    color = "success"
                 }
-                if(data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] <100){
-                   color="warning"
+                if (data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] < 100) {
+                    color = "warning"
                 }
 
                 let pr = `
                     <div class="d-flex align-items-center w-100 mw-125px">
 						<div class="progress h-6px w-100 me-2 bg-light-warning">
-							<div class="progress-bar bg-`+color+`" role="progressbar" style="width: `+parseFloat(data["PorcentajeFinalizado"]).toFixed(2)+`%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar bg-` + color + `" role="progressbar" style="width: ` + parseFloat(data["PorcentajeFinalizado"]).toFixed(2) + `%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
-						<span class="text-gray-400 fw-semibold">`+parseFloat(data["PorcentajeFinalizado"]).toFixed(2) +`%</span>
+						<span class="text-gray-400 fw-semibold">` + parseFloat(data["PorcentajeFinalizado"]).toFixed(2) + `%</span>
 					</div>
                 `
                 $('td', row).eq(4).html(pr);
@@ -207,65 +206,63 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
                 "width": "15%",
                 "targets": 0
             }],
-            buttons:[
+            buttons: [
                 'excel'
             ],
             // "drawCallback": function() {
             //     $(this.api().table().header()).hide();
             // },
-            columns: [
-                {
-                    data:"OBJEST_NOM",
-                    title:"Objetivo Estrategico"
-                },{
-                    data:"proyectos",
-                    title:"# Proyectos"
-                },{
-                    data:"areas",
-                    title:"Areas"
-                },{
-                    data:"actividades",
-                    title:"# Act. Totales"
-                },{
-                    data:"FINALIZADO",
-                    title:"# Act. Finalizadas"
-                },{
-                    data:"PorcentajeFinalizado",
-                    title:"% Avance Proyectos",
-                    // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            columns: [{
+                data: "OBJEST_NOM",
+                title: "Objetivo Estrategico"
+            }, {
+                data: "proyectos",
+                title: "# Proyectos"
+            }, {
+                data: "areas",
+                title: "Areas"
+            }, {
+                data: "actividades",
+                title: "# Act. Totales"
+            }, {
+                data: "FINALIZADO",
+                title: "# Act. Finalizadas"
+            }, {
+                data: "PorcentajeFinalizado",
+                title: "% Avance Proyectos",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
 
-                }
-            ],
+            }],
             "createdRow": function(row, data, index, cell) {
                 let color = "danger"
-                if(data["PorcentajeFinalizado"] >=100){
-                    color="success"
+                if (data["PorcentajeFinalizado"] >= 100) {
+                    color = "success"
                 }
-                if(data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] <100){
-                   color="warning"
+                if (data["PorcentajeFinalizado"] > 25 && data["PorcentajeFinalizado"] < 100) {
+                    color = "warning"
                 }
 
                 let areas = data["areas"].split(",");
                 console.log('areas: ', areas);
                 let ali = "";
-                areas.map(function(x){
-                    ali = ali+'<li>'+x+'</li>'
+                areas.map(function(x) {
+                    ali = ali + '<li>' + x + '</li>'
                 })
                 $('td', row).eq(1).addClass("text-center fs-1");
                 $('td', row).eq(3).addClass("text-center fs-1");
                 $('td', row).eq(4).addClass("text-center fs-1");
                 $('td', row).eq(2).html(`
                         <ul>
-                            `+ali+`
+                            ` + ali + `
                         </ul>
                 `);
 
                 let pr = `
                     <div class="d-flex align-items-center w-100 mw-125px">
 						<div class="progress h-6px w-100 me-2 bg-light-warning">
-							<div class="progress-bar bg-`+color+`" role="progressbar" style="width: `+parseFloat(data["PorcentajeFinalizado"]).toFixed(2)+`%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar bg-` + color + `" role="progressbar" style="width: ` + parseFloat(data["PorcentajeFinalizado"]).toFixed(2) + `%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
-						<span class="text-gray-600 fw-semibold">`+parseFloat(data["PorcentajeFinalizado"]).toFixed(2) +`%</span>
+						<span class="text-gray-600 fw-semibold">` + parseFloat(data["PorcentajeFinalizado"]).toFixed(2) + `%</span>
 					</div>
                 `
                 $('td', row).eq(5).html(pr);
@@ -331,7 +328,6 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
             $("#SECCCION_POR_AREAS").show(100);
         });
     }
-    CARGAR_REPORTE_POR_AREA();
 
     function TABLA_REPORTES_AREAS(data) {
         // $('#REP_REPORTES').empty();
@@ -383,12 +379,12 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
                     color = "info"
                 }
 
-            
+
                 $('td', row).eq(1).addClass(" fs-1");
                 $('td', row).eq(2).addClass(" fs-1");
                 $('td', row).eq(3).addClass(" fs-1");
                 $('td', row).eq(4).addClass(" fs-2");
-               
+
                 let pr = `
                     <div class="d-flex align-items-center w-100 mw-125px">
 						<div class="progress h-6px w-100 me-2 bg-light-warning">
@@ -407,6 +403,125 @@ $url_Cargar_Reportes_Areas = constant("URL") . "reportes/Cargar_Reportes_Areas";
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
         }, 500);
     }
-    
 
+    //************************************************************* */
+    //* POR UNIVERSAL
+
+    function CARGAR_REPORTE_UNIVERSAL() {
+        // var parametros = {
+        //     id: $("#REP_CRIT").val()
+        // }
+        // console.log('parametros: ', parametros);
+        AjaxSendReceive(url_Cargar_Reportes_Uninversal, [], function(x) {
+            console.log('x: ', x);
+            TABLA_REPORTES_UNIVERSAL(x) 
+        });
+    }
+
+    function TABLA_REPORTES_UNIVERSAL(data) {
+        // $('#REP_REPORTES').empty();
+        var table = $('#REP_REPORTES_UNIVERSAL').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'Bfrtip',
+            scrollY: 450,
+            scrollX: true,
+            scrollCollapse: true,
+            // paging: false,
+            "bInfo": false,
+            "columnDefs": [{
+                "width": "15%",
+                "targets": 0
+            }],
+            buttons: [
+                'excel'
+            ],
+            // "drawCallback": function() {
+            //     $(this.api().table().header()).hide();
+            // },
+            columns: [{
+                data: "CRITERIO_NOM",
+                title: "Criteria"
+            }, {
+                data: "PERSPECTIVA_NOM",
+                title: "Perspectiva"
+            }, {
+                data: "OBJEST_NOM",
+                title: "Objetivo"
+            }, {
+                data: "AREA_NOM",
+                title: "Area"
+            }, {
+                data: "PROYECTOA_NOM",
+                title: "Proyecto",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            }, {
+                data: "AVANCE_PROYECTO",
+                title: "% Avance Proyecto",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            }, {
+                data: "ACTIV_NOM",
+                title: "Actividad",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            },
+            {
+                data: "AVANCE_ACTIVIDAD",
+                title: "% Avance Actividad",
+                // render: $.fn.dataTable.render.number(',', '.', 2, "%")
+            }
+        ],
+            "createdRow": function(row, data, index, cell) {
+                let color = "danger"
+                if (data["AVANCE_PROYECTO"] >= 100) {
+                    color = "success"
+                }
+                if (data["AVANCE_PROYECTO"] < 50) {
+                    color = "danger"
+                }
+                if (data["AVANCE_PROYECTO"] >= 50 && data["AVANCE_PROYECTO"] < 100) {
+                    color = "info"
+                }
+                let color2 = "danger"
+                if (data["AVANCE_ACTIVIDAD"] >= 100) {
+                    color2 = "success"
+                }
+                if (data["AVANCE_ACTIVIDAD"] < 50) {
+                    color2 = "danger"
+                }
+                if (data["AVANCE_ACTIVIDAD"] >= 50 && data["AVANCE_ACTIVIDAD"] < 100) {
+                    color2 = "info"
+                }
+
+                // $('td', row).eq(1).addClass(" fs-1");
+                // $('td', row).eq(2).addClass(" fs-1");
+                // $('td', row).eq(3).addClass(" fs-1");
+                // $('td', row).eq(4).addClass(" fs-2");
+
+                let pr = `
+                    <div class="d-flex align-items-center w-100 mw-125px">
+						<div class="progress h-6px w-100 me-2 bg-light-warning">
+							<div class="progress-bar bg-` + color + `" role="progressbar" style="width: ` + parseFloat(data["AVANCE_PROYECTO"]).toFixed(2) + `%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="text-gray-600 fw-semibold">` + parseFloat(data["AVANCE_PROYECTO"]).toFixed(2) + `%</span>
+					</div>
+                `
+                $('td', row).eq(5).html(pr);
+
+                let pr2 = `
+                    <div class="d-flex align-items-center w-100 mw-125px">
+						<div class="progress h-6px w-100 me-2 bg-light-warning">
+							<div class="progress-bar bg-` + color2 + `" role="progressbar" style="width: ` + parseFloat(data["AVANCE_ACTIVIDAD"]).toFixed(2) + `%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<span class="text-gray-600 fw-semibold">` + parseFloat(data["AVANCE_ACTIVIDAD"]).toFixed(2) + `%</span>
+					</div>
+                `
+                $('td', row).eq(7).html(pr2);
+
+            }
+        });
+        new $.fn.dataTable.FixedHeader(table);
+        setTimeout(function() {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+        }, 500);
+    }
 </script>

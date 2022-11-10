@@ -71,6 +71,7 @@ require 'views/header.php';
 <?php require 'funciones/reportes_js.php'; ?>
 
 <script>
+    Get_Perspectivas();
 
 
 </script>

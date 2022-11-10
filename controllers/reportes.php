@@ -58,7 +58,7 @@ class Reportes extends Controller
         $function = $this->model->Cargar_Reportes_Objetivo($array);
     }
 
-      //******************************************************************* */
+    //******************************************************************* */
     //** POR AREAS */
 
     function PorAreasrender()
@@ -81,5 +81,28 @@ class Reportes extends Controller
     {
         $array = json_decode(file_get_contents("php://input"), true);
         $function = $this->model->Cargar_Reportes_Areas($array);
+    }
+
+    //******** UNIVERSAL */
+    function Universalrender()
+    {
+        $nivel = $_SESSION["TIPOUS_ID"];
+        if ($nivel == 1) {
+            $this->view->render('reportes/universal');
+        } else {
+            $this->view->render('errores/404');
+        }
+    }
+
+    function Universal()
+    {
+
+        $this->Universalrender();
+    }
+
+    function Cargar_Reportes_Universal()
+    {
+        $array = json_decode(file_get_contents("php://input"), true);
+        $function = $this->model->Cargar_Reportes_Universal($array);
     }
 }

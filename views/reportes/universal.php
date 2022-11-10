@@ -5,13 +5,13 @@ require 'views/header.php';
 ?>
 <div class="row gy-5 g-xl-10">
     <!--begin::Col-->
-   
-    <div class="col-12" style="display: none;" id="SECCCION_POR_AREAS">
+
+    <div class="col-12">
         <div class="card shadow-sm">
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table style="width: 100%; font-weight: bold; font-size: 16px;" id="REP_REPORTES_AREAS" class="table table-striped table-hover table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                    <table style="width: 100%; font-weight: bold; font-size: 12px;" id="REP_REPORTES_UNIVERSAL" class="table table-striped table-row-dashed table-row-gray-600 align-middle gs-0 gy-4">
                         <thead class="border-gray-200 fs-5 fw-bold bg-lighten">
 
                         </thead>
@@ -32,7 +32,6 @@ require 'views/header.php';
 <?php require 'funciones/reportes_js.php'; ?>
 
 <script>
-
-CARGAR_REPORTE_POR_AREA();
+    CARGAR_REPORTE_UNIVERSAL();
 
 </script>

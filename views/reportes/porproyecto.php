@@ -66,5 +66,6 @@ require 'views/header.php';
 
 <script>
 
+Get_Perspectivas();
 
 </script>

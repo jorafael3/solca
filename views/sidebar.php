@@ -237,6 +237,14 @@ $TIPOUS_ID = $_SESSION["TIPOUS_ID"];
                                         <span class="menu-title">Agrupados por Areas</span>
                                     </a>
                                 </div>
+                                <div class="menu-item">
+                                    <a class="menu-link" href="<?php echo constant("URL") ?>reportes/Universal">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Reporte universal</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
